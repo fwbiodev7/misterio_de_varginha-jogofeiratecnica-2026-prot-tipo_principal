@@ -1,0 +1,535 @@
+fileFormatVersion: 2
+guid: 95b1d66a06101ef4da059bf87da84aae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6233594609869957216
+    second: EdelzioTopDownV2_0
+  - first:
+      213: -4204845176895311075
+    second: EdelzioTopDownV2_1
+  - first:
+      213: 4762445541417993478
+    second: EdelzioTopDownV2_2
+  - first:
+      213: 1363688607238623908
+    second: EdelzioTopDownV2_3
+  - first:
+      213: 1084848180981598732
+    second: EdelzioTopDownV2_4
+  - first:
+      213: 2499840516271174306
+    second: EdelzioTopDownV2_5
+  - first:
+      213: -8903004896140970444
+    second: EdelzioTopDownV2_6
+  - first:
+      213: -987784181051035074
+    second: EdelzioTopDownV2_7
+  - first:
+      213: 7568903196171482036
+    second: EdelzioTopDownV2_8
+  - first:
+      213: -1241462789291929366
+    second: EdelzioTopDownV2_9
+  - first:
+      213: 8379225907468949530
+    second: EdelzioTopDownV2_10
+  - first:
+      213: 2580511324200558516
+    second: EdelzioTopDownV2_11
+  - first:
+      213: -8654803763376547104
+    second: EdelzioTopDownV2_12
+  - first:
+      213: -585387749415123119
+    second: EdelzioTopDownV2_13
+  - first:
+      213: 6386825260347439612
+    second: EdelzioTopDownV2_14
+  - first:
+      213: -6827499775590195590
+    second: EdelzioTopDownV2_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_0
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 904
+        width: 172
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 068a61b454d228650800000000000000
+      internalID: 6233594609869957216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_1
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 897
+        width: 222
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d13f3aff69365a5c0800000000000000
+      internalID: -4204845176895311075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_2
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 911
+        width: 193
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 605cc56ccfa971240800000000000000
+      internalID: 4762445541417993478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_3
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 911
+        width: 296
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a294ba209bcce210800000000000000
+      internalID: 1363688607238623908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 603
+        width: 182
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a03ae3ca72e0f00800000000000000
+      internalID: 1084848180981598732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 334
+        width: 183
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a2f87f64b731b220800000000000000
+      internalID: 2499840516271174306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_6
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 340
+        width: 243
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43634f3973c227480800000000000000
+      internalID: -8903004896140970444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_7
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 558
+        width: 265
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e32f3b5558faa42f0800000000000000
+      internalID: -987784181051035074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_8
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 624
+        width: 247
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b3be1bea552a0960800000000000000
+      internalID: 7568903196171482036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_9
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 278
+        width: 245
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae09362bb2075cee0800000000000000
+      internalID: -1241462789291929366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_10
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 605
+        width: 201
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18df6b519df84470800000000000000
+      internalID: 8379225907468949530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_11
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 340
+        width: 163
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bfd8d19061dfc320800000000000000
+      internalID: 2580511324200558516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_12
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 22
+        width: 169
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ea1a3315d5f3e780800000000000000
+      internalID: -8654803763376547104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_13
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 43
+        width: 206
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1570f3481f840e7f0800000000000000
+      internalID: -585387749415123119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_14
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 10
+        width: 201
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf930854cbf82a850800000000000000
+      internalID: 6386825260347439612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioTopDownV2_15
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 20
+        width: 213
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e13e3b029df31a0800000000000000
+      internalID: -6827499775590195590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EdelzioTopDownV2_0: 6233594609869957216
+      EdelzioTopDownV2_1: -4204845176895311075
+      EdelzioTopDownV2_10: 8379225907468949530
+      EdelzioTopDownV2_11: 2580511324200558516
+      EdelzioTopDownV2_12: -8654803763376547104
+      EdelzioTopDownV2_13: -585387749415123119
+      EdelzioTopDownV2_14: 6386825260347439612
+      EdelzioTopDownV2_15: -6827499775590195590
+      EdelzioTopDownV2_2: 4762445541417993478
+      EdelzioTopDownV2_3: 1363688607238623908
+      EdelzioTopDownV2_4: 1084848180981598732
+      EdelzioTopDownV2_5: 2499840516271174306
+      EdelzioTopDownV2_6: -8903004896140970444
+      EdelzioTopDownV2_7: -987784181051035074
+      EdelzioTopDownV2_8: 7568903196171482036
+      EdelzioTopDownV2_9: -1241462789291929366
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
