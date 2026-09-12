@@ -1,0 +1,40 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Game.Player;
+
+namespace Game.Varginha
+{
+    /// <summary>Conecta o ataque ao jogador e protege a entidade principal em cenas antigas e na Fase 2.</summary>
+    public static class VarginhaCombatRuntimeBootstrap
+    {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Install()
+        {
+            SceneManager.sceneLoaded -= InstallOnSceneLoaded;
+            SceneManager.sceneLoaded += InstallOnSceneLoaded;
+            InstallOnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+        }
+
+        private static void InstallOnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            var player = Object.FindAnyObjectByType<EdelzioTopDownController>();
+            if (player != null)
+            {
+                if (player.GetComponent<VarginhaPlayerAttack>() == null)
+                    player.gameObject.AddComponent<VarginhaPlayerAttack>();
+                if (player.GetComponent<HealthSystem>() == null)
+                {
+                    var health = player.gameObject.AddComponent<HealthSystem>();
+                    health.SetMaxHealth(100f, false);
+                }
+            }
+
+            foreach (var ai in Object.FindObjectsByType<EntityManifestationAI>(FindObjectsInactive.Include))
+            {
+                var target = ai.GetComponent<VarginhaCombatTarget>() ?? ai.gameObject.AddComponent<VarginhaCombatTarget>();
+                target.SetKind(VarginhaCombatTarget.EnemyKind.AncestralEntity);
+                if (ai.GetComponent<HealthSystem>() == null) ai.gameObject.AddComponent<HealthSystem>();
+            }
+        }
+    }
+}

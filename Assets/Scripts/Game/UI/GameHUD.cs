@@ -79,6 +79,7 @@ namespace Game.UI
 
         private void OnGUI()
         {
+            if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
             InitStyles();
             _objectiveTypewriter.Tick(30f);
 

@@ -13,6 +13,8 @@ namespace Game.Varginha
         [SerializeField] private float startDuration = .7f;
         [SerializeField] private float driveSpeed = 12f;
         [SerializeField] private float exitDistance = 15f;
+        [SerializeField] private float engineShake = .018f;
+        [SerializeField] private float launchLean = 2.5f;
 
         private SpriteRenderer _renderer;
         private bool _isDeparting;
@@ -37,30 +39,47 @@ namespace Game.Varginha
         {
             _isDeparting = true;
             Vector3 startPosition = transform.position;
+            Vector3 baseScale = transform.localScale;
+            Quaternion baseRotation = transform.localRotation;
             float elapsed = 0f;
             while (elapsed < startDuration)
             {
                 AnimateFrame(elapsed);
-                // Tremor curto de motor antes da arrancada.
-                float shake = Mathf.Sin(elapsed * 42f) * .025f * (elapsed / startDuration);
-                transform.position = startPosition + new Vector3(shake, 0f, 0f);
+                // Os quadros dão vida ao motor sem deslocar o carro e seus passageiros.
+                transform.position = startPosition;
+                ApplySuspensionMotion(baseScale, baseRotation, elapsed, .35f);
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
             float travelled = 0f;
-            while (travelled < exitDistance)
+            float distance = Mathf.Max(0f, exitDistance);
+            float speed = Mathf.Max(.01f, driveSpeed);
+            float direction = _renderer != null && _renderer.flipX ? -1f : 1f;
+            while (travelled < distance)
             {
                 AnimateFrame(elapsed);
                 float acceleration = Mathf.Lerp(.28f, 1f, Mathf.Clamp01(travelled / 4.5f));
-                float step = driveSpeed * acceleration * Time.deltaTime;
-                float wheelBob = Mathf.Sin(elapsed * 16f) * .018f;
-                transform.position += new Vector3(step, wheelBob, 0f);
-                travelled += step;
+                travelled = Mathf.Min(distance, travelled + speed * acceleration * Time.deltaTime);
+                // Posição absoluta: Y/Z não acumulam oscilação nem variam com o FPS.
+                transform.position = startPosition + Vector3.right * (direction * travelled);
+                float launch = Mathf.Clamp01(travelled / 2.2f);
+                ApplySuspensionMotion(baseScale, baseRotation, elapsed, Mathf.Lerp(.35f, 0f, launch));
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+            transform.localScale = baseScale;
+            transform.localRotation = baseRotation;
+            transform.position = startPosition + Vector3.right * (direction * distance);
             onComplete?.Invoke();
+        }
+
+        private void ApplySuspensionMotion(Vector3 baseScale, Quaternion baseRotation, float elapsed, float strength)
+        {
+            float bob = Mathf.Sin(elapsed * 38f) * engineShake * strength;
+            float lean = Mathf.Sin(elapsed * 22f) * launchLean * strength;
+            transform.localScale = new Vector3(baseScale.x * (1f + bob), baseScale.y * (1f - bob * .55f), baseScale.z);
+            transform.localRotation = baseRotation * Quaternion.Euler(0f, 0f, lean);
         }
 
         private void AnimateFrame(float elapsed)

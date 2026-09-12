@@ -11,7 +11,9 @@ namespace Game.Varginha
         CoffeeOrFood,   // Café que restaura sanidade
         FuscaVehicle,   // Fusca para escapar
         OldDocument,    // Pista opcional
-        FuseBox         // Caixa de força / eletricidade
+        FuseBox,        // Caixa de força / eletricidade
+        PadreFabio,     // Padre Fábio e o Livro do Tombo Secreto
+        SecretTome      // Livro do Tombo da diocese
     }
 
     /// <summary>
@@ -37,6 +39,87 @@ namespace Game.Varginha
 
         public event Action<EdelzioTopDownController> OnInteracted;
 
+        /// <summary>Configura props criadas pelo construtor de uma fase runtime.</summary>
+        public void Configure(PropType type, string name, string message, bool multipleTimes = false)
+        {
+            propType = type;
+            propName = string.IsNullOrWhiteSpace(name) ? "Objeto Misterioso" : name;
+            inspectMessage = string.IsNullOrWhiteSpace(message) ? "Você examina o objeto." : message;
+            canInteractMultipleTimes = multipleTimes;
+            _hasInteracted = false;
+            EnsureVisualPresentation();
+        }
+
+        private void Awake()
+        {
+            EnsureVisualPresentation();
+        }
+
+        /// <summary>
+        /// Corrige props de cenas antigas que perderam o sprite ou foram salvos com
+        /// ordem de desenho atrás do piso. O fallback é procedural e mantém o estilo
+        /// pixel art do jogo, sem reexibir itens já coletados.
+        /// </summary>
+        private void EnsureVisualPresentation()
+        {
+            if (!CanInteract) return;
+
+            var renderer = GetComponent<SpriteRenderer>();
+            if (renderer == null) renderer = gameObject.AddComponent<SpriteRenderer>();
+
+            Sprite fallback = null;
+            int sortingOrder = renderer.sortingOrder;
+            switch (propType)
+            {
+                case PropType.ToyBoxUnderBed:
+                    fallback = VarginhaPixelArtSprites.Create("ToyBox_Prop", new Color(.55f, .30f, .15f));
+                    sortingOrder = Mathf.Max(sortingOrder, 4);
+                    break;
+                case PropType.Backpack:
+                    fallback = VarginhaPixelArtSprites.Create("Backpack_Prop", new Color(.46f, .48f, .50f));
+                    sortingOrder = Mathf.Max(sortingOrder, 7);
+                    break;
+                case PropType.NotebookLaptop:
+                    fallback = VarginhaPixelArtSprites.Create("Notebook_TI", new Color(.18f, .52f, .70f));
+                    sortingOrder = Mathf.Max(sortingOrder, 7);
+                    break;
+                case PropType.CoffeeOrFood:
+                    fallback = VarginhaPixelArtSprites.Create("Coffee_Hot", new Color(.72f, .40f, .18f));
+                    sortingOrder = Mathf.Max(sortingOrder, 6);
+                    break;
+                case PropType.FuscaVehicle:
+                    // Preserva a folha de sprites do Fusca quando ela existe.
+                    if (renderer.sprite == null)
+                        fallback = VarginhaPixelArtSprites.Create("Fusca_Fallback", new Color(.20f, .60f, .85f));
+                    sortingOrder = Mathf.Max(sortingOrder, 5);
+                    break;
+                case PropType.OldDocument:
+                    fallback = VarginhaPixelArtSprites.Create("Doc_Prop", new Color(.78f, .67f, .42f));
+                    sortingOrder = Mathf.Max(sortingOrder, 6);
+                    break;
+                case PropType.FuseBox:
+                    fallback = VarginhaPixelArtSprites.Create("FuseBox_Prop", new Color(.35f, .42f, .48f));
+                    sortingOrder = Mathf.Max(sortingOrder, 5);
+                    break;
+                case PropType.PadreFabio:
+                    fallback = VarginhaPixelArtSprites.Create("Padre_Fabio", new Color(.52f, .40f, .28f));
+                    sortingOrder = Mathf.Max(sortingOrder, 7);
+                    break;
+                case PropType.SecretTome:
+                    fallback = VarginhaPixelArtSprites.Create("Tome_Prop", new Color(.48f, .22f, .12f));
+                    sortingOrder = Mathf.Max(sortingOrder, 7);
+                    break;
+            }
+
+            if (fallback != null) renderer.sprite = fallback;
+            renderer.enabled = true;
+            renderer.sortingOrder = sortingOrder;
+
+            foreach (var collider in GetComponents<Collider2D>()) collider.enabled = true;
+            var body = GetComponent<Rigidbody2D>();
+            if (body != null) body.simulated = true;
+        }
+
         // Fallbacks evitam que uma referência estática perdida por reload de domínio silencie as interfaces.
         private static VarginhaGameHUD GetHud()
         {
@@ -54,7 +137,7 @@ namespace Game.Varginha
 
         public void Interact(EdelzioTopDownController edelzio)
         {
-            if (!CanInteract) return;
+            if (!CanInteract || edelzio == null || edelzio.IsInputLocked) return;
             _hasInteracted = true;
 
             string message = inspectMessage;
@@ -93,6 +176,8 @@ namespace Game.Varginha
                     var quiz = GetQuiz();
                     if (quiz != null)
                     {
+                        // Sair do quiz sem concluir deve permitir tentar novamente.
+                        _hasInteracted = false;
                         var action = edelzio.GetComponent<VarginhaPlayerActionAnimation>();
                         if (action != null)
                             action.PlayNotebookSession(transform, () => GetQuiz()?.Open(edelzio, this));
@@ -137,6 +222,8 @@ namespace Game.Varginha
                     break;
 
                 case PropType.OldDocument:
+                    edelzio.HasHistoricalDocument = true;
+                    HideCollectedWorldObject();
                     message = "📜 Documento Antigo de 1898:\n'Relatório de Zé Gomes: Encontramos algo nas cavernas que não deveria ter sido acordado.'";
                     GetHud()?.ShowDialogue("Pista Histórica", message);
                     break;
@@ -144,6 +231,16 @@ namespace Game.Varginha
                 case PropType.FuseBox:
                     message = "⚡ Caixa de Fusíveis: A fiação está sobrecarregada por pulsos eletromagnéticos impossíveis.";
                     GetHud()?.ShowDialogue("Investigação", message);
+                    break;
+
+                case PropType.PadreFabio:
+                    message = inspectMessage;
+                    GetHud()?.ShowDialogue("Padre Fábio", message);
+                    break;
+
+                case PropType.SecretTome:
+                    message = inspectMessage;
+                    GetHud()?.ShowDialogue("Livro do Tombo Secreto", message);
                     break;
             }
 
@@ -162,8 +259,9 @@ namespace Game.Varginha
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null) spriteRenderer.enabled = false;
-            var collider = GetComponent<Collider2D>();
-            if (collider != null) collider.enabled = false;
+            foreach (var collider in GetComponents<Collider2D>()) collider.enabled = false;
+            var body = GetComponent<Rigidbody2D>();
+            if (body != null) { body.linearVelocity = Vector2.zero; body.simulated = false; }
         }
     }
 }

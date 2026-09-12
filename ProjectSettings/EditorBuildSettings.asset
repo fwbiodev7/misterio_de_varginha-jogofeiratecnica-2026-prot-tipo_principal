@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FaseTopView_Varginha.unity
     guid: e1e2e3e4e5e6e7e8e9e0f1f2f3f4f5f6
+  - enabled: 1
+    path: Assets/Scenes/Fase2_Escola_Resgate.unity
+    guid: f2e2b4c6d8a049f4b7c5d3e1a9f8b6d4
+  - enabled: 1
+    path: Assets/Scenes/Fase3_Igreja_Guardiao.unity
+    guid: df9cf8dde98b433ebefdb54968a25973
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

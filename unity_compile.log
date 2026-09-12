@@ -1,0 +1,27 @@
+attempt to write a readonly database
+attempt to write a readonly database
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 15040)
+VBCSCompiler prewarm took 12.34 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Connection to channel LicenseClient-Fabio refused
+Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'pt' Physical Memory: 16176 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-12T16:28:59Z
+Assertion failed on expression: 'SUCCEEDED(hr)'
+Assertion failed on expression: 'SUCCEEDED(hr)'
+Assertion failed on expression: 'ERROR_SUCCESS == status'
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal
+-logFile
+unity_compile.log
+Successfully changed project path to: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal
+C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 1

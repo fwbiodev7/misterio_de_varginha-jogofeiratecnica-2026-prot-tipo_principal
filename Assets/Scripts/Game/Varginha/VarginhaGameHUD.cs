@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Game.Managers;
 using Game.UI;
+using UnityEngine.InputSystem;
 
 namespace Game.Varginha
 {
@@ -36,6 +37,37 @@ namespace Game.Varginha
         private GUIStyle _rodrigoStyle;
         private GUIStyle _promptStyle;
         private GUIStyle _buttonStyle;
+        private GUIStyle _hotbarLabelStyle;
+        private GUIStyle _hotbarNumberStyle;
+        private readonly Sprite[] _hotbarIcons = new Sprite[5];
+        private readonly bool[] _hotbarOwned = new bool[5];
+        private readonly float[] _hotbarCollectedAt = new float[5];
+        private static readonly string[] HotbarNames = { "MOCHILA", "CHAVE DO FUSCA", "CADERNO DE 1996", "NOTEBOOK", "DOCUMENTO DE 1898" };
+        private int _selectedSlot;
+        private float HotbarHeight => Mathf.Min(76f, (Screen.width - 44f) / 5f) + 46f;
+
+        private void Update()
+        {
+            if (_edelzio == null) return;
+            for (int i = 0; i < 5; i++)
+            {
+                bool owned = _edelzio.HasInventoryItem(i);
+                if (owned && !_hotbarOwned[i])
+                {
+                    _hotbarCollectedAt[i] = Time.unscaledTime;
+                    _selectedSlot = i;
+                }
+                _hotbarOwned[i] = owned;
+            }
+            if (_isDialogueOpen || _isVictoryOpen || _edelzio.IsInputLocked || Time.timeScale == 0f) return;
+            var keyboard = Keyboard.current;
+            if (keyboard == null) return;
+            if (keyboard.digit1Key.wasPressedThisFrame) _selectedSlot = 0;
+            if (keyboard.digit2Key.wasPressedThisFrame) _selectedSlot = 1;
+            if (keyboard.digit3Key.wasPressedThisFrame) _selectedSlot = 2;
+            if (keyboard.digit4Key.wasPressedThisFrame) _selectedSlot = 3;
+            if (keyboard.digit5Key.wasPressedThisFrame) _selectedSlot = 4;
+        }
 
         private void Awake()
         {
@@ -64,6 +96,9 @@ namespace Game.Varginha
             _isDialogueOpen = false;
             _lastInteractionInstruction = null;
             _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
+            System.Array.Clear(_hotbarOwned, 0, _hotbarOwned.Length);
+            System.Array.Clear(_hotbarCollectedAt, 0, _hotbarCollectedAt.Length);
+            _selectedSlot = 0;
         }
 
         private void Start()
@@ -128,6 +163,34 @@ namespace Game.Varginha
             PixelUIFont.Apply(_rodrigoStyle);
             PixelUIFont.Apply(_promptStyle);
             PixelUIFont.Apply(_buttonStyle);
+            _hotbarLabelStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 11, fontStyle = FontStyle.Bold };
+            _hotbarLabelStyle.normal.textColor = new Color(.90f, .84f, .65f);
+            _hotbarNumberStyle = new GUIStyle(_hotbarLabelStyle) { alignment = TextAnchor.UpperLeft, fontSize = 10 };
+            PixelUIFont.Apply(_hotbarLabelStyle);
+            PixelUIFont.Apply(_hotbarNumberStyle);
+            _hotbarIcons[0] = VarginhaPixelArtSprites.Create("Backpack_Inventory", Color.gray);
+            _hotbarIcons[1] = VarginhaPixelArtSprites.Create("Inventory_Key", Color.white);
+            _hotbarIcons[2] = VarginhaPixelArtSprites.Create("Inventory_Journal", Color.white);
+            _hotbarIcons[3] = VarginhaPixelArtSprites.Create("Notebook_Inventory", new Color(.30f, .90f, 1f));
+            _hotbarIcons[4] = VarginhaPixelArtSprites.Create("Doc_Inventory", new Color(.9f, .85f, .7f));
+        }
+
+        private Sprite EnsureHotbarIcon(int index)
+        {
+            var icon = _hotbarIcons[index];
+            if (icon != null && icon.texture != null) return icon;
+
+            switch (index)
+            {
+                case 0: icon = VarginhaPixelArtSprites.Create("Backpack_Inventory", Color.gray); break;
+                case 1: icon = VarginhaPixelArtSprites.Create("Inventory_Key", Color.white); break;
+                case 2: icon = VarginhaPixelArtSprites.Create("Inventory_Journal", Color.white); break;
+                case 3: icon = VarginhaPixelArtSprites.Create("Notebook_Inventory", new Color(.30f, .90f, 1f)); break;
+                default: icon = VarginhaPixelArtSprites.Create("Doc_Inventory", new Color(.9f, .85f, .7f)); break;
+            }
+
+            _hotbarIcons[index] = icon;
+            return icon;
         }
 
         public void ShowDialogue(string speaker, string message)
@@ -159,6 +222,7 @@ namespace Game.Varginha
 
         private void OnGUI()
         {
+            if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
             InitStyles();
 
             _dialogueTypewriter.Tick(38f);
@@ -178,6 +242,7 @@ namespace Game.Varginha
 
             DrawTopBar();
             DrawInventoryBar();
+            DrawCombatHint();
             DrawInteractionPrompt();
 
             if (_isDialogueOpen)
@@ -232,26 +297,45 @@ namespace Game.Varginha
 
         private void DrawInventoryBar()
         {
-            // Inventário (Canto Superior Direito)
-            float w = 320;
-            float x = Screen.width - w - 18;
-            Rect inventoryPanel = new Rect(x, 16, w, 150);
-            PixelHUDFrame.Draw(inventoryPanel, _whiteTex, new Color(.035f, .09f, .14f, .94f), new Color(.22f, .9f, .95f, .9f));
-            GUI.Label(new Rect(x, 26, w, 22), "INVENTARIO", _promptStyle);
-
-            bool bp = _edelzio != null && _edelzio.HasBackpack;
-            bool key = _edelzio != null && _edelzio.HasFuscaKey;
-            bool note = _edelzio != null && _edelzio.HasResearchNotebook;
-            bool lap = _edelzio != null && _edelzio.HasDecodedData;
-
-            int missions = (bp ? 1 : 0) + (key && note ? 1 : 0) + (lap ? 1 : 0);
-            var itemStyle = new GUIStyle(GUI.skin.label) { fontSize = 12 };
-            PixelUIFont.Apply(itemStyle);
-
-            GUI.Label(new Rect(x + 14, 50, w - 28, 18), $"MISSOES {missions}/3", itemStyle);
-            GUI.Label(new Rect(x + 14, 74, w - 28, 18), $"MOCHILA {(bp ? "OK" : "PENDENTE")}", itemStyle);
-            GUI.Label(new Rect(x + 14, 98, w - 28, 18), $"CHAVE E CADERNO {(key && note ? "OK" : "PENDENTE")}", itemStyle);
-            GUI.Label(new Rect(x + 14, 122, w - 28, 18), $"NOTEBOOK {(lap ? "OK" : "PENDENTE")}", itemStyle);
+            if (_edelzio == null || _isVictoryOpen || _edelzio.CurrentSanity <= 0 || Time.timeScale == 0f) return;
+            float slotSize = Mathf.Min(76f, (Screen.width - 44f) / 5f);
+            const float gap = 6f;
+            float width = slotSize * 5f + gap * 4f;
+            float x = Mathf.Round((Screen.width - width) * .5f);
+            float y = Mathf.Round(Screen.height - HotbarHeight - 8f);
+            y = Mathf.Max(8f, y);
+            _hotbarLabelStyle.fontSize = Screen.width < 480 ? 8 : 11;
+            GUI.Label(new Rect(x, y, width, 20f), "ITENS COLETADOS", _hotbarLabelStyle);
+            int hovered = -1;
+            for (int i = 0; i < 5; i++)
+            {
+                Rect slot = new Rect(x + i * (slotSize + gap), y + 22f, slotSize, slotSize);
+                bool owned = _edelzio.HasInventoryItem(i);
+                bool selected = i == _selectedSlot;
+                bool newlyCollected = owned && Time.unscaledTime - _hotbarCollectedAt[i] < 1.4f;
+                Color border = selected ? new Color(.96f, .73f, .29f) : owned ? new Color(.23f, .64f, .67f) : new Color(.22f, .29f, .31f);
+                if (newlyCollected) border = Color.Lerp(border, Color.white, .3f + .25f * Mathf.Sin(Time.unscaledTime * 8f));
+                PixelHUDFrame.Draw(new Rect(slot.x + 3, slot.y + 4, slot.width, slot.height), _whiteTex, new Color(.015f, .025f, .035f, .85f), new Color(.015f, .025f, .035f));
+                PixelHUDFrame.Draw(slot, _whiteTex, selected ? new Color(.12f, .17f, .19f, .98f) : new Color(.035f, .075f, .10f, .97f), border);
+                if (owned)
+                {
+                    var sprite = EnsureHotbarIcon(i);
+                    if (sprite != null && sprite.texture != null)
+                    {
+                        var texture = sprite.texture;
+                        var source = sprite.rect;
+                        GUI.DrawTextureWithTexCoords(new Rect(slot.x + 10f, slot.y + 10f, slotSize - 20f, slotSize - 20f), texture,
+                            new Rect(source.x / texture.width, source.y / texture.height, source.width / texture.width, source.height / texture.height));
+                    }
+                }
+                else GUI.Label(slot, "·", _hotbarLabelStyle);
+                GUI.Label(new Rect(slot.x + 6, slot.y + 4, 18, 16), (i + 1).ToString(), _hotbarNumberStyle);
+                if (slot.Contains(Event.current.mousePosition)) hovered = i;
+                if (!_isDialogueOpen && !_edelzio.IsInputLocked && GUI.Button(slot, GUIContent.none, GUIStyle.none)) _selectedSlot = i;
+            }
+            int describedSlot = hovered >= 0 ? hovered : _selectedSlot;
+            string label = _edelzio.HasInventoryItem(describedSlot) ? HotbarNames[describedSlot] : "ESPAÇO VAZIO";
+            GUI.Label(new Rect(x, y + slotSize + 24f, width, 20f), label, _hotbarLabelStyle);
         }
 
         private void DrawInteractionPrompt()
@@ -265,7 +349,7 @@ namespace Game.Varginha
             float w = Mathf.Clamp(desiredWidth, 260f, maxWidth);
             float h = Mathf.Max(52f, _promptStyle.CalcHeight(new GUIContent(instruction), w - 28f) + 22f);
             float x = (Screen.width - w) / 2f;
-            float y = Screen.height - h - 30f;
+            float y = Screen.height - HotbarHeight - h - 22f;
             if (_lastInteractionInstruction != instruction)
             {
                 _lastInteractionInstruction = instruction;
@@ -277,6 +361,14 @@ namespace Game.Varginha
             PixelHUDFrame.Draw(promptPanel, _whiteTex, new Color(.025f, .11f, .14f, .96f), new Color(.15f, .85f, .9f, .95f));
             GUI.Label(new Rect(promptPanel.x + 12f, promptPanel.y + 7f, promptPanel.width - 24f, promptPanel.height - 14f), _interactionTypewriter.VisibleText, _promptStyle);
             GUI.color = Color.white;
+        }
+
+        private void DrawCombatHint()
+        {
+            if (_edelzio == null || _edelzio.GetComponent<VarginhaPlayerAttack>() == null || _isDialogueOpen || _isVictoryOpen || _edelzio.CurrentSanity <= 0f) return;
+            Rect hint = new Rect(18f, Screen.height - 36f, 210f, 22f);
+            PixelHUDFrame.Draw(hint, _whiteTex, new Color(.025f, .07f, .09f, .92f), new Color(.77f, .49f, .20f, .95f));
+            GUI.Label(hint, "[J] / CLIQUE  GOLPEAR", _hotbarLabelStyle);
         }
 
         private void DrawDialogueWindow()
@@ -384,11 +476,12 @@ namespace Game.Varginha
             return new Rect((Screen.width - width) * .5f, (Screen.height - height) * .5f, width, height);
         }
 
-        private static Rect GetBottomDialogRect(float maxWidth, float maxHeight)
+        private Rect GetBottomDialogRect(float maxWidth, float maxHeight)
         {
             Rect rect = GetModalRect(maxWidth, maxHeight);
             float bottomMargin = Mathf.Clamp(Screen.height * .04f, 8f, 30f);
-            rect.y = Screen.height - rect.height - bottomMargin;
+            rect.height = Mathf.Min(rect.height, Mathf.Max(80f, Screen.height - HotbarHeight - bottomMargin * 2f - 12f));
+            rect.y = Screen.height - HotbarHeight - rect.height - bottomMargin - 12f;
             return rect;
         }
     }

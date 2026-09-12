@@ -74,6 +74,7 @@ namespace Game.Varginha
 
         private void OnGUI()
         {
+            if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
             if (!_isOpen) return;
             if (_questionIndex < 0 || _questionIndex >= _questions.Length)
             {
@@ -192,7 +193,9 @@ namespace Game.Varginha
         {
             _isOpen = false;
             Time.timeScale = _timeScaleBeforeOpening;
-            _player?.SetInputLocked(false);
+            var action = _player != null ? _player.GetComponent<VarginhaPlayerActionAnimation>() : null;
+            if (action != null) action.FinishNotebookSession();
+            else _player?.SetInputLocked(false);
         }
 
         private void InitStyles()

@@ -10,6 +10,12 @@ namespace Game.Varginha
     {
         [SerializeField] private float pickupDuration = .32f;
         private bool _isPickingUp;
+        private EdelzioTopDownController _collectingPlayer;
+
+        private void Awake()
+        {
+            GetComponent<SpriteRenderer>().sprite = VarginhaPixelArtSprites.Create("Backpack_Prop", Color.gray);
+        }
 
         public void PlayPickup(EdelzioTopDownController player)
         {
@@ -20,8 +26,13 @@ namespace Game.Varginha
         private IEnumerator PickupRoutine(EdelzioTopDownController player)
         {
             _isPickingUp = true;
+            _collectingPlayer = player;
+            foreach (var hitbox in GetComponents<Collider2D>()) hitbox.enabled = false;
+            var body = GetComponent<Rigidbody2D>();
+            if (body != null) { body.linearVelocity = Vector2.zero; body.simulated = false; }
             var action = player.GetComponent<VarginhaPlayerActionAnimation>();
             if (action != null) yield return action.CrouchRoutine(.24f);
+            player.SetInputLocked(true);
             var sprite = GetComponent<SpriteRenderer>();
             var collider = GetComponent<Collider2D>();
             Vector3 start = transform.position;
@@ -41,6 +52,18 @@ namespace Game.Varginha
             if (sprite != null) sprite.enabled = false;
             if (collider != null) collider.enabled = false;
             player.EquipBackpack();
+            player.SetInputLocked(false);
+            _collectingPlayer = null;
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            if (_collectingPlayer == null) return;
+            _collectingPlayer.EquipBackpack();
+            _collectingPlayer.SetInputLocked(false);
+            GetComponent<SpriteRenderer>().enabled = false;
+            _collectingPlayer = null;
         }
     }
 }

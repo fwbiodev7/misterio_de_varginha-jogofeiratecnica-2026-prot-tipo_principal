@@ -31,6 +31,8 @@ namespace Game.Varginha
         private Transform _playerTransform;
         private EdelzioTopDownController _playerController;
         private float _flickerTimer;
+        private Vector3 _baseScale;
+        private Vector3 _baseLocalPosition;
 
         public bool IsActive => isActive;
 
@@ -55,6 +57,8 @@ namespace Game.Varginha
 
             var col = GetComponent<Collider2D>();
             col.isTrigger = true; // Permite perseguição e drenagem sem empurrar rigidamente
+            _baseScale = transform.localScale.sqrMagnitude > .001f ? transform.localScale : Vector3.one;
+            _baseLocalPosition = transform.localPosition;
         }
 
         private void Start()
@@ -66,6 +70,10 @@ namespace Game.Varginha
                 _playerTransform = p.transform;
             }
 
+            chaseSpeed *= VarginhaDifficulty.EnemySpeed;
+            patrolSpeed *= VarginhaDifficulty.EnemySpeed;
+            sanityDrainPerSecond *= VarginhaDifficulty.EnemyDamage;
+
             // Inicia oculta até o jogador encontrar o caderno
             if (!isActive)
             {
@@ -75,7 +83,7 @@ namespace Game.Varginha
 
         private void Update()
         {
-            if (!isActive) return;
+            if (!isActive || VarginhaTravelCinematic.IsTravelling || _playerController?.IsInputLocked == true) { if (_rb != null) _rb.linearVelocity = Vector2.zero; return; }
 
             AnimateSupernaturalFlicker();
             CheckSanityDrain();
@@ -83,7 +91,7 @@ namespace Game.Varginha
 
         private void FixedUpdate()
         {
-            if (!isActive) return;
+            if (!isActive || VarginhaTravelCinematic.IsTravelling || _playerController?.IsInputLocked == true) { if (_rb != null) _rb.linearVelocity = Vector2.zero; return; }
 
             if (_playerTransform != null)
             {
@@ -143,6 +151,9 @@ namespace Game.Varginha
             if (_sr != null)
             {
                 _sr.color = new Color(0.9f, 0.1f, 0.2f, alpha);
+                float pulse = 1f + Mathf.Sin(_flickerTimer * 1.7f) * .055f;
+                transform.localScale = _baseScale * pulse;
+                transform.localPosition = _baseLocalPosition + Vector3.up * Mathf.Sin(_flickerTimer * 1.1f) * .025f;
             }
         }
 

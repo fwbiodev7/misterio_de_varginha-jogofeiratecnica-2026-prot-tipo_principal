@@ -3,6 +3,7 @@ Temp/
 Logs/
 UserSettings/
 Obj/
+.dotnet-home/
 Build/
 Builds/
 MemoryCaptures/

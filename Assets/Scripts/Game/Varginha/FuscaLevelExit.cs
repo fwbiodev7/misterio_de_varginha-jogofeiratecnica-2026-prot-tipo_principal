@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Game.Managers;
 
 namespace Game.Varginha
@@ -8,6 +9,10 @@ namespace Game.Varginha
     [RequireComponent(typeof(Collider2D))]
     public class FuscaLevelExit : MonoBehaviour
     {
+        [Header("Próxima fase")]
+        [SerializeField] private string nextSceneName = "Fase2_Escola_Resgate";
+        [SerializeField] private bool transitionToPhase2 = true;
+
         private bool _isEscaped;
         private SpriteRenderer _doorRenderer;
 
@@ -49,7 +54,7 @@ namespace Game.Varginha
             VarginhaGameHUD.Instance?.CloseDialogue();
             yield return OpenDoorRoutine();
             yield return MoveEdelzioIntoFusca(edelzio);
-            CloseDoor();
+            yield return CloseDoorRoutine();
 
             var animation = GetComponent<FuscaDepartureAnimation>();
             if (animation != null)
@@ -57,6 +62,15 @@ namespace Game.Varginha
                 bool animationFinished = false;
                 animation.Depart(() => animationFinished = true);
                 yield return new WaitUntil(() => animationFinished);
+            }
+
+            // A fuga da casa conclui a cinematica da Fase 1 e abre a chegada à escola.
+            // O fallback mantém cenas antigas jogáveis caso a nova cena ainda não esteja no build.
+            if (transitionToPhase2 && Application.CanStreamedLevelBeLoaded(nextSceneName))
+            {
+                Time.timeScale = 1f;
+                VarginhaTravelCinematic.Begin(false);
+                yield break;
             }
 
             ScoreManager.Instance?.AddScore(1000);
@@ -87,6 +101,10 @@ namespace Game.Varginha
                 yield return null;
             }
 
+            // A pose sentada acompanha a entrada para que o corpo não volte ao
+            // sprite de caminhada enquanto cruza o vão da porta.
+            var playerAnimation = edelzio.GetComponent<VarginhaPlayerSpriteAnimation>();
+            playerAnimation?.SetActionPose("Edelzio_Sit");
             elapsed = 0f;
             while (elapsed < enterDuration)
             {
@@ -104,7 +122,6 @@ namespace Game.Varginha
             if (playerRenderer != null) playerRenderer.enabled = false;
             edelzio.SetCarriedItemsVisible(false);
             // O ciclo idle/run não pode religar o sprite depois que Edelzio entrou na cabine.
-            var playerAnimation = edelzio.GetComponent<VarginhaPlayerSpriteAnimation>();
             if (playerAnimation != null) playerAnimation.enabled = false;
             var playerCollider = edelzio.GetComponent<Collider2D>();
             if (playerCollider != null) playerCollider.enabled = false;
@@ -116,9 +133,10 @@ namespace Game.Varginha
             {
                 var door = new GameObject("Porta_do_Fusca");
                 door.transform.SetParent(transform, false);
-                door.transform.localPosition = new Vector3(-.27f, -.03f, 0f);
-                // A porta é uma peça pequena do Fusca, não um sprite do tamanho do veículo.
-                door.transform.localScale = new Vector3(.38f, .62f, 1f);
+                door.transform.localPosition = new Vector3(-.30f, -.03f, 0f);
+                // A folha ocupa a área real da porta, mantendo o pixel art nítido
+                // mesmo quando a carroceria está em escala 2.6.
+                door.transform.localScale = new Vector3(.62f, .88f, 1f);
                 _doorRenderer = door.AddComponent<SpriteRenderer>();
                 _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
                 var carRenderer = GetComponent<SpriteRenderer>();
@@ -126,17 +144,60 @@ namespace Game.Varginha
             }
 
             _doorRenderer.enabled = true;
-            _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Open", new Color(.20f, .65f, .88f));
-            _doorRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, -18f);
-            yield return new WaitForSeconds(.22f);
-        }
-
-        private void CloseDoor()
-        {
-            if (_doorRenderer == null) return;
             _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
             _doorRenderer.transform.localRotation = Quaternion.identity;
+            float elapsed = 0f;
+            const float duration = .34f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                float eased = 1f - Mathf.Pow(1f - t, 3f);
+                if (t > .25f && t < .70f)
+                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Ajar", new Color(.20f, .65f, .88f));
+                else if (t >= .70f)
+                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Open", new Color(.20f, .65f, .88f));
+                ApplyDoorPose(Mathf.Lerp(0f, -32f, eased));
+                yield return null;
+            }
+            _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Open", new Color(.20f, .65f, .88f));
+            ApplyDoorPose(-32f);
+        }
+
+        private IEnumerator CloseDoorRoutine()
+        {
+            if (_doorRenderer == null) yield break;
+            float elapsed = 0f;
+            const float duration = .27f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                float eased = t * t * (3f - 2f * t);
+                if (t < .55f)
+                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Ajar", new Color(.20f, .65f, .88f));
+                else
+                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
+                ApplyDoorPose(Mathf.Lerp(-32f, 0f, eased));
+                yield return null;
+            }
+            _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
+            _doorRenderer.transform.localRotation = Quaternion.identity;
+            _doorRenderer.transform.localPosition = new Vector3(-.30f, -.03f, 0f);
             _doorRenderer.enabled = false;
+        }
+
+        private void ApplyDoorPose(float angleDegrees)
+        {
+            if (_doorRenderer == null) return;
+            const float closedX = -.30f;
+            const float closedY = -.03f;
+            const float halfWidth = .31f;
+            float radians = angleDegrees * Mathf.Deg2Rad;
+            Vector2 hinge = new Vector2(closedX - halfWidth, closedY);
+            Vector2 center = hinge + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * halfWidth;
+            _doorRenderer.transform.localPosition = center;
+            _doorRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, angleDegrees);
         }
     }
 }
