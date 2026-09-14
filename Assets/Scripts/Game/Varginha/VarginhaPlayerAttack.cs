@@ -1,43 +1,51 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game.Varginha
 {
-    /// <summary>
-    /// Ataque corpo a corpo de Edelzio para a Fase 2.
-    /// Keyframes: antecipação (0-1), impacto (2), recuperação (3-5).
-    /// </summary>
+    /// <summary>Combo direcional com contato único, recuperação curta e finalizador.</summary>
     [RequireComponent(typeof(EdelzioTopDownController))]
     [RequireComponent(typeof(VarginhaPlayerSpriteAnimation))]
     public sealed class VarginhaPlayerAttack : MonoBehaviour
     {
-        [Header("Ataque")]
         [SerializeField] private float damage = 34f;
         [SerializeField] private float hitRadius = .52f;
         [SerializeField] private float hitDistance = .67f;
-        [SerializeField] private float hitstopDuration = .075f;
+        [SerializeField] private float hitstopDuration = .045f;
         [SerializeField] private float screenShakeDuration = .09f;
         [SerializeField] private float screenShakeMagnitude = .045f;
-
+        private const float ComboWindow = .75f;
+        private static readonly float[] Durations = { .055f, .05f, .065f, .07f, .075f, .085f };
+        private static readonly int[][] ComboFrames =
+        {
+            new[] { 0, 0, 1, 2, 3, 4 }, // corte horizontal
+            new[] { 1, 1, 2, 3, 4, 5 }, // cruzado, com mais alcance visual
+            new[] { 2, 2, 3, 4, 5, 5 }  // finalizador pesado
+        };
         private EdelzioTopDownController _player;
         private VarginhaPlayerSpriteAnimation _animation;
         private Sprite[][] _attackFrames;
         private bool _isAttacking;
-        private float _cooldownTimer;
+        private float _lastAttackFinished = float.NegativeInfinity;
+        private float _bufferUntil = float.NegativeInfinity;
+        private Vector2 _bufferDirection;
+        private int _comboStep;
         private bool _hitstopActive;
         private float _previousTimeScale = 1f;
-        private Vector3 _attackBaseScale = Vector3.one;
+        private float _hitstopScale;
 
         public bool IsAttacking => _isAttacking;
-        public float CooldownRemaining => Mathf.Max(0f, _cooldownTimer);
+        public float CooldownRemaining => 0f;
+        public int ComboStep => _isAttacking || Time.time - _lastAttackFinished <= ComboWindow ? _comboStep : 0;
+        private bool CanAttack => isActiveAndEnabled && Time.timeScale > 0f && _player != null
+            && !_player.IsInputLocked && !_player.IsDodging && _player.CurrentSanity > 0f
+            && GetComponent<Game.Player.HealthSystem>()?.IsDead != true
+            && VarginhaGameHUD.Instance?.IsDialogueOpen != true
+            && VarginhaGameHUD.Instance?.IsVictoryOpen != true;
 
-        /// <summary>Compatibilidade com as fases antigas: Edelzio sempre ataca sem recarga.</summary>
-        public void Configure(float attackCooldown, bool mouseOnly = false)
-        {
-            _cooldownTimer = 0f;
-        }
-
+        public void Configure(float attackCooldown, bool mouseOnly = false) { }
 
         private void Awake()
         {
@@ -48,136 +56,154 @@ namespace Game.Varginha
 
         private void Update()
         {
-            _cooldownTimer -= Time.unscaledDeltaTime;
-            if (Time.timeScale <= 0f || _isAttacking || _cooldownTimer > 0f || _player.IsInputLocked || VarginhaGameHUD.Instance?.IsDialogueOpen == true) return;
-
+            if (!CanAttack) { _bufferUntil = float.NegativeInfinity; return; }
             var mouse = Mouse.current;
-            bool pressed = mouse != null && mouse.leftButton.isPressed;
-            if (pressed) TryAttack();
+            var keyboard = Keyboard.current;
+            bool mouseHeld = VarginhaInputBindings.GetMouseButton(VarginhaInputAction.Attack) >= 0
+                && VarginhaInputBindings.IsPressed(VarginhaInputAction.Attack);
+            // J/K continuam aceitos como compatibilidade com os protótipos anteriores;
+            // o botão configurado no menu é sempre a entrada principal.
+            bool legacyHeld = keyboard?.jKey.isPressed == true || keyboard?.kKey.isPressed == true;
+            bool held = VarginhaInputBindings.IsPressed(VarginhaInputAction.Attack) || legacyHeld;
+            bool legacyPressed = keyboard?.jKey.wasPressedThisFrame == true || keyboard?.kKey.wasPressedThisFrame == true;
+            bool pressed = VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Attack) || legacyPressed;
+            Vector2 direction = _player.FacingDirection;
+            if (mouseHeld && mouse != null && Camera.main != null)
+            {
+                Vector2 aim = Camera.main.ScreenToWorldPoint(mouse.position.ReadValue());
+                if ((aim - (Vector2)transform.position).sqrMagnitude > .04f) direction = aim - (Vector2)transform.position;
+            }
+            if (pressed) QueueAttack(direction);
+            if (!_isAttacking && (held || Time.time <= _bufferUntil)) TryAttack(held ? direction : _bufferDirection);
         }
 
-        public bool TryAttack()
+        public void QueueAttack(Vector2 direction)
         {
-            if (Time.timeScale <= 0f || _isAttacking || _cooldownTimer > 0f || _player.IsInputLocked || VarginhaGameHUD.Instance?.IsDialogueOpen == true) return false;
-            if (_attackFrames == null) return false;
-            StartCoroutine(AttackRoutine());
+            if (!CanAttack) return;
+            _bufferUntil = Time.time + .18f;
+            _bufferDirection = direction;
+        }
+
+        public bool TryAttack() => TryAttack(_player != null ? _player.FacingDirection : Vector2.down);
+
+        public bool TryAttack(Vector2 direction)
+        {
+            if (!CanAttack || _isAttacking || _attackFrames == null) return false;
+            _bufferUntil = float.NegativeInfinity;
+            _comboStep = Time.time - _lastAttackFinished <= ComboWindow ? _comboStep % 3 + 1 : 1;
+            StartCoroutine(AttackRoutine(Cardinalize(direction)));
             return true;
         }
 
-        private IEnumerator AttackRoutine()
+        private IEnumerator AttackRoutine(Vector2 direction)
         {
             _isAttacking = true;
-            _cooldownTimer = 0f;
-            Vector3 baseScale = transform.localScale;
-            _attackBaseScale = baseScale;
-
-            Vector2 direction = Cardinalize(_player.FacingDirection);
-            int directionIndex = DirectionIndex(direction);
-            // A antecipação repete o primeiro quadro, e a recuperação repete o
-            // último. O braço e o objeto permanecem legíveis sem parecer um corte
-            // seco entre a caminhada e o impacto.
-            int[] sequence = { 0, 0, 1, 2, 3, 4, 5, 5, 4 };
-            float[] frameDurations = { .08f, .055f, .07f, .075f, .06f, .06f, .07f, .055f, .085f };
-            bool impactDone = false;
-            for (int pose = 0; pose < sequence.Length; pose++)
+            int row = DirectionIndex(direction);
+            int[] frames = ComboFrames[Mathf.Clamp(_comboStep - 1, 0, ComboFrames.Length - 1)];
+            int impactPose = Mathf.Clamp(_comboStep + 1, 2, 4);
+            bool interrupted = false;
+            for (int pose = 0; pose < frames.Length; pose++)
             {
-                int frame = sequence[pose];
-                _animation.SetCombatPose(_attackFrames[directionIndex][frame], direction);
-                float anticipation = pose < 3 ? pose / 3f : 1f - Mathf.Clamp01((pose - 3f) / 6f);
-                transform.localScale = baseScale * (1f + Mathf.Sin(anticipation * Mathf.PI) * .035f);
-                if (frame == 2 && !impactDone)
+                if (_player.IsDodging || _player.IsInputLocked || _player.CurrentSanity <= 0f
+                    || GetComponent<Game.Player.HealthSystem>()?.IsDead == true
+                    || VarginhaGameHUD.Instance?.IsDialogueOpen == true
+                    || VarginhaGameHUD.Instance?.IsVictoryOpen == true)
                 {
-                    impactDone = true;
-                    yield return ImpactRoutine(direction);
+                    interrupted = true;
+                    break;
                 }
-                yield return WaitUnscaled(frameDurations[pose]);
+                _animation.SetCombatPose(_attackFrames[row][frames[pose]], direction);
+                if (pose == impactPose) yield return ImpactRoutine(direction);
+                float elapsed = 0f;
+                float duration = Durations[pose] * (_comboStep == 3 ? 1.12f : 1f);
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
             }
-
             _animation.ClearActionPose();
-            transform.localScale = baseScale;
+            if (interrupted)
+            {
+                _comboStep = 0;
+                _lastAttackFinished = float.NegativeInfinity;
+            }
+            else _lastAttackFinished = Time.time;
             _isAttacking = false;
         }
 
         private IEnumerator ImpactRoutine(Vector2 direction)
         {
-            CreateSlashEffect(direction, false);
-            var hits = Physics2D.OverlapCircleAll((Vector2)transform.position + direction * hitDistance, hitRadius);
+            if (!CanAttack) yield break;
+            bool finisher = _comboStep == 3;
+            CreateSlashEffect(direction, false, _comboStep);
+            var hits = Physics2D.OverlapCircleAll((Vector2)transform.position + direction * hitDistance,
+                hitRadius + (finisher ? .18f : 0f));
             bool connected = false;
-            var struck = new System.Collections.Generic.HashSet<VarginhaCombatTarget>();
-            for (int i = 0; i < hits.Length; i++)
+            var struck = new HashSet<VarginhaCombatTarget>();
+            foreach (var hit in hits)
             {
-                var target = hits[i] != null ? hits[i].GetComponentInParent<VarginhaCombatTarget>() : null;
-                if (target == null || target.transform == transform || !struck.Add(target)) continue;
-                if (target.ReceiveHit(damage, direction, hitstopDuration)) connected = true;
+                var target = hit != null ? hit.GetComponentInParent<VarginhaCombatTarget>() : null;
+                if (target == null || !struck.Add(target) || !HasClearHit(target)) continue;
+                float multiplier = finisher ? 1.45f : _comboStep == 2 ? 1.10f : 1f;
+                if (!target.ReceiveHit(damage * multiplier, direction, hitstopDuration)) continue;
+                connected = true;
+                if (finisher) target.GetComponent<VarginhaCombatEnemy>()?.ApplyAllyControl(direction, .38f);
             }
-
             if (!connected) yield break;
-            CreateSlashEffect(direction, true);
+            CreateSlashEffect(direction, true, _comboStep);
             var camera = Camera.main;
             if (camera != null)
             {
                 var shake = camera.GetComponent<VarginhaCameraShake>() ?? camera.gameObject.AddComponent<VarginhaCameraShake>();
-                shake.Shake(screenShakeDuration, screenShakeMagnitude);
+                shake.Shake(screenShakeDuration, screenShakeMagnitude * (finisher ? 1.4f : 1f));
             }
-            yield return HitstopRoutine();
-        }
-
-        private IEnumerator HitstopRoutine()
-        {
             if (Time.timeScale <= 0f) yield break;
             _previousTimeScale = Time.timeScale;
             _hitstopActive = true;
-            Time.timeScale = .02f;
-            yield return new WaitForSecondsRealtime(hitstopDuration);
-            Time.timeScale = _previousTimeScale;
+            _hitstopScale = Mathf.Min(.02f, _previousTimeScale);
+            Time.timeScale = _hitstopScale;
+            yield return new WaitForSecondsRealtime(hitstopDuration * (finisher ? 1.3f : 1f));
+            RestoreTimeScale();
+        }
+
+        private bool HasClearHit(VarginhaCombatTarget target)
+        {
+            foreach (var hit in Physics2D.LinecastAll(transform.position, target.transform.position))
+            {
+                if (hit.collider.isTrigger || hit.transform == transform || hit.transform.IsChildOf(transform)
+                    || hit.collider.GetComponentInParent<VarginhaCombatTarget>() != null
+                    || hit.collider.GetComponentInParent<VarginhaStudentAlly>() != null) continue;
+                return false;
+            }
+            return true;
+        }
+
+        private void CreateSlashEffect(Vector2 direction, bool impact, int comboStep)
+        {
+            var effect = new GameObject(impact ? "Impacto_Ataque" : "Arco_Ataque");
+            effect.transform.position = transform.position + (Vector3)direction * (hitDistance + .06f);
+            effect.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            bool finisher = comboStep == 3;
+            effect.transform.localScale = Vector3.one * (finisher ? 1.05f : comboStep == 2 ? .88f : .74f);
+            var renderer = effect.AddComponent<SpriteRenderer>();
+            renderer.sprite = VarginhaPixelArtSprites.Create(impact ? "Attack_Impact" : comboStep == 3 ? "Attack_HeavySlash"
+                : comboStep == 2 ? "Attack_CrossSlash" : "Attack_Slash",
+                impact ? Color.white : new Color(1f, .78f, .22f));
+            renderer.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 3;
+            Destroy(effect, impact ? .12f : .16f);
+        }
+
+        private void RestoreTimeScale()
+        {
+            // Não desfaz uma pausa que começou durante o impacto.
+            if (_hitstopActive && Mathf.Approximately(Time.timeScale, _hitstopScale)) Time.timeScale = _previousTimeScale;
             _hitstopActive = false;
         }
 
-        private void CreateSlashEffect(Vector2 direction, bool impact)
-        {
-            var effect = new GameObject(impact ? "Impacto_Ataque" : "Arco_Ataque");
-            effect.transform.SetParent(transform, false);
-            effect.transform.localPosition = direction * (hitDistance + .06f);
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            effect.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
-            effect.transform.localScale = Vector3.one * .74f;
-            var renderer = effect.AddComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create(impact ? "Attack_Impact" : "Attack_Slash", impact ? Color.white : new Color(1f, .78f, .22f));
-            renderer.sortingOrder = GetComponent<SpriteRenderer>() != null ? GetComponent<SpriteRenderer>().sortingOrder + 3 : 8;
-            StartCoroutine(DestroyEffect(effect, impact ? .09f : .12f));
-        }
-
-        private static IEnumerator DestroyEffect(GameObject effect, float duration)
-        {
-            yield return new WaitForSecondsRealtime(duration);
-            if (effect != null) Destroy(effect);
-        }
-
-        private static IEnumerator WaitUnscaled(float duration)
-        {
-            float elapsed = 0f;
-            while (elapsed < duration)
-            {
-                elapsed += Time.unscaledDeltaTime;
-                yield return null;
-            }
-        }
-
-        private static Vector2 Cardinalize(Vector2 direction)
-        {
-            if (direction.sqrMagnitude < .01f) return Vector2.down;
-            return Mathf.Abs(direction.x) > Mathf.Abs(direction.y)
-                ? new Vector2(Mathf.Sign(direction.x), 0f)
-                : new Vector2(0f, Mathf.Sign(direction.y));
-        }
-
-        private static int DirectionIndex(Vector2 direction)
-        {
-            if (direction.y < -.5f) return 0;
-            if (direction.x < -.5f) return 1;
-            if (direction.x > .5f) return 2;
-            return 3;
-        }
+        private static Vector2 Cardinalize(Vector2 direction) => direction.sqrMagnitude < .01f ? Vector2.down
+            : Mathf.Abs(direction.x) > Mathf.Abs(direction.y) ? new Vector2(Mathf.Sign(direction.x), 0f) : new Vector2(0f, Mathf.Sign(direction.y));
+        private static int DirectionIndex(Vector2 direction) => direction.y < -.5f ? 0 : direction.x < -.5f ? 1 : direction.x > .5f ? 2 : 3;
 
         private static Sprite[][] LoadAttackFrames()
         {
@@ -188,10 +214,10 @@ namespace Game.Varginha
             for (int row = 0; row < 4; row++)
             {
                 result[row] = new Sprite[6];
-                float unityRow = 3f - row;
                 for (int frame = 0; frame < 6; frame++)
                 {
-                    result[row][frame] = Sprite.Create(sheet, new Rect(frame * sheet.width / 6f, unityRow * sheet.height / 4f, sheet.width / 6f, sheet.height / 4f), new Vector2(.5f, .5f), 44.1379f);
+                    result[row][frame] = Sprite.Create(sheet, new Rect(frame * sheet.width / 6f, (3 - row) * sheet.height / 4f,
+                        sheet.width / 6f, sheet.height / 4f), new Vector2(.5f, .5f), 44.1379f);
                     result[row][frame].name = "Edelzio_Ataque_" + row + "_" + frame;
                 }
             }
@@ -201,17 +227,17 @@ namespace Game.Varginha
         private void OnDisable()
         {
             StopAllCoroutines();
-            if (_hitstopActive)
-            {
-                Time.timeScale = _previousTimeScale;
-                _hitstopActive = false;
-            }
+            RestoreTimeScale();
             if (_animation != null) _animation.ClearActionPose();
-            if (_player != null)
-            {
-                _isAttacking = false;
-            }
-            transform.localScale = _attackBaseScale;
+            _isAttacking = false;
+            _comboStep = 0;
+            _lastAttackFinished = _bufferUntil = float.NegativeInfinity;
+        }
+
+        private void OnDestroy()
+        {
+            if (_attackFrames == null) return;
+            foreach (var row in _attackFrames) foreach (var sprite in row) if (sprite != null) Destroy(sprite);
         }
     }
 }

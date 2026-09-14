@@ -15,6 +15,11 @@ namespace Game.Varginha
 
         private bool _isEscaped;
         private SpriteRenderer _doorRenderer;
+        private Transform _doorPivot;
+        private Sprite _doorClosed;
+        private Sprite _doorAjar;
+        private Sprite _doorOpen;
+        private readonly Color _doorColor = new Color(.20f, .65f, .88f);
 
         public void TryEscape(EdelzioTopDownController edelzio)
         {
@@ -46,6 +51,9 @@ namespace Game.Varginha
                 playerBody.linearVelocity = Vector2.zero;
                 playerBody.simulated = false;
             }
+            // O notebook e a mochila ficam escondidos durante a tomada; antes
+            // apareciam como um retângulo azul grande atravessando a porta.
+            edelzio.SetCarriedItemsVisible(false);
             var exitCollider = GetComponent<Collider2D>();
             if (exitCollider != null) exitCollider.enabled = false;
 
@@ -60,7 +68,9 @@ namespace Game.Varginha
             if (animation != null)
             {
                 bool animationFinished = false;
-                animation.Depart(() => animationFinished = true);
+                // A cinematics de viagem assume o trajeto longo; a fase real só
+                // mostra o carro deixando a vaga, sem jogá-lo para fora do mapa.
+                animation.Depart(() => animationFinished = true, 4.2f);
                 yield return new WaitUntil(() => animationFinished);
             }
 
@@ -129,75 +139,83 @@ namespace Game.Varginha
 
         private IEnumerator OpenDoorRoutine()
         {
-            if (_doorRenderer == null)
-            {
-                var door = new GameObject("Porta_do_Fusca");
-                door.transform.SetParent(transform, false);
-                door.transform.localPosition = new Vector3(-.30f, -.03f, 0f);
-                // A folha ocupa a área real da porta, mantendo o pixel art nítido
-                // mesmo quando a carroceria está em escala 2.6.
-                door.transform.localScale = new Vector3(.62f, .88f, 1f);
-                _doorRenderer = door.AddComponent<SpriteRenderer>();
-                _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
-                var carRenderer = GetComponent<SpriteRenderer>();
-                _doorRenderer.sortingOrder = carRenderer != null ? carRenderer.sortingOrder + 1 : 5;
-            }
+            EnsureDoor();
 
             _doorRenderer.enabled = true;
-            _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
-            _doorRenderer.transform.localRotation = Quaternion.identity;
+            _doorRenderer.sprite = _doorClosed;
+            ApplyDoorPose(0f);
             float elapsed = 0f;
-            const float duration = .34f;
+            const float duration = .48f;
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / duration);
                 float eased = 1f - Mathf.Pow(1f - t, 3f);
-                if (t > .25f && t < .70f)
-                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Ajar", new Color(.20f, .65f, .88f));
-                else if (t >= .70f)
-                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Open", new Color(.20f, .65f, .88f));
-                ApplyDoorPose(Mathf.Lerp(0f, -32f, eased));
+                _doorRenderer.sprite = t < .34f ? _doorClosed : t < .78f ? _doorAjar : _doorOpen;
+                ApplyDoorPose(Mathf.Lerp(0f, -42f, eased));
                 yield return null;
             }
-            _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Open", new Color(.20f, .65f, .88f));
-            ApplyDoorPose(-32f);
+            _doorRenderer.sprite = _doorOpen;
+            ApplyDoorPose(-42f);
         }
 
         private IEnumerator CloseDoorRoutine()
         {
             if (_doorRenderer == null) yield break;
             float elapsed = 0f;
-            const float duration = .27f;
+            const float duration = .42f;
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / duration);
                 float eased = t * t * (3f - 2f * t);
-                if (t < .55f)
-                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Ajar", new Color(.20f, .65f, .88f));
-                else
-                    _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
-                ApplyDoorPose(Mathf.Lerp(-32f, 0f, eased));
+                _doorRenderer.sprite = t < .62f ? _doorAjar : _doorClosed;
+                ApplyDoorPose(Mathf.Lerp(-42f, 0f, eased));
                 yield return null;
             }
-            _doorRenderer.sprite = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", new Color(.20f, .65f, .88f));
-            _doorRenderer.transform.localRotation = Quaternion.identity;
-            _doorRenderer.transform.localPosition = new Vector3(-.30f, -.03f, 0f);
+            _doorRenderer.sprite = _doorClosed;
+            ApplyDoorPose(0f);
+            _doorRenderer.enabled = false;
+        }
+
+        private void EnsureDoor()
+        {
+            if (_doorRenderer != null) return;
+            _doorClosed = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", _doorColor);
+            _doorAjar = VarginhaPixelArtSprites.Create("FuscaDoor_Ajar", _doorColor);
+            _doorOpen = VarginhaPixelArtSprites.Create("FuscaDoor_Open", _doorColor);
+
+            // O pivô fica na borda traseira da folha; a porta gira a partir da
+            // dobradiça em vez de orbitar pelo centro do sprite.
+            _doorPivot = new GameObject("Dobradiça_da_Porta_do_Fusca").transform;
+            _doorPivot.SetParent(transform, false);
+            _doorPivot.localPosition = new Vector3(-.54f, -.03f, 0f);
+            var door = new GameObject("Porta_do_Fusca");
+            door.transform.SetParent(_doorPivot, false);
+            // A folha usa a mesma escala física do carro; antes o sprite 64x64
+            // recebia uma escala alta demais e parecia maior que a carroceria.
+            door.transform.localPosition = new Vector3(.24f, 0f, 0f);
+            door.transform.localScale = new Vector3(.48f, .64f, 1f);
+            _doorRenderer = door.AddComponent<SpriteRenderer>();
+            _doorRenderer.sprite = _doorClosed;
+            var carRenderer = GetComponent<SpriteRenderer>();
+            _doorRenderer.sortingOrder = carRenderer != null ? carRenderer.sortingOrder + 1 : 5;
             _doorRenderer.enabled = false;
         }
 
         private void ApplyDoorPose(float angleDegrees)
         {
             if (_doorRenderer == null) return;
-            const float closedX = -.30f;
-            const float closedY = -.03f;
-            const float halfWidth = .31f;
-            float radians = angleDegrees * Mathf.Deg2Rad;
-            Vector2 hinge = new Vector2(closedX - halfWidth, closedY);
-            Vector2 center = hinge + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * halfWidth;
-            _doorRenderer.transform.localPosition = center;
-            _doorRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, angleDegrees);
+            if (_doorPivot != null)
+            {
+                _doorPivot.localPosition = new Vector3(-.54f, -.03f, 0f);
+                _doorPivot.localRotation = Quaternion.Euler(0f, 0f, angleDegrees);
+            }
+            else
+            {
+                _doorRenderer.transform.localPosition = new Vector3(-.30f, -.03f, 0f);
+                _doorRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, angleDegrees);
+            }
         }
     }
 }

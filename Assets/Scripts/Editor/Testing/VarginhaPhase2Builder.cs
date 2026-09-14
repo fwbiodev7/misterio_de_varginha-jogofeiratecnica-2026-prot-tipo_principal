@@ -77,7 +77,8 @@ namespace Game.Editor.Testing
             environment.SetParent(root.transform);
             BuildSchool(environment);
 
-            var car = CreateFusca(root.transform, new Vector3(-7.1f, -1.2f, 0f));
+            // A vaga fica dentro da área visível e alinhada ao marcador desenhado pelo ambiente.
+            var car = CreateFusca(root.transform, VarginhaEnvironmentArt.FuscaParkingPosition);
             CreateSubordinate(root.transform, "ET_Subordinado_1", new Vector3(2.8f, 2.6f, 0f));
             CreateSubordinate(root.transform, "ET_Subordinado_2", new Vector3(5.1f, -2.4f, 0f));
             CreateSubordinate(root.transform, "ET_Subordinado_3", new Vector3(-.3f, 3.1f, 0f));
@@ -156,27 +157,7 @@ namespace Game.Editor.Testing
 
         private static void BuildSchool(Transform parent)
         {
-            Color floor = new(.17f, .22f, .27f);
-            Color wall = new(.25f, .34f, .40f);
-            for (int y = -5; y < 6; y++)
-            for (int x = -7; x < 9; x++)
-            {
-                var tile = new GameObject("Piso_Escola_" + x + "_" + y);
-                tile.transform.SetParent(parent);
-                tile.transform.position = new Vector3(x + .5f, y + .5f, 0f);
-                var renderer = tile.AddComponent<SpriteRenderer>();
-                renderer.sprite = VarginhaPixelArtSprites.Create("Floor_House", ((x + y) & 1) == 0 ? floor : Color.Lerp(floor, Color.white, .05f));
-                renderer.sortingOrder = 0;
-            }
-
-            CreateWall(parent, "Parede_Norte", new Vector3(0f, 5.7f, 0f), new Vector3(16f, .7f, 1f), wall);
-            CreateWall(parent, "Parede_Sul", new Vector3(0f, -5.7f, 0f), new Vector3(16f, .7f, 1f), wall);
-            CreateWall(parent, "Parede_Oeste", new Vector3(-7.7f, 0f, 0f), new Vector3(.7f, 11f, 1f), wall);
-            CreateWall(parent, "Parede_Leste", new Vector3(8.7f, 0f, 0f), new Vector3(.7f, 11f, 1f), wall);
-            CreateWall(parent, "Divisoria_Sala", new Vector3(3.7f, 3.3f, 0f), new Vector3(7.5f, .45f, 1f), wall);
-            CreateWall(parent, "Divisoria_Fundo", new Vector3(-4.1f, -3.4f, 0f), new Vector3(7.2f, .45f, 1f), wall);
-            CreateDecoration(parent, "Quadro_3_Sistema", new Vector3(-5.9f, 4.9f, 0f), new Vector3(2.2f, .28f, 1f), new Color(.72f, .52f, .18f));
-            CreateDecoration(parent, "Luz_Emergencia", new Vector3(7.9f, 4.8f, 0f), new Vector3(.3f, .7f, 1f), new Color(.9f, .15f, .12f));
+            VarginhaEnvironmentArt.BuildSchool(parent);
         }
 
         private static GameObject CreateSubordinate(Transform parent, string name, Vector3 position)
@@ -186,7 +167,7 @@ namespace Game.Editor.Testing
             go.transform.position = position;
             go.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
             var renderer = go.AddComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_" + name, new Color(.25f, .35f, .48f));
+            renderer.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_" + name, new Color(.68f, .36f, .18f));
             renderer.sortingOrder = 8;
             var body = go.AddComponent<Rigidbody2D>();
             body.gravityScale = 0f;

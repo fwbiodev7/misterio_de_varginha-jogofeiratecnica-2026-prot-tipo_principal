@@ -1,5 +1,51 @@
 # Histórico de atualizações
 
+## Acabamento visual — casa, escola e diocese
+
+- A diocese ganhou dez projeções coloridas dos vitrais no piso, com o mesmo padrão dos vidros, transparência e ordenação abaixo dos bancos e personagens. Novos bancos, altar, arandelas, pilastras, mosaico, plantas e luz suave de velas completam o ambiente.
+- A escola recebeu parquet menos contrastado, paredes claras com faixa verde, carteiras com material escolar, lousas, murais, estantes, plantas e luz das janelas.
+- A Fase 1 ganhou madeira menos ruidosa, iluminação quente dos cômodos, luar nas janelas, quintal noturno, poste redesenhado, folhas, poças e vaga-lumes discretos.
+- Os novos sprites são desenhados no tamanho nativo, com filtro Point, sem mipmaps e reutilizados em cache. A vaga do Fusca também usa o tamanho completo da textura, sem escala duplicada.
+- O acabamento é aplicado pelos builders e na entrada das cenas existentes, sem novos obstáculos. A inicialização evita duplicatas e recupera a decoração quando uma cena salva perde referências aos sprites procedurais.
+- Adicionados testes de arte, camadas dos reflexos, dimensões da vaga, reinicialização e recuperação de sprites. Prévias visuais verificadas em uma cópia isolada do projeto Unity.
+
+## Ajuste — nomes dos aliados e vaga do Fusca
+
+- Os aliados agora exibem somente o nome sobre o sprite; prontidão, recarga e poder continuam concentrados no HUD lateral da Fase 3.
+- A vaga do Fusca foi centralizada em uma referência compartilhada e ampliada para caber a carroceria inteira, tanto nas cenas geradas em runtime quanto no builder de teste.
+
+## Ajuste final — vaga, ETs, porta e continuidade da fuga
+
+- A vaga do Fusca passou a ter uma única posição compartilhada pelo marcador do cenário, pelo runtime da Fase 2 e pelo builder de teste; o carro fica dentro da área jogável e não atrás da parede oeste.
+- Todos os subordinados e a manifestação ancestral usam a leitura de ET marrom com olhos vermelhos; os papéis continuam diferenciados por comportamento, golpes e telegráficos, não por trocar a cor do corpo.
+- A porta foi redesenhada em pixel art compacto e teve a escala física reduzida, com dobradiça e quadros fechado/entreaberto/aberto preservados.
+- A saída da Fase 1 percorre somente o trecho curto da rua antes de entregar o restante à viagem cinematográfica pixel art, evitando o carro terminar fora do cenário.
+- O painel de combate do HUD agora reduz a fonte quando necessário e calcula cada linha contra a largura disponível, evitando texto de combo/esquiva truncado em janelas menores.
+
+## Continuação — controles, combo, porta e Marcos
+
+- Criada tela `EDITAR CONTROLES DO TECLADO E MOUSE` no menu, com linhas de comando, botões de reset e persistência entre cenas.
+- O movimento, interação, ataque, esquiva e comando de aliados passaram a consumir o mapa remapeável; WASD/setas, espaço/enter, Ctrl e J/K continuam compatíveis.
+- Edelzio agora usa três sequências visuais de combo: corte inicial, golpe cruzado e finalizador pesado, com dano, alcance e efeitos progressivos.
+- Marcos alterna cortada de vôlei, chute voador e cotovelada, apresentando bordões sem censura no impacto.
+- A turma aliada ganhou circulação livre, separação entre colegas e desvio simples de paredes. Fases comuns podem liberar três alunos apenas no modo DIFÍCIL; a fase final libera os nove.
+- A porta do Fusca passou a girar em um pivô de dobradiça real, com sprites procedurais em cache e easing independente na abertura e no fechamento.
+
+## Continuação — Fusca e identidade visual das fases
+
+- Corrigida a partida do Fusca para manter a faixa e a profundidade exatas, sem rotação da carroceria, órbita da porta ou deslocamento acumulado nos passageiros.
+- Mochila e notebook ficam ocultos durante a chegada/entrada no carro e só reaparecem quando Edelzio termina de sair, evitando o retângulo azul atravessando a carroceria.
+- A Fase 2 agora recebe cenografia própria de escola: piso parquet, paredes de tijolo, salas divididas, lousas, carteiras, cadeiras, armários, janelas, cortinas, relógio, murais e saída.
+- A Fase 3 agora recebe cenografia própria de diocese: pedra escura, paredes de alvenaria, vitrais coloridos, bancos, tapete, estrado, altar, velas, leitor e porta da sacristia.
+- A arte das duas áreas é procedural em `VarginhaEnvironmentArt` e usa sprites pontilhados específicos em `VarginhaPixelArtSprites`, com construção idempotente para cenas antigas.
+
+## Continuação — HUD e viagem cinematográfica
+
+- Corrigido o HUD de combate: o painel agora fica acima da hotbar, respeita as dimensões da tela e usa os comandos remapeados, sem cortar a linha de combo ou esquiva.
+- A escola ganhou uma vaga interna demarcada para o Fusca, afastada da parede e com margem para a chegada e a fila dos alunos.
+- A saída de cada fase agora percorre apenas o trecho curto até a vaga; o restante do trajeto é entregue à cinematics pixel art 2D, evitando que o carro desapareça pela borda do mapa.
+- A transição entre fases mantém carregamento assíncrono, fade em pixels, estrada noturna, Fusca animado, tomada interna com a turma e barra de progresso, com duração mínima reduzida para não alongar a espera sem necessidade.
+
 ## Protótipo atual — Fase 3, aliados invocáveis e Ato III
 
 ### Fase 3 — O Guardião
@@ -63,5 +109,5 @@
 ## Limites conhecidos do protótipo
 
 - Os testes de Play Mode estão preparados, mas ainda precisam ser executados pelo Test Runner do Editor antes de uma build final.
-- A cena da escola é deliberadamente simples: o foco desta versão é validar o loop de combate, resgate e transição.
+- A cenografia das fases 2 e 3 é procedural e reproduzível; os testes de Play Mode ainda precisam ser executados no Test Runner do Editor antes de uma build final.
 - A entidade ancestral continua reservada para o arco narrativo e não recebe dano do ataque comum.

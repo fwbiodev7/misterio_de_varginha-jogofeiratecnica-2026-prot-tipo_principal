@@ -39,12 +39,14 @@ namespace Game.Varginha
         private GUIStyle _buttonStyle;
         private GUIStyle _hotbarLabelStyle;
         private GUIStyle _hotbarNumberStyle;
+        private GUIStyle _statusStyle;
         private readonly Sprite[] _hotbarIcons = new Sprite[5];
         private readonly bool[] _hotbarOwned = new bool[5];
         private readonly float[] _hotbarCollectedAt = new float[5];
         private static readonly string[] HotbarNames = { "MOCHILA", "CHAVE DO FUSCA", "CADERNO DE 1996", "NOTEBOOK", "DOCUMENTO DE 1898" };
         private int _selectedSlot;
-        private float HotbarHeight => Mathf.Min(76f, (Screen.width - 44f) / 5f) + 46f;
+        private float HotbarSlotSize => Mathf.Clamp((Screen.width - 44f) / 5f, 28f, 76f);
+        private float HotbarHeight => HotbarSlotSize + (Screen.height < 420f ? 38f : 46f);
 
         private void Update()
         {
@@ -168,6 +170,7 @@ namespace Game.Varginha
             _hotbarNumberStyle = new GUIStyle(_hotbarLabelStyle) { alignment = TextAnchor.UpperLeft, fontSize = 10 };
             PixelUIFont.Apply(_hotbarLabelStyle);
             PixelUIFont.Apply(_hotbarNumberStyle);
+            _statusStyle = new GUIStyle(_hotbarLabelStyle) { fontSize = 11 };
             _hotbarIcons[0] = VarginhaPixelArtSprites.Create("Backpack_Inventory", Color.gray);
             _hotbarIcons[1] = VarginhaPixelArtSprites.Create("Inventory_Key", Color.white);
             _hotbarIcons[2] = VarginhaPixelArtSprites.Create("Inventory_Journal", Color.white);
@@ -267,21 +270,26 @@ namespace Game.Varginha
             float maxSanity = _edelzio != null ? _edelzio.MaxSanity : 100f;
             float ratio = Mathf.Clamp01(sanity / maxSanity);
 
-            Rect stabilityPanel = new Rect(18, 16, 340, 100);
+            float panelWidth = Mathf.Min(340f, Mathf.Max(220f, Screen.width - 36f));
+            float panelHeight = Screen.height < 420f ? 84f : 100f;
+            Rect stabilityPanel = new Rect(18, 16, panelWidth, panelHeight);
             PixelHUDFrame.Draw(stabilityPanel, _whiteTex, new Color(.035f, .09f, .14f, .94f), new Color(.22f, .9f, .95f, .9f));
-            GUI.Label(new Rect(stabilityPanel.x, stabilityPanel.y + 10, stabilityPanel.width, 24), "SAUDE", _promptStyle);
+            GUI.Label(new Rect(stabilityPanel.x, stabilityPanel.y + 6, stabilityPanel.width, 20), "SAUDE", _promptStyle);
 
             int filledHearts = Mathf.Clamp(Mathf.CeilToInt(ratio * 3f), 0, 3);
+            float heartSize = Mathf.Clamp((stabilityPanel.width - 44f) / 3f, 28f, 52f);
+            float heartGap = Mathf.Clamp(6f * heartSize / 52f, 3f, 6f);
+            float heartX = stabilityPanel.x + (stabilityPanel.width - heartSize * 3f - heartGap * 2f) * .5f;
             for (int heart = 0; heart < 3; heart++)
             {
                 Color heartColor = heart < filledHearts ? new Color(.95f, .12f, .18f) : new Color(.24f, .06f, .08f);
-                PixelHUDFrame.DrawHeart(new Rect(62 + heart * 78, 43, 52, 45), _whiteTex, heartColor);
+                PixelHUDFrame.DrawHeart(new Rect(heartX + heart * (heartSize + heartGap), stabilityPanel.y + 28f, heartSize, heartSize), _whiteTex, heartColor);
             }
 
             var sanityStyle = new GUIStyle(GUI.skin.label) { fontSize = 14, alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold };
             sanityStyle.normal.textColor = Color.white;
             PixelUIFont.Apply(sanityStyle);
-            GUI.Label(new Rect(32, 88, 312, 18), $"{Mathf.CeilToInt(sanity)}%", sanityStyle);
+            GUI.Label(new Rect(stabilityPanel.x + 8f, stabilityPanel.y + panelHeight - 22f, stabilityPanel.width - 16f, 18), $"{Mathf.CeilToInt(sanity)}%", sanityStyle);
 
             // Guia Rodrigo (Topo Centro)
             float rw = Mathf.Min(720, Screen.width - 760);
@@ -298,7 +306,7 @@ namespace Game.Varginha
         private void DrawInventoryBar()
         {
             if (_edelzio == null || _isVictoryOpen || _edelzio.CurrentSanity <= 0 || Time.timeScale == 0f) return;
-            float slotSize = Mathf.Min(76f, (Screen.width - 44f) / 5f);
+            float slotSize = HotbarSlotSize;
             const float gap = 6f;
             float width = slotSize * 5f + gap * 4f;
             float x = Mathf.Round((Screen.width - width) * .5f);
@@ -335,7 +343,7 @@ namespace Game.Varginha
             }
             int describedSlot = hovered >= 0 ? hovered : _selectedSlot;
             string label = _edelzio.HasInventoryItem(describedSlot) ? HotbarNames[describedSlot] : "ESPAÇO VAZIO";
-            GUI.Label(new Rect(x, y + slotSize + 24f, width, 20f), label, _hotbarLabelStyle);
+            GUI.Label(new Rect(x, y + slotSize + (Screen.height < 420f ? 14f : 24f), width, 20f), label, _hotbarLabelStyle);
         }
 
         private void DrawInteractionPrompt()
@@ -366,9 +374,34 @@ namespace Game.Varginha
         private void DrawCombatHint()
         {
             if (_edelzio == null || _edelzio.GetComponent<VarginhaPlayerAttack>() == null || _isDialogueOpen || _isVictoryOpen || _edelzio.CurrentSanity <= 0f) return;
-            Rect hint = new Rect(18f, Screen.height - 36f, 210f, 22f);
+            var attack = _edelzio.GetComponent<VarginhaPlayerAttack>();
+            float hintWidth = Mathf.Min(360f, Screen.width - 36f);
+            float hintHeight = Screen.height < 420f ? 44f : 50f;
+            float hotbarTop = Screen.height - HotbarHeight - 8f;
+            float hintY = hotbarTop - hintHeight - 12f;
+            if (hintY < 122f && Screen.width > 560f)
+                hintY = 122f;
+            else if (hintY < 8f)
+                hintY = 8f;
+            Rect hint = new Rect(18f, hintY, hintWidth, hintHeight);
             PixelHUDFrame.Draw(hint, _whiteTex, new Color(.025f, .07f, .09f, .92f), new Color(.77f, .49f, .20f, .95f));
-            GUI.Label(hint, "[J] / CLIQUE  GOLPEAR", _hotbarLabelStyle);
+            string combo = attack.ComboStep > 0 ? $"COMBO {attack.ComboStep}/3" : "COMBO 3 GOLPES";
+            string attackBinding = VarginhaInputBindings.DisplayName(VarginhaInputAction.Attack);
+            string attackLine = $"{attackBinding}  {combo}";
+            _statusStyle.fontSize = Screen.width < 480 ? 9 : 11;
+            _statusStyle.wordWrap = false;
+            _statusStyle.clipping = TextClipping.Clip;
+            float lineWidth = hint.width - 16f;
+            while (_statusStyle.fontSize > 8 && _statusStyle.CalcSize(new GUIContent(attackLine)).x > lineWidth)
+                _statusStyle.fontSize--;
+            GUI.Label(new Rect(hint.x + 8f, hint.y + 3f, lineWidth, 18f), attackLine, _statusStyle);
+            string dodge = _edelzio.IsDodging ? "ESQUIVANDO" : _edelzio.DodgeCooldownRemaining > 0f
+                ? $"ESQUIVA {_edelzio.DodgeCooldownRemaining:0.0}s" : "ESQUIVA PRONTA";
+            string dodgeBinding = VarginhaInputBindings.DisplayName(VarginhaInputAction.Dodge);
+            string dodgeLine = $"{dodgeBinding}  {dodge}";
+            while (_statusStyle.fontSize > 8 && _statusStyle.CalcSize(new GUIContent(dodgeLine)).x > lineWidth)
+                _statusStyle.fontSize--;
+            GUI.Label(new Rect(hint.x + 8f, hint.y + 22f, lineWidth, 18f), dodgeLine, _statusStyle);
         }
 
         private void DrawDialogueWindow()

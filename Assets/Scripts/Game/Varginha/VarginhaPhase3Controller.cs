@@ -52,12 +52,12 @@ namespace Game.Varginha
             if (_squad == null && _player != null)
             {
                 _squad = VarginhaStudentAllySquad.BuildForFuturePhase(transform, _player.transform, false);
-                _squad.ActivateManualAllies();
+                _squad.ActivateManualAllies(VarginhaStudentAlly.ManualCooldownSeconds, true);
             }
             else if (_squad != null)
             {
                 _squad.Setup(_player != null ? _player.transform : null);
-                _squad.ActivateManualAllies();
+                _squad.ActivateManualAllies(VarginhaStudentAlly.ManualCooldownSeconds, true);
             }
 
             if (_padre != null) _padre.OnInteracted += HandlePadreInteracted;
@@ -111,7 +111,7 @@ namespace Game.Varginha
             yield return new WaitForSecondsRealtime(.85f);
             VarginhaGameHUD.Instance?.ShowDialogue(
                 "Rodrigo",
-                "Os ETs fecharam a passagem. Segure o clique esquerdo para Edelzio atacar sem recarga. Clique direito perto de um ET para comandar um aluno: cada aluno recarrega por 5 segundos. A turma escolhe a especialidade mais útil para a situação.");
+                "Os ETs fecharam a passagem. Segure o clique esquerdo para o combo de três golpes e use Ctrl para esquivar dos ataques sinalizados. Clique direito perto de um ET para comandar a turma. Marcos corta a bola de vôlei; cada aluno tem um poder próprio e recarrega em 5 segundos.");
             yield return new WaitForSecondsRealtime(.85f);
 
             _arrivalFinished = true;
@@ -134,15 +134,17 @@ namespace Game.Varginha
                 VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Fale com Padre Fábio e depois examine o Livro do Tombo Secreto.'");
             }
 
-            var mouse = Mouse.current;
-            if (mouse == null || !mouse.rightButton.wasPressedThisFrame) return;
+            if (!VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.AllyCommand)) return;
             if (_phaseFinished || _player == null || _player.IsInputLocked || Time.timeScale <= 0f || VarginhaGameHUD.Instance?.IsDialogueOpen == true) return;
 
-            Vector2? aim = Camera.main != null ? (Vector2)Camera.main.ScreenToWorldPoint(mouse.position.ReadValue()) : (Vector2?)null;
+            var mouse = Mouse.current;
+            Vector2? aim = mouse != null && VarginhaInputBindings.GetMouseButton(VarginhaInputAction.AllyCommand) >= 0
+                && Camera.main != null ? (Vector2)Camera.main.ScreenToWorldPoint(mouse.position.ReadValue()) : (Vector2?)null;
             if (_squad != null && _squad.TryInvokeAttack(aim))
             {
                 string student = _squad.LastInvokedStudentName ?? "um aluno";
-                VarginhaGameHUD.Instance?.ShowRodrigoHint($"Rodrigo: '{student} atacou. Cada aluno precisa de 5 segundos para o próximo golpe.'");
+                string attack = _squad.LastInvokedAttackDescription ?? VarginhaStudentAlly.DescribeAttack(student);
+                VarginhaGameHUD.Instance?.ShowRodrigoHint($"Rodrigo: '{student}: {attack}! Aproveite a abertura para completar o combo.'");
             }
             else if (Time.unscaledTime - _lastNoAllyMessage > 1.25f)
             {
@@ -204,18 +206,22 @@ namespace Game.Varginha
         private void OnGUI()
         {
             if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
-            if (!_arrivalFinished || _phaseFinished || _squad == null) return;
+            if (!_arrivalFinished || _phaseFinished || _squad == null || VarginhaGameHUD.Instance?.IsDialogueOpen == true) return;
             InitGuiStyles();
 
             float width = Mathf.Min(430f, Screen.width - 32f);
-            float height = 150f;
+            float height = Mathf.Min(195f, Screen.height - 140f);
             Rect panel = new Rect(Screen.width - width - 16f, 124f, width, height);
             GUI.color = new Color(.015f, .035f, .06f, .94f);
             GUI.Box(panel, GUIContent.none);
             GUI.color = Color.white;
             GUI.Label(new Rect(panel.x + 12f, panel.y + 8f, panel.width - 24f, 22f), "FASE 3 • ALIADOS • " + VarginhaDifficulty.Label, _phaseStyle);
-            GUI.Label(new Rect(panel.x + 12f, panel.y + 30f, panel.width - 24f, 18f), "ESQUERDO: EDELZIO • DIREITO: ALUNO (5s por aluno)", _allyStyle);
-            GUI.Label(new Rect(panel.x + 12f, panel.y + 48f, panel.width - 24f, 18f), "Edelzio: sem recarga • Turma: " + (_squad.CommandCooldownRemaining > 0 ? "preparando comando" : "PRONTA"), _allyStyle);
+            GUI.Label(new Rect(panel.x + 12f, panel.y + 30f, panel.width - 24f, 18f),
+                VarginhaInputBindings.DisplayName(VarginhaInputAction.Attack) + ": EDELZIO • "
+                + VarginhaInputBindings.DisplayName(VarginhaInputAction.AllyCommand) + ": ALUNO (5s por aluno)", _allyStyle);
+            GUI.Label(new Rect(panel.x + 12f, panel.y + 48f, panel.width - 24f, 18f),
+                VarginhaInputBindings.DisplayName(VarginhaInputAction.Dodge) + ": ESQUIVAR • Turma: "
+                + (_squad.CommandCooldownRemaining > 0 ? "preparando comando" : "PRONTA"), _allyStyle);
 
             for (int i = 0; i < _squad.Allies.Count; i++)
             {
@@ -224,9 +230,18 @@ namespace Game.Varginha
                 int column = i % 3;
                 int row = i / 3;
                 float x = panel.x + 12f + column * (panel.width - 24f) / 3f;
-                float y = panel.y + 73f + row * 20f;
-                string state = ally.IsReadyForManualAttack ? "PRONTO" : $"{Mathf.CeilToInt(ally.ManualCooldownRemaining)}s";
-                GUI.Label(new Rect(x, y, (panel.width - 24f) / 3f - 4f, 18f), $"{ally.StudentName}: {state}", _allyStyle);
+                float y = panel.y + 73f + row * 37f;
+                float cellWidth = (panel.width - 24f) / 3f - 6f;
+                string state = ally.CurrentTarget != null ? "GOLPE" : ally.IsReadyForManualAttack ? "PRONTO" : $"{Mathf.CeilToInt(ally.ManualCooldownRemaining)}s";
+                string name = ally.StudentName == "Luis Miguel Messias" ? "Luis Miguel" : ally.StudentName;
+                GUI.color = ally.IsReadyForManualAttack ? new Color(.5f, 1f, .75f) : new Color(.8f, .84f, .9f);
+                GUI.Label(new Rect(x, y, cellWidth, 18f), name, _allyStyle);
+                GUI.Label(new Rect(x, y + 15f, cellWidth, 18f), state, _allyStyle);
+                GUI.color = new Color(.16f, .22f, .29f);
+                GUI.DrawTexture(new Rect(x, y + 32f, cellWidth, 2f), Texture2D.whiteTexture);
+                GUI.color = ally.IsReadyForManualAttack ? new Color(.4f, 1f, .68f) : new Color(.85f, .66f, .3f);
+                GUI.DrawTexture(new Rect(x, y + 32f, cellWidth * (1f - Mathf.Clamp01(ally.ManualCooldownRemaining / ally.ManualCooldownDuration)), 2f), Texture2D.whiteTexture);
+                GUI.color = Color.white;
             }
         }
 
@@ -269,12 +284,13 @@ namespace Game.Varginha
             CreateTome(root);
 
             var squad = VarginhaStudentAllySquad.BuildForFuturePhase(root, player.transform, false);
-            squad.ActivateManualAllies();
+            squad.ActivateManualAllies(VarginhaStudentAlly.ManualCooldownSeconds, true);
         }
 
         public static void EnsurePopulation(Transform root)
         {
             CreateManagers(root);
+            BuildChurch(root);
             var player = Object.FindAnyObjectByType<EdelzioTopDownController>();
             var camera = Object.FindAnyObjectByType<Camera>();
             if (camera == null) camera = CreateCamera(root).GetComponent<Camera>();
@@ -288,7 +304,7 @@ namespace Game.Varginha
             if (Object.FindAnyObjectByType<VarginhaStudentAllySquad>() == null && player != null)
             {
                 var squad = VarginhaStudentAllySquad.BuildForFuturePhase(root, player.transform, false);
-                squad.ActivateManualAllies();
+                squad.ActivateManualAllies(VarginhaStudentAlly.ManualCooldownSeconds, true);
             }
         }
 
@@ -316,6 +332,7 @@ namespace Game.Varginha
             camera.backgroundColor = new Color(.025f, .018f, .04f);
             go.AddComponent<AudioListener>();
             go.AddComponent<CameraFollow2D>();
+            VarginhaPixelPresentation.Configure(camera);
             return go;
         }
 
@@ -346,40 +363,7 @@ namespace Game.Varginha
 
         private static void BuildChurch(Transform root)
         {
-            var church = new GameObject("Igreja_Diocese_Ato_III").transform;
-            church.SetParent(root);
-            Color floor = new(.18f, .20f, .24f);
-            for (int y = -6; y <= 6; y++)
-            for (int x = -8; x <= 9; x++)
-            {
-                var tile = new GameObject("Piso_Igreja_" + x + "_" + y);
-                tile.transform.SetParent(church);
-                tile.transform.position = new Vector3(x + .5f, y + .5f, 0f);
-                var renderer = tile.AddComponent<SpriteRenderer>();
-                renderer.sprite = VarginhaPixelArtSprites.Create("ChurchFloor", ((x + y) & 1) == 0 ? floor : Color.Lerp(floor, Color.white, .05f));
-                renderer.sortingOrder = 0;
-            }
-
-            CreateWall(church, "Parede_Norte_Igreja", new Vector3(.5f, 6.8f), new Vector3(18f, .7f, 1f));
-            CreateWall(church, "Parede_Sul_Igreja", new Vector3(.5f, -6.8f), new Vector3(18f, .7f, 1f));
-            CreateWall(church, "Parede_Oeste_Igreja", new Vector3(-8.8f, 0f), new Vector3(.7f, 13f, 1f));
-            CreateWall(church, "Parede_Leste_Igreja", new Vector3(9.8f, 0f), new Vector3(.7f, 13f, 1f));
-
-            var altar = new GameObject("Altar_Da_Diocese");
-            altar.transform.SetParent(church);
-            altar.transform.position = new Vector3(5.3f, .2f);
-            altar.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
-            var altarRenderer = altar.AddComponent<SpriteRenderer>();
-            altarRenderer.sprite = VarginhaPixelArtSprites.Create("ChurchAltar", new Color(.40f, .22f, .12f));
-            altarRenderer.sortingOrder = 3;
-
-            var seal = new GameObject("Simbolo_Do_Selo");
-            seal.transform.SetParent(church);
-            seal.transform.position = new Vector3(-2.3f, .1f);
-            seal.transform.localScale = Vector3.one * 1.15f;
-            var sealRenderer = seal.AddComponent<SpriteRenderer>();
-            sealRenderer.sprite = VarginhaPixelArtSprites.Create("SealSymbol", new Color(.25f, .75f, .82f));
-            sealRenderer.sortingOrder = 2;
+            VarginhaEnvironmentArt.EnsureDiocese(root);
         }
 
         private static void CreateWall(Transform parent, string name, Vector3 position, Vector3 scale)
@@ -406,7 +390,7 @@ namespace Game.Varginha
                 go.transform.position = EnemyPositions[i];
                 go.transform.localScale = new Vector3(1.28f, 1.28f, 1f);
                 var renderer = go.AddComponent<SpriteRenderer>();
-                renderer.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_Guardiao_" + i, new Color(.25f, .35f, .48f));
+                renderer.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_Guardiao_" + i, new Color(.68f, .36f, .18f));
                 renderer.sortingOrder = 5;
                 var body = go.AddComponent<Rigidbody2D>();
                 body.gravityScale = 0f;

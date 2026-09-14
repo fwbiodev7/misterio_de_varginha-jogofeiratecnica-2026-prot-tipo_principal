@@ -11,6 +11,7 @@ namespace Game.Varginha
     {
         public const string SchoolScene = "Fase2_Escola_Resgate";
         public const string ChurchScene = "Fase3_Igreja_Guardiao";
+        private const float MinimumTravelSeconds = 6.4f;
         public static bool IsTravelling { get; private set; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetState() => IsTravelling = false;
@@ -45,10 +46,12 @@ namespace Game.Varginha
             Time.timeScale = 0f;
             var operation = SceneManager.LoadSceneAsync(destination);
             operation.allowSceneActivation = false;
-            while (_elapsed < 10f || operation.progress < .9f)
+            // A tomada precisa respirar, mas não deve prender o jogador por dez
+            // segundos quando a cena já terminou de carregar.
+            while (_elapsed < MinimumTravelSeconds || operation.progress < .9f)
             {
                 _elapsed += Time.unscaledDeltaTime;
-                _progress = Mathf.Min(Mathf.Clamp01(_elapsed / 10f), operation.progress / .9f);
+                _progress = Mathf.Min(Mathf.Clamp01(_elapsed / MinimumTravelSeconds), operation.progress / .9f);
                 _fade = Mathf.Clamp01(_elapsed / .5f);
                 yield return null;
             }

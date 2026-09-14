@@ -105,6 +105,7 @@ namespace Game.Editor.Testing
 
             // 7. O Fusca de Edelzio (Fim de fase / Fuga)
             BuildFusca(root.transform, new Vector3(20f, 0f, 0f));
+            VarginhaEnvironmentPolish.EnsureHouse(envRoot);
 
             Selection.activeGameObject = player;
         }
@@ -339,8 +340,10 @@ namespace Game.Editor.Testing
             go.transform.position = new Vector3(14f, 0f, 0f);
 
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = VarginhaPixelArtSprites.Create("Entity_Manifestation", new Color(0.95f, 0.15f, 0.25f));
-            sr.color = new Color(0.95f, 0.15f, 0.25f, 0.85f);
+            // A entidade ancestral mantém a silhueta própria, mas compartilha a
+            // leitura visual dos inimigos: pele marrom e olhos vermelhos.
+            sr.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_Entity", new Color(.68f, .36f, .18f));
+            sr.color = new Color(.68f, .36f, .18f, .85f);
             sr.sortingOrder = 6;
 
             var rb = go.AddComponent<Rigidbody2D>();

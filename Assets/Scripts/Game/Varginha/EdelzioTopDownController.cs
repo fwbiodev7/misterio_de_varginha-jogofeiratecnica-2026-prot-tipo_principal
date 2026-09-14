@@ -49,6 +49,27 @@ namespace Game.Varginha
         private SpriteRenderer _backpackStraps;
         private bool _carriedItemsVisible = true;
         private PhysicsMaterial2D _movementMaterial;
+        private float _dodgeRemaining;
+        private float _dodgeCooldown;
+        private Vector2 _dodgeDirection;
+        private float _dodgeTrailTimer;
+
+        public bool IsDodging => _dodgeRemaining > 0f;
+        public float DodgeCooldownRemaining => Mathf.Max(0f, _dodgeCooldown);
+        private bool IsGameplayBlocked => IsInputLocked || Time.timeScale <= 0f || currentSanity <= 0f
+            || GetComponent<Game.Player.HealthSystem>()?.IsDead == true
+            || VarginhaGameHUD.Instance?.IsDialogueOpen == true
+            || VarginhaGameHUD.Instance?.IsVictoryOpen == true;
+
+        public bool TryDodge(Vector2 direction)
+        {
+            if (!isActiveAndEnabled || IsGameplayBlocked || _dodgeCooldown > 0f || IsScriptedMotion) return false;
+            _dodgeDirection = direction.sqrMagnitude > .01f ? direction.normalized : _lastFacing.normalized;
+            _dodgeRemaining = .18f;
+            _dodgeCooldown = 1.1f;
+            _dodgeTrailTimer = 0f;
+            return true;
+        }
 
         public bool HasInventoryItem(int slot)
         {
@@ -99,6 +120,26 @@ namespace Game.Varginha
 
         private void Update()
         {
+            if (!IsGameplayBlocked)
+            {
+                _dodgeCooldown = Mathf.Max(0f, _dodgeCooldown - Time.deltaTime);
+                _dodgeRemaining = Mathf.Max(0f, _dodgeRemaining - Time.deltaTime);
+                if (IsDodging)
+                {
+                    _dodgeTrailTimer -= Time.deltaTime;
+                    if (_dodgeTrailTimer <= 0f)
+                    {
+                        _dodgeTrailTimer = .05f;
+                        var dust = new GameObject("Poeira_Esquiva");
+                        dust.transform.position = transform.position + new Vector3(0f, -.35f, 0f);
+                        var dustRenderer = dust.AddComponent<SpriteRenderer>();
+                        dustRenderer.sprite = VarginhaPixelArtSprites.Create("Dodge_Dust", new Color(.5f, .85f, .95f));
+                        dustRenderer.sortingOrder = _sr != null ? _sr.sortingOrder - 1 : 4;
+                        Destroy(dust, .18f);
+                    }
+                }
+            }
+            else if (Time.timeScale > 0f) _dodgeRemaining = 0f;
             PollKeyboard();
             ScanInteractables();
         }
@@ -110,7 +151,7 @@ namespace Game.Varginha
 
         private void PollKeyboard()
         {
-            if (IsInputLocked)
+            if (IsGameplayBlocked)
             {
                 _moveInput = Vector2.zero;
                 if (!IsScriptedMotion) _rb.linearVelocity = Vector2.zero;
@@ -120,23 +161,20 @@ namespace Game.Varginha
             float y = 0f;
             _isRunning = false;
 
-            if (Keyboard.current != null)
-            {
-                if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) x -= 1f;
-                if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) x += 1f;
-                if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed) y -= 1f;
-                if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed) y += 1f;
+            if (VarginhaInputBindings.IsPressed(VarginhaInputAction.MoveLeft)) x -= 1f;
+            if (VarginhaInputBindings.IsPressed(VarginhaInputAction.MoveRight)) x += 1f;
+            if (VarginhaInputBindings.IsPressed(VarginhaInputAction.MoveDown)) y -= 1f;
+            if (VarginhaInputBindings.IsPressed(VarginhaInputAction.MoveUp)) y += 1f;
 
-                _isRunning = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
+            _isRunning = VarginhaInputBindings.IsPressed(VarginhaInputAction.Run);
 
-                if (Keyboard.current.eKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
-                {
-                    TryInteract();
-                }
-            }
+            if (VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Interact))
+                TryInteract();
 
-            if (IsInputLocked) return;
+            if (IsGameplayBlocked) return;
             _moveInput = new Vector2(x, y).normalized;
+
+            if (VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Dodge)) TryDodge(_moveInput);
 
             if (_moveInput.sqrMagnitude > 0.01f)
             {
@@ -147,7 +185,8 @@ namespace Game.Varginha
         private void Move()
         {
             if (IsScriptedMotion) return;
-            if (IsInputLocked) { _rb.linearVelocity = Vector2.zero; return; }
+            if (IsGameplayBlocked) { _rb.linearVelocity = Vector2.zero; return; }
+            if (IsDodging) { _rb.linearVelocity = _dodgeDirection * 12f; return; }
             float speed = _isRunning ? runSpeed : walkSpeed;
             Vector2 targetVel = _moveInput * speed;
             // Com a configuração padrão a resposta é imediata; valores menores
@@ -158,6 +197,7 @@ namespace Game.Varginha
 
         private void OnDisable()
         {
+            _dodgeRemaining = _dodgeCooldown = 0f;
             _moveInput = Vector2.zero;
             _isRunning = false;
             if (_rb != null) _rb.linearVelocity = Vector2.zero;
@@ -194,7 +234,7 @@ namespace Game.Varginha
 
         public void TryInteract()
         {
-            if (IsInputLocked) return;
+            if (IsGameplayBlocked || IsDodging) return;
             if (_nearestInteractable != null)
             {
                 _nearestInteractable.Interact(this);

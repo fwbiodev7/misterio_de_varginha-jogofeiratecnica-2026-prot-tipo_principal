@@ -117,7 +117,6 @@ namespace Game.Varginha
 
             VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Subordinados ETs enjaularam meus alunos e estão atacando. Vou quebrar essas jaulas e tirá-los daqui!");
             if (playerAnimation != null) playerAnimation.enabled = true;
-            _player.SetCarriedItemsVisible(true);
             Vector3 exit = _fusca.position + Vector3.right * 1.05f;
             Vector3 start = _player.transform.position;
             elapsed = 0f;
@@ -130,6 +129,9 @@ namespace Game.Varginha
             }
 
             _player.IsScriptedMotion = false;
+            // Só mostra mochila e notebook depois que Edelzio saiu da cabine;
+            // durante a tomada eles não podem cobrir o carro.
+            _player.SetCarriedItemsVisible(true);
             if (arrivalBody != null) arrivalBody.simulated = true;
             if (playerRenderer != null) playerRenderer.sortingOrder = 5;
             _player.SetCombatLocked(false);
@@ -225,7 +227,9 @@ namespace Game.Varginha
             bool finished = false;
             if (_fuscaDeparture != null)
             {
-                _fuscaDeparture.Depart(() => finished = true);
+                // A cinematics de viagem continua o trajeto; não deixe o carro
+                // percorrer 15 unidades e desaparecer da fase antes do fade.
+                _fuscaDeparture.Depart(() => finished = true, 4.2f);
                 yield return new WaitUntil(() => finished);
             }
             else yield return new WaitForSeconds(.8f);
@@ -260,7 +264,7 @@ namespace Game.Varginha
             var player = CreatePlayer(root, new Vector3(-6.1f, -1.2f));
             camera.GetComponent<CameraFollow2D>().Target = player.transform;
             BuildSchool(root);
-            CreateFusca(root, new Vector3(-7.1f, -1.2f));
+            CreateFusca(root, VarginhaEnvironmentArt.FuscaParkingPosition);
             CreateSubordinate(root, "ET_Subordinado_1", new Vector3(2.8f, 2.6f));
             CreateSubordinate(root, "ET_Subordinado_2", new Vector3(5.1f, -2.4f));
             CreateSubordinate(root, "ET_Subordinado_3", new Vector3(-.3f, 3.1f));
@@ -278,6 +282,7 @@ namespace Game.Varginha
         public static void EnsurePopulation(Transform root)
         {
             CreateManagers(root);
+            BuildSchool(root);
 
             var player = Object.FindAnyObjectByType<EdelzioTopDownController>();
             var camera = Object.FindAnyObjectByType<Camera>();
@@ -286,8 +291,12 @@ namespace Game.Varginha
             var follow = camera.GetComponent<CameraFollow2D>() ?? camera.gameObject.AddComponent<CameraFollow2D>();
             if (player != null) follow.Target = player.transform;
 
-            if (GameObject.Find("Fusca_1996_Fase2") == null)
-                CreateFusca(root, new Vector3(-7.1f, -1.2f));
+            var existingCar = GameObject.Find("Fusca_1996_Fase2");
+            if (existingCar == null)
+                CreateFusca(root, VarginhaEnvironmentArt.FuscaParkingPosition);
+            else
+                // Corrige cenas antigas que ainda tinham o Fusca na posição anterior.
+                existingCar.transform.position = VarginhaEnvironmentArt.FuscaParkingPosition;
 
             var enemyPositions = new[]
             {
@@ -362,6 +371,7 @@ namespace Game.Varginha
             camera.backgroundColor = new Color(.025f, .035f, .06f);
             go.AddComponent<AudioListener>();
             go.AddComponent<CameraFollow2D>();
+            VarginhaPixelPresentation.Configure(camera);
             return go;
         }
 
@@ -392,25 +402,7 @@ namespace Game.Varginha
 
         private static void BuildSchool(Transform root)
         {
-            var school = new GameObject("Escola_3_Sistema_Ambiente").transform;
-            school.SetParent(root);
-            Color floor = new(.17f, .22f, .27f);
-            Color wall = new(.25f, .34f, .40f);
-            for (int y = -5; y < 6; y++)
-            for (int x = -7; x < 9; x++)
-            {
-                var tile = new GameObject("Piso_Escola_" + x + "_" + y);
-                tile.transform.SetParent(school);
-                tile.transform.position = new Vector3(x + .5f, y + .5f, 0f);
-                var renderer = tile.AddComponent<SpriteRenderer>();
-                renderer.sprite = VarginhaPixelArtSprites.Create("Floor_House", ((x + y) & 1) == 0 ? floor : Color.Lerp(floor, Color.white, .05f));
-            }
-            CreateWall(school, "Parede_Norte", new Vector3(0f, 5.7f, 0f), new Vector3(16f, .7f, 1f), wall);
-            CreateWall(school, "Parede_Sul", new Vector3(0f, -5.7f, 0f), new Vector3(16f, .7f, 1f), wall);
-            CreateWall(school, "Parede_Oeste", new Vector3(-7.7f, 0f, 0f), new Vector3(.7f, 11f, 1f), wall);
-            CreateWall(school, "Parede_Leste", new Vector3(8.7f, 0f, 0f), new Vector3(.7f, 11f, 1f), wall);
-            CreateWall(school, "Divisoria_Sala", new Vector3(3.7f, 3.3f, 0f), new Vector3(7.5f, .45f, 1f), wall);
-            CreateWall(school, "Divisoria_Fundo", new Vector3(-4.1f, -3.4f, 0f), new Vector3(7.2f, .45f, 1f), wall);
+            VarginhaEnvironmentArt.EnsureSchool(root);
         }
 
         private static void CreateWall(Transform parent, string name, Vector3 position, Vector3 scale, Color color)
@@ -432,7 +424,7 @@ namespace Game.Varginha
             go.transform.position = position;
             go.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
             var renderer = go.AddComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_" + name, new Color(.25f, .35f, .48f));
+            renderer.sprite = VarginhaPixelArtSprites.Create("ET_Subordinate_" + name, new Color(.68f, .36f, .18f));
             renderer.sortingOrder = 5;
             var body = go.AddComponent<Rigidbody2D>();
             body.gravityScale = 0f;

@@ -145,12 +145,13 @@ namespace Game.Varginha
 
         private void AnimateSupernaturalFlicker()
         {
-            // Pulso sobrenatural vermelho/sombra e transparência instável
+            // Pulso sobrenatural escuro e transparência instável sem tingir o
+            // ET inteiro de vermelho: os olhos continuam sendo o ponto vermelho.
             _flickerTimer += Time.deltaTime * 6f;
             float alpha = 0.5f + Mathf.PingPong(_flickerTimer, 0.45f);
             if (_sr != null)
             {
-                _sr.color = new Color(0.9f, 0.1f, 0.2f, alpha);
+                _sr.color = new Color(.68f, .36f, .18f, alpha);
                 float pulse = 1f + Mathf.Sin(_flickerTimer * 1.7f) * .055f;
                 transform.localScale = _baseScale * pulse;
                 transform.localPosition = _baseLocalPosition + Vector3.up * Mathf.Sin(_flickerTimer * 1.1f) * .025f;

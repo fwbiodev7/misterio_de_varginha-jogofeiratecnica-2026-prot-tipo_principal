@@ -23,9 +23,11 @@ namespace Game.Varginha
         private float _commandReadyAt;
         public float CommandCooldownRemaining => Mathf.Max(0f, _commandReadyAt - Time.time);
         private string _lastInvokedStudentName;
+        private string _lastInvokedAttackDescription;
 
         public IReadOnlyList<VarginhaStudentAlly> Allies => _allies;
         public string LastInvokedStudentName => _lastInvokedStudentName;
+        public string LastInvokedAttackDescription => _lastInvokedAttackDescription;
         public int ActiveCount
         {
             get
@@ -60,6 +62,9 @@ namespace Game.Varginha
 
         public void DeactivateAllies()
         {
+            _commandReadyAt = 0f;
+            _lastInvokedStudentName = null;
+            _lastInvokedAttackDescription = null;
             foreach (var ally in _allies)
                 if (ally != null) ally.Deactivate();
         }
@@ -67,12 +72,36 @@ namespace Game.Varginha
         /// <summary>Ativa a turma no modo manual da Fase 3: um aluno por clique.</summary>
         public void ActivateManualAllies(float cooldownSeconds = VarginhaStudentAlly.ManualCooldownSeconds)
         {
+            // Mantém a API histórica liberando a turma inteira; controladores de
+            // fases não finais usam ActivateForPhase para aplicar a dificuldade.
+            ActivateManualAllies(cooldownSeconds, true, 3);
+        }
+
+        public void ActivateManualAllies(float cooldownSeconds, bool finalPhase)
+        {
+            ActivateManualAllies(cooldownSeconds, finalPhase, 2);
+        }
+
+        private void ActivateManualAllies(float cooldownSeconds, bool finalPhase, int phaseNumber)
+        {
             EnsureRoster();
             if (leader == null) leader = Object.FindAnyObjectByType<EdelzioTopDownController>()?.transform;
             _nextInvocationIndex = 0;
+            _commandReadyAt = 0f;
             _lastInvokedStudentName = null;
+            _lastInvokedAttackDescription = null;
             for (int i = 0; i < _allies.Count; i++)
-                _allies[i].ActivateManual(leader, i, cooldownSeconds);
+            {
+                int allowed = finalPhase ? _allies.Count : VarginhaDifficulty.AlliedSummonCount(phaseNumber);
+                if (i < allowed) _allies[i].ActivateManual(leader, i, cooldownSeconds);
+                else _allies[i].Deactivate();
+            }
+        }
+
+        /// <summary>Ativa a quantidade permitida pela dificuldade para uma fase comum.</summary>
+        public void ActivateForPhase(int phaseNumber, float cooldownSeconds = VarginhaStudentAlly.ManualCooldownSeconds)
+        {
+            ActivateManualAllies(cooldownSeconds, phaseNumber >= 3, phaseNumber);
         }
 
         /// <summary>Invoca o próximo aluno pronto e manda um único golpe ao ET mais próximo.</summary>
@@ -107,20 +136,30 @@ namespace Game.Varginha
                         if (member != null && member.CurrentTarget == target) score -= 12f;
                     int neighbors = 0;
                     foreach (var other in targets)
-                        if (other != target && !other.IsDead && Vector2.Distance(other.transform.position, target.transform.position) < 1.6f) neighbors++;
+                        if (other != target && ally.CanChainToTarget(target.transform.position, other)
+                            && Vector2.Distance(other.transform.position, target.transform.position) < ally.SecondaryRadius) neighbors++;
                     switch (ally.AttackStyle)
                     {
                         case VarginhaStudentAllyStyle.JiuJitsu: if (distance < 2.5f) score += 5f; break;
                         case VarginhaStudentAllyStyle.FallingPiano:
+                            score += Mathf.Min(neighbors, 3) * 3f; break;
+                        case VarginhaStudentAllyStyle.Art:
+                            score += Mathf.Min(neighbors, 3) * 2.5f; break;
+                        case VarginhaStudentAllyStyle.Volleyball:
+                            score += Mathf.Min(neighbors, 2) * 2f + (distance > 3f ? 4f : 1f); break;
+                        case VarginhaStudentAllyStyle.PingPong:
+                            score += Mathf.Min(neighbors, ally.StudentName == "Anna Sabia" ? 2 : 1) * 3f; break;
                         case VarginhaStudentAllyStyle.Guitar:
-                        case VarginhaStudentAllyStyle.Microphone: score += Mathf.Min(neighbors, 3) * 3f; break;
+                        case VarginhaStudentAllyStyle.Microphone:
                         case VarginhaStudentAllyStyle.Support:
+                            score += Mathf.Min(neighbors, 3) * 2f;
                             var player = leader.GetComponent<EdelzioTopDownController>();
-                            if (player != null && player.CurrentSanity < player.MaxSanity * .65f) score += 8f;
+                            if (player != null && player.CurrentSanity < player.MaxSanity * .65f)
+                                score += ally.AttackStyle == VarginhaStudentAllyStyle.Microphone ? 10f : 6f;
                             break;
                         case VarginhaStudentAllyStyle.Katana:
                             var health = target.GetComponent<Game.Player.HealthSystem>();
-                            if (health != null && health.CurrentHealth <= 38f) score += 5f;
+                            if (health != null && (health.CurrentHealth <= 38f || health.HealthPercent <= .35f)) score += 6f;
                             break;
                     }
                     if (score <= bestScore) continue;
@@ -134,6 +173,7 @@ namespace Game.Varginha
             _commandReadyAt = Time.time + .9f;
             _nextInvocationIndex = (selectedIndex + 1) % _allies.Count;
             _lastInvokedStudentName = selected.StudentName;
+            _lastInvokedAttackDescription = selected.AttackDescription;
             return true;
         }
 

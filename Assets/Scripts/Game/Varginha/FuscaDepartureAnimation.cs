@@ -30,12 +30,21 @@ namespace Game.Varginha
 
         public void Depart(Action onComplete)
         {
-            if (_isDeparting) return;
-            GetComponent<FuscaEngineSound>()?.PlayRev();
-            StartCoroutine(DepartureRoutine(onComplete));
+            Depart(onComplete, -1f);
         }
 
-        private IEnumerator DepartureRoutine(Action onComplete)
+        /// <summary>
+        /// Faz uma saída curta quando a cinematics de viagem assumirá o restante
+        /// do trajeto. Assim o carro não precisa atravessar a borda da fase real.
+        /// </summary>
+        public void Depart(Action onComplete, float distanceOverride)
+        {
+            if (_isDeparting) return;
+            GetComponent<FuscaEngineSound>()?.PlayRev();
+            StartCoroutine(DepartureRoutine(onComplete, distanceOverride));
+        }
+
+        private IEnumerator DepartureRoutine(Action onComplete, float distanceOverride)
         {
             _isDeparting = true;
             Vector3 startPosition = transform.position;
@@ -46,14 +55,17 @@ namespace Game.Varginha
             {
                 AnimateFrame(elapsed);
                 // Os quadros dão vida ao motor sem deslocar o carro e seus passageiros.
-                transform.position = startPosition;
-                ApplySuspensionMotion(baseScale, baseRotation, elapsed, .35f);
+                ApplySuspensionMotion(startPosition, baseScale, baseRotation, elapsed, .35f);
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
+            // O ciclo de rodagem começa no quadro inicial; reaproveitar o tempo do
+            // motor fazia a primeira troca de sprite parecer um teleporte.
+            elapsed = 0f;
             float travelled = 0f;
-            float distance = Mathf.Max(0f, exitDistance);
+            float distance = distanceOverride >= 0f ? distanceOverride : exitDistance;
+            distance = Mathf.Max(0f, distance);
             float speed = Mathf.Max(.01f, driveSpeed);
             float direction = _renderer != null && _renderer.flipX ? -1f : 1f;
             while (travelled < distance)
@@ -61,10 +73,10 @@ namespace Game.Varginha
                 AnimateFrame(elapsed);
                 float acceleration = Mathf.Lerp(.28f, 1f, Mathf.Clamp01(travelled / 4.5f));
                 travelled = Mathf.Min(distance, travelled + speed * acceleration * Time.deltaTime);
-                // Posição absoluta: Y/Z não acumulam oscilação nem variam com o FPS.
-                transform.position = startPosition + Vector3.right * (direction * travelled);
                 float launch = Mathf.Clamp01(travelled / 2.2f);
-                ApplySuspensionMotion(baseScale, baseRotation, elapsed, Mathf.Lerp(.35f, 0f, launch));
+                // Posição absoluta: Y/Z não acumulam oscilação nem variam com o FPS.
+                ApplySuspensionMotion(startPosition + Vector3.right * (direction * travelled),
+                    baseScale, baseRotation, elapsed, Mathf.Lerp(.35f, 0f, launch));
                 elapsed += Time.deltaTime;
                 yield return null;
             }
@@ -74,12 +86,19 @@ namespace Game.Varginha
             onComplete?.Invoke();
         }
 
-        private void ApplySuspensionMotion(Vector3 baseScale, Quaternion baseRotation, float elapsed, float strength)
+        private void ApplySuspensionMotion(Vector3 basePosition, Vector3 baseScale, Quaternion baseRotation,
+            float elapsed, float strength)
         {
             float bob = Mathf.Sin(elapsed * 38f) * engineShake * strength;
-            float lean = Mathf.Sin(elapsed * 22f) * launchLean * strength;
+            float lean = Mathf.Sin(elapsed * 22f) * launchLean * strength / 90f;
+            // A suspensão é visual; a posição central não sai da faixa da estrada.
+            transform.position = basePosition;
             transform.localScale = new Vector3(baseScale.x * (1f + bob), baseScale.y * (1f - bob * .55f), baseScale.z);
-            transform.localRotation = baseRotation * Quaternion.Euler(0f, 0f, lean);
+            // A carroceria não gira mais em torno do centro durante a saída. Isso
+            // mantinha as rodas fora da faixa e fazia passageiros/porta orbitarem.
+            transform.localRotation = baseRotation;
+            transform.localScale = new Vector3(transform.localScale.x * (1f + lean),
+                transform.localScale.y * (1f - lean * .55f), transform.localScale.z);
         }
 
         private void AnimateFrame(float elapsed)

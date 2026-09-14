@@ -115,7 +115,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -711,7 +711,31 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EdelzioTopDownV3_0: 6112236369135526974
+      EdelzioTopDownV3_1: -9021589830636107852
+      EdelzioTopDownV3_10: 6642945189225856333
+      EdelzioTopDownV3_11: -3733653193051814806
+      EdelzioTopDownV3_12: 6827282877266717403
+      EdelzioTopDownV3_13: 6488241393678801254
+      EdelzioTopDownV3_14: 7698755581094572285
+      EdelzioTopDownV3_15: 4967181077247382311
+      EdelzioTopDownV3_16: 4812434405590286802
+      EdelzioTopDownV3_17: 5954058037848409313
+      EdelzioTopDownV3_18: -4854825277288139479
+      EdelzioTopDownV3_19: 5380750535082171000
+      EdelzioTopDownV3_2: -1763998656792371839
+      EdelzioTopDownV3_20: -6381149959338860723
+      EdelzioTopDownV3_21: -8988187186977711531
+      EdelzioTopDownV3_22: -1177786177909924174
+      EdelzioTopDownV3_23: -825155544129263193
+      EdelzioTopDownV3_3: -8653638117623091565
+      EdelzioTopDownV3_4: 7454009465051076777
+      EdelzioTopDownV3_5: 8816538176264378106
+      EdelzioTopDownV3_6: -6392975034327571196
+      EdelzioTopDownV3_7: -2854796012203552858
+      EdelzioTopDownV3_8: -892024277639473599
+      EdelzioTopDownV3_9: -3627617156267092202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

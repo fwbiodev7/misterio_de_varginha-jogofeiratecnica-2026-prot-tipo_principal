@@ -17,6 +17,14 @@ namespace Game.Varginha
 
         private static void InstallOnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                var house = root.transform.Find("House_And_Yard");
+                if (house != null) VarginhaEnvironmentPolish.EnsureHouse(house);
+                else if (root.name == "House_And_Yard") VarginhaEnvironmentPolish.EnsureHouse(root.transform);
+            }
+            foreach (var camera in Object.FindObjectsByType<Camera>(FindObjectsInactive.Include))
+                VarginhaPixelPresentation.Configure(camera);
             var player = Object.FindAnyObjectByType<EdelzioTopDownController>();
             if (player != null)
             {

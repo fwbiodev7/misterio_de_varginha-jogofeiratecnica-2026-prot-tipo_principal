@@ -28,12 +28,15 @@ As cenas também podem ser abertas diretamente em `Assets/Scenes`:
 
 | Ação | Teclado / mouse |
 | --- | --- |
-| Andar | WASD ou setas |
+| Andar | WASD ou setas (remapeável no menu) |
 | Correr | Shift |
 | Interagir / examinar | E, Espaço ou Enter |
-| Atacar na Fase 2 | J ou K |
-| Invocar aliado na Fase 3 | Clique esquerdo |
+| Atacar / combo | Mouse esquerdo ou J (remapeável no menu) |
+| Comandar aluno | Mouse direito ou L na fase final (remapeável no menu) |
+| Esquivar | Ctrl |
 | Selecionar item da hotbar | 1 a 5 |
+
+No menu `TUTORIAL / CONTROLES`, o botão `EDITAR CONTROLES DO TECLADO E MOUSE` abre a tela de remapeamento inspirada na referência. Cada comando pode receber uma tecla ou botão do mouse e fica salvo entre as cenas.
 
 ## Fluxo do jogo
 
@@ -49,11 +52,11 @@ A cena começa com uma transição cinematográfica: o Fusca aparece, Edelzio sa
 
 **Yasmin, Pedro, Matias, Fabio, Marcos, Anna Sabia, Ana Tavares, Luis Miguel Messias e Luis Martins.**
 
-O jogador derrota os subordinados usando o novo ataque. Os ETs também lançam rajadas verdes que drenam vida e sanidade. Depois da última derrota, as jaulas pixel art desaparecem, os alunos são libertados, acompanham Edelzio e formam uma fila no Fusca. Quando a turma chega ao carro, a saída final conclui a fase.
+O jogador derrota os subordinados usando o combo de três golpes: corte inicial, golpe cruzado e finalizador pesado. Os ETs também lançam rajadas verdes que drenam vida e sanidade. Depois da última derrota, as jaulas pixel art desaparecem, os alunos são libertados, acompanham Edelzio e formam uma fila no Fusca. Quando a turma chega ao carro, a saída final conclui a fase.
 
 ### Fase 3 — O Guardião
 
-Edelzio chega à área secreta da diocese seguindo as coordenadas decodificadas. Os ETs guardam a passagem para Padre Fábio e para o Livro do Tombo Secreto. Cada clique esquerdo dispara o ataque de Edelzio e também invoca o próximo aluno pronto para executar um único golpe contra o ET mais próximo. Edelzio e cada aluno têm cooldowns independentes de cinco segundos.
+Edelzio chega à área secreta da diocese seguindo as coordenadas decodificadas. Os ETs guardam a passagem para Padre Fábio e para o Livro do Tombo Secreto. O comando configurado de ataque dispara o combo de Edelzio; o comando de aliado invoca o próximo aluno pronto para executar um único golpe contra o ET mais próximo. Na fase final, todos os nove alunos podem ser chamados, com cooldown individual de cinco segundos.
 
 Depois que os ETs são derrotados, Edelzio conversa com Padre Fábio e examina o livro. A fase termina revelando que o nome de Edelzio aparece nos registros do selo de 1898, conduzindo a investigação para a mata e para Ouzana.
 
@@ -67,10 +70,10 @@ Depois que os ETs são derrotados, Edelzio conversa com Padre Fábio e examina o
 - **Hotbar:** cinco slots para mochila, chave, caderno, dados do notebook e documento histórico.
 - **Mochila:** sprite cinza separado, maior, preso às costas e com ordenação ajustada por direção.
 - **Animações de Edelzio:** caminhada, café, agachar, alcançar, sentar, usar notebook e ataque.
-- **Fusca:** animação de partida e deslocamento horizontal estável, sem a antiga deriva diagonal.
+- **Fusca:** porta com pivô de dobradiça, sprites em cache, abertura/fechamento com easing e deslocamento horizontal estável, sem a antiga deriva diagonal.
 - **Reféns:** nomes, jaulas verdes pulsantes, estado de liberdade, acompanhamento de Edelzio e entrada no Fusca.
 - **Aliados para fases futuras:** `VarginhaStudentAllySquad.BuildForFuturePhase(...)` transforma os nove alunos resgatados em companheiros ativos. Cada um usa um golpe próprio: jiujitsu do Matias, raquetadas das Annas, guitarra do Pedro, arte do Luis Martins, microfone do Luis Miguel Messias, piano que cai sobre o alvo da Yasmin, katana do Fabio e apoio do Marcos.
-- **Aliados invocáveis da Fase 3:** `VarginhaStudentAllySquad.ActivateManualAllies(...)` desliga o ataque automático e libera um golpe por clique esquerdo, com cooldown individual de 5 segundos e painel de disponibilidade no HUD. O mesmo clique mantém o ataque de Edelzio ativo, com cooldown próprio de 5 segundos.
+- **Aliados invocáveis:** os alunos circulam livremente em torno de Edelzio, respeitando separação e paredes. Em fases comuns, a invocação só libera três alunos no modo **DIFÍCIL**; na fase final, `ActivateManualAllies(..., true)` libera todos os nove. Marcos alterna cortada de vôlei, chute voador e cotovelada, com bordões como “to doido com vc então uai!”, “o Exu!!” e “o cu!!!”.
 
 ## Estrutura principal
 

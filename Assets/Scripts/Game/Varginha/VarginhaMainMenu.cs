@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Game.UI;
@@ -13,16 +14,20 @@ namespace Game.Varginha
         [SerializeField] private string gameplaySceneName = "FaseTopView_Varginha";
         [SerializeField] private string phase3SceneName = "Fase3_Igreja_Guardiao";
 
-        private enum Panel { None, Controls, Credits, Difficulty }
+        private enum Panel { None, Controls, Credits, Difficulty, Keybinds }
         private Panel panel;
         private string _pendingScene;
         private Vector2 _controlsScroll;
+        private Vector2 _bindingsScroll;
+        private VarginhaInputAction? _rebindingAction;
+        private int _rebindArmedFrame = -1;
         private Texture2D pixel;
         private Texture2D backgroundTexture;
         private GUIStyle titleStyle;
         private GUIStyle subtitleStyle;
         private GUIStyle buttonStyle;
         private GUIStyle infoStyle;
+        private GUIStyle leftInfoStyle;
         private GUIStyle smallStyle;
         private readonly TypewriterText panelTypewriter = new TypewriterText();
 
@@ -53,7 +58,9 @@ namespace Game.Varginha
 
             if (panel != Panel.None)
             {
-                if (panel == Panel.Difficulty) DrawDifficulty(); else DrawPanel();
+                if (panel == Panel.Difficulty) DrawDifficulty();
+                else if (panel == Panel.Keybinds) DrawKeybinds();
+                else DrawPanel();
                 return;
             }
 
@@ -96,7 +103,7 @@ namespace Game.Varginha
             GUI.Label(new Rect(20, Screen.height - 42, Screen.width - 40, 24),
                 "SINAL DETECTADO  •  VARGINHA / MG  •  21:17", smallStyle);
 
-            if (panel != Panel.None) DrawPanel();
+            if (panel == Panel.Controls || panel == Panel.Credits) DrawPanel();
         }
 
         private void DrawBackground()
@@ -133,21 +140,129 @@ namespace Game.Varginha
             string heading = panel == Panel.Controls ? "CONTROLES DE INVESTIGACAO" : "CREDITOS";
             GUI.Label(new Rect(x + 30, y + 24, width - 60, 32), heading, subtitleStyle);
             panelTypewriter.Tick(32f);
-            Rect viewport = new Rect(x + 24, y + 65, width - 48, height - 130);
+            Rect viewport = new Rect(x + 24, y + 65, width - 48, height - (panel == Panel.Controls ? 165 : 130));
             float contentHeight = infoStyle.CalcHeight(new GUIContent(panelTypewriter.VisibleText), viewport.width - 24);
             _controlsScroll = GUI.BeginScrollView(viewport, _controlsScroll, new Rect(0, 0, viewport.width - 24, contentHeight));
             GUI.Label(new Rect(0, 0, viewport.width - 24, contentHeight), panelTypewriter.VisibleText, infoStyle);
             GUI.EndScrollView();
+            if (panel == Panel.Controls && GUI.Button(new Rect(x + width * .5f - 180, y + height - 92, 360, 32),
+                "EDITAR CONTROLES DO TECLADO E MOUSE", buttonStyle))
+                OpenPanel(Panel.Keybinds);
             if (GUI.Button(new Rect(x + width * .5f - 100, y + height - 55, 200, 34), "VOLTAR", buttonStyle))
                 panel = Panel.None;
+        }
+
+        private void DrawKeybinds()
+        {
+            float width = Mathf.Min(820f, Screen.width - 32f);
+            float height = Mathf.Min(650f, Screen.height - 24f);
+            float x = (Screen.width - width) * .5f;
+            float y = (Screen.height - height) * .5f;
+            GUI.color = new Color(.025f, .07f, .12f, .99f);
+            GUI.DrawTexture(new Rect(x, y, width, height), pixel);
+            GUI.color = Color.white;
+            GUI.Label(new Rect(x + 30, y + 20, width - 60, 30), "EDITAR CONTROLES", subtitleStyle);
+            GUI.Label(new Rect(x + 30, y + 52, width - 60, 26),
+                _rebindingAction.HasValue ? "PRESSIONE UMA TECLA OU CLIQUE UM BOTÃO DO MOUSE • ESC CANCELA" :
+                    "Selecione um comando para trocar sua tecla ou botão principal.", smallStyle);
+
+            Rect viewport = new Rect(x + 26, y + 88, width - 52, height - 158);
+            float rowHeight = 45f;
+            float contentHeight = Enum.GetValues(typeof(VarginhaInputAction)).Length * rowHeight + 12f;
+            _bindingsScroll = GUI.BeginScrollView(viewport, _bindingsScroll,
+                new Rect(0f, 0f, viewport.width - 18f, contentHeight));
+
+            Rect activeBindingRect = Rect.zero;
+            Rect resetRect = Rect.zero;
+            bool pointerOverKeybindControl = false;
+            for (int i = 0; i < Enum.GetValues(typeof(VarginhaInputAction)).Length; i++)
+            {
+                var action = (VarginhaInputAction)i;
+                float rowY = 6f + i * rowHeight;
+                GUI.color = new Color(.06f, .13f, .19f, 1f);
+                GUI.DrawTexture(new Rect(0f, rowY, viewport.width - 18f, 38f), pixel);
+                GUI.color = Color.white;
+                GUI.Label(new Rect(14f, rowY + 8f, 250f, 24f), VarginhaInputBindings.ActionName(action), leftInfoStyle);
+
+                Rect bindingRect = new Rect(viewport.width - 282f, rowY + 4f, 190f, 30f);
+                Rect bindingScreenRect = new Rect(viewport.x + bindingRect.x, viewport.y + bindingRect.y - _bindingsScroll.y,
+                    bindingRect.width, bindingRect.height);
+                Rect resetButton = new Rect(viewport.width - 82f, rowY + 4f, 70f, 30f);
+                Rect resetScreenRect = new Rect(viewport.x + resetButton.x, viewport.y + resetButton.y - _bindingsScroll.y,
+                    resetButton.width, resetButton.height);
+                if (Event.current.type == EventType.MouseDown
+                    && (bindingScreenRect.Contains(Event.current.mousePosition) || resetScreenRect.Contains(Event.current.mousePosition)))
+                    pointerOverKeybindControl = true;
+                string bindingText = _rebindingAction == action ? "PRESSIONE..." : VarginhaInputBindings.DisplayName(action);
+                if (GUI.Button(bindingRect, bindingText, buttonStyle))
+                {
+                    _rebindingAction = action;
+                    _rebindArmedFrame = Time.frameCount;
+                }
+                if (_rebindingAction == action)
+                    activeBindingRect = bindingScreenRect;
+
+                if (GUI.Button(resetButton, "RESET", buttonStyle))
+                {
+                    VarginhaInputBindings.Reset(action);
+                    if (_rebindingAction == action) _rebindingAction = null;
+                }
+                if (_rebindingAction == action)
+                    resetRect = resetScreenRect;
+            }
+            GUI.EndScrollView();
+
+            Rect backRect = new Rect(x + width * .5f - 125, y + height - 54, 250, 34);
+            bool pointerOverBack = Event.current.type == EventType.MouseDown && backRect.Contains(Event.current.mousePosition);
+            CaptureRebindInput(activeBindingRect, resetRect, pointerOverKeybindControl || pointerOverBack);
+            if (GUI.Button(backRect, "VOLTAR", buttonStyle))
+            {
+                _rebindingAction = null;
+                panel = Panel.None;
+            }
+        }
+
+        private void CaptureRebindInput(Rect bindingRect, Rect resetRect, bool pointerOverProtectedControl)
+        {
+            if (!_rebindingAction.HasValue || Time.frameCount <= _rebindArmedFrame) return;
+            Event current = Event.current;
+            if (current.type == EventType.KeyDown)
+            {
+                if (current.keyCode == KeyCode.Escape)
+                {
+                    _rebindingAction = null;
+                    current.Use();
+                    return;
+                }
+                if (VarginhaInputBindings.TrySetFromKeyCode(_rebindingAction.Value, current.keyCode))
+                {
+                    _rebindingAction = null;
+                    current.Use();
+                }
+                return;
+            }
+
+            // Não capture o clique usado no botão RESET nem um clique que apenas
+            // reabre a própria linha. O próximo clique fora dessas áreas é o novo mouse.
+            if (current.type == EventType.MouseDown && !pointerOverProtectedControl
+                && !bindingRect.Contains(current.mousePosition)
+                && !resetRect.Contains(current.mousePosition) && current.button >= 0 && current.button <= 2)
+            {
+                VarginhaInputBindings.SetMouseButton(_rebindingAction.Value, current.button);
+                _rebindingAction = null;
+                current.Use();
+            }
         }
 
         private void OpenPanel(Panel nextPanel)
         {
             panel = nextPanel;
             _controlsScroll = Vector2.zero;
+            _bindingsScroll = Vector2.zero;
+            _rebindingAction = null;
+            if (nextPanel == Panel.Keybinds) return;
             panelTypewriter.Set(nextPanel == Panel.Controls
-                ? "WASD / SETAS — mover em 8 direções\nSHIFT — correr\nE / ESPAÇO — examinar objetos e pistas\n\nMOUSE ESQUERDO — ataque de Edelzio, sem recarga. Segure para repetir; cada golpe termina sua animação. Você pode andar enquanto ataca.\nMOUSE DIREITO — na fase 3, comande um aluno pronto. Cada aluno tem 5s de recarga individual. A turma precisa de 0,9s entre comandos; escolha o momento certo.\n\nMire perto do ET desejado. Sem alvo na mira, a turma prioriza ameaças próximas e escolhe a especialidade adequada. A invocação exige proximidade e caminho livre de paredes. O golpe tem preparação e pode errar se o ET sair da área. Desvie dos círculos vermelhos dos inimigos.\n\nMatias imobiliza; Luis Martins e Luis Miguel interrompem inimigos. Pedro, Luis Miguel e Yasmin atingem grupos. Anna e Ana fazem ricochete; Fabio finaliza inimigos feridos. Marcos recupera um pouco da sanidade ao acertar.\n\nObserve PRONTO e os segundos no painel dos alunos. Alterne seus golpes com os aliados para abrir caminho. Use pistas, caderno e notebook para investigar."
+                ? "WASD / SETAS — mover em 8 direções\nSHIFT — correr\nE / ESPAÇO — examinar objetos e pistas\n\nATAQUE — segure para encadear o combo de três golpes diferentes. O segundo cruza a guarda; o terceiro é um finalizador mais forte.\nCOMANDO DE ALIADO — na fase final, chame um aluno pronto por vez; cada aluno tem recarga individual de 5 segundos.\n\nMire perto do ET desejado. Sem alvo na mira, a turma prioriza ameaças próximas e escolhe a especialidade adequada. A invocação exige proximidade e caminho livre de paredes. O golpe tem preparação e pode errar se o ET sair da área. Desvie dos círculos vermelhos dos inimigos.\n\nMarcos alterna três golpes e grita bordões durante as jogadas. Matias imobiliza; Luis Martins e Luis Miguel interrompem inimigos. Pedro, Luis Miguel e Yasmin atingem grupos. Anna e Ana fazem ricochete; Fabio finaliza inimigos feridos.\n\nUse EDITAR CONTROLES para trocar qualquer comando por uma tecla ou botão do mouse. As escolhas ficam salvas para as próximas fases."
                 : "Mistério de Varginha\nProtótipo de terror sobrenatural e investigação\n\nBaseado no GDD: Edelzio, a Entidade Ancestral e os segredos de Varginha.");
             if (nextPanel == Panel.Controls) panelTypewriter.RevealImmediately();
         }
@@ -229,6 +344,7 @@ namespace Game.Varginha
             subtitleStyle.normal.textColor = new Color(.38f, .85f, .9f);
             infoStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 15, wordWrap = true };
             infoStyle.normal.textColor = new Color(.88f, .95f, 1f);
+            leftInfoStyle = new GUIStyle(infoStyle) { alignment = TextAnchor.MiddleLeft, wordWrap = false };
             smallStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 12, wordWrap = true };
             smallStyle.normal.textColor = new Color(.54f, .72f, .78f);
             buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 14, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
