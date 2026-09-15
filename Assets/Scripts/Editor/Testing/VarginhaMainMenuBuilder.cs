@@ -96,6 +96,9 @@ namespace Game.Editor.Testing
 
         private static void Apply()
         {
+            // Session-only opt-out for test/visual QA runs; survives assembly reloads,
+            // unlike removing the callback. Normal Play still always starts at the menu.
+            if (SessionState.GetBool("Varginha.SuppressMenuForTests", false)) return;
             var menuScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(MenuPath);
             if (menuScene != null) EditorSceneManager.playModeStartScene = menuScene;
         }

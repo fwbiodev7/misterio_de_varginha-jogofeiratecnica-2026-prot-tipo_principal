@@ -55,7 +55,7 @@ namespace Game.Tests.PlayMode
             Assert.Greater(item.GetComponent<SpriteRenderer>().sortingOrder, _go.GetComponent<SpriteRenderer>().sortingOrder);
             Assert.IsNull(item.GetComponent<Collider2D>());
             Assert.IsNull(item.GetComponent<Rigidbody2D>());
-            Assert.GreaterOrEqual(item.localScale.y, .85f);
+            Assert.That(item.localScale.y, Is.InRange(.30f, .42f), "Backpack fits the torso, not the whole padded character canvas.");
             var straps = _go.transform.Find("Mochila_Alcas").GetComponent<SpriteRenderer>();
             Assert.IsFalse(straps.enabled);
             typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic)

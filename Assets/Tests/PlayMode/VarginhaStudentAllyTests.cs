@@ -77,6 +77,7 @@ namespace Game.Tests.PlayMode
         public void MouseAimOverridesNearThreatAndWallsBlockCommands()
         {
             CreateSquad();
+            Assert.IsTrue(_squad.SelectStudent(0));
             Enemy(Vector2.left * 2f);
             var aimed = Enemy(Vector2.right * 4f);
             Physics2D.SyncTransforms();

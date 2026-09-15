@@ -42,7 +42,8 @@ namespace Game.Varginha
             else if (motif == "Dust") { canvas.Rect(0, 0, width, height, Color.white); }
             else throw new System.ArgumentException("Unknown scenery motif: " + motif);
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
-            { name = "Cenario_" + key, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, anisoLevel = 0 };
+            { name = "Cenario_" + key, filterMode = IsSoftLighting(motif) ? FilterMode.Bilinear : FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp, anisoLevel = 0 };
             texture.SetPixels32(canvas.Pixels);
             texture.Apply(false, false);
             var sprite = Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(.5f, .5f), 32f, 0, SpriteMeshType.FullRect);
@@ -52,6 +53,7 @@ namespace Game.Varginha
         }
 
         private static Color Hex(int rgb, float alpha = 1f) => new Color(((rgb >> 16) & 255) / 255f, ((rgb >> 8) & 255) / 255f, (rgb & 255) / 255f, alpha);
+        public static bool IsSoftLighting(string motif) => motif == "GlassLight" || motif == "WindowLight" || motif == "Glow" || motif == "Shadow";
 
         // Both the glass and its projected light use the same pane pattern.
         private static Color Pane(float u, float v)
@@ -89,19 +91,22 @@ namespace Game.Varginha
             for (int x = 0; x < c.W; x++)
             {
                 float along = x / (float)(c.W - 1);
-                float spread = .16f + .30f * along;
-                float across = ((y / (float)c.H) - .48f - along * .08f) / spread * .5f + .5f;
+                float spread = .30f + .18f * along;
+                float across = ((y / (float)c.H) - .5f) / spread * .5f + .5f;
                 if (across <= 0 || across >= 1 || along < .025f || along > .975f) continue;
                 float edge = Mathf.Min(across, 1f - across);
-                float fade = Mathf.Clamp01(edge * 13f) * Mathf.Clamp01((1f - along) * 4f);
-                Color color = stained ? Pane(across, 1f - along) : Hex(0xa8d9e0);
-                int paneX = (int)(across * 60), paneY = (int)(along * 75);
-                bool mullion = paneX % 20 < 2 || paneY % 15 < 2;
-                float alpha = (stained ? .42f : .18f) * fade * (mullion ? .16f : 1f);
-                // Quantized transparency and broken glints retain the pixel-art floor texture.
-                if ((x + y) % 4 == 0) alpha *= .76f;
-                if (y % 16 == 0) alpha *= .4f;
-                color.a = Mathf.Round(alpha * 24f) / 24f;
+                float fade = Mathf.SmoothStep(0, 1, edge / .32f)
+                    * Mathf.SmoothStep(0, 1, along / .14f) * Mathf.SmoothStep(0, 1, (1f - along) / .48f);
+                // Broad, continuous penumbra. Blur the projected panes, not the window art itself.
+                Color color = Hex(0xa8d9e0);
+                if (stained)
+                {
+                    color = Color.clear;
+                    for (int sy = -2; sy <= 2; sy++) for (int sx = -2; sx <= 2; sx++)
+                        color += Pane(Mathf.Clamp01(across + sx * .055f), Mathf.Clamp01(1f - along + sy * .045f)) / 25f;
+                    color = Color.Lerp(color, Hex(0xdacbab), .22f);
+                }
+                color.a = (stained ? .29f : .18f) * fade;
                 c.Pixel(x, y, color);
             }
         }
@@ -113,7 +118,7 @@ namespace Game.Varginha
             {
                 float dx = (x + .5f) / c.W * 2 - 1, dy = (y + .5f) / c.H * 2 - 1;
                 float strength = Mathf.Clamp01(1f - dx * dx - dy * dy);
-                float alpha = Mathf.Floor(strength * strength * 8f) / 8f * (shadow ? .38f : .26f);
+                float alpha = strength * strength * strength * (shadow ? .34f : .24f);
                 c.Pixel(x, y, shadow ? Hex(0x0b1020, alpha) : Hex(0xffce83, alpha));
             }
         }

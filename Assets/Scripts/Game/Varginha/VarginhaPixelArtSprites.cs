@@ -68,7 +68,7 @@ namespace Game.Varginha
 
         public static Sprite Create(string id, Color color)
         {
-            if (id.StartsWith("Backpack")) color = new Color(.46f, .48f, .50f);
+            if (id.StartsWith("Backpack") || id.StartsWith("Notebook")) color = new Color(.48f, .48f, .48f);
             string key = id + color;
             if (Cache.TryGetValue(key, out var cached))
             {
@@ -153,9 +153,11 @@ namespace Game.Varginha
             else if (id.StartsWith("ToyBox_Opening")) DrawToyBoxOpening(texture, mid, dark, light);
             else if (id.StartsWith("ToyBox")) DrawToyBox(texture, mid, dark, light);
             else if (id == "Backpack_Straps") DrawBackpackStraps(texture, mid, dark, light);
+            else if (id == "Backpack_Side") DrawBackpackSide(texture, mid, dark, light);
             else if (id.StartsWith("Backpack")) DrawBackpack(texture, mid, dark, light);
             else if (id == "Inventory_Key") DrawInventoryKey(texture);
             else if (id == "Inventory_Journal") DrawInventoryJournal(texture);
+            else if (id == "Notebook_Held") DrawNotebookClosed(texture, mid, dark, light);
             else if (id.StartsWith("Notebook")) DrawNotebook(texture, mid, dark, light);
             else if (id.StartsWith("Coffee_Empty")) DrawCoffeeEmpty(texture, mid, dark, light);
             else if (id.StartsWith("Coffee")) DrawCoffee(texture, mid, dark, light);
@@ -757,10 +759,35 @@ namespace Game.Varginha
 
         private static void DrawBackpack(Texture2D t, Color mid, Color dark, Color light)
         {
-            Fill(t, 8, 5, 16, 22, dark); Fill(t, 9, 7, 14, 18, mid); Fill(t, 10, 18, 12, 7, Color.Lerp(mid, dark, .18f));
-            Fill(t, 11, 20, 10, 4, light); Fill(t, 12, 21, 8, 1, Color.Lerp(light, Color.white, .3f));
-            Fill(t, 11, 25, 4, 3, dark); Fill(t, 17, 25, 4, 3, dark); Fill(t, 11, 2, 10, 5, light);
-            Fill(t, 13, 1, 6, 2, dark); Fill(t, 7, 10, 2, 10, dark); Fill(t, 23, 10, 2, 10, dark);
+            Color edge = new Color(.12f, .12f, .12f);
+            // Rounded satchel, top handle, flap, twin buckles and gusseted pockets.
+            Fill(t, 13, 27, 6, 4, edge); Fill(t, 14, 28, 4, 2, light); Fill(t, 15, 27, 2, 2, Color.clear);
+            Fill(t, 8, 3, 16, 25, edge); Fill(t, 6, 5, 20, 21, edge);
+            Fill(t, 7, 6, 18, 19, dark); Fill(t, 9, 4, 14, 23, mid);
+            Fill(t, 10, 6, 12, 14, Color.Lerp(mid, dark, .18f));
+            Fill(t, 4, 7, 4, 10, edge); Fill(t, 5, 8, 2, 7, mid); Fill(t, 5, 14, 2, 2, light);
+            Fill(t, 24, 7, 4, 10, edge); Fill(t, 25, 8, 2, 7, dark); Fill(t, 25, 14, 2, 2, mid);
+            Fill(t, 8, 19, 16, 8, edge); Fill(t, 9, 20, 14, 7, mid);
+            Fill(t, 10, 26, 12, 1, light); Fill(t, 8, 21, 1, 4, light);
+            Fill(t, 10, 18, 12, 2, edge); Fill(t, 10, 19, 12, 1, dark);
+            for (int x = 10; x <= 19; x += 9)
+            {
+                Fill(t, x, 12, 3, 10, edge); Fill(t, x + 1, 13, 1, 9, dark);
+                Fill(t, x, 16, 3, 3, light); Pixel(t, x + 1, 17, edge);
+            }
+            Fill(t, 10, 5, 12, 1, dark); Fill(t, 8, 7, 1, 8, light);
+        }
+
+        private static void DrawBackpackSide(Texture2D t, Color mid, Color dark, Color light)
+        {
+            Color edge = new Color(.12f, .12f, .12f);
+            Fill(t, 12, 27, 5, 3, edge); Fill(t, 13, 28, 3, 1, light);
+            Fill(t, 9, 5, 11, 21, edge); Fill(t, 7, 8, 13, 15, edge);
+            Fill(t, 10, 6, 9, 20, dark); Fill(t, 8, 9, 9, 14, mid);
+            Fill(t, 10, 23, 8, 3, mid); Fill(t, 10, 25, 7, 1, light);
+            Fill(t, 8, 19, 10, 2, edge); Fill(t, 9, 20, 9, 1, light);
+            Fill(t, 7, 7, 8, 9, edge); Fill(t, 8, 8, 6, 7, dark); Fill(t, 8, 14, 6, 1, light);
+            Fill(t, 19, 9, 3, 17, edge); Fill(t, 20, 10, 1, 14, light);
         }
 
         private static void DrawBackpackStraps(Texture2D t, Color mid, Color dark, Color light)
@@ -792,23 +819,42 @@ namespace Game.Varginha
 
         private static void DrawNotebook(Texture2D t, Color mid, Color dark, Color light)
         {
-            Fill(t, 3, 9, 26, 16, dark); Fill(t, 5, 11, 22, 12, mid); Fill(t, 7, 13, 18, 8, new Color(.20f, .78f, .86f));
-            Fill(t, 9, 15, 14, 4, Color.Lerp(light, Color.white, .45f)); Fill(t, 10, 16, 12, 1, Color.white);
-            Fill(t, 1, 5, 30, 4, dark); Fill(t, 3, 6, 26, 2, light); Fill(t, 4, 23, 24, 2, Color.Lerp(mid, dark, .3f));
-            Pixel(t, 25, 12, light); Pixel(t, 25, 13, light);
+            Color edge = new Color(.08f, .08f, .08f);
+            Fill(t, 5, 12, 22, 17, edge); Fill(t, 6, 13, 20, 15, mid);
+            Fill(t, 7, 14, 18, 13, dark); Fill(t, 8, 15, 16, 11, new Color(.14f,.14f,.14f));
+            Fill(t, 8, 23, 15, 3, new Color(.18f,.18f,.18f));
+            Fill(t, 9, 21, 1, 4, light); Fill(t, 10, 20, 1, 1, mid);
+            Fill(t, 6, 27, 19, 1, light); Fill(t, 12, 12, 8, 1, dark);
+            Fill(t, 4, 10, 24, 3, edge); Fill(t, 3, 8, 26, 3, edge); Fill(t, 2, 5, 28, 4, edge);
+            Fill(t, 5, 10, 22, 2, light); Fill(t, 4, 8, 24, 2, light); Fill(t, 3, 6, 26, 2, mid);
+            for (int x = 6; x < 26; x += 4) { Fill(t, x, 10, 2, 1, dark); Fill(t, x - 1, 8, 3, 1, dark); }
+            Fill(t, 13, 6, 6, 2, light); Fill(t, 4, 5, 24, 1, dark);
+        }
+
+        private static void DrawNotebookClosed(Texture2D t, Color mid, Color dark, Color light)
+        {
+            var edge = new Color(.10f,.10f,.10f);
+            Fill(t, 5, 5, 22, 22, edge); Fill(t, 6, 7, 19, 19, mid);
+            Fill(t, 7, 25, 17, 1, light); Fill(t, 6, 8, 1, 17, light);
+            Fill(t, 25, 7, 1, 18, dark); Fill(t, 6, 6, 19, 1, dark);
+            Fill(t, 7, 5, 17, 1, light); Fill(t, 13, 16, 6, 2, dark);
         }
 
         private static void DrawCoffee(Texture2D t, Color mid, Color dark, Color light)
         {
-            Fill(t, 9, 8, 14, 14, dark); Fill(t, 10, 9, 12, 12, mid); Fill(t, 12, 12, 8, 7, new Color(.20f, .09f, .04f));
-            Fill(t, 11, 10, 10, 1, light); Fill(t, 22, 11, 5, 7, dark); Fill(t, 23, 12, 3, 5, light);
-            Fill(t, 8, 5, 2, 4, light); Fill(t, 16, 4, 2, 5, light); Pixel(t, 19, 7, light);
+            DrawCoffeeEmpty(t, mid, dark, light);
+            Fill(t, 11, 20, 10, 2, new Color(.24f, .12f, .06f)); Pixel(t, 12, 21, new Color(.48f,.28f,.12f));
+            Fill(t, 13, 25, 1, 3, new Color(.9f,.9f,.9f,.4f)); Pixel(t, 14, 28, new Color(.9f,.9f,.9f,.25f));
         }
 
         private static void DrawCoffeeEmpty(Texture2D t, Color mid, Color dark, Color light)
         {
-            Fill(t, 9, 8, 14, 14, dark); Fill(t, 10, 9, 12, 12, mid); Fill(t, 12, 12, 8, 3, Color.Lerp(mid, dark, .3f));
-            Fill(t, 11, 10, 10, 1, light); Fill(t, 22, 11, 5, 7, dark); Fill(t, 23, 12, 3, 5, light);
+            var ceramic = new Color(.80f,.79f,.74f); var edge = new Color(.23f,.22f,.21f);
+            Fill(t, 22, 12, 5, 9, edge); Fill(t, 23, 13, 3, 7, ceramic); Fill(t, 23, 15, 2, 4, Color.clear);
+            Fill(t, 9, 11, 14, 12, edge); Fill(t, 10, 9, 12, 14, edge);
+            Fill(t, 11, 10, 10, 12, ceramic); Fill(t, 10, 13, 2, 8, light);
+            Fill(t, 20, 12, 2, 9, mid); Fill(t, 12, 10, 8, 1, dark);
+            Fill(t, 10, 20, 12, 3, ceramic); Fill(t, 11, 20, 10, 2, dark);
             // Vapor desapareceu: a xícara vazia fica sobre a mesa como pista visual da interação concluída.
         }
 
@@ -877,27 +923,23 @@ namespace Game.Varginha
         {
             Color glass = new Color(.46f, .78f, .86f);
             Color glassLight = new Color(.75f, .93f, .94f);
-            // Folha compacta em pixel art: contorno, janela, chapa, friso e
-            // maçaneta cabem dentro da proporção real da porta do Fusca.
-            Fill(t, 7, 7, 18, 22, dark);
-            Fill(t, 8, 8, 16, 20, mid);
-            Fill(t, 9, 9, 14, 7, dark);
-            Fill(t, 10, 10, 12, 5, glass);
-            Fill(t, 11, 11, 6, 2, glassLight);
-            Fill(t, 18, 11, 3, 1, Color.Lerp(glass, glassLight, .35f));
-            Fill(t, 9, 16, 14, 2, Color.Lerp(mid, light, .35f));
-            Fill(t, 10, 19, 12, 7, mid);
-            Fill(t, 11, 21, 10, 1, light);
-            Fill(t, 19, 18, 3, 2, dark); Fill(t, 20, 18, 2, 1, glassLight);
-            Fill(t, 10, 26, 3, 2, dark); Fill(t, 19, 26, 3, 2, dark);
-            if (open) Fill(t, 5, 9, 3, 16, Color.Lerp(dark, Color.black, .4f));
-            else if (ajar)
+            // Rounded roof line and lower corners, upright glass, front vent window and chrome.
+            // The same leaf is projected continuously by FuscaDoorMotion; pose names stay compatible.
+            for (int y = 7; y <= 29; y++)
             {
-                // Quadro intermediário: o vão aparece, mas a folha ainda não
-                // atravessa a carroceria como acontecia na troca instantânea.
-                Fill(t, 7, 9, 2, 16, Color.Lerp(dark, Color.black, .22f));
-                Fill(t, 8, 11, 1, 11, light);
+                int inset = y > 24 ? (y - 24) * (y - 24) / 8 : y < 10 ? 10 - y : 0;
+                int left = 7 + inset, right = 24 - (y > 24 ? Mathf.Max(0, inset - 1) : inset);
+                Fill(t, left, y, right - left + 1, 1, dark);
+                if (y > 7 && y < 29) Fill(t, left + 1, y, Mathf.Max(1, right - left - 1), 1,
+                    y >= 19 ? glass : Color.Lerp(mid, light, (y - 7) / 40f));
             }
+            Fill(t, 9, 18, 14, 1, glassLight);
+            Fill(t, 9, 17, 14, 1, dark);
+            Fill(t, 10, 21, 1, 5, glassLight); Fill(t, 11, 25, 3, 1, glassLight);
+            Fill(t, 20, 20, 1, 7, dark); // quarter vent at the front hinge
+            Fill(t, 9, 15, 4, 1, dark); Fill(t, 10, 15, 3, 1, glassLight);
+            Fill(t, 10, 10, 11, 1, Color.Lerp(mid, light, .45f));
+            Fill(t, 11, 8, 9, 1, dark);
         }
 
         private static void DrawAttackSlash(Texture2D t, Color mid, Color dark, Color light, bool heavy)

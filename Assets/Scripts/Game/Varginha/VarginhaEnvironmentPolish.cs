@@ -13,14 +13,15 @@ namespace Game.Varginha
             RefreshSurfaces(school, true);
             var decor = Root(school);
 
-            // Window openings cast the same grid onto the classroom floor.
+            // Fit each beam to its actual window opening, including differently sized windows.
             for (int i = 0; i < 3; i++)
             {
                 float x = new[] { -3.8f, 0f, 3.7f }[i];
                 var window = school.Find("CenarioV2_Janela_" + i);
-                if (window != null) Replace(window, "Window", new Vector2(1.15f, .66f));
+                if (window != null) ReplaceWindow(window, "Window", new Vector2(1.15f, .66f));
                 var light = Part(decor, "Luz_Janela_" + i, "WindowLight", new Vector2(x + .28f, 4.27f), new Vector2(1.6f, 2.45f), 1);
                 light.transform.rotation = Quaternion.Euler(0, 0, -90);
+                FitWindowBeam(window, light, Vector2.down, false);
             }
             Part(decor, "Mural_Trabalhos", "Noticeboard", new Vector2(1.1f, 4.1f), new Vector2(1.65f, .78f), 3);
             Part(decor, "Biblioteca_Sala", "Books", new Vector2(-6.66f, 3.95f), new Vector2(.65f, 1.6f), 3);
@@ -39,6 +40,7 @@ namespace Game.Varginha
             Pool(decor, "Luz_Corredor", new Vector2(1.9f, -2.8f), new Vector2(3.2f, 1.8f), .3f);
             ContactShadows(school, decor);
             Dust(decor, new Vector2(-4.1f, 3.85f), new Vector2(2.5f, 1.2f), 8, new Color(.88f, .88f, .7f, .42f));
+            VarginhaSoftLighting.Build(school, decor);
         }
 
         public static void EnsureDiocese(Transform church)
@@ -54,11 +56,12 @@ namespace Game.Varginha
                 bool right = i >= 3;
                 float y = rows[i % 3];
                 var window = church.Find("CenarioV2_Vitral_Lateral_" + i);
-                if (window != null) Replace(window, "Glass", new Vector2(.66f, 1.85f));
+                if (window != null) ReplaceWindow(window, "Glass", new Vector2(.66f, 1.85f));
                 var ray = Part(decor, "Reflexo_Vitral_Lateral_" + i, "GlassLight",
                     new Vector2(right ? 7.06f : -6.06f, y - .3f), new Vector2(4.3f, 2.2f), 1);
                 ray.flipX = right;
                 ray.transform.position += Vector3.forward * -.025f;
+                FitWindowBeam(window, ray, right ? Vector2.left : Vector2.right, true);
                 var column = Part(decor, "Pilastra_Lateral_" + i, "Column",
                     new Vector2(right ? 9.1f : -8.1f, y - 1.46f), new Vector2(.48f, 1.15f), 3);
                 Shadow(decor, column.transform.position + Vector3.down * .48f, new Vector2(.8f, .4f));
@@ -68,11 +71,12 @@ namespace Game.Varginha
             for (int i = 0; i < north.Length; i++)
             {
                 var window = church.Find("CenarioV2_Vitral_Fundo_" + i);
-                if (window != null) Replace(window, "Glass", new Vector2(1.15f, 1.2f));
+                if (window != null) ReplaceWindow(window, "Glass", new Vector2(1.15f, 1.2f));
                 var ray = Part(decor, "Reflexo_Vitral_Fundo_" + i, "GlassLight",
                     new Vector2(north[i] + .2f, 4.47f), new Vector2(3.1f, 1.7f), 1);
                 ray.transform.rotation = Quaternion.Euler(0, 0, -90);
                 ray.transform.position += Vector3.forward * -.025f;
+                FitWindowBeam(window, ray, Vector2.down, true);
             }
             Part(decor, "Rosacea_Piso", "Mosaic", new Vector2(-.2f, -3.4f), new Vector2(2.4f, 2.1f), 1);
             var carpet = church.Find("CenarioV2_Tapete_Altar");
@@ -97,6 +101,7 @@ namespace Game.Varginha
                 Pool(decor, "Luz_Arandela_" + i, pos + Vector2.down * .5f, new Vector2(2.3f, 1.45f), .85f, true);
             }
             ContactShadows(church, decor);
+            VarginhaSoftLighting.Build(church, decor);
         }
 
         public static void EnsureHouse(Transform house)
@@ -123,9 +128,10 @@ namespace Game.Varginha
             Vector2[] windows = { new Vector2(-4.25f, 6.35f), new Vector2(3f, 6.35f), new Vector2(7.3f, -6.35f) };
             for (int i = 0; i < windows.Length; i++)
             {
-                Part(decor, "Janela_Casa_" + i, "Window", windows[i], new Vector2(1.45f, .72f), 4);
+                var window = Part(decor, "Janela_Casa_" + i, "Window", windows[i], new Vector2(1.45f, .72f), 4);
                 var ray = Part(decor, "Luar_Casa_" + i, "WindowLight", windows[i] + Vector2.down * (i == 2 ? -1.5f : 1.5f), new Vector2(2.8f, 1.8f), 1);
                 ray.transform.rotation = Quaternion.Euler(0, 0, i == 2 ? 90 : -90);
+                FitWindowBeam(window.transform, ray, i == 2 ? Vector2.up : Vector2.down, false);
             }
             Pool(decor, "Luz_Abajur", new Vector2(-3.25f, 4.65f), new Vector2(3.3f, 2.8f), .85f, true);
             Pool(decor, "Luz_Escritorio", new Vector2(-3.7f, -3.15f), new Vector2(3.6f, 2.8f), .85f, true);
@@ -150,6 +156,7 @@ namespace Game.Varginha
             ContactShadows(house, decor);
             Dust(decor, new Vector2(-4.1f, 4.7f), new Vector2(2.1f, 1.2f), 6, new Color(.64f, .82f, .95f, .45f));
             Dust(decor, new Vector2(14.3f, -4.8f), new Vector2(3.5f, 2.6f), 7, new Color(.75f, .94f, .58f, .65f));
+            VarginhaSoftLighting.Build(house, decor);
         }
 
         private static bool NeedsRefresh(Transform parent)
@@ -160,7 +167,7 @@ namespace Game.Varginha
             // Procedural sprites are not persistent assets. A saved hierarchy can
             // survive a scene reload while its textures do not; repair that case.
             var renderers = previous.GetComponentsInChildren<SpriteRenderer>(true);
-            bool valid = renderers.Length > 0;
+            bool valid = renderers.Length > 0 && previous.Find(VarginhaSoftLighting.LayerName) != null;
             foreach (var renderer in renderers)
                 if (renderer.sprite == null || renderer.sprite.texture == null) { valid = false; break; }
             if (valid) return false;
@@ -210,6 +217,33 @@ namespace Game.Varginha
             renderer.color = Color.white;
         }
 
+        private static void ReplaceWindow(Transform window, string motif, Vector2 fallbackSize)
+        {
+            var renderer = window.GetComponent<SpriteRenderer>();
+            Vector2 size = renderer != null && renderer.sprite != null ? (Vector2)renderer.bounds.size : fallbackSize;
+            Replace(window, motif, size);
+        }
+
+        public static void FitWindowBeam(Transform window, SpriteRenderer ray, Vector2 inward, bool stained)
+        {
+            var renderer = window != null ? window.GetComponent<SpriteRenderer>() : null;
+            if (renderer == null || renderer.sprite == null || ray == null) return;
+            var bounds = renderer.bounds;
+            bool horizontal = Mathf.Abs(inward.x) > Mathf.Abs(inward.y);
+            float opening = (horizontal ? bounds.size.y : bounds.size.x) * .80f;
+            float length = Mathf.Clamp(2.5f + opening * .85f, 2.8f, 4.5f);
+            // Projection starts at 60% of its canvas width, matching the clear glass aperture.
+            ray.sprite = VarginhaSceneryArt.Create(stained ? "GlassLight" : "WindowLight", new Vector2(length, opening / .60f));
+            ray.transform.localScale = Vector3.one;
+            ray.flipX = horizontal && inward.x < 0;
+            ray.flipY = false;
+            ray.transform.rotation = Quaternion.Euler(0, 0, horizontal ? 0 : inward.y > 0 ? 90 : -90);
+            float thickness = horizontal ? bounds.extents.x : bounds.extents.y;
+            var emitter = (Vector2)bounds.center + inward * (thickness + .035f);
+            ray.transform.position = new Vector3(emitter.x + inward.x * ray.sprite.bounds.size.x * .5f,
+                emitter.y + inward.y * ray.sprite.bounds.size.x * .5f, -.025f);
+        }
+
         private static SpriteRenderer Pool(Transform parent, string name, Vector2 position, Vector2 size, float opacity, bool flicker = false, int order = 1)
         {
             var renderer = Part(parent, name, "Glow", position, size, order);
@@ -219,7 +253,10 @@ namespace Game.Varginha
         }
 
         private static void Shadow(Transform parent, Vector2 position, Vector2 size)
-            => Part(parent, "Sombra_Contato_" + parent.childCount, "Shadow", position, size, 1);
+        {
+            var shadow = Part(parent, "Sombra_Contato_" + parent.childCount, "Shadow", position, size, 1);
+            shadow.transform.position += Vector3.back * .03f;
+        }
 
         private static void ContactShadows(Transform environment, Transform decor)
         {

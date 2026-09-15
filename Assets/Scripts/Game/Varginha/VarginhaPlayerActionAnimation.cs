@@ -116,17 +116,17 @@ namespace Game.Varginha
             _worldCup = worldCup;
             _worldCupWasVisible = worldCup != null && worldCup.enabled;
             if (worldCup != null) worldCup.enabled = false;
-            var cup = CreateHeldProp("Coffee_Held", new Color(.80f, .40f, .20f), new Vector3(-.18f, -.20f, 0f), .25f);
+            var cup = CreateHeldProp("Coffee_Held", new Color(.80f, .79f, .74f), new Vector3(-.11f, -.20f, 0f), .19f);
             _heldCup = cup;
             _spriteAnimation?.SetActionPose("Edelzio_DrinkCoffee");
             // Três goles deixam claro que Edelzio tomou toda a xícara, não apenas um gole rápido.
             for (int sip = 0; sip < 3; sip++)
             {
                 _spriteAnimation?.SetCoffeeFrame(1);
-                if (cup != null) cup.transform.localPosition = new Vector3(-.10f, .04f, 0f);
+                yield return MoveCup(cup, new Vector3(-.045f, -.055f, 0), -14f, .14f);
                 yield return new WaitForSeconds(.18f);
                 _spriteAnimation?.SetCoffeeFrame(3);
-                if (cup != null) cup.transform.localPosition = new Vector3(-.18f, -.20f, 0f);
+                yield return MoveCup(cup, new Vector3(-.11f, -.20f, 0), 0f, .14f);
                 yield return new WaitForSeconds(.12f);
             }
             // O copo some da mão e volta ao ponto original como uma xícara vazia.
@@ -140,6 +140,22 @@ namespace Game.Varginha
             _spriteAnimation?.ClearActionPose();
             EndAction();
             onComplete?.Invoke();
+        }
+
+        private static IEnumerator MoveCup(GameObject cup, Vector3 position, float angle, float duration)
+        {
+            if (cup == null) yield break;
+            Vector3 start = cup.transform.localPosition;
+            Quaternion rotation = cup.transform.localRotation;
+            for (float elapsed = 0; elapsed < duration; elapsed += Time.deltaTime)
+            {
+                if (cup == null) yield break;
+                float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+                cup.transform.localPosition = Vector3.Lerp(start, position, t);
+                cup.transform.localRotation = Quaternion.Slerp(rotation, Quaternion.Euler(0, 0, angle), t);
+                yield return null;
+            }
+            if (cup != null) { cup.transform.localPosition = position; cup.transform.localRotation = Quaternion.Euler(0, 0, angle); }
         }
 
         private IEnumerator PoseRoutine(string pose, float duration, float verticalScale)

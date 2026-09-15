@@ -1,5 +1,7 @@
 # Arquitetura do protótipo
 
+Regras de design, valores de balanceamento e limites do conteúdo jogável estão no [GDD consolidado](GDD.md), atualizado em 15/09/2026.
+
 ## Visão geral
 
 O projeto usa Unity 6, C# e uma cena 2D top-down com sprites pixel art. A lógica específica de Varginha fica em `Assets/Scripts/Game/Varginha`, enquanto os gerenciadores e componentes genéricos continuam em `Assets/Scripts/Game/Managers`, `Player`, `Level` e `UI`.
@@ -20,7 +22,7 @@ A cena da escola tem um objeto mínimo com `VarginhaPhase2Controller`. Em runtim
 
 Cada golpe tem antecipação, extensão, impacto com hitbox única, clarão, hitstop e recuperação. O combo expira depois da janela curta sem novo comando.
 
-`VarginhaCombatTarget` conecta o alvo ao `HealthSystem`. `VarginhaCombatEnemy` fornece perseguição, rajada de energia, stagger e knockback. A rajada cria um projétil pixel art verde, aplica dano à vida e à sanidade de Edelzio e usa `VarginhaCameraShake` para reforçar o impacto. `VarginhaCombatRuntimeBootstrap` instala o ataque e a vida em cenas antigas e marca a entidade principal como `AncestralEntity`, impedindo que o golpe comum a derrote.
+`VarginhaCombatTarget` conecta o alvo ao `HealthSystem`. `VarginhaCombatEnemy` implementa atirador, investidor e sentinela, com perseguição, preparação sinalizada, projétil/investida/área, recuperação, stagger e knockback. Todos usam sprites marrons com olhos vermelhos; as cores dos papéis identificam os avisos e efeitos. O dano efetivo à vida também drena sanidade, e a esquiva bloqueia esses acertos. `VarginhaCombatRuntimeBootstrap` instala o ataque e a vida em cenas antigas e marca a entidade principal como `AncestralEntity`, impedindo que o golpe comum a derrote.
 
 ## Estado da Fase 2
 
@@ -29,11 +31,11 @@ Cada golpe tem antecipação, extensão, impacto com hitbox única, clarão, hit
 - chegada cinematográfica;
 - combate enquanto houver subordinados ETs vivos;
 - resgate, no qual os alunos acompanham Edelzio e depois formam a fila do carro;
-- partida, com os passageiros ocultados dentro do Fusca e tela de vitória.
+- partida, com os passageiros ocultados dentro do Fusca e `VarginhaTravelCinematic.Begin(true)` carregando a Fase 3.
 
 `VarginhaStudentHostage` mantém o nome de cada aluno, a filha visual `Jaula_ET` com barras verdes pulsantes, o estado de libertação, o seguimento do líder e a confirmação de chegada ao Fusca. `ReleaseTo` desativa a jaula quando os subordinados são derrotados.
 
-## Aliados das fases futuras
+## Aliados e extensões para outras fases
 
 `VarginhaStudentAllySquad` é o ponto de entrada para fases posteriores. `BuildForFuturePhase(parent, leader, true)` cria a turma como esquadrão e ativa `VarginhaStudentAlly` em cada aluno. A movimentação usa circulação, separação entre colegas e desvio simples de paredes, em vez de prender os alunos a uma grade. O componente busca o alvo menor mais próximo, usa `VarginhaCombatTarget.ReceiveHit` e cria um efeito de ataque correspondente ao perfil:
 
@@ -46,17 +48,17 @@ Cada golpe tem antecipação, extensão, impacto com hitbox única, clarão, hit
 - Fabio: golpe de katana.
 - Marcos: ciclo de vôlei, chute voador e cotovelada, com bordões sem censura no impacto.
 
-O ataque automático fica desligado na Fase 2 atual. `ActivateForPhase` aplica a regra de dificuldade: fases comuns liberam três alunos somente no modo DIFÍCIL; `ActivateManualAllies(..., true)` é usado pela fase final e libera os nove. `TryInvokeNextAttack` percorre a lista em ordem, escolhe um aluno pronto, encontra o ET mais próximo e dispara um golpe único. O cooldown manual é centralizado em `VarginhaStudentAlly.ManualCooldownSeconds` (5 segundos), então cada aluno recupera seu próprio golpe sem bloquear os demais.
+O controlador da Fase 2 não ativa o combate dos alunos. `ActivateForPhase` oferece a regra reutilizável de três aliados em fases comuns a partir da Fase 2 no DIFÍCIL; a Fase 3 usa `ActivateManualAllies(..., true)` e libera os nove. `TryInvokeAttack(aim)` pontua combinações de aluno pronto e alvo válido, priorizando a mira, a situação de combate e os perfis. `TryInvokeNextAttack()` chama essa seleção sem mira explícita. O cooldown individual é de 5 segundos e o comando da turma tem um intervalo adicional de 0,9 segundo. Alcance, linha de visão e caminhos entre alvos limitam impactos, ricochetes e efeitos em área.
 
 ## Estado da Fase 3
 
 `VarginhaPhase3Controller` implementa o Ato III — O Guardião do GDD:
 
-- chegada à área secreta da diocese e instrução do clique esquerdo compartilhado por Edelzio e aliados;
-- combate contra cinco subordinados ETs usando um aliado por golpe;
+- chegada à área secreta da diocese e instrução dos comandos independentes de ataque e aliado;
+- combate contra cinco subordinados ETs, com combo de Edelzio e uma habilidade de aluno por comando aceito;
 - encontro com Padre Fábio depois da última derrota;
 - interação com o Livro do Tombo Secreto e revelação do selo de 1898;
-- tela de vitória que encaminha a investigação para a mata e Ouzana.
+- tela de vitória com gancho narrativo para a mata e Ouzana; a continuação dessa rota ainda não tem cena jogável registrada.
 
 `VarginhaPhase3RuntimeFactory` cria piso de pedra, altar, símbolo do selo, padre, livro, inimigos, câmera, HUD e turma. O painel lateral da fase mostra o estado de cada cooldown e deixa explícita a regra de um golpe por clique.
 

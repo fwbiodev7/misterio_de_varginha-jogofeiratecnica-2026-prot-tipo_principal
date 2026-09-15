@@ -78,7 +78,7 @@ namespace Game.Varginha
             _player.HasDecodedData = true;
             _player.HasHistoricalDocument = true;
             _player.EquipBackpack();
-            _player.EquipNotebook();
+            _player.CompleteHouseInventory();
             _player.SetInputLocked(true);
             _player.SetCombatLocked(true);
         }

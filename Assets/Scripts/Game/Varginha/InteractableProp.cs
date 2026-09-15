@@ -188,6 +188,8 @@ namespace Game.Varginha
 
                     // Proteção para cenas antigas que ainda não receberam o gerenciador do quiz.
                     edelzio.HasDecodedData = true;
+                    edelzio.TryConsumeInventoryItem(3);
+                    HideCollectedWorldObject();
                     message = "O notebook terminou a decodificacao. As coordenadas apontam para o Fusca.";
                     GetHud()?.ShowDialogue("NOTEBOOK", message);
                     GetHud()?.ShowRodrigoHint("Rodrigo: 'Pegue o Fusca antes que a entidade bloqueie o caminho.'");
@@ -213,6 +215,7 @@ namespace Game.Varginha
                     break;
 
                 case PropType.FuscaVehicle:
+                    _hasInteracted = false; // A locked car must be retryable after collecting its prerequisites.
                     var fusca = GetComponent<FuscaLevelExit>();
                     if (fusca != null)
                     {
@@ -223,6 +226,7 @@ namespace Game.Varginha
 
                 case PropType.OldDocument:
                     edelzio.HasHistoricalDocument = true;
+                    edelzio.TryConsumeInventoryItem(4);
                     HideCollectedWorldObject();
                     message = "📜 Documento Antigo de 1898:\n'Relatório de Zé Gomes: Encontramos algo nas cavernas que não deveria ter sido acordado.'";
                     GetHud()?.ShowDialogue("Pista Histórica", message);
@@ -250,6 +254,7 @@ namespace Game.Varginha
         public void CompleteNotebookPuzzle(EdelzioTopDownController edelzio)
         {
             _hasInteracted = true;
+            edelzio.TryConsumeInventoryItem(3);
             // O notebook físico sai da mesa porque agora está sob o braço do Edelzio.
             HideCollectedWorldObject();
             OnInteracted?.Invoke(edelzio);

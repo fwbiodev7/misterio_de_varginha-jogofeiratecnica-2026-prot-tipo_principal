@@ -14,12 +14,7 @@ namespace Game.Varginha
         [SerializeField] private bool transitionToPhase2 = true;
 
         private bool _isEscaped;
-        private SpriteRenderer _doorRenderer;
-        private Transform _doorPivot;
-        private Sprite _doorClosed;
-        private Sprite _doorAjar;
-        private Sprite _doorOpen;
-        private readonly Color _doorColor = new Color(.20f, .65f, .88f);
+        private FuscaDoorMotion _doorMotion;
 
         public void TryEscape(EdelzioTopDownController edelzio)
         {
@@ -36,6 +31,9 @@ namespace Game.Varginha
             }
 
             _isEscaped = true;
+            // Only consume after both prerequisites succeeded, never on a failed attempt.
+            edelzio.TryConsumeInventoryItem(1);
+            edelzio.TryConsumeInventoryItem(2);
             Debug.Log("[Fusca] Edelzio deu a partida e acelerou pela noite de Varginha.");
             StartCoroutine(EscapeRoutine(edelzio));
         }
@@ -95,11 +93,8 @@ namespace Game.Varginha
         private IEnumerator MoveEdelzioIntoFusca(EdelzioTopDownController edelzio)
         {
             Vector3 start = edelzio.transform.position;
-            var carRenderer = GetComponent<SpriteRenderer>();
-            float carWidth = carRenderer != null ? carRenderer.bounds.size.x : 2.2f;
-            // Primeiro ele chega até a porta, depois cruza para o banco: a entrada fica legível.
-            Vector3 door = transform.position + Vector3.left * (carWidth * .42f) + Vector3.down * .04f;
-            Vector3 seat = transform.position + Vector3.left * (carWidth * .06f) + Vector3.down * .03f;
+            Vector3 door = _doorMotion.EntryPosition;
+            Vector3 seat = _doorMotion.SeatPosition;
             const float enterDuration = .42f;
             float elapsed = 0f;
 
@@ -107,7 +102,7 @@ namespace Game.Varginha
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / enterDuration);
-                edelzio.transform.position = Vector3.Lerp(start, door, t);
+                edelzio.transform.position = Vector3.Lerp(start, door, Mathf.SmoothStep(0, 1, t));
                 yield return null;
             }
 
@@ -120,7 +115,7 @@ namespace Game.Varginha
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / enterDuration);
-                edelzio.transform.position = Vector3.Lerp(door, seat, t);
+                edelzio.transform.position = Vector3.Lerp(door, seat, Mathf.SmoothStep(0, 1, t));
                 yield return null;
             }
 
@@ -139,83 +134,35 @@ namespace Game.Varginha
 
         private IEnumerator OpenDoorRoutine()
         {
-            EnsureDoor();
-
-            _doorRenderer.enabled = true;
-            _doorRenderer.sprite = _doorClosed;
-            ApplyDoorPose(0f);
+            _doorMotion = GetComponent<FuscaDoorMotion>() ?? gameObject.AddComponent<FuscaDoorMotion>();
             float elapsed = 0f;
-            const float duration = .48f;
+            const float duration = .72f;
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / duration);
-                float eased = 1f - Mathf.Pow(1f - t, 3f);
-                _doorRenderer.sprite = t < .34f ? _doorClosed : t < .78f ? _doorAjar : _doorOpen;
-                ApplyDoorPose(Mathf.Lerp(0f, -42f, eased));
+                float eased = t * t * t * (t * (6f * t - 15f) + 10f);
+                _doorMotion.SetOpenAmount(eased);
                 yield return null;
             }
-            _doorRenderer.sprite = _doorOpen;
-            ApplyDoorPose(-42f);
+            _doorMotion.SetOpenAmount(1);
+            yield return new WaitForSeconds(.12f);
         }
 
         private IEnumerator CloseDoorRoutine()
         {
-            if (_doorRenderer == null) yield break;
+            if (_doorMotion == null) yield break;
             float elapsed = 0f;
-            const float duration = .42f;
+            const float duration = .58f;
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / duration);
                 float eased = t * t * (3f - 2f * t);
-                _doorRenderer.sprite = t < .62f ? _doorAjar : _doorClosed;
-                ApplyDoorPose(Mathf.Lerp(-42f, 0f, eased));
+                _doorMotion.SetOpenAmount(1f - eased);
                 yield return null;
             }
-            _doorRenderer.sprite = _doorClosed;
-            ApplyDoorPose(0f);
-            _doorRenderer.enabled = false;
-        }
-
-        private void EnsureDoor()
-        {
-            if (_doorRenderer != null) return;
-            _doorClosed = VarginhaPixelArtSprites.Create("FuscaDoor_Closed", _doorColor);
-            _doorAjar = VarginhaPixelArtSprites.Create("FuscaDoor_Ajar", _doorColor);
-            _doorOpen = VarginhaPixelArtSprites.Create("FuscaDoor_Open", _doorColor);
-
-            // O pivô fica na borda traseira da folha; a porta gira a partir da
-            // dobradiça em vez de orbitar pelo centro do sprite.
-            _doorPivot = new GameObject("Dobradiça_da_Porta_do_Fusca").transform;
-            _doorPivot.SetParent(transform, false);
-            _doorPivot.localPosition = new Vector3(-.54f, -.03f, 0f);
-            var door = new GameObject("Porta_do_Fusca");
-            door.transform.SetParent(_doorPivot, false);
-            // A folha usa a mesma escala física do carro; antes o sprite 64x64
-            // recebia uma escala alta demais e parecia maior que a carroceria.
-            door.transform.localPosition = new Vector3(.24f, 0f, 0f);
-            door.transform.localScale = new Vector3(.48f, .64f, 1f);
-            _doorRenderer = door.AddComponent<SpriteRenderer>();
-            _doorRenderer.sprite = _doorClosed;
-            var carRenderer = GetComponent<SpriteRenderer>();
-            _doorRenderer.sortingOrder = carRenderer != null ? carRenderer.sortingOrder + 1 : 5;
-            _doorRenderer.enabled = false;
-        }
-
-        private void ApplyDoorPose(float angleDegrees)
-        {
-            if (_doorRenderer == null) return;
-            if (_doorPivot != null)
-            {
-                _doorPivot.localPosition = new Vector3(-.54f, -.03f, 0f);
-                _doorPivot.localRotation = Quaternion.Euler(0f, 0f, angleDegrees);
-            }
-            else
-            {
-                _doorRenderer.transform.localPosition = new Vector3(-.30f, -.03f, 0f);
-                _doorRenderer.transform.localRotation = Quaternion.Euler(0f, 0f, angleDegrees);
-            }
+            _doorMotion.SetOpenAmount(0);
         }
     }
 }

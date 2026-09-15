@@ -66,6 +66,16 @@ namespace Game.Varginha
         private bool _attacking;
         private bool _manualMode;
         private bool _manualPresentation;
+        private bool _equippedPresentation;
+        public bool IsEquippedPresentation => _equippedPresentation;
+
+        public void SetEquippedPresentation(bool equipped)
+        {
+            if (equipped && !_equippedPresentation && _manualMode && _leader != null)
+                transform.position = ResolveFreeDestination(_leader.position + new Vector3(-.7f, -.5f, 0));
+            _equippedPresentation = equipped;
+            if (_manualMode) SetManualPresentation(true);
+        }
         private int _marcosAttackIndex;
         private float _manualCooldownSeconds = ManualCooldownSeconds;
         private GUIStyle _nameStyle;
@@ -198,7 +208,7 @@ namespace Game.Varginha
         private void Update()
         {
             if (!_active) return;
-            if (_leader != null)
+            if (_leader != null && (!_manualMode || _equippedPresentation))
             {
                 // A formação é uma preferência, não um trilho. O pequeno movimento
                 // de circulação e a separação entre colegas deixam a turma explorar
@@ -210,12 +220,13 @@ namespace Game.Varginha
                 if (squadMembers != null) for (int i = 0; i < squadMembers.Count; i++)
                 {
                     var other = squadMembers[i];
-                    if (other == null || other == this || !other.IsActive) continue;
+                    if (other == null || other == this || !other.IsActive || (other.IsManualMode && !other.IsEquippedPresentation)) continue;
                     Vector3 delta = transform.position - other.transform.position;
                     float otherDistance = delta.magnitude;
                     if (otherDistance > .01f && otherDistance < .82f) separation += delta.normalized * (.82f - otherDistance);
                 }
-                Vector3 destination = _leader.position + _formationOffset + freeMotion + separation * .75f;
+                Vector3 offset = _manualMode ? new Vector3(-.7f, -.5f, 0) : _formationOffset;
+                Vector3 destination = _leader.position + offset + freeMotion + separation * .75f;
                 destination = ResolveFreeDestination(destination);
                 float distance = Vector3.Distance(transform.position, destination);
                 transform.position = Vector3.MoveTowards(transform.position, destination,
@@ -246,14 +257,15 @@ namespace Game.Varginha
         {
             _manualPresentation = manual;
             if (manual) EnsureHeadRenderer();
-            if (_renderer != null) _renderer.enabled = _active && !manual;
-            if (_headRenderer != null) _headRenderer.enabled = _active && manual;
+            if (_renderer != null) _renderer.enabled = _active && (!manual || (_equippedPresentation && !_attacking));
+            if (_headRenderer != null) _headRenderer.enabled = false;
         }
 
         private void OnGUI()
         {
             if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
-            if (!_manualPresentation || !_active || _headRenderer == null || !_headRenderer.enabled) return;
+            if (!_manualPresentation || !_active || !_equippedPresentation || _renderer == null || !_renderer.enabled
+                || VarginhaGameHUD.Instance?.IsInventoryOpen == true) return;
             var camera = Camera.main;
             if (camera == null) return;
             Vector3 screen = camera.WorldToScreenPoint(transform.position + Vector3.up * .67f);
@@ -315,6 +327,7 @@ namespace Game.Varginha
         private IEnumerator AttackRoutine(VarginhaCombatTarget target)
         {
             _attacking = true;
+            if (_manualMode) SetManualPresentation(true);
             CurrentTarget = target;
             _cooldownTimer = _manualMode ? _manualCooldownSeconds : _profile.Cooldown;
             var presentation = GetComponent<VarginhaAllyAttackPresentation>() ?? gameObject.AddComponent<VarginhaAllyAttackPresentation>();
@@ -330,6 +343,7 @@ namespace Game.Varginha
 
             _attacking = false;
             CurrentTarget = null;
+            if (_manualMode) SetManualPresentation(true);
         }
 
         private void ApplyTacticalHit(VarginhaCombatTarget target, Vector2 direction, Vector2 impactPoint,

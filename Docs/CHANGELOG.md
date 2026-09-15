@@ -1,5 +1,25 @@
 # Histórico de atualizações
 
+## 15/09/2026 — mochila, consumíveis, luz suave e porta do Fusca
+
+- Inventário pela mochila da hotbar/clique ou tecla G: abre nos Itens físicos, com aba Alunos separada, descrição de poderes e botão Equipar. Setas navegam, Tab alterna abas, Enter equipa e Esc/G fecha. Layout escuro de três colunas inspirado na referência fornecida.
+- Nenhum aluno equipado por padrão; somente o escolhido é exibido no cenário e no HUD. Trocar esconde o anterior, preservando sua recarga.
+- Mochila e notebook redesenhados em cinza, com perfil da mochila, aba/fivelas/bolsos, notebook de tela escura e versão fechada. Encaixes reduzidos ao tamanho do torso; xícara acompanha suavemente o gesto de beber.
+- O especial usa exclusivamente o aluno equipado. Trocar não reinicia recargas; o mundo fica pausado enquanto a mochila está aberta.
+- Consumo dos itens físicos depois do uso efetivo, preservando a investigação. Saída bloqueada do Fusca permite nova tentativa e não consome requisitos. Os itens usados não reaparecem na escola/igreja.
+- Luz estática composta nas três fases, transparência contínua, cruzamentos atenuados, sombras suaves por móveis/paredes e filtro Bilinear somente nas luzes/sombras. Origem e largura dos feixes calculadas a partir das dimensões de cada janela.
+- Porta do Fusca com silhueta curva e projeção contínua pela dobradiça dianteira, com entrada do personagem alinhada à porta e suporte ao carro espelhado. Tamanho corrigido para a abertura da cabine, desconsiderando a margem transparente do sprite.
+- GDD atualizado para 1.2.0; testes automatizados acrescentados para inventário, seleção/recargas, luz e geometria da porta.
+
+## 15/09/2026 — consolidação do GDD
+
+- Consolidado `Docs/GDD.md` na versão documental 1.1.0 a partir do GDD original 1.0.0 enviado pelo grupo e das regras atuais dos commits `ca185c2` e `c331760`.
+- Preservados os seis atos, personagens e três finais; identificadas as mecânicas originais implementadas parcialmente e as previstas para a continuação.
+- Documentados combo, esquiva, papéis dos ETs, dificuldade, poderes dos nove alunos, comandos separados, recarga individual de 5 s e intervalo de 0,9 s entre comandos da turma.
+- Especificados os requisitos efetivos de conclusão das fases, controles remapeáveis, cenografia, viagem de Fusca e limites das integrações futuras.
+- Atualizados README e arquitetura para refletir os comportamentos atuais. As seções anteriores abaixo registram etapas históricas, incluindo controles e visuais depois substituídos; o GDD consolida a versão vigente.
+- Revisão documental por leitura do código; testes do Unity não executados nesta atualização.
+
 ## Acabamento visual — casa, escola e diocese
 
 - A diocese ganhou dez projeções coloridas dos vitrais no piso, com o mesmo padrão dos vidros, transparência e ordenação abaixo dos bancos e personagens. Novos bancos, altar, arandelas, pilastras, mosaico, plantas e luz suave de velas completam o ambiente.

@@ -10,9 +10,36 @@ namespace Game.Varginha
     /// HUD de investigação estilo RPG / Pokémon de terror sobrenatural (O Segredo de Varginha).
     /// Inclui: Guia Rodrigo, Medidor de Saúde, Inventário, Diálogos e Telas de Fim de Fase.
     /// </summary>
+    [DefaultExecutionOrder(-100)]
     public class VarginhaGameHUD : MonoBehaviour
     {
         public static VarginhaGameHUD Instance { get; private set; }
+        private VarginhaBackpackInventory _backpack;
+        private int _blockInputThroughFrame = -1;
+        public bool IsInventoryOpen => _backpack != null && _backpack.IsOpen;
+        public bool BlocksGameplayInput => IsInventoryOpen || Time.frameCount <= _blockInputThroughFrame;
+
+        public bool OpenBackpack()
+        {
+            if (_edelzio == null) _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
+            if (_backpack == null) _backpack = GetComponent<VarginhaBackpackInventory>() ?? gameObject.AddComponent<VarginhaBackpackInventory>();
+            return _backpack.Open(_edelzio);
+        }
+
+        public void CloseBackpack()
+        {
+            if (!IsInventoryOpen) return;
+            _backpack.Close();
+            _blockInputThroughFrame = Time.frameCount + 1;
+        }
+
+        public Rect HotbarSlotRect(int index)
+        {
+            float size = HotbarSlotSize;
+            float width = size * 5 + 24;
+            return new Rect(Mathf.Round((Screen.width - width) * .5f) + index * (size + 6),
+                Mathf.Max(8, Mathf.Round(Screen.height - HotbarHeight - 8)) + 22, size, size);
+        }
 
         private EdelzioTopDownController _edelzio;
         private string _activeSpeaker;
@@ -51,6 +78,7 @@ namespace Game.Varginha
         private void Update()
         {
             if (_edelzio == null) return;
+            if (IsInventoryOpen) return;
             for (int i = 0; i < 5; i++)
             {
                 bool owned = _edelzio.HasInventoryItem(i);
@@ -62,8 +90,22 @@ namespace Game.Varginha
                 _hotbarOwned[i] = owned;
             }
             if (_isDialogueOpen || _isVictoryOpen || _edelzio.IsInputLocked || Time.timeScale == 0f) return;
+            var mouse = Mouse.current;
+            if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame))
+            {
+                Vector2 point = mouse.position.ReadValue(); point.y = Screen.height - point.y;
+                for (int slot = 0; slot < 5; slot++)
+                {
+                    if (!HotbarSlotRect(slot).Contains(point)) continue;
+                    _selectedSlot = slot;
+                    if (slot == 0 && mouse.leftButton.wasPressedThisFrame) OpenBackpack();
+                    _blockInputThroughFrame = Time.frameCount + 1;
+                    return;
+                }
+            }
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
+            if (keyboard.gKey.wasPressedThisFrame) { _selectedSlot = 0; OpenBackpack(); }
             if (keyboard.digit1Key.wasPressedThisFrame) _selectedSlot = 0;
             if (keyboard.digit2Key.wasPressedThisFrame) _selectedSlot = 1;
             if (keyboard.digit3Key.wasPressedThisFrame) _selectedSlot = 2;
@@ -87,12 +129,14 @@ namespace Game.Varginha
 
         private void OnDisable()
         {
+            CloseBackpack();
             SceneManager.sceneLoaded -= HandleSceneLoaded;
             if (Instance == this) Instance = null;
         }
 
         private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            CloseBackpack();
             // Este HUD vive junto aos managers; uma nova fase precisa sempre iniciar limpa.
             _isVictoryOpen = false;
             _isDialogueOpen = false;
@@ -198,6 +242,7 @@ namespace Game.Varginha
 
         public void ShowDialogue(string speaker, string message)
         {
+            CloseBackpack();
             _activeSpeaker = speaker;
             _activeDialogue = message;
             _dialogueTypewriter.Set(message);
@@ -217,6 +262,7 @@ namespace Game.Varginha
 
         public void ShowVictory(string title, string description)
         {
+            CloseBackpack();
             _isDialogueOpen = false;
             _victoryTitle = title;
             _victoryDescription = description;
@@ -225,6 +271,7 @@ namespace Game.Varginha
 
         private void OnGUI()
         {
+            if (IsInventoryOpen) return;
             if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
             InitStyles();
 
@@ -339,10 +386,11 @@ namespace Game.Varginha
                 else GUI.Label(slot, "·", _hotbarLabelStyle);
                 GUI.Label(new Rect(slot.x + 6, slot.y + 4, 18, 16), (i + 1).ToString(), _hotbarNumberStyle);
                 if (slot.Contains(Event.current.mousePosition)) hovered = i;
-                if (!_isDialogueOpen && !_edelzio.IsInputLocked && GUI.Button(slot, GUIContent.none, GUIStyle.none)) _selectedSlot = i;
+                // Input is handled in Update before combat, preventing click-through attacks.
             }
             int describedSlot = hovered >= 0 ? hovered : _selectedSlot;
             string label = _edelzio.HasInventoryItem(describedSlot) ? HotbarNames[describedSlot] : "ESPAÇO VAZIO";
+            if (describedSlot == 0 && _edelzio.HasBackpack) label = "MOCHILA • CLIQUE OU [G]";
             GUI.Label(new Rect(x, y + slotSize + (Screen.height < 420f ? 14f : 24f), width, 20f), label, _hotbarLabelStyle);
         }
 

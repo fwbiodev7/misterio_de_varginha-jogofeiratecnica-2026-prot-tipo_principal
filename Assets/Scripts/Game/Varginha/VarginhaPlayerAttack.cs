@@ -46,6 +46,7 @@ namespace Game.Varginha
             && VarginhaGameHUD.Instance?.IsVictoryOpen != true;
 
         public void Configure(float attackCooldown, bool mouseOnly = false) { }
+        public void EndHitstopForModal() => RestoreTimeScale();
 
         private void Awake()
         {

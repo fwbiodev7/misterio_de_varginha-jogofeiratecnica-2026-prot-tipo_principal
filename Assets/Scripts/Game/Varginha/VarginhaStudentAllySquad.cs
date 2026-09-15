@@ -19,7 +19,29 @@ namespace Game.Varginha
         [SerializeField] private Transform leader;
         [SerializeField] private bool activateOnStart;
         private readonly List<VarginhaStudentAlly> _allies = new();
-        private int _nextInvocationIndex;
+        private int _selectedStudentIndex = -1;
+        public int SelectedStudentIndex => _selectedStudentIndex;
+        public VarginhaStudentAlly SelectedStudent => _selectedStudentIndex >= 0 && _selectedStudentIndex < _allies.Count
+            ? _allies[_selectedStudentIndex] : null;
+
+        public bool SelectStudent(int index)
+        {
+            if (index < 0 || index >= _allies.Count || _allies[index] == null || !_allies[index].IsActive) return false;
+            _selectedStudentIndex = index;
+            UpdateEquippedPresentation();
+            return true;
+        }
+
+        private void UpdateEquippedPresentation()
+        {
+            for (int i = 0; i < _allies.Count; i++) _allies[i]?.SetEquippedPresentation(i == _selectedStudentIndex);
+        }
+
+        public static Sprite Portrait(int index)
+        {
+            index = Mathf.Clamp(index, 0, VarginhaPhase2Controller.StudentNames.Length - 1);
+            return VarginhaPixelArtSprites.Create("StudentHead_" + VarginhaPhase2Controller.StudentNames[index], ShirtColors[index]);
+        }
         private float _commandReadyAt;
         public float CommandCooldownRemaining => Mathf.Max(0f, _commandReadyAt - Time.time);
         private string _lastInvokedStudentName;
@@ -86,7 +108,7 @@ namespace Game.Varginha
         {
             EnsureRoster();
             if (leader == null) leader = Object.FindAnyObjectByType<EdelzioTopDownController>()?.transform;
-            _nextInvocationIndex = 0;
+            _selectedStudentIndex = -1;
             _commandReadyAt = 0f;
             _lastInvokedStudentName = null;
             _lastInvokedAttackDescription = null;
@@ -96,6 +118,7 @@ namespace Game.Varginha
                 if (i < allowed) _allies[i].ActivateManual(leader, i, cooldownSeconds);
                 else _allies[i].Deactivate();
             }
+            UpdateEquippedPresentation();
         }
 
         /// <summary>Ativa a quantidade permitida pela dificuldade para uma fase comum.</summary>
@@ -104,24 +127,24 @@ namespace Game.Varginha
             ActivateManualAllies(cooldownSeconds, phaseNumber >= 3, phaseNumber);
         }
 
-        /// <summary>Invoca o próximo aluno pronto e manda um único golpe ao ET mais próximo.</summary>
+        /// <summary>Compatibility entry point: invokes the equipped student, never rotates the roster.</summary>
         public bool TryInvokeNextAttack()
         {
             return TryInvokeAttack(null);
         }
 
-        /// <summary>A mira escolhe o ET; sem alvo na mira, protege Edelzio e evita golpes duplicados.</summary>
+        /// <summary>A mochila escolhe o aluno; a mira escolhe o ET. Recarga nunca troca a seleção.</summary>
         public bool TryInvokeAttack(Vector2? aim)
         {
-            if (_allies.Count == 0 || CommandCooldownRemaining > 0f) return false;
+            if (SelectedStudent == null || CommandCooldownRemaining > 0f) return false;
             var targets = Object.FindObjectsByType<VarginhaCombatTarget>(FindObjectsInactive.Exclude);
             VarginhaStudentAlly selected = null;
             VarginhaCombatTarget selectedTarget = null;
             float bestScore = float.NegativeInfinity;
-            int selectedIndex = 0;
             for (int offset = 0; offset < _allies.Count; offset++)
             {
-                int index = (_nextInvocationIndex + offset) % _allies.Count;
+                int index = offset;
+                if (index != _selectedStudentIndex) continue;
                 var ally = _allies[index];
                 if (ally == null || !ally.IsReadyForManualAttack) continue;
                 foreach (var target in targets)
@@ -166,12 +189,10 @@ namespace Game.Varginha
                     bestScore = score;
                     selected = ally;
                     selectedTarget = target;
-                    selectedIndex = index;
                 }
             }
             if (selected == null || !selected.TryManualAttack(selectedTarget)) return false;
             _commandReadyAt = Time.time + .9f;
-            _nextInvocationIndex = (selectedIndex + 1) % _allies.Count;
             _lastInvokedStudentName = selected.StudentName;
             _lastInvokedAttackDescription = selected.AttackDescription;
             return true;

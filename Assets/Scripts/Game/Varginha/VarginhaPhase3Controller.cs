@@ -83,7 +83,7 @@ namespace Game.Varginha
             _player.HasDecodedData = true;
             _player.HasHistoricalDocument = true;
             _player.EquipBackpack();
-            _player.EquipNotebook();
+            _player.CompleteHouseInventory();
 
             // Comandos independentes: Edelzio sem recarga, alunos com 5s por aluno.
             var playerAttack = _player.GetComponent<VarginhaPlayerAttack>();
@@ -111,14 +111,14 @@ namespace Game.Varginha
             yield return new WaitForSecondsRealtime(.85f);
             VarginhaGameHUD.Instance?.ShowDialogue(
                 "Rodrigo",
-                "Os ETs fecharam a passagem. Segure o clique esquerdo para o combo de três golpes e use Ctrl para esquivar dos ataques sinalizados. Clique direito perto de um ET para comandar a turma. Marcos corta a bola de vôlei; cada aluno tem um poder próprio e recarrega em 5 segundos.");
+                "Os ETs fecharam a passagem. Abra a mochila na hotbar ou com [G], entre na aba Alunos e equipe um colega. O comando especial chama somente esse aluno, com recarga de 5 segundos.");
             yield return new WaitForSecondsRealtime(.85f);
 
             _arrivalFinished = true;
             _player.SetCombatLocked(false);
             _player.SetInputLocked(false);
             VarginhaGameHUD.Instance?.CloseDialogue();
-            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Esquerdo: Edelzio. Direito: aluno, mirando no ET. Sem alvo na mira, a turma protege você. Derrote os ETs e examine o Padre Fábio.'");
+            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Mochila [G], aba Alunos: escolher aliado. O especial usa o aluno equipado. Mire no ET, derrote as manifestações e examine o Padre Fábio.'");
         }
 
         private void Update()
@@ -205,12 +205,13 @@ namespace Game.Varginha
 
         private void OnGUI()
         {
+            if (VarginhaGameHUD.Instance?.IsInventoryOpen == true) return;
             if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
             if (!_arrivalFinished || _phaseFinished || _squad == null || VarginhaGameHUD.Instance?.IsDialogueOpen == true) return;
             InitGuiStyles();
 
             float width = Mathf.Min(430f, Screen.width - 32f);
-            float height = Mathf.Min(195f, Screen.height - 140f);
+            float height = Mathf.Min(118f, Screen.height - 140f);
             Rect panel = new Rect(Screen.width - width - 16f, 124f, width, height);
             GUI.color = new Color(.015f, .035f, .06f, .94f);
             GUI.Box(panel, GUIContent.none);
@@ -218,22 +219,24 @@ namespace Game.Varginha
             GUI.Label(new Rect(panel.x + 12f, panel.y + 8f, panel.width - 24f, 22f), "FASE 3 • ALIADOS • " + VarginhaDifficulty.Label, _phaseStyle);
             GUI.Label(new Rect(panel.x + 12f, panel.y + 30f, panel.width - 24f, 18f),
                 VarginhaInputBindings.DisplayName(VarginhaInputAction.Attack) + ": EDELZIO • "
-                + VarginhaInputBindings.DisplayName(VarginhaInputAction.AllyCommand) + ": ALUNO (5s por aluno)", _allyStyle);
+                + VarginhaInputBindings.DisplayName(VarginhaInputAction.AllyCommand) + ": ALUNO • G: MOCHILA", _allyStyle);
             GUI.Label(new Rect(panel.x + 12f, panel.y + 48f, panel.width - 24f, 18f),
                 VarginhaInputBindings.DisplayName(VarginhaInputAction.Dodge) + ": ESQUIVAR • Turma: "
                 + (_squad.CommandCooldownRemaining > 0 ? "preparando comando" : "PRONTA"), _allyStyle);
 
-            for (int i = 0; i < _squad.Allies.Count; i++)
+            if (_squad.SelectedStudent == null)
             {
-                var ally = _squad.Allies[i];
-                if (ally == null) continue;
-                int column = i % 3;
-                int row = i / 3;
-                float x = panel.x + 12f + column * (panel.width - 24f) / 3f;
-                float y = panel.y + 73f + row * 37f;
-                float cellWidth = (panel.width - 24f) / 3f - 6f;
+                GUI.Label(new Rect(panel.x + 12, panel.y + 76, panel.width - 24, 22), "Nenhum aluno equipado • escolha na aba Alunos", _allyStyle);
+            }
+            else
+            {
+                var ally = _squad.SelectedStudent;
+                float x = panel.x + 12f;
+                float y = panel.y + 73f;
+                float cellWidth = panel.width - 24f;
                 string state = ally.CurrentTarget != null ? "GOLPE" : ally.IsReadyForManualAttack ? "PRONTO" : $"{Mathf.CeilToInt(ally.ManualCooldownRemaining)}s";
                 string name = ally.StudentName == "Luis Miguel Messias" ? "Luis Miguel" : ally.StudentName;
+                name = "> " + name;
                 GUI.color = ally.IsReadyForManualAttack ? new Color(.5f, 1f, .75f) : new Color(.8f, .84f, .9f);
                 GUI.Label(new Rect(x, y, cellWidth, 18f), name, _allyStyle);
                 GUI.Label(new Rect(x, y + 15f, cellWidth, 18f), state, _allyStyle);

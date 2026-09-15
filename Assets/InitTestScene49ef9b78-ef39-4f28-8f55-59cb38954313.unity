@@ -1,0 +1,303 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 10
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 2
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 2
+    m_PVRDenoiserTypeIndirect: 2
+    m_PVRDenoiserTypeAO: 2
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 1
+    m_PVRFilteringGaussRadiusAO: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &109020645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 109020647}
+  - component: {fileID: 109020646}
+  m_Layer: 0
+  m_Name: Code-based tests runner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &109020646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109020645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102e512f651ee834f951a2516c1ea3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.TestRunner::UnityEngine.TestTools.TestRunner.PlaymodeTestsController
+  m_AssembliesWithTests:
+  - GamePlayModeTests
+  - Unity.InputSystem.TestFramework
+  - Unity.PerformanceTesting
+  - UnityEngine.TestRunner
+  testStartedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  testFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  runStartedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  runFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  settings:
+    filters:
+    - testMode: 4
+      assemblyNames: []
+      groupNames: []
+      categoryNames: []
+      testNames:
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_AddsCorrectScoreValue
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_CannotBeCollectedTwice
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_Collect_AddsScore
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_Collect_DestroysObject
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_Collect_SetsIsCollected
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_IsActive_Initially
+      - Game.Tests.PlayMode.CollectibleTests.Collectible_NotCollected_Initially
+      - Game.Tests.PlayMode.EdelzioPresentationTests.ActionsKeepNewAppearanceAndColliderSize
+      - Game.Tests.PlayMode.EdelzioPresentationTests.BackpackFollowsBackInsteadOfFlipX
+      - Game.Tests.PlayMode.EdelzioPresentationTests.HotbarReflectsActualCollectedItems
+      - Game.Tests.PlayMode.EdelzioPresentationTests.LockStopsResidualMotion
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_AttackRange_LessThanDetectionRange
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_DetectionRange_IsPositive
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_DetectsPlayer_WhenInRange
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_Dies_WhenHPZero
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_GoesToChase_WhenPlayerDetected
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_HasNoPlayer_Initially
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_IsDestroyed_AfterDeath
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_ReturnsToPatrol_WhenForced
+      - Game.Tests.PlayMode.EnemyAITests.Enemy_StartsInPatrolState
+      - Game.Tests.PlayMode.FuscaDepartureTests.DepartureKeepsLaneAndEndsAtExactDistance
+      - Game.Tests.PlayMode.LevelLoadTests.ActiveScene_HasValidName
+      - Game.Tests.PlayMode.LevelLoadTests.ActiveScene_IsLoaded
+      - Game.Tests.PlayMode.LevelLoadTests.BuildSettings_HasScenesConfigured
+      - Game.Tests.PlayMode.LevelLoadTests.DontDestroyOnLoad_ObjectPersistsBetweenScenes
+      - Game.Tests.PlayMode.LevelLoadTests.LevelManager_CurrentScene_MatchesActiveScene
+      - Game.Tests.PlayMode.LevelLoadTests.LevelManager_IsNotLoading_Initially
+      - Game.Tests.PlayMode.LevelLoadTests.LoadScene_Additive_CanBeUnloaded
+      - Game.Tests.PlayMode.LevelLoadTests.LoadScene_Additive_IncreasesSceneCount
+      - Game.Tests.PlayMode.LevelLoadTests.SceneManager_HasAtLeastOneScene
+      - Game.Tests.PlayMode.PerformanceTests.Performance_50DynamicObjects_FrameTime
+      - Game.Tests.PlayMode.PerformanceTests.Performance_Destroy100Objects
+      - Game.Tests.PlayMode.PerformanceTests.Performance_EmptyScene_FrameTime
+      - Game.Tests.PlayMode.PerformanceTests.Performance_FindObjectsByType_100Times
+      - Game.Tests.PlayMode.PerformanceTests.Performance_Instantiate100Objects
+      - Game.Tests.PlayMode.PerformanceTests.Performance_Physics2D_OverlapCircle_1000Times
+      - Game.Tests.PlayMode.PerformanceTests.Performance_StringConcat_VsStringBuilder
+      - Game.Tests.PlayMode.PerformanceTests.Performance_VectorOperations_ExecutionSpeed
+      - Game.Tests.PlayMode.PhysicsTests.AddForce_ChangesVelocity
+      - Game.Tests.PlayMode.PhysicsTests.FreezePosition_PreventsMovement
+      - Game.Tests.PlayMode.PhysicsTests.FreezeRotation_PreventsRotation
+      - Game.Tests.PlayMode.PhysicsTests.OverlapCircle_DetectsNearbyCollider
+      - Game.Tests.PlayMode.PhysicsTests.OverlapCircle_ReturnsNull_WhenEmpty
+      - Game.Tests.PlayMode.PhysicsTests.Raycast2D_HitsGround_FromAbove
+      - Game.Tests.PlayMode.PhysicsTests.Raycast2D_MissesGround_FromSide
+      - Game.Tests.PlayMode.PhysicsTests.Rigidbody2D_CollidesWith_StaticGround
+      - Game.Tests.PlayMode.PhysicsTests.Rigidbody2D_FallsWithGravity
+      - Game.Tests.PlayMode.PhysicsTests.SetVelocity_DirectlyMovesBody
+      - Game.Tests.PlayMode.PhysicsTests.Trigger_IsDetectedByOverlapArea
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_Dies_WhenHPZero
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_FacesLeft_WhenMovingLeft
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_FacesRight_WhenMovingRight
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_Falls_WithGravity
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_Jumps_GainsPositiveVelocityY
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_JumpsLeft_DecreasesJumpsLeft
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_MovesLeft_WhenInputNegative
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_MovesRight_WhenInputPositive
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_StopsMoving_WhenInputZero
+      - Game.Tests.PlayMode.PlayerMovementTests.Player_TakesDamage_HealthDecreases
+      - Game.Tests.PlayMode.VarginhaCombatTests.AncestralEntityRemainsInvulnerable
+      - Game.Tests.PlayMode.VarginhaCombatTests.AttackAtlasHasFourDirectionsAndSixKeyframes
+      - Game.Tests.PlayMode.VarginhaCombatTests.EdelzioCanMoveDuringAttackAndAttackAgainWithoutCooldown
+      - Game.Tests.PlayMode.VarginhaCombatTests.MinorManifestationTakesDamageOnlyThroughCombatTarget
+      - Game.Tests.PlayMode.VarginhaCombatTests.MovementReversesAndStopsInAllEightDirections
+      - Game.Tests.PlayMode.VarginhaDifficultyAndPresentationTests.DifficultyScalesEachEnemyOnce
+      - Game.Tests.PlayMode.VarginhaDifficultyAndPresentationTests.EveryStudentHasVisibleAnticipationAndExactlyOneImpact
+      - Game.Tests.PlayMode.VarginhaDifficultyAndPresentationTests.RouteDestinationsAreDistinctAndIncludedInBuild
+      - Game.Tests.PlayMode.VarginhaInventoryTests.BackpackOwnsPauseAndDoesNotOpenWithoutBackpackOrDuringDialogue
+      - Game.Tests.PlayMode.VarginhaInventoryTests.ConsumedItemsDisappearButKnowledgeAndBackpackRemain
+      - Game.Tests.PlayMode.VarginhaInventoryTests.DoorHingeStaysFixedAndProjectionIsContinuous(False)
+      - Game.Tests.PlayMode.VarginhaInventoryTests.DoorHingeStaysFixedAndProjectionIsContinuous(True)
+      - Game.Tests.PlayMode.VarginhaInventoryTests.EquippedStudentDoesNotRotateAndChangingDoesNotResetCooldowns
+      - Game.Tests.PlayMode.VarginhaInventoryTests.FailedEscapeKeepsKeyAndSuccessfulEscapeConsumesItOnce
+      - Game.Tests.PlayMode.VarginhaInventoryTests.NewPhaseDoesNotRepopulateUsedItems
+      - Game.Tests.PlayMode.VarginhaPhase3Tests.ManualAllyInvocationsUseFiveSecondCooldown
+      - Game.Tests.PlayMode.VarginhaPhase3Tests.Phase3ControllerStartsIncomplete
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.ComboCyclesThreeStepsThenExpires
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.DialogueCancelsWindupWithoutDamage
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.DirectionAndMultipleCollidersProduceOnlyOneHit
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.DodgeHasBoundedDurationCooldownAndBlocksAttack
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.MeleeCannotDamageThroughSolidWall
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.PauseAndDialogueBlockDodgeAndAttack
+      - Game.Tests.PlayMode.VarginhaPlayerPolishTests.PausingDuringHitstopDoesNotResumeGame
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.AlliedSummonsAreGatedUntilHardPhasesButFinalPhaseAlwaysAllowsAll
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.AnnaRicochetsAcrossTwoNewTargetsWithoutRepeatingDamage
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.AreaImpactCannotCrossAWallBetweenTwoVisibleTargets
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.EveryRescuedStudentHasAnAllyProfile
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.IndividualCooldownBlocksRepeatButLeavesOtherStudentsReady
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.InputLockFreezesPendingPowerAndItsManualCooldown
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.KatanaPiercesOnlyTargetsBehindItsAim
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.MarcosSpikesOnceAndSplashRespectsRange
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.MicrophoneRestoresSanityOnlyOnSuccessfulImpact
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.MouseAimOverridesNearThreatAndWallsBlockCommands
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.NoTargetOrLockedPlayerDoesNotSpendCooldown
+      - Game.Tests.PlayMode.VarginhaStudentAllyTests.SignatureStudentsKeepTheirRequestedAttacks
+      synchronousOnly: 0
+    sceneBased: 0
+    originalScene: 
+    bootstrapScene: 
+    orderedTestNames: []
+    featureFlags:
+      fileCleanUpCheck: 0
+      requiresSplashScreen: 0
+      strictDomainReload: 0
+      disableNestedEnumeratorBugfix: 0
+    retryCount: 0
+    repeatCount: 0
+    automated: 0
+    randomOrderSeed: 0
+--- !u!4 &109020647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109020645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 109020647}

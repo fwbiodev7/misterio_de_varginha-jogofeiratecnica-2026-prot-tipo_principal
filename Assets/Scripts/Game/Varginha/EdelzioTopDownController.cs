@@ -34,6 +34,24 @@ namespace Game.Varginha
         public bool HasResearchNotebook { get; set; }
         public bool HasDecodedData { get; set; }
         public bool HasHistoricalDocument { get; set; }
+        // Knowledge survives consumption; the hotbar only shows physical items still in use.
+        private int _usedInventoryItems;
+
+        public bool TryConsumeInventoryItem(int slot)
+        {
+            if (slot <= 0 || !HasInventoryItem(slot)) return false;
+            _usedInventoryItems |= 1 << slot;
+            if (slot == 3 && _heldNotebook != null) _heldNotebook.gameObject.SetActive(false);
+            return true;
+        }
+
+        public void CompleteHouseInventory()
+        {
+            // Also supports starting the school/church directly in the Editor.
+            // Do not respawn the key or documents when a new player is constructed.
+            _usedInventoryItems |= (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4);
+            if (_heldNotebook != null) _heldNotebook.gameObject.SetActive(false);
+        }
 
         // State
         private Rigidbody2D _rb;
@@ -73,6 +91,7 @@ namespace Game.Varginha
 
         public bool HasInventoryItem(int slot)
         {
+            if (slot < 0 || slot > 4 || (_usedInventoryItems & (1 << slot)) != 0) return false;
             switch (slot)
             {
                 case 0: return HasBackpack;
@@ -88,7 +107,7 @@ namespace Game.Varginha
         public float MaxSanity => maxSanity;
         public Vector2 FacingDirection => _lastFacing;
         public bool IsRunning => _isRunning;
-        public bool IsInputLocked => _inputLocked || _combatLocked;
+        public bool IsInputLocked => _inputLocked || _combatLocked || VarginhaGameHUD.Instance?.BlocksGameplayInput == true;
         public void SetCombatLocked(bool locked)
         {
             _combatLocked = locked;
@@ -309,7 +328,7 @@ namespace Game.Varginha
             notebook.transform.localPosition = new Vector3(.22f, -.08f, 0f);
             notebook.transform.localScale = new Vector3(.38f, .38f, 1f);
             var renderer = notebook.AddComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create("Notebook_Held", new Color(.30f, .90f, 1f));
+            renderer.sprite = VarginhaPixelArtSprites.Create("Notebook_Held", Color.gray);
             renderer.sortingOrder = _sr != null ? _sr.sortingOrder + 2 : 7;
             _heldNotebook = notebook.transform;
         }
@@ -344,12 +363,12 @@ namespace Game.Varginha
                 bool facingLeft = !vertical && facing.x < 0f;
                 // Mantém o notebook colado à mão, sem atravessar cabeça ou pés.
                 Vector3 targetPosition = vertical
-                    ? new Vector3(.18f, facingUp ? .16f : -.16f, 0f)
-                    : new Vector3(facingLeft ? -.28f : .28f, -.04f, 0f);
-                float blend = 1f - Mathf.Exp(-18f * Time.unscaledDeltaTime);
-                _heldNotebook.localPosition = Vector3.Lerp(_heldNotebook.localPosition, targetPosition, blend);
-                _heldNotebook.localScale = Vector3.Lerp(_heldNotebook.localScale,
-                    Vector3.one * (vertical ? .38f : .34f), blend);
+                    ? new Vector3(.16f, -.205f, 0f)
+                    : new Vector3(facingLeft ? -.19f : .19f, -.19f, 0f);
+                // Attach directly: interpolating across the torso on a turn makes the item float.
+                _heldNotebook.localPosition = targetPosition;
+                _heldNotebook.localScale = new Vector3(vertical ? .22f : .17f, .25f, 1f);
+                _heldNotebook.localRotation = Quaternion.Euler(0, 0, vertical ? -8 : facingLeft ? -12 : 12);
                 var renderer = _heldNotebook.GetComponent<SpriteRenderer>();
                 renderer.sortingLayerID = _sr.sortingLayerID;
                 renderer.sortingOrder = _sr.sortingOrder + (facingUp ? -2 : 2);
@@ -362,16 +381,20 @@ namespace Game.Varginha
             var animation = GetComponent<VarginhaPlayerSpriteAnimation>();
             Vector2 facing = animation != null && animation.HasActionPose ? animation.ActionFacingDirection : _lastFacing;
             bool sideways = Mathf.Abs(facing.x) > Mathf.Abs(facing.y);
-            float side = sideways ? (facing.x > 0 ? -.25f : .25f) : 0f;
+            float side = sideways ? (facing.x > 0 ? -.215f : .215f) : 0f;
             bool facingUp = !sideways && facing.y > .05f;
-            _equippedBackpack.localPosition = new Vector3(side, facingUp ? .10f : -.16f, 0f);
-            _equippedBackpack.localScale = new Vector3(sideways ? .58f : .82f, .78f, 1f);
+            _equippedBackpack.localPosition = new Vector3(side, -.145f, 0f);
+            _equippedBackpack.localScale = new Vector3(.37f, .34f, 1f);
             var renderer = _equippedBackpack.GetComponent<SpriteRenderer>();
+            renderer.sprite = VarginhaPixelArtSprites.Create(sideways ? "Backpack_Side" : "Backpack_Worn", Color.gray);
+            renderer.flipX = sideways && facing.x < 0;
             renderer.sortingLayerID = _sr.sortingLayerID;
             renderer.sortingOrder = _sr.sortingOrder + (facingUp ? 1 : -2);
             renderer.enabled = _carriedItemsVisible;
             if (_backpackStraps != null)
             {
+                _backpackStraps.transform.localPosition = new Vector3(0f, -.14f, 0f);
+                _backpackStraps.transform.localScale = new Vector3(.40f, .35f, 1f);
                 _backpackStraps.sortingLayerID = _sr.sortingLayerID;
                 _backpackStraps.sortingOrder = _sr.sortingOrder + (facingUp ? -1 : 1);
                 _backpackStraps.enabled = _carriedItemsVisible && !sideways && !facingUp;
