@@ -25,6 +25,9 @@ namespace Game.Varginha
         private Sprite[] _actionFrames;
         private SpriteRenderer _beardRenderer;
         private bool _attackPose;
+        private readonly EdelzioBackpackAppearance _backpackAppearance = new();
+        private Sprite _bodyPose;
+        private int _bodyDirection;
         public bool IsSeated { get; private set; }
         public bool IsDrinking { get; private set; }
         public bool HasActionPose => _actionPose != null;
@@ -36,7 +39,7 @@ namespace Game.Varginha
             _attackPose = true;
             ActionFacingDirection = direction;
             IsSeated = IsDrinking = false;
-            if (_renderer != null && pose != null) { _renderer.flipX = false; _renderer.sprite = pose; }
+            if (_renderer != null && pose != null) { _renderer.flipX = false; PresentPose(pose, DirectionIndex(direction)); }
             SetBeard(true, DirectionIndex(direction));
         }
         private Vector3 _lastValidScale;
@@ -51,6 +54,7 @@ namespace Game.Varginha
             _lastValidScale = IsVisibleScale(transform.localScale) ? transform.localScale : new Vector3(1.08f, 1.08f, 1f);
             NormalizeScale();
             EnsureFrames();
+            RefreshEquipmentAppearance();
         }
 
         private void OnValidate()
@@ -62,6 +66,7 @@ namespace Game.Varginha
         private void OnEnable()
         {
             EnsureFrames();
+            RefreshEquipmentAppearance();
         }
 
         private void EnsureFrames()
@@ -127,9 +132,7 @@ namespace Game.Varginha
             _renderer.enabled = true;
             _renderer.color = Color.white;
             _renderer.sortingOrder = Mathf.Max(_renderer.sortingOrder, 5);
-            if (_actionPose == null && referenceFrames != null && referenceFrames.Length > 0)
-                _renderer.sprite = referenceFrames[0];
-            else if (_renderer.sprite == null) _renderer.sprite = _fallbackSprite;
+            if (_bodyPose == null) PresentPose(_fallbackSprite, 0);
             EnsureBeardLayer();
         }
 
@@ -142,7 +145,7 @@ namespace Game.Varginha
             if (_actionPose != null)
             {
                 _renderer.enabled = true;
-                _renderer.sprite = _actionPose;
+                PresentPose(_actionPose, DirectionIndex(ActionFacingDirection));
                 SetBeard(_attackPose, DirectionIndex(ActionFacingDirection));
                 return;
             }
@@ -158,12 +161,12 @@ namespace Game.Varginha
             if (frames == null || frames.Length == 0)
             {
                 _renderer.enabled = true;
-                _renderer.sprite = _fallbackSprite;
+                PresentPose(_fallbackSprite, DirectionIndex(_controller != null ? _controller.FacingDirection : Vector2.down));
                 return;
             }
             int frameIndex = Mathf.FloorToInt(_time * frameRate) % frames.Length;
             _renderer.flipX = false;
-            _renderer.sprite = frames[frameIndex];
+            PresentPose(frames[frameIndex], DirectionIndex(_controller != null ? _controller.FacingDirection : Vector2.down));
             SetBeard(false, DirectionIndex(_controller != null ? _controller.FacingDirection : Vector2.down));
         }
 
@@ -185,7 +188,7 @@ namespace Game.Varginha
             int index = poseId == "Edelzio_Crouch" ? 4 : poseId == "Edelzio_Reach" ? 5 :
                 poseId == "Edelzio_Sit" ? 6 : poseId == "Edelzio_UseNotebook" ? 7 : 0;
             _actionPose = _actionFrames != null ? _actionFrames[index] : _fallbackSprite;
-            if (_renderer != null) { _renderer.flipX = false; _renderer.sprite = _actionPose; }
+            if (_renderer != null) { _renderer.flipX = false; PresentPose(_actionPose, DirectionIndex(ActionFacingDirection)); }
             SetBeard(false, DirectionIndex(ActionFacingDirection));
         }
 
@@ -193,7 +196,7 @@ namespace Game.Varginha
         {
             SetActionPose("Edelzio_DrinkCoffee");
             if (_actionFrames != null) _actionPose = _actionFrames[Mathf.Clamp(frame, 0, 3)];
-            if (_renderer != null) _renderer.sprite = _actionPose;
+            if (_renderer != null) PresentPose(_actionPose, DirectionIndex(ActionFacingDirection));
         }
 
         public void ClearActionPose()
@@ -203,6 +206,32 @@ namespace Game.Varginha
             IsSeated = false;
             IsDrinking = false;
             _time = 0f;
+            var frames = GetDirectionalIdleFrames() ?? _idleFrames;
+            if (frames != null && frames.Length > 0)
+                PresentPose(frames[0], DirectionIndex(_controller != null ? _controller.FacingDirection : Vector2.down));
+        }
+
+        private void PresentPose(Sprite body, int direction)
+        {
+            _bodyPose = body;
+            _bodyDirection = direction;
+            RefreshEquipmentAppearance();
+        }
+
+        /// <summary>The backpack state selects the equipped version of the current pose.</summary>
+        public void RefreshEquipmentAppearance()
+        {
+            if (_renderer == null) _renderer = GetComponent<SpriteRenderer>();
+            if (_controller == null) _controller = GetComponent<EdelzioTopDownController>();
+            if (_renderer == null || _bodyPose == null) return;
+            _renderer.sprite = _controller != null && _controller.IsBackpackVisible
+                ? _backpackAppearance.GetFrame(_bodyPose, _bodyDirection)
+                : _bodyPose;
+        }
+
+        private void OnDestroy()
+        {
+            _backpackAppearance.Dispose();
         }
 
         private void NormalizeScale()

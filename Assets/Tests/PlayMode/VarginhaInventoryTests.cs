@@ -127,7 +127,11 @@ namespace Game.Tests.PlayMode
             var motion = car.GetComponent<FuscaDoorMotion>(); motion.SetOpenAmount(.01f);
             var mesh = car.GetComponentInChildren<MeshFilter>().sharedMesh;
             Vector3 hinge = mesh.vertices[0];
-            Assert.That(Vector3.Distance(mesh.vertices[0], mesh.vertices[3]), Is.EqualTo(.265f).Within(.001f));
+            Assert.That(Vector3.Distance(mesh.vertices[0], mesh.vertices[3]), Is.EqualTo(.35f).Within(.001f));
+            Assert.That(Vector3.Distance(mesh.vertices[0], mesh.vertices[1]), Is.EqualTo(.275f).Within(.001f));
+            Assert.That(mesh.vertices[0].y, Is.EqualTo(-.12f).Within(.001f));
+            Assert.That(mesh.vertices[3].y, Is.EqualTo(.23f).Within(.001f));
+            Assert.That(mesh.vertices[0].x, Is.EqualTo(flipped ? -.115f : .115f).Within(.001f));
             for (int i = 1; i <= 100; i++)
             {
                 motion.SetOpenAmount(i / 100f);

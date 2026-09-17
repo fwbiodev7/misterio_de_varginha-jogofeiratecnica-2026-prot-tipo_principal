@@ -148,6 +148,9 @@ namespace Game.Varginha
                 _headRenderer.sprite = VarginhaPixelArtSprites.Create("StudentHead_" + name, shirtColor);
                 _headRenderer.sortingOrder = 8 + Mathf.Clamp(index, 0, 8);
             }
+            var animation = GetComponent<VarginhaStudentAnimation>();
+            if (animation == null) animation = gameObject.AddComponent<VarginhaStudentAnimation>();
+            animation.Configure(studentName);
         }
 
         public void Activate(Transform leader, int index)
@@ -228,9 +231,13 @@ namespace Game.Varginha
                 Vector3 offset = _manualMode ? new Vector3(-.7f, -.5f, 0) : _formationOffset;
                 Vector3 destination = _leader.position + offset + freeMotion + separation * .75f;
                 destination = ResolveFreeDestination(destination);
+                Vector3 prevPos = transform.position;
                 float distance = Vector3.Distance(transform.position, destination);
                 transform.position = Vector3.MoveTowards(transform.position, destination,
                     Mathf.Max(followSpeed, distance * 3f) * Time.deltaTime);
+
+                // The directional atlas supplies the walk; fixed scale keeps every pixel crisp.
+                transform.localScale = Vector3.one;
             }
 
             if (!CanCommand) return;

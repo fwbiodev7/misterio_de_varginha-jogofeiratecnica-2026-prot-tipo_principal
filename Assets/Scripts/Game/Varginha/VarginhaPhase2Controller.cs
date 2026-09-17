@@ -154,8 +154,9 @@ namespace Game.Varginha
                                   FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Include).Length >= 4;
             }
             if (!_arrivalFinished || !_encounterReady || _rescueStarted) return;
-            var enemies = FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Include);
-            if (enemies.Length < 4) return;
+            // Bug fix: Exclude para não contar inimigos já destruídos/desativados
+            var enemies = FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Exclude);
+            if (enemies.Length < 1) return; // Aguarda pelo menos 1 ET aparecer na cena
             bool allDefeated = true;
             foreach (var enemy in enemies)
             {

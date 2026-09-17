@@ -13,12 +13,12 @@ namespace Game.Varginha
             public readonly uint[] Pixels;
             public Picture(int width,int height,uint[] pixels) { Width=width;Height=height;Pixels=pixels; }
         }
-        private readonly Picture _night,_cabin,_car,_tree,_edelzio;
+        private readonly Picture _night,_car,_tree,_cabin;
         private readonly uint[] _pixels=new uint[Width*Height];
         private const uint Ink=0xff080f20, Gold=0xffeed48b, Cyan=0xff71cbe0, Muted=0xff8ea9b9;
         private static readonly Dictionary<char,string> Glyphs=BuildFont();
-        public VarginhaTravelPixelArt(Picture night,Picture cabin,Picture car,Picture tree,Picture edelzio)
-        { _night=night;_cabin=cabin;_car=car;_tree=tree;_edelzio=edelzio; }
+        public VarginhaTravelPixelArt(Picture night,Picture car,Picture tree,Picture cabin)
+        { _night=night;_car=car;_tree=tree;_cabin=cabin; }
 
         public uint[] Render(float seconds,bool students,float progress,string difficulty)
         {
@@ -40,105 +40,132 @@ namespace Game.Varginha
             Fill(50,204,284,3,0xff243848);
             Fill(50,204,(int)(284*Math.Clamp(progress,0,1)),3,Cyan);
             for(int i=1;i<28;i++) Fill(50+i*10,204,1,3,Ink);
+            DrawLoadingStatus(progress, tick);
             Text("CASA > ESCOLA > DIOCESE",Width/2,211,Muted,true);
             // Cortina em degraus entre tomadas: nenhum esticamento ou interpolação da imagem.
             float cut = students ? Math.Abs(seconds-3.6f) : 2f;
             if(cut<.12f) Fill(0,25,Width,160,Ink);
             return _pixels;
         }
-        private void Road(float time,int tick,bool students)
+        private void Road(float time, int tick, bool students)
         {
-            // A ilustração nova é o plano distante. Estrada, árvore original e Fusca são camadas independentes.
-            Blit(_night,0,0,Width,Height);
-            int roadShift=(int)(time*75)%Width;
-            for(int i=-1;i<2;i++)
-                Blit(_night,i*Width-roadShift,148,Width,39,0,(int)(_night.Height*.685f),_night.Width,(int)(_night.Height*.181f));
-            for(int i=-1;i<4;i++)
+            // Fundo desenhado em pixels, sempre filtrado por nearest-neighbour.
+            Blit(_night, 0, 0, Width, Height);
+            DrawRoadMotion(time, tick);
+
+            // Deslocamento cinematográfico suave do Fusca
+            float arrival = Math.Clamp(time / 2.2f, 0f, 1f);
+            arrival = arrival * arrival * (3f - 2f * arrival);
+            int carX = (int)Math.Round(-190f + arrival * 275f);
+            float bounce = (float)Math.Sin(time * 14f) * 0.85f;
+            int carY = (int)Math.Round(78f + bounce);
+            int carW = 168, carH = 94;
+
+            // Feixe volumétrico dos faróis iluminando a pista à frente
+            DrawHeadlights(carX + carW - 25, carY + 60);
+
+            // Fusca avançando na pista (alterna quadros para calotas girando)
+            int frame = (tick / 3) % 2;
+            Blit(_car, carX, carY, carW, carH, frame * 100, 10, 100, 56);
+
+            // Fumaça sutil saindo do escapamento
+            for (int i = 0; i < 4; i++)
             {
-                int x=i*175-((int)(time*25)%175);
-                Blit(_tree,x,61,100,100,0,0,_tree.Width,_tree.Height,0xff607966);
-            }
-            // O Fusca entra, freia e estaciona exatamente no centro da tomada. O
-            // quadro alternado é mais lento para a suspensão parecer uma animação,
-            // não uma troca nervosa de sprites.
-            float arrival=Math.Clamp(time/2.35f,0,1);arrival=arrival*arrival*(3-2*arrival);
-            int carX=(int)Math.Round(-210+arrival*302);
-            float settle=Math.Clamp((time-2.35f)/.55f,0,1);
-            float suspension=(1f-settle)*(float)Math.Sin(Math.Max(0f,time-2.35f)*18f)*1.25f;
-            int carY=(int)Math.Round(66+suspension);
-            int frame=(tick/3)%2;
-            Blit(_car,carX,carY,200,112,frame*100,10,100,56);
-            // A passagem lateral fica limpa: os nove passageiros e o motorista são
-            // revelados na tomada interna final, onde podem ser vistos com detalhe.
-            // Poeira em pixels quadrados; sem elipses vetoriais e sem suavização.
-            for(int i=0;i<5;i++)
-            {
-                int phase=(tick+i*3)%15;
-                Fill(carX-8-phase*3,carY+97-phase/3,2+phase/5,2,0xff607077);
-            }
-            // Vegetação próxima atravessa a borda e reforça a velocidade.
-            int frontShift=(int)(time*120)%Width;
-            for(int i=-1;i<2;i++)
-                Blit(_night,i*Width-frontShift,179,Width,37,0,(int)(_night.Height*.828f),_night.Width,(int)(_night.Height*.172f));
-        }
-        private void DrawDriver(int x,int y,int frame,int tick)
-        {
-            uint outline=0xff111727, hair=0xff32231f, skin=0xffd98955;
-            uint shirt=0xffd7a52a, shirtLight=0xfff1c85f, glass=0x779dd1d7;
-            int bob=(tick%6==0 || tick%6==1) ? 1 : 0;
-            // Corpo sentado, ombros baixos e braços estendidos até o volante.
-            Fill(x+2,y+11+bob,11,6,outline); Fill(x+4,y+11+bob,8,6,shirt);
-            Fill(x+5,y+14+bob,2,3,shirtLight); Fill(x+12,y+13+bob,5,2,skin);
-            Fill(x+3,y+3+bob,10,9,outline); Fill(x+5,y+4+bob,7,7,skin);
-            Fill(x+4,y+2+bob,9,4,hair); Fill(x+5,y+1+bob,6,2,hair);
-            Fill(x+5,y+7+bob,2,1,outline); Fill(x+10,y+7+bob,2,1,outline);
-            Fill(x+7,y+9+bob,4,1,hair);
-            // Reflexo transparente do para-brisa passa sobre a pose, mas não a apaga.
-            Fill(x+1,y+1,1,17,glass); Fill(x+14,y+1,1,17,glass);
-        }
-        private void DrawSidePassengers(int carX,int carY,int frame,int tick)
-        {
-            uint[] shirts={0xff8147b8,0xffd34d4d,0xff3c84c5};
-            uint[] hair={0xff2d211d,0xff5b3325,0xff1b1a25};
-            int baseX=frame==0 ? carX+18 : carX+118;
-            for(int i=0;i<3;i++)
-            {
-                int x=baseX+i*13, y=carY+30+(i==1 ? 1 : 0);
-                Fill(x,y+7,9,5,0xff111727); Fill(x+2,y+7,5,5,shirts[i]);
-                Fill(x+1,y,8,8,0xff111727); Fill(x+2,y+1,6,6,0xffd98955);
-                Fill(x+1,y,8,3,hair[i]); Fill(x+3,y+4,1,1,0xff111727); Fill(x+6,y+4,1,1,0xff111727);
-                if((tick+i)%7==0) Fill(x+8,y+4,2,1,0xffeecb6c);
+                int phase = (tick + i * 4) % 16;
+                Fill(carX - 4 - phase * 3, carY + 76 - phase / 3, 2 + phase / 4, 2, 0x8898a8b8);
             }
         }
-        private void DrawSteeringWheel(int x,int y,int direction)
+
+        private void DrawRoadMotion(float time, int tick)
         {
-            uint rim=0xff182b3b, shine=0xffb9d7dc;
-            Fill(x,y,1,7,rim); Fill(x+direction*5,y,1,7,rim);
-            Fill(x+direction*1,y-1,4,1,rim); Fill(x+direction*1,y+7,4,1,rim);
-            Fill(x+direction*2,y+2,2,3,shine); Fill(x+direction*1,y+3,4,1,rim);
+            // Marcas de pista em dois planos e reflexos curtos dão sensação de velocidade
+            // sem suavizar nem deslocar a arte de base em pixels inteiros.
+            int dashShift = (int)(time * 150f) % 48;
+            for (int dx = -48; dx < Width + 48; dx += 48)
+            {
+                Fill(dx - dashShift, 160, 22, 2, Gold);
+                Fill(dx - dashShift + 5, 163, 12, 1, 0x776f5c37);
+            }
+
+            int reflectorShift = (int)(time * 92f) % 64;
+            for (int dx = -64; dx < Width + 64; dx += 64)
+            {
+                int x = dx - reflectorShift;
+                Fill(x, 151, 2, 1, 0xffd5e8df);
+                Fill(x + 31, 177, 3, 1, 0xff395469);
+            }
+
+            // Vaga-lumes e luzes distantes piscam em um ritmo discreto no acostamento.
+            for (int i = 0; i < 9; i++)
+            {
+                int x = (i * 43 + 17) % Width;
+                int y = 119 + (i * 17) % 24;
+                if ((tick + i * 3) % 11 < 4) Fill(x, y, 1, 1, 0xffe6cb75);
+            }
         }
-        private void DrawWindshieldReflection(int carX,int carY,int frame)
+
+        private void DrawLoadingStatus(float progress, int tick)
         {
-            int x=frame==0 ? carX+54 : carX+154;
-            uint reflection=0x8898d0dc;
-            Fill(x,carY+25,2,15,reflection);
-            Fill(x+4,carY+22,1,10,reflection);
-            Fill(x+7,carY+19,1,7,reflection);
+            int percent = (int)Math.Round(Math.Clamp(progress, 0f, 1f) * 100f);
+            Text("CARREGANDO " + percent + "%", Width / 2 - 7, 197, Gold, true);
+            int left = Width / 2 + 55;
+            for (int dot = 0; dot < 4; dot++)
+            {
+                uint color = dot == tick % 4 ? Cyan : 0xff284758;
+                Fill(left + dot * 5, 198, 3, 3, color);
+            }
         }
+
+        private void DrawHeadlights(int originX, int originY)
+        {
+            for (int hx = Math.Max(0, originX); hx < Width; hx++)
+            {
+                float prog = (hx - originX) / (float)Math.Max(1, Width - originX);
+                float spread = 4f + 26f * (float)Math.Pow(prog, 0.82f);
+                float beamY = originY + 8f * prog;
+                int minY = Math.Max(0, (int)(beamY - spread));
+                int maxY = Math.Min(Height - 1, (int)(beamY + spread));
+                for (int hy = minY; hy <= maxY; hy++)
+                {
+                    float d = Math.Abs(hy - beamY) / Math.Max(1f, spread);
+                    float alpha = Math.Max(0f, (1f - prog * 0.70f) * (1f - d * d));
+                    if (alpha <= 0.02f) continue;
+                    uint aByte = (uint)Math.Clamp((int)(alpha * 70f), 0, 255);
+                    uint color = (aByte << 24) | 0x00ffe890u;
+                    Fill(hx, hy, 1, 1, color);
+                }
+            }
+        }
+
         private void Cabin(int tick)
         {
-            int sway=(tick/3)%4;
-            int offset=sway==0?-1:sway==2?1:0;
-            Blit(_cabin,-1,offset,386,216);
-            // Reflexos discretos cruzam apenas as bordas dos vidros, preservando rostos e figurinos.
-            int shine=(tick*3)%90;
-            for(int i=0;i<3;i++)
+            // Balanço sutil de suspensão e vibração do motor do Fusca
+            int sway = (tick / 3) % 4;
+            int offset = sway == 0 ? -1 : sway == 2 ? 1 : 0;
+            if (_cabin != null)
             {
-                int y=40+shine+i*8;
-                if(y<130) { Fill(7,y,5,1,0xff365c69);Fill(374,y+5,4,1,0xff365c69); }
+                Blit(_cabin, -1, 25 + offset, Width + 2, 160);
             }
-            // Pequeno reflexo no retrovisor oscila junto da suspensão.
-            Fill(180+offset,37,13,1,0xff516675);
+            else
+            {
+                Fill(0, 25, Width, 160, 0xff0a1220);
+            }
+
+            // Reflexos atmosféricos discretos nos vidros laterais
+            int shine = (tick * 3) % 90;
+            for (int i = 0; i < 3; i++)
+            {
+                int ry = 40 + shine + i * 8;
+                if (ry < 130) { Fill(7, ry, 5, 1, 0x33365c69); Fill(Width - 10, ry + 5, 4, 1, 0x33365c69); }
+            }
+            // Reflexo suave no retrovisor oscilando com o movimento
+            Fill(Width / 2 - 20 + offset, 37, 40, 1, 0x44516675);
+            // Pequenos pulsos do painel e dos postes que passam pelo vidro mantêm
+            // a tomada interna viva enquanto a próxima fase carrega.
+            int panelGlow = 82 + (tick % 5) * 4;
+            Fill(142, 177, 100, 2, 0x553b6680);
+            Fill(176, 179, 32, 1, 0xff3b6680);
+            Fill(panelGlow, 171, 2, 1, 0xffe0b45f);
         }
         private void Fill(int x,int y,int w,int h,uint color)
         {
@@ -198,7 +225,8 @@ namespace Game.Varginha
                 "Y:101101010010010","Z:111001010100111","0:111101101101111","1:010110010010111",
                 "2:110001010100111","3:110001010001110","4:101101111001001","5:111100110001110",
                 "6:011100111101111","7:111001010010010","8:111101111101111","9:111101111001110",
-                ">:100010001010100","/:001001010100100",".:000000000000010","-:000000111000000"
+                ">:100010001010100","/:001001010100100",".:000000000000010","-:000000111000000",
+                "%:101001010010101"
             };
             var result=new Dictionary<char,string>();foreach(var row in rows)result[row[0]]=row.Substring(2);return result;
         }

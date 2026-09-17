@@ -56,6 +56,8 @@ namespace Game.Varginha
         private string _victoryDescription;
         private bool _isVictoryOpen;
         public bool IsVictoryOpen => _isVictoryOpen;
+        private bool _isGameOver;
+        public bool IsGameOver => _isGameOver;
 
         private Texture2D _whiteTex;
         private GUIStyle _dialogueBoxStyle;
@@ -67,6 +69,11 @@ namespace Game.Varginha
         private GUIStyle _hotbarLabelStyle;
         private GUIStyle _hotbarNumberStyle;
         private GUIStyle _statusStyle;
+        private GUIStyle _healthStyle;
+        private static readonly Color PanelColor = new(.042f, .056f, .068f, .97f);
+        private static readonly Color PanelBorder = new(.28f, .40f, .44f, .98f);
+        private static readonly Color PaperColor = new(.92f, .91f, .82f);
+        private static readonly Color FocusColor = new(.96f, .78f, .34f);
         private readonly Sprite[] _hotbarIcons = new Sprite[5];
         private readonly bool[] _hotbarOwned = new bool[5];
         private readonly float[] _hotbarCollectedAt = new float[5];
@@ -140,6 +147,7 @@ namespace Game.Varginha
             // Este HUD vive junto aos managers; uma nova fase precisa sempre iniciar limpa.
             _isVictoryOpen = false;
             _isDialogueOpen = false;
+            _isGameOver = false;
             _lastInteractionInstruction = null;
             _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
             System.Array.Clear(_hotbarOwned, 0, _hotbarOwned.Length);
@@ -160,7 +168,7 @@ namespace Game.Varginha
         {
             if (_dialogueBoxStyle != null) return;
 
-            _whiteTex = new Texture2D(1, 1);
+            _whiteTex = new Texture2D(1, 1) { filterMode = FilterMode.Point, hideFlags = HideFlags.DontSave };
             _whiteTex.SetPixel(0, 0, Color.white);
             _whiteTex.Apply();
 
@@ -172,7 +180,7 @@ namespace Game.Varginha
                 fontStyle = FontStyle.Bold,
                 alignment = TextAnchor.MiddleLeft
             };
-            _speakerStyle.normal.textColor = new Color(0.3f, 0.9f, 1f);
+            _speakerStyle.normal.textColor = new Color(.64f, .84f, .86f);
 
             _dialogueTextStyle = new GUIStyle(GUI.skin.label)
             {
@@ -180,22 +188,25 @@ namespace Game.Varginha
                 wordWrap = true,
                 alignment = TextAnchor.UpperLeft
             };
-            _dialogueTextStyle.normal.textColor = Color.white;
+            _dialogueTextStyle.normal.textColor = PaperColor;
 
-            _rodrigoStyle = new GUIStyle(GUI.skin.box)
+            _rodrigoStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 13,
                 wordWrap = true,
-                alignment = TextAnchor.MiddleCenter
+                alignment = TextAnchor.MiddleCenter,
+                padding = new RectOffset(15, 15, 10, 10)
             };
+            _rodrigoStyle.normal.textColor = PaperColor;
 
-            _promptStyle = new GUIStyle(GUI.skin.box)
+            _promptStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 14,
                 fontStyle = FontStyle.Bold,
                 alignment = TextAnchor.MiddleCenter,
                 wordWrap = true
             };
+            _promptStyle.normal.textColor = PaperColor;
             _buttonStyle = new GUIStyle(GUI.skin.button)
             {
                 fontSize = 12,
@@ -210,11 +221,12 @@ namespace Game.Varginha
             PixelUIFont.Apply(_promptStyle);
             PixelUIFont.Apply(_buttonStyle);
             _hotbarLabelStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 11, fontStyle = FontStyle.Bold };
-            _hotbarLabelStyle.normal.textColor = new Color(.90f, .84f, .65f);
-            _hotbarNumberStyle = new GUIStyle(_hotbarLabelStyle) { alignment = TextAnchor.UpperLeft, fontSize = 10 };
+            _hotbarLabelStyle.normal.textColor = PaperColor;
+            _hotbarNumberStyle = new GUIStyle(_hotbarLabelStyle) { alignment = TextAnchor.MiddleCenter, fontSize = 10, padding = new RectOffset(0, 0, 0, 0) };
             PixelUIFont.Apply(_hotbarLabelStyle);
             PixelUIFont.Apply(_hotbarNumberStyle);
             _statusStyle = new GUIStyle(_hotbarLabelStyle) { fontSize = 11 };
+            _healthStyle = new GUIStyle(_hotbarLabelStyle) { fontSize = 12 };
             _hotbarIcons[0] = VarginhaPixelArtSprites.Create("Backpack_Inventory", Color.gray);
             _hotbarIcons[1] = VarginhaPixelArtSprites.Create("Inventory_Key", Color.white);
             _hotbarIcons[2] = VarginhaPixelArtSprites.Create("Inventory_Journal", Color.white);
@@ -269,6 +281,15 @@ namespace Game.Varginha
             _isVictoryOpen = true;
         }
 
+        /// <summary>Abre a tela de Game Over antes do retorno automático para a Fase 1.</summary>
+        public void ShowGameOver()
+        {
+            CloseBackpack();
+            _isDialogueOpen = false;
+            _isVictoryOpen = false;
+            _isGameOver = true;
+        }
+
         private void OnGUI()
         {
             if (IsInventoryOpen) return;
@@ -279,9 +300,15 @@ namespace Game.Varginha
             _rodrigoTypewriter.Tick(28f);
             _interactionTypewriter.Tick(42f);
 
+            if ((_isDialogueOpen && _dialogueTypewriter.HasAdvanced) || _rodrigoTypewriter.HasAdvanced)
+            {
+                PlayTypewriterBlip();
+            }
+
             if (_isDialogueOpen && Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Space)
             {
-                _dialogueTypewriter.RevealImmediately();
+                if (_dialogueTypewriter.IsComplete) CloseDialogue();
+                else _dialogueTypewriter.RevealImmediately();
                 Event.current.Use();
             }
 
@@ -304,7 +331,7 @@ namespace Game.Varginha
             {
                 DrawVictoryWindow();
             }
-            else if (_edelzio != null && _edelzio.CurrentSanity <= 0f)
+            else if (_isGameOver || GameManager.Instance?.IsGameOver == true || (_edelzio != null && _edelzio.CurrentSanity <= 0f))
             {
                 DrawGameOverWindow();
             }
@@ -320,32 +347,46 @@ namespace Game.Varginha
             float panelWidth = Mathf.Min(340f, Mathf.Max(220f, Screen.width - 36f));
             float panelHeight = Screen.height < 420f ? 84f : 100f;
             Rect stabilityPanel = new Rect(18, 16, panelWidth, panelHeight);
-            PixelHUDFrame.Draw(stabilityPanel, _whiteTex, new Color(.035f, .09f, .14f, .94f), new Color(.22f, .9f, .95f, .9f));
+            PixelHUDFrame.Draw(stabilityPanel, _whiteTex, PanelColor, PanelBorder);
             GUI.Label(new Rect(stabilityPanel.x, stabilityPanel.y + 6, stabilityPanel.width, 20), "SAUDE", _promptStyle);
 
             int filledHearts = Mathf.Clamp(Mathf.CeilToInt(ratio * 3f), 0, 3);
-            float heartSize = Mathf.Clamp((stabilityPanel.width - 44f) / 3f, 28f, 52f);
+            float heartSize = Mathf.Clamp((stabilityPanel.width - 44f) / 3f, 28f, panelHeight - 52f);
             float heartGap = Mathf.Clamp(6f * heartSize / 52f, 3f, 6f);
             float heartX = stabilityPanel.x + (stabilityPanel.width - heartSize * 3f - heartGap * 2f) * .5f;
             for (int heart = 0; heart < 3; heart++)
             {
-                Color heartColor = heart < filledHearts ? new Color(.95f, .12f, .18f) : new Color(.24f, .06f, .08f);
+                Color heartColor = heart < filledHearts ? new Color(.87f, .24f, .29f) : new Color(.27f, .20f, .24f);
                 PixelHUDFrame.DrawHeart(new Rect(heartX + heart * (heartSize + heartGap), stabilityPanel.y + 28f, heartSize, heartSize), _whiteTex, heartColor);
             }
 
-            var sanityStyle = new GUIStyle(GUI.skin.label) { fontSize = 14, alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold };
-            sanityStyle.normal.textColor = Color.white;
-            PixelUIFont.Apply(sanityStyle);
-            GUI.Label(new Rect(stabilityPanel.x + 8f, stabilityPanel.y + panelHeight - 22f, stabilityPanel.width - 16f, 18), $"{Mathf.CeilToInt(sanity)}%", sanityStyle);
+            _healthStyle.normal.textColor = ratio <= 1f / 3f ? new Color(1f, .61f, .60f) : PaperColor;
+            GUI.Label(new Rect(stabilityPanel.x + 8f, stabilityPanel.yMax - 28f, stabilityPanel.width - 16f, 18), $"{Mathf.CeilToInt(ratio * 100f)}%", _healthStyle);
+            Rect healthTrack = new Rect(stabilityPanel.x + 12f, stabilityPanel.yMax - 9f, stabilityPanel.width - 24f, 3f);
+            DrawHudBlock(healthTrack, new Color(.025f, .03f, .04f));
+            // Barra de saúde com cor suave que pulsa quando crítica
+            Color barColor = ratio <= 1f / 3f
+                ? Color.Lerp(new Color(.86f, .31f, .34f), new Color(1f, .55f, .58f), 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 6f))
+                : new Color(.57f, .75f, .69f);
+            DrawHudBlock(new Rect(healthTrack.x, healthTrack.y, Mathf.Round(healthTrack.width * ratio), healthTrack.height), barColor);
+            for (int segment = 1; segment < 3; segment++)
+                DrawHudBlock(new Rect(healthTrack.x + Mathf.Round(healthTrack.width * segment / 3f), healthTrack.y, 2f, healthTrack.height), PanelColor);
 
-            // Guia Rodrigo (Topo Centro)
-            float rw = Mathf.Min(720, Screen.width - 760);
-            if (rw > 280)
+            // Guia Rodrigo (Topo) - Responsivo e sempre visível em qualquer resolução
+            float leftSpace = stabilityPanel.xMax + 14f;
+            float rw = Mathf.Clamp(Screen.width - leftSpace - 24f, 220f, 680f);
+            if (Screen.width > 520f)
             {
-                GUI.color = new Color(0.12f, 0.18f, 0.28f, 0.95f);
-                Rect guidePanel = new Rect((Screen.width - rw) / 2f, 16, rw, 88);
-                PixelHUDFrame.Draw(guidePanel, _whiteTex, new Color(.04f, .10f, .19f, .96f), new Color(.22f, .65f, .9f, .85f));
-                GUI.Label(guidePanel, _rodrigoTypewriter.VisibleText, _rodrigoStyle);
+                float rx = Screen.width > 920f ? (Screen.width - rw) * .5f : leftSpace;
+                if (rx < leftSpace) rx = leftSpace;
+                Rect guidePanel = new Rect(rx, 16, rw, panelHeight);
+                PixelHUDFrame.Draw(guidePanel, _whiteTex, PanelColor, PanelBorder);
+                Rect guideHeader = new Rect(guidePanel.x + 10f, guidePanel.y + 5f, guidePanel.width - 20f, 16f);
+                float recBlink = Mathf.PingPong(Time.unscaledTime * 2.2f, 1f);
+                string recDot = recBlink > 0.4f ? "●" : "○";
+                GUI.Label(guideHeader, $"{recDot} TRANSMISSAO • SINAL 96.4 MHz • RODRIGO", _hotbarNumberStyle);
+                Rect guideContent = new Rect(guidePanel.x + 10f, guidePanel.y + 20f, guidePanel.width - 20f, guidePanel.height - 26f);
+                GUI.Label(guideContent, _rodrigoTypewriter.VisibleText, _rodrigoStyle);
                 GUI.color = Color.white;
             }
         }
@@ -360,6 +401,7 @@ namespace Game.Varginha
             float y = Mathf.Round(Screen.height - HotbarHeight - 8f);
             y = Mathf.Max(8f, y);
             _hotbarLabelStyle.fontSize = Screen.width < 480 ? 8 : 11;
+            DrawHudBlock(new Rect(x, y + 1f, width, 18f), new Color(.035f, .045f, .055f, .88f));
             GUI.Label(new Rect(x, y, width, 20f), "ITENS COLETADOS", _hotbarLabelStyle);
             int hovered = -1;
             for (int i = 0; i < 5; i++)
@@ -367,11 +409,12 @@ namespace Game.Varginha
                 Rect slot = new Rect(x + i * (slotSize + gap), y + 22f, slotSize, slotSize);
                 bool owned = _edelzio.HasInventoryItem(i);
                 bool selected = i == _selectedSlot;
+                bool isHovered = slot.Contains(Event.current.mousePosition);
                 bool newlyCollected = owned && Time.unscaledTime - _hotbarCollectedAt[i] < 1.4f;
-                Color border = selected ? new Color(.96f, .73f, .29f) : owned ? new Color(.23f, .64f, .67f) : new Color(.22f, .29f, .31f);
+                Color border = selected ? FocusColor : isHovered ? new Color(.65f, .74f, .76f)
+                    : owned ? PanelBorder : new Color(.23f, .28f, .32f);
                 if (newlyCollected) border = Color.Lerp(border, Color.white, .3f + .25f * Mathf.Sin(Time.unscaledTime * 8f));
-                PixelHUDFrame.Draw(new Rect(slot.x + 3, slot.y + 4, slot.width, slot.height), _whiteTex, new Color(.015f, .025f, .035f, .85f), new Color(.015f, .025f, .035f));
-                PixelHUDFrame.Draw(slot, _whiteTex, selected ? new Color(.12f, .17f, .19f, .98f) : new Color(.035f, .075f, .10f, .97f), border);
+                PixelHUDFrame.Draw(slot, _whiteTex, selected ? new Color(.15f, .17f, .18f, .99f) : PanelColor, border);
                 if (owned)
                 {
                     var sprite = EnsureHotbarIcon(i);
@@ -383,15 +426,28 @@ namespace Game.Varginha
                             new Rect(source.x / texture.width, source.y / texture.height, source.width / texture.width, source.height / texture.height));
                     }
                 }
-                else GUI.Label(slot, "·", _hotbarLabelStyle);
-                GUI.Label(new Rect(slot.x + 6, slot.y + 4, 18, 16), (i + 1).ToString(), _hotbarNumberStyle);
-                if (slot.Contains(Event.current.mousePosition)) hovered = i;
+                else
+                {
+                    float centerX = Mathf.Round(slot.center.x), centerY = Mathf.Round(slot.center.y);
+                    DrawHudBlock(new Rect(centerX - 5, centerY - 1, 10, 2), new Color(.24f, .28f, .32f));
+                }
+                Rect numberBadge = new Rect(slot.x + 4, slot.y + 4, 15, 15);
+                DrawHudBlock(numberBadge, new Color(.025f, .035f, .045f, .95f));
+                _hotbarNumberStyle.normal.textColor = selected ? FocusColor : new Color(.68f, .73f, .75f);
+                GUI.Label(numberBadge, (i + 1).ToString(), _hotbarNumberStyle);
+                if (selected)
+                    DrawHudBlock(new Rect(slot.x + 8, slot.yMax - 6, slot.width - 16, 2), FocusColor);
+                if (owned)
+                    DrawHudBlock(new Rect(slot.xMax - 9, slot.yMax - 10, 3, 3), new Color(.58f, .79f, .70f));
+                if (isHovered) hovered = i;
                 // Input is handled in Update before combat, preventing click-through attacks.
             }
             int describedSlot = hovered >= 0 ? hovered : _selectedSlot;
             string label = _edelzio.HasInventoryItem(describedSlot) ? HotbarNames[describedSlot] : "ESPAÇO VAZIO";
             if (describedSlot == 0 && _edelzio.HasBackpack) label = "MOCHILA • CLIQUE OU [G]";
-            GUI.Label(new Rect(x, y + slotSize + (Screen.height < 420f ? 14f : 24f), width, 20f), label, _hotbarLabelStyle);
+            Rect description = new Rect(x, y + slotSize + (Screen.height < 420f ? 14f : 24f), width, 20f);
+            DrawHudBlock(description, new Color(.035f, .045f, .055f, .92f));
+            GUI.Label(description, label, _hotbarLabelStyle);
         }
 
         private void DrawInteractionPrompt()
@@ -412,17 +468,17 @@ namespace Game.Varginha
                 _interactionTypewriter.Set(instruction);
             }
 
-            GUI.color = new Color(0.1f, 0.8f, 0.9f, 0.9f);
             Rect promptPanel = new Rect(x, y, w, h);
-            PixelHUDFrame.Draw(promptPanel, _whiteTex, new Color(.025f, .11f, .14f, .96f), new Color(.15f, .85f, .9f, .95f));
+            PixelHUDFrame.Draw(promptPanel, _whiteTex, PanelColor, new Color(.48f, .69f, .71f));
             GUI.Label(new Rect(promptPanel.x + 12f, promptPanel.y + 7f, promptPanel.width - 24f, promptPanel.height - 14f), _interactionTypewriter.VisibleText, _promptStyle);
             GUI.color = Color.white;
         }
 
         private void DrawCombatHint()
         {
-            if (_edelzio == null || _edelzio.GetComponent<VarginhaPlayerAttack>() == null || _isDialogueOpen || _isVictoryOpen || _edelzio.CurrentSanity <= 0f) return;
-            var attack = _edelzio.GetComponent<VarginhaPlayerAttack>();
+            // Bug fix: cache GetComponent result instead of calling it twice per frame
+            var attack = _edelzio?.GetComponent<VarginhaPlayerAttack>();
+            if (_edelzio == null || attack == null || _isDialogueOpen || _isVictoryOpen || _edelzio.CurrentSanity <= 0f) return;
             float hintWidth = Mathf.Min(360f, Screen.width - 36f);
             float hintHeight = Screen.height < 420f ? 44f : 50f;
             float hotbarTop = Screen.height - HotbarHeight - 8f;
@@ -432,8 +488,15 @@ namespace Game.Varginha
             else if (hintY < 8f)
                 hintY = 8f;
             Rect hint = new Rect(18f, hintY, hintWidth, hintHeight);
-            PixelHUDFrame.Draw(hint, _whiteTex, new Color(.025f, .07f, .09f, .92f), new Color(.77f, .49f, .20f, .95f));
+            bool hasTarget = VarginhaCombatCursor.Instance != null && VarginhaCombatCursor.Instance.HasTarget;
+            // Pulsação sutil na borda quando há alvo
+            float targetPulse = hasTarget ? 0.72f + 0.28f * Mathf.Sin(Time.unscaledTime * 5.5f) : 1f;
+            Color hintBorder = hasTarget
+                ? new Color(.92f * targetPulse, .35f, .38f)
+                : new Color(.59f, .49f, .34f);
+            PixelHUDFrame.Draw(hint, _whiteTex, PanelColor, hintBorder);
             string combo = attack.ComboStep > 0 ? $"COMBO {attack.ComboStep}/3" : "COMBO 3 GOLPES";
+            if (hasTarget) combo += " \u2022 ALVO TRAVADO";
             string attackBinding = VarginhaInputBindings.DisplayName(VarginhaInputAction.Attack);
             string attackLine = $"{attackBinding}  {combo}";
             _statusStyle.fontSize = Screen.width < 480 ? 9 : 11;
@@ -462,8 +525,7 @@ namespace Game.Varginha
             _dialogueTextStyle.fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 55f), 8, 15);
             _buttonStyle.fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 48f), 8, 14);
 
-            GUI.color = new Color(0.08f, 0.12f, 0.22f, 0.96f);
-            PixelHUDFrame.Draw(modal, _whiteTex, new Color(.025f, .07f, .13f, .98f), new Color(.20f, .82f, .9f, .9f));
+            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, PanelBorder);
             GUI.color = Color.white;
 
             GUI.Label(new Rect(modal.x + pad, modal.y + pad * .35f, modal.width - pad * 2f, speakerHeight), $"> {_activeSpeaker}", _speakerStyle);
@@ -475,6 +537,48 @@ namespace Game.Varginha
                 if (_dialogueTypewriter.IsComplete) CloseDialogue();
                 else _dialogueTypewriter.RevealImmediately();
             }
+
+            if (_dialogueTypewriter.IsComplete)
+            {
+                float blink = Mathf.PingPong(Time.unscaledTime * 3.5f, 1f);
+                if (blink > 0.25f)
+                {
+                    GUI.Label(new Rect(modal.xMax - pad - 120f, modal.yMax - buttonHeight - pad * .45f, 110f, 20f), "[ESPAÇO] ▼", _hotbarNumberStyle);
+                }
+            }
+        }
+
+        private static AudioClip _typewriterClip;
+        private static AudioSource _typewriterSource;
+
+        private static void PlayTypewriterBlip()
+        {
+            if (_typewriterClip == null)
+            {
+                int sampleRate = 22050;
+                float duration = 0.03f;
+                int count = Mathf.RoundToInt(sampleRate * duration);
+                float[] samples = new float[count];
+                for (int i = 0; i < count; i++)
+                {
+                    float t = (float)i / sampleRate;
+                    float env = 1f - (float)i / count;
+                    samples[i] = Mathf.Sin(2f * Mathf.PI * 520f * t) * env * 0.16f;
+                }
+                _typewriterClip = AudioClip.Create("TypewriterBlip", count, 1, sampleRate, false);
+                _typewriterClip.SetData(samples, 0);
+            }
+
+            if (_typewriterSource == null)
+            {
+                var go = new GameObject("TypewriterAudioSource");
+                Object.DontDestroyOnLoad(go);
+                _typewriterSource = go.AddComponent<AudioSource>();
+                _typewriterSource.playOnAwake = false;
+            }
+
+            _typewriterSource.pitch = UnityEngine.Random.Range(0.92f, 1.08f);
+            _typewriterSource.PlayOneShot(_typewriterClip, 0.18f);
         }
 
         private void DrawVictoryWindow()
@@ -484,8 +588,7 @@ namespace Game.Varginha
             float buttonHeight = Mathf.Clamp(modal.height * .15f, 30f, 52f);
             _buttonStyle.fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 48f), 8, 14);
 
-            GUI.color = new Color(0.06f, 0.18f, 0.12f, 0.98f);
-            PixelHUDFrame.Draw(modal, _whiteTex, new Color(.025f, .12f, .08f, .98f), new Color(.28f, 1f, .55f, .9f));
+            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, new Color(.46f, .71f, .57f));
             GUI.color = Color.white;
 
             var titleStyle = new GUIStyle(GUI.skin.label) { fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 30f), 10, 22), fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, wordWrap = true };
@@ -517,26 +620,25 @@ namespace Game.Varginha
             float buttonHeight = Mathf.Clamp(modal.height * .16f, 30f, 48f);
             _buttonStyle.fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 48f), 8, 14);
 
-            GUI.color = new Color(0.25f, 0.05f, 0.08f, 0.98f);
-            PixelHUDFrame.Draw(modal, _whiteTex, new Color(.18f, .025f, .055f, .98f), new Color(1f, .22f, .35f, .9f));
+            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, new Color(.76f, .35f, .40f));
             GUI.color = Color.white;
 
             var titleStyle = new GUIStyle(GUI.skin.label) { fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 30f), 10, 22), fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, wordWrap = true };
             titleStyle.normal.textColor = Color.red;
             PixelUIFont.Apply(titleStyle);
-            float titleHeight = titleStyle.CalcHeight(new GUIContent("COLAPSO SOBRENATURAL"), modal.width - pad * 2f);
-            GUI.Label(new Rect(modal.x + pad, modal.y + pad, modal.width - pad * 2f, titleHeight), "COLAPSO SOBRENATURAL", titleStyle);
+            float titleHeight = titleStyle.CalcHeight(new GUIContent("GAME OVER"), modal.width - pad * 2f);
+            GUI.Label(new Rect(modal.x + pad, modal.y + pad, modal.width - pad * 2f, titleHeight), "GAME OVER", titleStyle);
 
             var descStyle = new GUIStyle(GUI.skin.label) { fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 48f), 8, 15), wordWrap = true, alignment = TextAnchor.MiddleCenter };
             descStyle.normal.textColor = Color.white;
             PixelUIFont.Apply(descStyle);
             float contentTop = modal.y + pad + titleHeight + pad * .6f;
-            GUI.Label(new Rect(modal.x + pad, contentTop, modal.width - pad * 2f, modal.yMax - contentTop - buttonHeight - pad * 1.6f), "A Entidade Ancestral drenou completamente a sanidade de Edelzio antes de alcançar o Fusca...", descStyle);
+            GUI.Label(new Rect(modal.x + pad, contentTop, modal.width - pad * 2f, modal.yMax - contentTop - buttonHeight - pad * 1.6f), "EDELZIO FOI DERROTADO.\nVOLTANDO PARA A FASE 1...", descStyle);
 
             float buttonWidth = Mathf.Min(modal.width - pad * 2f, 300f);
-            if (GUI.Button(new Rect(modal.x + (modal.width - buttonWidth) * .5f, modal.yMax - buttonHeight - pad * .55f, buttonWidth, buttonHeight), "TENTAR NOVAMENTE", _buttonStyle))
+            if (GUI.Button(new Rect(modal.x + (modal.width - buttonWidth) * .5f, modal.yMax - buttonHeight - pad * .55f, buttonWidth, buttonHeight), "VOLTAR A FASE 1", _buttonStyle))
             {
-                RestartScene();
+                VarginhaGameOverFlow.ReturnToPhaseOne();
             }
         }
 
@@ -546,6 +648,13 @@ namespace Game.Varginha
             _isVictoryOpen = false;
             _isDialogueOpen = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        private void DrawHudBlock(Rect rect, Color color)
+        {
+            GUI.color = color;
+            GUI.DrawTexture(rect, _whiteTex);
+            GUI.color = Color.white;
         }
 
         private static Rect GetModalRect(float maxWidth, float maxHeight)

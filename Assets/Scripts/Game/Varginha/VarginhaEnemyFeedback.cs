@@ -40,7 +40,7 @@ namespace Game.Varginha
         {
             for (int i = _popups.Count - 1; i >= 0; i--)
             {
-                _popups[i].Age += Time.unscaledDeltaTime;
+                _popups[i].Age += Time.deltaTime;
                 if (_popups[i].Age >= .82f) _popups.RemoveAt(i);
             }
         }
@@ -63,7 +63,8 @@ namespace Game.Varginha
 
         private void OnGUI()
         {
-            if (_health == null || _health.IsDead || VarginhaTravelCinematic.IsTravelling) return;
+            if (_health == null || _health.IsDead || VarginhaWorldFeedback.IsHidden
+                || (_renderer != null && !_renderer.enabled)) return;
             Camera camera = Camera.main;
             if (camera == null) return;
 
@@ -73,8 +74,10 @@ namespace Game.Varginha
             if (point.z <= 0f) return;
             point.y = Screen.height - point.y;
 
+            var previous = GUI.color;
             DrawHealthBar(point);
             DrawDamagePopups(camera);
+            GUI.color = previous;
         }
 
         private void DrawHealthBar(Vector3 point)

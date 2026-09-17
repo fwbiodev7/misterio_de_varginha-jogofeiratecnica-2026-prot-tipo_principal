@@ -35,6 +35,8 @@ namespace Game.Varginha
                     var health = player.gameObject.AddComponent<HealthSystem>();
                     health.SetMaxHealth(100f, false);
                 }
+                if (player.GetComponent<VarginhaGameOverFlow>() == null)
+                    player.gameObject.AddComponent<VarginhaGameOverFlow>();
             }
 
             foreach (var ai in Object.FindObjectsByType<EntityManifestationAI>(FindObjectsInactive.Include))

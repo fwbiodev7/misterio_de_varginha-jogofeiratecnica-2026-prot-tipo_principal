@@ -77,7 +77,9 @@ namespace Game.Varginha
                 actor.transform.position = actorPosition;
                 shadow.transform.position = actorPosition + Vector3.down * .45f;
                 actor.transform.localScale = new Vector3(1.55f*(1 + .18f*Mathf.Sin(wind*Mathf.PI)),1.55f*(1 - .17f*Mathf.Sin(wind*Mathf.PI)),1);
-                actor.flipX = sign < 0;
+                var walkFrame = VarginhaStudentSprites.Frame(student, sign < 0 ? 1 : 2, (int)(time * 10f));
+                if (walkFrame != null) actor.sprite = walkFrame;
+                actor.flipX = false;
                 weapon.transform.position = actorPosition + Vector3.right * sign * .65f;
                 weapon.transform.rotation = Quaternion.Euler(0,0,Mathf.Lerp(-65*sign,45*sign,ease));
                 warning.transform.localScale = Vector3.one * (warningRadius * 2f + .08f * Mathf.Sin(time * 18));
@@ -341,7 +343,7 @@ namespace Game.Varginha
         private void OnDisable() => Cancel();
         private void OnGUI()
         {
-            if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
+            if (VarginhaWorldFeedback.IsHidden) return;
             if (_root == null || Camera.main == null) return;
             if (_label == null) _label = new GUIStyle(GUI.skin.label) { fontSize = 17, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
             Vector3 point = Camera.main.WorldToScreenPoint(_captionPosition);

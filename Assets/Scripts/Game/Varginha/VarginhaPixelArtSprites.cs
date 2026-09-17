@@ -68,6 +68,17 @@ namespace Game.Varginha
 
         public static Sprite Create(string id, Color color)
         {
+            // Roster art has one source of truth in the authored, directional atlases.
+            if (id.StartsWith("StudentHead_"))
+            {
+                var portrait = VarginhaStudentSprites.Portrait(id.Substring("StudentHead_".Length));
+                if (portrait != null) return portrait;
+            }
+            else if (id.StartsWith("Student_"))
+            {
+                var student = VarginhaStudentSprites.Frame(id.Substring("Student_".Length));
+                if (student != null) return student;
+            }
             if (id.StartsWith("Backpack") || id.StartsWith("Notebook")) color = new Color(.48f, .48f, .48f);
             string key = id + color;
             if (Cache.TryGetValue(key, out var cached))
@@ -173,10 +184,11 @@ namespace Game.Varginha
             else if (id == "Attack_Slash" || id == "Attack_HeavySlash") DrawAttackSlash(texture, mid, dark, light, id.Contains("Heavy"));
             else if (id == "Attack_CrossSlash") DrawCrossSlash(texture, mid, dark, light);
             else if (id == "Attack_Impact") DrawAttackImpact(texture, mid, dark, light);
+            else if (id == "Alien_Ichor") DrawAlienIchor(texture);
             else if (id == "Dodge_Dust") DrawDodgeDust(texture, mid, dark, light);
             else if (id.StartsWith("HostageCage")) DrawHostageCage(texture, mid, dark, light);
-            else if (id == "ET_Attack") DrawETAttack(texture, mid, dark, light);
             else if (id == "ET_Shockwave") DrawShockwave(texture, mid, false);
+            else if (id.StartsWith("Flashlight_Cone")) DrawFlashlightCone(texture, mid);
             else if (id.StartsWith("StudentAttackTrail_")) DrawStudentTrail(texture, mid, id);
             else if (id.StartsWith("StudentImpact_")) DrawStudentImpact(texture, mid, id);
             else if (id.StartsWith("StudentAttack_")) DrawStudentAttack(texture, mid, dark, light, id);
@@ -197,8 +209,10 @@ namespace Game.Varginha
 
             AddMicroDetails(texture, id, dark, light);
             texture.anisoLevel = 0;
+            if (id.StartsWith("Flashlight_Cone")) texture.filterMode = FilterMode.Bilinear;
             texture.Apply(false, false);
-            var sprite = Sprite.Create(texture, new Rect(0, 0, CanvasSize, CanvasSize), new Vector2(0.5f, 0.5f), PixelsPerUnit, 0, SpriteMeshType.FullRect);
+            Vector2 pivot = id.StartsWith("Flashlight_Cone") ? new Vector2(0.03125f, 0.5f) : new Vector2(0.5f, 0.5f);
+            var sprite = Sprite.Create(texture, new Rect(0, 0, CanvasSize, CanvasSize), pivot, PixelsPerUnit, 0, SpriteMeshType.FullRect);
             sprite.name = "Pixel_" + id;
             Cache[key] = sprite;
             return sprite;
@@ -921,25 +935,80 @@ namespace Game.Varginha
 
         private static void DrawFuscaDoor(Texture2D t, Color mid, Color dark, Color light, bool open, bool ajar)
         {
-            Color glass = new Color(.46f, .78f, .86f);
-            Color glassLight = new Color(.75f, .93f, .94f);
-            // Rounded roof line and lower corners, upright glass, front vent window and chrome.
-            // The same leaf is projected continuously by FuscaDoorMotion; pose names stay compatible.
-            for (int y = 7; y <= 29; y++)
+            // Paleta oficial de 7 cores extraída do spritesheet do Fusca 1996
+            Color outline = new Color32(39, 44, 46, 255);
+            Color darkBlue = new Color32(24, 105, 143, 255);
+            Color midBlue = new Color32(49, 137, 204, 255);
+            Color baseBlue = new Color32(69, 179, 230, 255);
+            Color lightBlue = new Color32(89, 210, 247, 255);
+            Color chrome = new Color32(176, 199, 209, 255);
+            Color glass = new Color32(200, 242, 247, 255);
+            Color glassDark = new Color32(105, 168, 188, 240);
+
+            // Folha da porta preenche com precisão a área UV (x=6..25, y=6..29)
+            for (int y = 6; y <= 29; y++)
             {
-                int inset = y > 24 ? (y - 24) * (y - 24) / 8 : y < 10 ? 10 - y : 0;
-                int left = 7 + inset, right = 24 - (y > 24 ? Mathf.Max(0, inset - 1) : inset);
-                Fill(t, left, y, right - left + 1, 1, dark);
-                if (y > 7 && y < 29) Fill(t, left + 1, y, Mathf.Max(1, right - left - 1), 1,
-                    y >= 19 ? glass : Color.Lerp(mid, light, (y - 7) / 40f));
+                int left = 6;
+                int right = y <= 24 ? 25 : 25 - (y - 24);
+
+                // Contorno e vedação de borracha
+                Fill(t, left, y, right - left + 1, 1, outline);
+
+                if (y > 6 && y < 29)
+                {
+                    int innerLeft = left + 1;
+                    int innerRight = right - 1;
+                    int innerWidth = innerRight - innerLeft + 1;
+
+                    if (y == 16)
+                    {
+                        // Friso cromado da cintura (beltline)
+                        Fill(t, innerLeft, y, innerWidth, 1, chrome);
+                    }
+                    else if (y > 16)
+                    {
+                        // Janela do motorista (proporcional à cabine, ~48% da altura)
+                        for (int x = innerLeft; x <= innerRight; x++)
+                        {
+                            if (x == 20)
+                            {
+                                // Coluna do quebra-vento clássico do Fusca
+                                Pixel(t, x, y, chrome);
+                            }
+                            else if ((x - y) % 5 == 0 || (x - y) % 5 == 1)
+                            {
+                                // Reflexo diagonal vítreo
+                                Pixel(t, x, y, glass);
+                            }
+                            else
+                            {
+                                Pixel(t, x, y, glassDark);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Painel de lataria inferior
+                        Color bodyColor = y <= 8 ? darkBlue : y == 15 ? lightBlue : baseBlue;
+                        Fill(t, innerLeft, y, innerWidth, 1, bodyColor);
+
+                        // Sombra na borda posterior (abertura)
+                        Pixel(t, innerLeft, y, midBlue);
+                    }
+                }
             }
-            Fill(t, 9, 18, 14, 1, glassLight);
-            Fill(t, 9, 17, 14, 1, dark);
-            Fill(t, 10, 21, 1, 5, glassLight); Fill(t, 11, 25, 3, 1, glassLight);
-            Fill(t, 20, 20, 1, 7, dark); // quarter vent at the front hinge
-            Fill(t, 9, 15, 4, 1, dark); Fill(t, 10, 15, 3, 1, glassLight);
-            Fill(t, 10, 10, 11, 1, Color.Lerp(mid, light, .45f));
-            Fill(t, 11, 8, 9, 1, dark);
+
+            // Maçaneta clássica horizontal (x=8..12, y=13..14) com gatilho cromado
+            Fill(t, 8, 13, 5, 2, outline);
+            Pixel(t, 9, 14, chrome);
+            Pixel(t, 10, 14, chrome);
+            Pixel(t, 8, 12, darkBlue);
+            Pixel(t, 12, 12, darkBlue);
+
+            // Moldura superior da calha / teto
+            Fill(t, 7, 28, 14, 1, chrome);
+            // Trinco do quebra-vento
+            Pixel(t, 20, 17, Color.white);
         }
 
         private static void DrawAttackSlash(Texture2D t, Color mid, Color dark, Color light, bool heavy)
@@ -975,6 +1044,23 @@ namespace Game.Varginha
             Fill(t, 5, 25, 2, 2, light); Fill(t, 25, 5, 2, 2, light);
         }
 
+        private static void DrawAlienIchor(Texture2D t)
+        {
+            Color glow = new Color(.30f, 1f, .42f);
+            Color core = new Color(.78f, 1f, .85f);
+            Color deep = new Color(.08f, .55f, .22f);
+            for (int y = 4; y < 28; y++)
+            for (int x = 4; x < 28; x++)
+            {
+                int dx = Mathf.Abs(x - 16), dy = Mathf.Abs(y - 16);
+                if (dx * dx + dy * dy < 18) Pixel(t, x, y, dx + dy < 4 ? core : glow);
+            }
+            Fill(t, 6, 7, 3, 2, glow); Fill(t, 23, 22, 3, 3, deep);
+            Fill(t, 7, 24, 2, 3, deep); Fill(t, 24, 8, 3, 2, glow);
+            Pixel(t, 16, 5, core); Pixel(t, 16, 27, deep);
+            Pixel(t, 5, 16, deep); Pixel(t, 27, 16, glow);
+        }
+
         private static void DrawCrossSlash(Texture2D t, Color mid, Color dark, Color light)
         {
             // Segundo golpe do combo: duas lâminas cruzadas, visualmente distinto
@@ -997,6 +1083,69 @@ namespace Game.Varginha
             Ellipse(t, 25, 23, 4, 3, new Color(.87f, .89f, .91f, .78f));
             Fill(t, 4, 11, 5, 1, light); Fill(t, 14, 17, 4, 1, light);
             Pixel(t, 6, 21, dust); Pixel(t, 11, 25, dust); Pixel(t, 28, 9, dust);
+        }
+
+        private static void DrawFlashlightCone(Texture2D t, Color color)
+        {
+            // Cone de luz âmbar/incandescente atmosférico anos 90: lente quente no bocal,
+            // facho central brilhante e penumbra suave com partículas de poeira.
+            Color lensCore = new Color(1f, 1f, .98f, 1f);
+            Color hotCore = new Color(1f, .97f, .85f, .82f);
+            Color warmBeam = new Color(1f, .90f, .60f, .55f);
+            Color softEdge = new Color(.98f, .72f, .30f, .28f);
+            Color faintEdge = new Color(.90f, .60f, .20f, .10f);
+
+            for (int x = 1; x < 64; x++)
+            {
+                float progress = (x - 1f) / 63f;
+                // Spread cresce de forma mais orgânica: lento no início, abre no final
+                float halfSpread = Mathf.Lerp(2f, 28f, Mathf.Pow(progress, 0.68f));
+                float softFringe = halfSpread * 1.28f; // penumbra além do cone duro
+                int minY = Mathf.Clamp(Mathf.RoundToInt(32f - softFringe), 0, 63);
+                int maxY = Mathf.Clamp(Mathf.RoundToInt(32f + softFringe), 0, 63);
+                for (int y = minY; y <= maxY; y++)
+                {
+                    float absY = Mathf.Abs(y - 32f);
+                    float tightDist = absY / Mathf.Max(1f, halfSpread);
+                    float fringeDist = absY / Mathf.Max(1f, softFringe);
+
+                    // Atenuação radial: mais intensa perto da lâmpada, suave no fim
+                    float radialFalloff = Mathf.Pow(Mathf.Max(0f, 1f - progress * 0.65f), 1.2f);
+                    // Atenuação angular em duas zonas: cone interno e penumbra
+                    float innerAngle = Mathf.Max(0f, 1f - tightDist * tightDist * 1.4f);
+                    float fringeAngle = Mathf.Max(0f, 1f - fringeDist * fringeDist);
+                    float combined = Mathf.Max(innerAngle * radialFalloff, fringeAngle * radialFalloff * .35f);
+                    if (combined <= 0.008f) continue;
+
+                    Color col;
+                    if (tightDist < 0.28f) col = hotCore;
+                    else if (tightDist < 0.62f) col = warmBeam;
+                    else if (tightDist < 1f) col = softEdge;
+                    else col = faintEdge;
+                    col.a *= combined;
+
+                    // Brilho extra da lente na origem do bocal (ponto focal)
+                    if (x <= 4 && absY <= 2f)
+                    {
+                        col = Color.Lerp(col, lensCore, 0.85f);
+                        col.a = Mathf.Min(1f, col.a + 0.50f);
+                    }
+                    else if (x <= 8 && absY <= 4f)
+                    {
+                        col = Color.Lerp(col, lensCore, 0.40f);
+                        col.a = Mathf.Min(1f, col.a + 0.20f);
+                    }
+
+                    // Ruído sutil de partículas de poeira na borda do feixe
+                    if (tightDist > 0.7f && progress > 0.4f)
+                    {
+                        uint dustSeed = (uint)(x * 73 + y * 137);
+                        if ((dustSeed % 11u) == 0u) col.a *= 1.6f;
+                    }
+
+                    Pixel(t, x, y, col);
+                }
+            }
         }
 
         private static void DrawCharacterReach(Texture2D t, Color mid, Color dark, Color light, Color accent)
@@ -1031,110 +1180,688 @@ namespace Game.Varginha
 
         private static void DrawStudent(Texture2D t, Color mid, Color dark, Color light, string id)
         {
-            Color ink = new Color(.06f, .07f, .12f);
-            Color denim = new Color(.17f, .22f, .34f);
-            Ellipse(t, 16, 3, 11, 2, new Color(.025f, .035f, .07f, .42f));
-            // Pés embaixo e cabeça acima, na mesma orientação do Edelzio.
-            Fill(t, 10, 4, 5, 7, ink); Fill(t, 18, 4, 5, 7, ink);
-            Fill(t, 11, 6, 3, 5, denim); Fill(t, 19, 6, 3, 5, denim);
-            Fill(t, 10, 4, 5, 1, new Color(.72f, .77f, .82f));
-            Fill(t, 18, 4, 5, 1, new Color(.72f, .77f, .82f));
-            Fill(t, 8, 10, 17, 10, ink); Fill(t, 9, 11, 15, 8, mid);
-            Fill(t, 9, 11, 3, 6, dark); Fill(t, 12, 17, 9, 2, light);
-            Fill(t, 7, 11, 2, 6, ink); Fill(t, 24, 11, 2, 6, ink);
-            Fill(t, 7, 10, 2, 3, new Color(.82f, .56f, .40f));
-            Fill(t, 24, 10, 2, 3, new Color(.82f, .56f, .40f));
-            Fill(t, 14, 10, 5, 1, light);
+            Color ink = new Color(.06f, .06f, .10f);
+            Color denim = new Color(.16f, .21f, .36f);
+            StudentPalette(id, out var skin, out _, out _);
+            bool isFair = (skin.r + skin.g + skin.b) / 3f > 0.75f;
+            Color skinShade = isFair
+                ? Color.Lerp(skin, new Color(.58f, .52f, .68f), .30f)
+                : Color.Lerp(skin, new Color(.30f, .14f, .12f), .34f);
+            Color skinLight = isFair
+                ? Color.Lerp(skin, new Color(1f, .96f, .90f), .28f)
+                : Color.Lerp(skin, new Color(1f, .88f, .72f), .22f);
+
+            // Sombra do personagem no chão
+            Ellipse(t, 16, 2, 9, 2, new Color(.02f, .03f, .06f, .38f));
+
+            bool isTall = id.Contains("Tavares") || id.Contains("Martins");
+            bool isWide = id.Contains("Anna") || id.Contains("Sabia");
+
+            // --- PERNAS ---
+            Color shoeSole = new Color(.08f, .07f, .10f);
+            Color shoeTop = new Color(.15f, .14f, .18f);
+            Color denimLight = new Color(.28f, .36f, .54f);
+            Color denimShadow = new Color(.10f, .14f, .26f);
+            int legY = isTall ? 4 : 3;
+            int legH = isTall ? 10 : 9;
+            // Perna esquerda
+            Fill(t, 11, legY, 5, legH, denim);
+            Fill(t, 11, legY, 1, legH, denimShadow); // Costura lateral
+            Fill(t, 12, legY + 5, 1, 3, denimLight);  // Destaque central
+            Fill(t, 15, legY, 1, legH, denimShadow);
+            Fill(t, 11, legY, 5, 1, shoeSole); Fill(t, 11, legY + 1, 5, 1, shoeTop); // Bota/tênis
+            // Perna direita
+            Fill(t, 17, legY, 5, legH, denim);
+            Fill(t, 17, legY, 1, legH, denimShadow);
+            Fill(t, 18, legY + 5, 1, 3, denimLight);
+            Fill(t, 21, legY, 1, legH, denimShadow);
+            Fill(t, 17, legY, 5, 1, shoeSole); Fill(t, 17, legY + 1, 5, 1, shoeTop);
+            // Sombra entre as pernas
+            Fill(t, 16, legY + 2, 1, legH - 2, new Color(.04f, .04f, .08f, .6f));
+
+            // --- TORSO ---
+            int torsoX = isWide ? 7 : 9;
+            int torsoW = isWide ? 19 : 15;
+            int torsoY = isTall ? 13 : 12;
+            Color torsoShadow = Color.Lerp(mid, new Color(.04f, .04f, .08f), .42f);
+            Color torsoHighlight = Color.Lerp(mid, Color.white, .32f);
+            // Silhueta com contorno
+            Fill(t, torsoX - 1, torsoY - 1, torsoW + 2, 12, ink);
+            Fill(t, torsoX, torsoY, torsoW, 10, mid);
+            // Shading: sombra esquerda, highlight direita-superior
+            Fill(t, torsoX, torsoY, 2, 9, torsoShadow);
+            Fill(t, torsoX + torsoW - 2, torsoY, 2, 7, torsoShadow);
+            Fill(t, torsoX + 1, torsoY + 8, torsoW - 3, 2, torsoHighlight);
+            Fill(t, torsoX + 2, torsoY + 9, torsoW - 5, 1, mid);
+
+            // --- MANGAS ---
+            int armLeft = isWide ? 4 : 6;
+            int armRight = isWide ? torsoX + torsoW + 1 : 24;
+            int armW = isWide ? 5 : 4;
+            // Manga esquerda
+            Fill(t, armLeft - 1, torsoY, armW + 2, 8, ink);
+            Fill(t, armLeft, torsoY + 1, armW, 6, mid);
+            Fill(t, armLeft, torsoY + 1, 1, 5, torsoShadow);
+            // Manga direita
+            Fill(t, armRight - 1, torsoY, armW + 2, 8, ink);
+            Fill(t, armRight, torsoY + 1, armW, 6, mid);
+            Fill(t, armRight + armW - 1, torsoY + 1, 1, 5, torsoShadow);
+            // Mãos
+            Fill(t, armLeft, torsoY + 7, armW, 2, ink);
+            Fill(t, armLeft + 1, torsoY + 7, armW - 2, 1, skin);
+            Fill(t, armRight, torsoY + 7, armW, 2, ink);
+            Fill(t, armRight + 1, torsoY + 7, armW - 2, 1, skinShade);
+
+            // --- ACESSÓRIOS DE CORPO POR PERSONAGEM ---
             if (id.Contains("Marcos"))
             {
-                Fill(t, 10, 14, 13, 1, Color.white);
-                Fill(t, 15, 11, 3, 3, Color.white); Pixel(t, 16, 12, mid);
+                // Marcos: moreno atlético - luvas de boxe vermelhas e faixa esportiva
+                Color gloveRed = new Color(.82f, .18f, .18f);
+                Color gloveDark = new Color(.55f, .08f, .08f);
+                Fill(t, armLeft - 1, torsoY + 5, armW + 2, 4, gloveDark);
+                Fill(t, armLeft, torsoY + 6, armW, 2, gloveRed);
+                Fill(t, armRight - 1, torsoY + 5, armW + 2, 4, gloveDark);
+                Fill(t, armRight, torsoY + 6, armW, 2, gloveRed);
+                // Faixa abdominal branca
+                Fill(t, torsoX + 1, torsoY + 4, torsoW - 2, 1, new Color(.9f, .9f, .9f));
+                Pixel(t, 15, torsoY + 4, new Color(.7f, .7f, .7f));
             }
             else if (id.Contains("Matias"))
             {
-                Fill(t, 13, 14, 2, 5, light); Fill(t, 16, 11, 2, 6, light);
-                Fill(t, 9, 12, 15, 2, ink); Fill(t, 16, 9, 2, 5, ink);
+                // Matias: faixa azul royal amarrada na cintura, pontas longas caindo
+                Color beltBlue = new Color(.10f, .38f, .90f);
+                Color beltShine = new Color(.48f, .74f, 1f);
+                Fill(t, torsoX, torsoY + 1, torsoW, 3, beltBlue);
+                Fill(t, torsoX + 1, torsoY + 2, torsoW - 2, 1, beltShine);
+                // Pontas da faixa caindo entre as pernas
+                Fill(t, 13, torsoY - 2, 2, 3, beltBlue);
+                Fill(t, 17, torsoY - 3, 2, 4, beltBlue);
+                Pixel(t, 13, torsoY - 1, beltShine); Pixel(t, 17, torsoY - 2, beltShine);
             }
             else if (id.Contains("Yasmin"))
             {
-                Fill(t, 10, 11, 13, 3, ink);
-                for (int x = 11; x < 23; x += 3) Fill(t, x, 11, 2, 2, light);
+                // Yasmin: pasta de arte branca sob o braço
+                Fill(t, 12, torsoY + 2, 10, 4, ink);
+                Fill(t, 13, torsoY + 3, 8, 2, new Color(.93f, .95f, .92f));
+                for (int bx = 14; bx < 20; bx += 3)
+                    Fill(t, bx, torsoY + 3, 1, 2, new Color(.80f, .82f, .80f));
+                // Alça tiracolo roxa
+                Fill(t, torsoX + torsoW - 1, torsoY, 2, 10, new Color(.35f, .20f, .50f));
+                Pixel(t, torsoX + torsoW, torsoY + 5, new Color(.55f, .38f, .70f));
             }
-            else if (id.Contains("Luis"))
+            else if (id.Contains("Pedro"))
             {
-                Fill(t, 11, 13, 3, 3, light); Pixel(t, 12, 14, mid);
+                // Pedro: munhequeiras brancas (estilo esportivo)
+                Fill(t, armLeft, torsoY + 5, armW, 2, Color.white);
+                Fill(t, armRight, torsoY + 5, armW, 2, Color.white);
+                Pixel(t, armLeft + 1, torsoY + 6, new Color(.85f, .85f, .85f));
+                Pixel(t, armRight + 1, torsoY + 6, new Color(.85f, .85f, .85f));
             }
-            DrawStudentFace(t, mid, id, 0);
+            else if (id.Contains("Fabio"))
+            {
+                // Fabio: camisa social com botões centrais e colarinho
+                Fill(t, 15, torsoY + 1, 3, 8, Color.Lerp(mid, Color.white, .18f));
+                Pixel(t, 16, torsoY + 2, ink); Pixel(t, 16, torsoY + 4, ink);
+                Pixel(t, 16, torsoY + 6, ink);
+                // Colarinho
+                Fill(t, 14, torsoY + 9, 5, 1, Color.Lerp(mid, Color.white, .35f));
+            }
+            else if (id.Contains("Anna") || id.Contains("Sabia"))
+            {
+                // Anna Sabia: roupa larga oversized - extende mangas
+                Fill(t, armLeft - 2, torsoY, armW + 4, 9, mid);
+                Fill(t, armLeft - 1, torsoY + 1, armW + 2, 7, mid);
+                Fill(t, armRight - 2, torsoY, armW + 4, 9, mid);
+                Fill(t, torsoX, torsoY + 8, torsoW, 2, torsoHighlight);
+                Fill(t, torsoX, torsoY + 9, torsoW, 1, mid);
+            }
+            else if (id.Contains("Tavares"))
+            {
+                // Tavares: cachecol de lã encorpado em tons quentes
+                Color scarf1 = new Color(.82f, .74f, .58f);
+                Color scarf2 = new Color(.68f, .56f, .40f);
+                Color scarf3 = new Color(.92f, .84f, .70f);
+                Fill(t, 12, torsoY + 6, 9, 4, scarf1);
+                Fill(t, 11, torsoY + 7, 11, 2, scarf2);
+                Fill(t, 13, torsoY + 8, 7, 1, scarf3);
+                Pixel(t, 12, torsoY + 8, new Color(.90f, .34f, .24f)); // Detalhe cor
+            }
+            else if (id.Contains("Messias"))
+            {
+                // Luis Messias: alça de mochila transversal no peito
+                Fill(t, 15, torsoY + 1, 2, 9, new Color(.14f, .10f, .08f));
+                Fill(t, 13, torsoY + 8, 5, 1, new Color(.14f, .10f, .08f));
+                Pixel(t, 15, torsoY + 5, new Color(.42f, .30f, .22f));
+                // Bolso lateral
+                Fill(t, torsoX + 1, torsoY + 5, 3, 4, Color.Lerp(mid, dark, .35f));
+                Fill(t, torsoX + 1, torsoY + 9, 3, 1, ink);
+            }
+            else if (id.Contains("Martins"))
+            {
+                // Martins: fone de ouvido de estúdio no pescoço + camisa com logo
+                Color headband = new Color(.08f, .08f, .10f);
+                Color earpad = new Color(.22f, .22f, .26f);
+                Fill(t, 8, torsoY + 7, 4, 4, headband); Fill(t, 21, torsoY + 7, 4, 4, headband);
+                Fill(t, 9, torsoY + 8, 2, 2, earpad); Fill(t, 22, torsoY + 8, 2, 2, earpad);
+                // Cordão do fone entre ombros
+                Fill(t, 12, torsoY + 10, 9, 1, new Color(.18f, .18f, .22f));
+                // Logo minimalista no peito
+                Fill(t, 14, torsoY + 5, 5, 3, Color.Lerp(mid, Color.white, .22f));
+                Pixel(t, 16, torsoY + 6, ink);
+            }
+
+            int headDy = isTall ? 2 : 0;
+            DrawStudentFace(t, mid, id, headDy);
         }
 
         private static void DrawStudentHead(Texture2D t, Color mid, Color dark, Color light, string id)
         {
-            // Retrato da mesma pessoa, conservando corte de cabelo e acessórios.
-            Fill(t, 7, 5, 19, 8, new Color(.06f, .07f, .12f));
-            Fill(t, 9, 6, 15, 6, mid); Fill(t, 11, 10, 11, 2, light);
-            Fill(t, 10, 6, 3, 3, dark);
-            DrawStudentFace(t, mid, id, -6);
+            // Retrato do aliado no HUD: rosto grande e expressivo ocupando o canvas inteiro.
+            // Paleta do personagem para fundo e moldura.
+            StudentPalette(id, out var skin, out var hair, out var hairLight);
+            bool isFair = (skin.r + skin.g + skin.b) / 3f > 0.75f;
+            Color skinShade = isFair
+                ? Color.Lerp(skin, new Color(.58f, .52f, .68f), .30f)
+                : Color.Lerp(skin, new Color(.30f, .14f, .12f), .34f);
+            Color skinLt = isFair
+                ? Color.Lerp(skin, new Color(1f, .96f, .90f), .30f)
+                : Color.Lerp(skin, new Color(1f, .88f, .72f), .22f);
+            Color panelBg = new Color(.06f, .07f, .12f);
+            Color panelBorder = Color.Lerp(mid, new Color(.28f, .40f, .44f), .6f);
+
+            // Fundo escuro com moldura colorida sutil
+            Fill(t, 0, 0, 32, 32, panelBg);
+            // Moldura
+            Fill(t, 1, 1, 30, 1, panelBorder); Fill(t, 1, 30, 30, 1, panelBorder);
+            Fill(t, 1, 1, 1, 30, panelBorder); Fill(t, 30, 1, 1, 30, panelBorder);
+            // Cantos decorativos
+            Fill(t, 2, 2, 2, 2, panelBorder); Fill(t, 28, 2, 2, 2, panelBorder);
+            Fill(t, 2, 28, 2, 2, panelBorder); Fill(t, 28, 28, 2, 2, panelBorder);
+
+            // Pescoço e ombros (parte inferior do retrato)
+            Fill(t, 11, 2, 10, 5, skin);
+            Fill(t, 11, 2, 2, 4, skinShade); // Sombra lateral esquerda do pescoço
+            Fill(t, 19, 2, 2, 4, skinShade);
+            // Ombros - cor da camisa
+            Fill(t, 4, 2, 8, 6, Color.Lerp(mid, panelBg, .3f));
+            Fill(t, 20, 2, 8, 6, Color.Lerp(mid, panelBg, .3f));
+            Fill(t, 5, 6, 22, 2, mid);
+
+            // --- ROSTO BASE ---
+            // Silhueta do rosto com contorno limpo
+            Fill(t, 8, 7, 16, 18, new Color(.04f, .04f, .08f)); // Contorno
+            Fill(t, 9, 8, 14, 16, skin); // Base da pele
+            // Shading 3D
+            Fill(t, 9, 8, 2, 15, skinShade);  // Sombra lado esquerdo
+            Fill(t, 21, 8, 2, 14, skinShade); // Sombra lado direito
+            Fill(t, 10, 22, 12, 2, skinShade); // Sombra queixo
+            Fill(t, 11, 8, 10, 3, skinLt);    // Highlight testa
+
+            // Nariz (centro do rosto)
+            Pixel(t, 16, 14, skinShade); Pixel(t, 15, 15, skinShade);
+            Pixel(t, 17, 15, skinShade); Pixel(t, 16, 16, Color.Lerp(skinShade, skin, .5f));
+
+            // Boca
+            bool isFemale2 = id.Contains("Yasmin") || id.Contains("Anna") || id.Contains("Sabia") || id.Contains("Tavares");
+            Color lipCol = isFemale2
+                ? Color.Lerp(skin, new Color(.88f, .22f, .28f), isFair ? .60f : .50f)
+                : Color.Lerp(skin, new Color(.65f, .20f, .20f), .60f);
+            Fill(t, 13, 12, 6, 2, lipCol);
+            Fill(t, 14, 11, 4, 1, Color.Lerp(lipCol, new Color(.20f, .04f, .04f), .5f)); // Abertura
+            if (isFemale2) Pixel(t, 16, 12, Color.Lerp(lipCol, Color.white, .45f)); // Brilho lábio
+            Pixel(t, 16, 11, skinLt); // Sulco filtrum
+
+            // Orelhas
+            Fill(t, 8, 14, 2, 4, skin);
+            Fill(t, 22, 14, 2, 4, skin);
+            Pixel(t, 8, 15, skinShade); Pixel(t, 23, 15, skinShade);
+
+            // --- OLHOS EXPRESSIVOS ---
+            Color eyeWhite = new Color(.97f, .97f, .95f);
+            Color eyeDark = new Color(.06f, .05f, .10f);
+            Color iris1 = id.Contains("Yasmin") ? new Color(.15f, .12f, .18f)
+                : id.Contains("Matias") || id.Contains("Marcos") ? new Color(.22f, .14f, .08f)
+                : new Color(.24f, .18f, .12f);
+            // Sobrancelhas
+            Fill(t, 11, 19, 4, 2, hair);
+            Fill(t, 17, 19, 4, 2, hair);
+            // Área dos olhos
+            Fill(t, 10, 16, 6, 4, eyeDark); Fill(t, 16, 16, 7, 4, eyeDark);
+            Fill(t, 11, 17, 4, 2, eyeWhite); Fill(t, 17, 17, 4, 2, eyeWhite);
+            // Íris e pupila
+            Fill(t, 12, 17, 2, 2, iris1); Pixel(t, 12, 17, eyeDark);
+            Fill(t, 18, 17, 2, 2, iris1); Pixel(t, 18, 17, eyeDark);
+            // Brilho do olho
+            Pixel(t, 14, 18, eyeWhite); Pixel(t, 20, 18, eyeWhite);
+
+            // --- CABELO FRONTAL ESPECÍFICO ---
+            DrawStudentHairPortrait(t, id, hair, hairLight, skin);
+        }
+
+        private static void DrawStudentHairPortrait(Texture2D t, string id, Color hair, Color hairLight, Color skin)
+        {
+            // Cabelo frontal de alta qualidade para o retrato HUD.
+            if (id.Contains("Yasmin"))
+            {
+                // Yasmin: franja preta reta sobre a testa, mechas laterais longas
+                Fill(t, 8, 25, 16, 7, hair);   // Volume superior
+                Fill(t, 9, 24, 14, 3, hair);   // Topo da cabeça
+                Fill(t, 8, 21, 2, 8, hair); Fill(t, 22, 21, 2, 8, hair); // Mechas laterais
+                Fill(t, 7, 18, 2, 5, hair); Fill(t, 23, 18, 2, 5, hair);
+                // Franja
+                Fill(t, 9, 20, 14, 2, hair);
+                Pixel(t, 10, 21, hairLight); Pixel(t, 18, 21, hairLight); // Brilho franja
+                // Presilha vermelha
+                Fill(t, 8, 23, 3, 2, new Color(.86f, .14f, .18f));
+                Pixel(t, 9, 24, new Color(1f, .55f, .58f));
+            }
+            else if (id.Contains("Anna") || id.Contains("Sabia"))
+            {
+                // Anna Sabia: cabelo cacheado afro volumoso
+                Fill(t, 7, 22, 18, 10, hair);
+                Fill(t, 6, 20, 20, 6, hair);
+                Fill(t, 5, 18, 4, 4, hair); Fill(t, 23, 18, 4, 4, hair);
+                Fill(t, 9, 30, 14, 2, hair);
+                // Brilhos nos cachos
+                Pixel(t, 9, 26, hairLight); Pixel(t, 13, 28, hairLight);
+                Pixel(t, 18, 27, hairLight); Pixel(t, 22, 25, hairLight);
+                Pixel(t, 7, 22, hairLight); Pixel(t, 24, 22, hairLight);
+            }
+            else if (id.Contains("Tavares"))
+            {
+                // Tavares: cachos longos e encorpados, brincos de argola dourados
+                Fill(t, 7, 20, 18, 12, hair);
+                Fill(t, 6, 18, 20, 6, hair);
+                Fill(t, 5, 16, 3, 5, hair); Fill(t, 24, 16, 3, 5, hair);
+                Fill(t, 9, 30, 14, 2, hair);
+                // Brilhos dos cachos
+                Pixel(t, 10, 27, hairLight); Pixel(t, 16, 29, hairLight);
+                Pixel(t, 21, 27, hairLight); Pixel(t, 8, 23, hairLight);
+                // Brinco dourado
+                Pixel(t, 6, 16, new Color(1f, .84f, .20f));
+                Pixel(t, 6, 17, new Color(.94f, .70f, .12f));
+                Pixel(t, 7, 16, new Color(1f, .92f, .48f));
+            }
+            else if (id.Contains("Pedro"))
+            {
+                // Pedro: juba cacheada longa e volumosa + óculos redondos
+                Fill(t, 7, 21, 18, 11, hair);
+                Fill(t, 6, 19, 20, 5, hair);
+                Fill(t, 5, 17, 3, 4, hair); Fill(t, 24, 17, 3, 4, hair);
+                Fill(t, 9, 30, 14, 2, hair);
+                Pixel(t, 9, 26, hairLight); Pixel(t, 16, 28, hairLight); Pixel(t, 21, 25, hairLight);
+                // Óculos redondos
+                Color gf = new Color(.12f, .14f, .20f);
+                Color gs = new Color(.78f, .92f, 1f);
+                Fill(t, 10, 16, 5, 4, gf); Fill(t, 17, 16, 5, 4, gf);
+                Pixel(t, 15, 17, gf); Pixel(t, 16, 17, gf); // Ponte dos óculos
+                Fill(t, 11, 17, 3, 2, gs); Fill(t, 18, 17, 3, 2, gs);
+                Pixel(t, 11, 18, skin); Pixel(t, 18, 18, skin); // Reflexo pele na lente
+            }
+            else if (id.Contains("Fabio"))
+            {
+                // Fabio: cabelo dividido ao meio anos 90 + óculos quadrados
+                Fill(t, 9, 24, 14, 8, hair);
+                Fill(t, 8, 22, 16, 4, hair);
+                Fill(t, 7, 18, 3, 6, hair); Fill(t, 22, 18, 3, 6, hair);
+                // Risca ao meio
+                Fill(t, 15, 24, 2, 4, skin);
+                // Brilho do cabelo
+                Pixel(t, 11, 26, hairLight); Fill(t, 12, 27, 3, 1, hairLight);
+                Pixel(t, 19, 26, hairLight); Fill(t, 18, 27, 3, 1, hairLight);
+                // Óculos quadrados
+                Color gf = new Color(.12f, .14f, .20f);
+                Color gs = new Color(.78f, .92f, 1f);
+                Fill(t, 10, 16, 5, 4, gf); Fill(t, 17, 16, 5, 4, gf);
+                Pixel(t, 15, 17, gf); Pixel(t, 16, 17, gf);
+                Fill(t, 11, 17, 3, 2, gs); Fill(t, 18, 17, 3, 2, gs);
+            }
+            else if (id.Contains("Matias"))
+            {
+                // Matias: cacheado volumoso com faixa azul na testa
+                Fill(t, 9, 24, 14, 8, hair);
+                Fill(t, 8, 22, 16, 5, hair);
+                Fill(t, 7, 19, 3, 5, hair); Fill(t, 22, 19, 3, 5, hair);
+                Pixel(t, 11, 27, hairLight); Pixel(t, 16, 28, hairLight); Pixel(t, 20, 27, hairLight);
+                // Faixa azul na testa
+                Color hb = new Color(.10f, .38f, .90f);
+                Color hbL = new Color(.45f, .72f, 1f);
+                Fill(t, 8, 20, 16, 3, hb);
+                Fill(t, 9, 21, 14, 1, hbL);
+                // Nó lateral da faixa
+                Fill(t, 6, 19, 3, 4, hb);
+                Pixel(t, 7, 20, hbL);
+            }
+            else if (id.Contains("Marcos"))
+            {
+                // Marcos: cacheado compacto com burst fade nas têmporas
+                Fill(t, 10, 25, 12, 7, hair);
+                Fill(t, 9, 23, 14, 4, hair);
+                Fill(t, 8, 21, 3, 4, hair); Fill(t, 21, 21, 3, 4, hair);
+                Pixel(t, 11, 27, hairLight); Pixel(t, 16, 28, hairLight);
+                // Burst fade: degradê de pele para cabelo nas têmporas
+                Color fade1 = Color.Lerp(skin, hair, .25f);
+                Color fade2 = Color.Lerp(skin, hair, .55f);
+                Fill(t, 7, 18, 2, 4, fade1); Fill(t, 9, 19, 1, 3, fade2);
+                Fill(t, 23, 18, 2, 4, fade1); Fill(t, 22, 19, 1, 3, fade2);
+            }
+            else if (id.Contains("Messias"))
+            {
+                // Luis Messias: buzzcut quase raspado + barba e cavanhaque cheio
+                Fill(t, 9, 26, 14, 6, hair);
+                Fill(t, 10, 25, 12, 2, hair);
+                // Buzzcut rente (textura)
+                Pixel(t, 10, 28, hairLight); Pixel(t, 15, 29, hairLight);
+                // Barba
+                Color beard = Color.Lerp(hair, new Color(.08f, .06f, .05f), .3f);
+                Fill(t, 11, 8, 10, 4, beard);   // Barba/cavanhaque
+                Fill(t, 9, 10, 3, 5, beard);   // Costeleta esquerda
+                Fill(t, 20, 10, 3, 5, beard);  // Costeleta direita
+                Fill(t, 13, 9, 6, 2, beard);   // Bigode
+                Pixel(t, 13, 11, Color.Lerp(beard, skin, .4f));
+                Pixel(t, 18, 11, Color.Lerp(beard, skin, .4f));
+            }
+            else if (id.Contains("Martins"))
+            {
+                // Martins: cabelo liso jogado pro lado com volume
+                Fill(t, 8, 24, 16, 8, hair);
+                Fill(t, 7, 22, 14, 4, hair); // Mecha jogada para esquerda
+                Fill(t, 6, 20, 5, 5, hair);
+                Fill(t, 22, 22, 3, 5, hair); // Lateral direita
+                // Brilho do cabelo liso
+                Fill(t, 9, 27, 8, 2, hairLight);
+                Pixel(t, 8, 25, hairLight);
+                // Headphone pendurado no pescoço
+                Color hpBand = new Color(.08f, .08f, .10f);
+                Color hpPad = new Color(.20f, .20f, .24f);
+                Fill(t, 6, 8, 4, 5, hpBand); Fill(t, 22, 8, 4, 5, hpBand);
+                Fill(t, 7, 9, 2, 3, hpPad); Fill(t, 23, 9, 2, 3, hpPad);
+            }
+        }
+
+        private static void StudentPalette(string id, out Color skin, out Color hair, out Color hairLight)
+        {
+            skin = new Color(.86f, .61f, .43f);
+            hair = new Color(.17f, .10f, .09f);
+            hairLight = new Color(.32f, .21f, .15f);
+
+            if (id.Contains("Yasmin"))
+            {
+                // yasmin: cabelo preto com franja e branca
+                skin = new Color(.96f, .87f, .82f);
+                hair = new Color(.07f, .06f, .08f);
+                hairLight = new Color(.19f, .17f, .23f);
+            }
+            else if (id.Contains("Pedro"))
+            {
+                // pedro: cabeludo cacheado e de oculos — branco
+                skin = new Color(.96f, .83f, .75f);
+                hair = new Color(.20f, .13f, .08f);
+                hairLight = new Color(.44f, .27f, .17f);
+            }
+            else if (id.Contains("Matias"))
+            {
+                // matias: cabelo cacheado e faixa azul
+                skin = new Color(.78f, .56f, .40f);
+                hair = new Color(.12f, .10f, .10f);
+                hairLight = new Color(.28f, .23f, .20f);
+            }
+            else if (id.Contains("Marcos"))
+            {
+                // marcos: moreno de cabelo cacheado com burst fade
+                skin = new Color(.48f, .30f, .20f);
+                hair = new Color(.08f, .07f, .08f);
+                hairLight = new Color(.20f, .17f, .18f);
+            }
+            else if (id.Contains("Anna") || id.Contains("Sabia"))
+            {
+                // sabia: cabelo cacheado e roupa larga — branca
+                skin = new Color(.96f, .83f, .75f);
+                hair = new Color(.16f, .11f, .08f);
+                hairLight = new Color(.38f, .24f, .16f);
+            }
+            else if (id.Contains("Tavares"))
+            {
+                // tavares: cabelo cacheado e alta — branca
+                skin = new Color(.96f, .84f, .76f);
+                hair = new Color(.20f, .13f, .10f);
+                hairLight = new Color(.42f, .26f, .18f);
+            }
+            else if (id.Contains("Messias"))
+            {
+                // luis messias: buzzcut e barba
+                skin = new Color(.80f, .55f, .40f);
+                hair = new Color(.12f, .09f, .08f);
+                hairLight = new Color(.26f, .19f, .16f);
+            }
+            else if (id.Contains("Martins"))
+            {
+                // martins: cabelo liso pro lado e alto e branco
+                skin = new Color(.95f, .84f, .76f);
+                hair = new Color(.18f, .13f, .10f);
+                hairLight = new Color(.36f, .25f, .18f);
+            }
+            else if (id.Contains("Fabio"))
+            {
+                // fabio: cabelo dividido ao meio e de oculos
+                skin = new Color(.89f, .70f, .54f);
+                hair = new Color(.22f, .14f, .09f);
+                hairLight = new Color(.45f, .28f, .18f);
+            }
         }
 
         private static void DrawStudentFace(Texture2D t, Color shirt, string id, int dy)
         {
-            Color ink = new Color(.065f, .045f, .085f);
-            Color hair = new Color(.17f, .10f, .09f);
-            Color hairLight = new Color(.32f, .21f, .15f);
-            Color skin = new Color(.86f, .61f, .43f);
-            bool longHair = id.Contains("Yasmin") || id.Contains("Anna") || id.Contains("Tavares");
-            if (id.Contains("Pedro")) { hair = new Color(.25f, .12f, .06f); hairLight = new Color(.48f, .28f, .12f); }
-            if (longHair) { Fill(t, 8, 17 + dy, 17, 11, ink); Fill(t, 9, 17 + dy, 15, 11, hair); }
-            Fill(t, 10, 18 + dy, 13, 11, ink); Fill(t, 11, 19 + dy, 11, 9, skin);
-            Fill(t, 10, 25 + dy, 13, 4, hair); Fill(t, 12, 29 + dy, 9, 1, ink);
-            Fill(t, 11, 28 + dy, 8, 1, hairLight); Fill(t, 11, 24 + dy, 2, 3, hair);
-            Fill(t, 19, 25 + dy, 3, 2, hair); Fill(t, 21, 20 + dy, 1, 5, new Color(.66f, .39f, .28f));
-            Pixel(t, 13, 23 + dy, ink); Pixel(t, 19, 23 + dy, ink);
-            Pixel(t, 12, 24 + dy, Color.Lerp(skin, Color.white, .35f));
-            Fill(t, 15, 20 + dy, 3, 1, new Color(.49f, .20f, .18f));
-            if (id.Contains("Anna"))
+            // NOTA: dy é usado para ajustar a posição vertical do rosto (para alunos altos, dy=+2)
+            Color ink = new Color(.05f, .04f, .08f);
+            StudentPalette(id, out var skin, out var hair, out var hairLight);
+            bool isFairFace = (skin.r + skin.g + skin.b) / 3f > 0.75f;
+            Color skinShade = isFairFace
+                ? Color.Lerp(skin, new Color(.58f, .52f, .68f), .30f)
+                : Color.Lerp(skin, new Color(.30f, .14f, .12f), .34f);
+            Color skinLight = isFairFace
+                ? Color.Lerp(skin, new Color(1f, .96f, .90f), .30f)
+                : Color.Lerp(skin, new Color(1f, .88f, .72f), .22f);
+
+            // 1. Cabelo traseiro volumoso (base atrás do rosto)
+            if (id.Contains("Yasmin"))
             {
-                Fill(t, 23, 19 + dy, 3, 7, hair); Fill(t, 23, 25 + dy, 3, 2, shirt);
-                Pixel(t, 25, 19 + dy, hairLight);
+                // Cabelo preto liso com caimento nas costas e mechas
+                Fill(t, 9, 17 + dy, 3, 9, hair); Fill(t, 21, 17 + dy, 3, 9, hair);
+                Fill(t, 8, 19 + dy, 2, 7, hair); Fill(t, 23, 19 + dy, 2, 7, hair);
+                Pixel(t, 9, 19 + dy, hairLight); Pixel(t, 22, 19 + dy, hairLight);
+            }
+            else if (id.Contains("Anna") || id.Contains("Sabia"))
+            {
+                // Cabelo cacheado volumoso afro
+                Fill(t, 8, 18 + dy, 4, 8, hair); Fill(t, 21, 18 + dy, 4, 8, hair);
+                Fill(t, 7, 20 + dy, 2, 7, hair); Fill(t, 24, 20 + dy, 2, 7, hair);
+                Pixel(t, 7, 22 + dy, hairLight); Pixel(t, 24, 22 + dy, hairLight);
             }
             else if (id.Contains("Tavares"))
             {
-                Fill(t, 9, 26 + dy, 14, 1, shirt); Fill(t, 23, 24 + dy, 3, 3, shirt);
-            }
-            else if (id.Contains("Yasmin"))
-            {
-                Fill(t, 9, 18 + dy, 2, 7, hairLight); Fill(t, 20, 26 + dy, 3, 2, shirt);
-            }
-            else if (id.Contains("Marcos"))
-            {
-                Fill(t, 10, 26 + dy, 13, 2, new Color(.94f, .96f, .91f));
-                Fill(t, 21, 26 + dy, 2, 2, shirt);
-            }
-            else if (id.Contains("Fabio"))
-            {
-                Fill(t, 10, 26 + dy, 13, 1, new Color(.79f, .12f, .17f));
-                Fill(t, 23, 22 + dy, 3, 1, new Color(.79f, .12f, .17f));
-            }
-            else if (id.Contains("Martins"))
-            {
-                Fill(t, 9, 27 + dy, 15, 3, new Color(.25f, .31f, .46f));
-                Fill(t, 10, 29 + dy, 10, 1, new Color(.44f, .54f, .65f));
-                Fill(t, 23, 19 + dy, 1, 5, new Color(.91f, .65f, .24f));
-            }
-            else if (id.Contains("Messias"))
-            {
-                Fill(t, 9, 21 + dy, 2, 5, shirt); Fill(t, 22, 21 + dy, 2, 5, shirt);
-                Fill(t, 11, 23 + dy, 5, 2, ink); Fill(t, 17, 23 + dy, 5, 2, ink);
-                Pixel(t, 16, 24 + dy, ink); Pixel(t, 12, 24 + dy, new Color(.52f, .79f, .90f));
-            }
-            else if (id.Contains("Matias"))
-            {
-                Fill(t, 11, 28 + dy, 11, 1, hairLight); Fill(t, 12, 29 + dy, 3, 1, hair);
+                // Cachos longos e volumosos caindo
+                Fill(t, 7, 16 + dy, 4, 12, hair); Fill(t, 22, 16 + dy, 4, 12, hair);
+                Fill(t, 6, 18 + dy, 2, 9, hair); Fill(t, 25, 18 + dy, 2, 9, hair);
+                Pixel(t, 8, 17 + dy, hairLight); Pixel(t, 24, 17 + dy, hairLight);
+                // Brinco dourado
+                Pixel(t, 7, 18 + dy, new Color(1f, .84f, .20f));
+                Pixel(t, 7, 17 + dy, new Color(.94f, .70f, .12f));
             }
             else if (id.Contains("Pedro"))
             {
-                Fill(t, 10, 26 + dy, 3, 4, hair); Fill(t, 13, 29 + dy, 3, 2, hair);
-                Fill(t, 17, 28 + dy, 3, 2, hair); Pixel(t, 22, 21 + dy, new Color(.88f, .72f, .29f));
+                // Juba cacheada longa e densa
+                Fill(t, 7, 17 + dy, 4, 10, hair); Fill(t, 22, 17 + dy, 4, 10, hair);
+                Fill(t, 6, 20 + dy, 2, 7, hair); Fill(t, 25, 20 + dy, 2, 7, hair);
+                Pixel(t, 8, 20 + dy, hairLight); Pixel(t, 24, 20 + dy, hairLight);
+            }
+            else if (id.Contains("Matias"))
+            {
+                // Cacheado volumoso com faixa azul
+                Fill(t, 9, 18 + dy, 3, 7, hair); Fill(t, 21, 18 + dy, 3, 7, hair);
+                Fill(t, 8, 20 + dy, 2, 5, hair); Fill(t, 23, 20 + dy, 2, 5, hair);
+            }
+            else
+            {
+                // Cabelo curto masculino genérico
+                Fill(t, 10, 19 + dy, 13, 4, ink);
+                Fill(t, 9, 20 + dy, 2, 3, ink); Fill(t, 22, 20 + dy, 2, 3, ink);
+            }
+
+            // 2. Silhueta do rosto com contorno firme
+            Fill(t, 10, 18 + dy, 13, 11, ink); // Contorno
+            Fill(t, 11, 19 + dy, 11, 9, skin); // Base da pele
+            // Shading 3D no rosto
+            Fill(t, 11, 19 + dy, 2, 8, skinShade); // Sombra esquerda
+            Fill(t, 20, 19 + dy, 2, 7, skinShade); // Sombra direita
+            Fill(t, 12, 19 + dy, 9, 2, skinLight);  // Highlight na testa
+            Fill(t, 12, 26 + dy, 9, 2, skinShade);  // Sombra queixo
+
+            // 3. Orelhas
+            Fill(t, 9, 21 + dy, 2, 4, skin);
+            Fill(t, 22, 21 + dy, 2, 4, skin);
+            Pixel(t, 9, 22 + dy, skinShade); Pixel(t, 23, 22 + dy, skinShade);
+
+            // 4. Olhos com brilho e íris colorida
+            Color eyeWhite = new Color(.97f, .97f, .95f);
+            Color eyeDark = new Color(.06f, .05f, .10f);
+            Color irisCol = id.Contains("Yasmin") ? new Color(.14f, .11f, .16f)
+                : id.Contains("Marcos") ? new Color(.28f, .16f, .09f)
+                : new Color(.22f, .16f, .10f);
+            // Sobrancelhas expressivas
+            Fill(t, 12, 25 + dy, 4, 1, hair); Fill(t, 17, 25 + dy, 4, 1, hair);
+            if (id.Contains("Messias") || id.Contains("Marcos"))
+            { // Sobrancelhas mais grossas e expressivas
+                Fill(t, 12, 24 + dy, 4, 2, hair); Fill(t, 17, 24 + dy, 4, 2, hair);
+            }
+            // Área dos olhos
+            Fill(t, 12, 22 + dy, 5, 3, eyeDark); Fill(t, 16, 22 + dy, 5, 3, eyeDark);
+            Fill(t, 12, 23 + dy, 4, 2, eyeWhite); Fill(t, 17, 23 + dy, 4, 2, eyeWhite);
+            // Íris e pupila
+            Fill(t, 13, 23 + dy, 2, 2, irisCol); Pixel(t, 13, 23 + dy, eyeDark);
+            Fill(t, 18, 23 + dy, 2, 2, irisCol); Pixel(t, 18, 23 + dy, eyeDark);
+            // Brilho dos olhos
+            Pixel(t, 15, 24 + dy, eyeWhite); Pixel(t, 20, 24 + dy, eyeWhite);
+
+            // 5. Nariz
+            Pixel(t, 16, 22 + dy, skinShade);
+            Pixel(t, 15, 21 + dy, skinShade); Pixel(t, 17, 21 + dy, skinShade);
+
+            // 6. Boca com expressão
+            bool isFemale = id.Contains("Yasmin") || id.Contains("Anna") || id.Contains("Sabia") || id.Contains("Tavares");
+            Color lipColor = isFemale
+                ? Color.Lerp(skin, new Color(.88f, .22f, .28f), isFairFace ? .58f : .48f)
+                : Color.Lerp(skin, new Color(.62f, .20f, .20f), .52f);
+            Fill(t, 13, 19 + dy, 7, 2, lipColor);
+            Fill(t, 14, 19 + dy, 5, 1, Color.Lerp(lipColor, new Color(.12f, .02f, .02f), .55f));
+            if (isFemale) Pixel(t, 16, 20 + dy, Color.Lerp(lipColor, Color.white, .40f));
+            Pixel(t, 16, 18 + dy, skinLight); // Filtrum/sulco
+
+            // 7. CABELO FRONTAL ESPECÍFICO DE CADA ALUNO
+            if (id.Contains("Yasmin"))
+            {
+                // Franja preta reta e bem definida cobrindo a testa
+                Fill(t, 10, 26 + dy, 13, 3, hair); // Franja compacta
+                Fill(t, 11, 28 + dy, 11, 2, hair);
+                Fill(t, 11, 25 + dy, 11, 2, hair); // Segunda camada de franja
+                // Mechas laterais encaixando no pescoço
+                Fill(t, 9, 21 + dy, 2, 7, hair); Fill(t, 22, 21 + dy, 2, 7, hair);
+                // Brilho na franja
+                Fill(t, 12, 28 + dy, 8, 1, hairLight);
+                // Presilha vermelha cintilante
+                Fill(t, 10, 27 + dy, 2, 2, new Color(.86f, .14f, .18f));
+                Pixel(t, 11, 28 + dy, new Color(1f, .58f, .62f));
+            }
+            else if (id.Contains("Anna") || id.Contains("Sabia"))
+            {
+                // Coroa cacheada arredondada e volumosa
+                Fill(t, 9, 27 + dy, 15, 5, hair);
+                Fill(t, 10, 30 + dy, 13, 2, hair);
+                Fill(t, 8, 22 + dy, 3, 7, hair); Fill(t, 22, 22 + dy, 3, 7, hair);
+                Pixel(t, 10, 29 + dy, hairLight); Pixel(t, 15, 31 + dy, hairLight);
+                Pixel(t, 19, 30 + dy, hairLight); Pixel(t, 23, 28 + dy, hairLight);
+                Pixel(t, 8, 25 + dy, hairLight); Pixel(t, 24, 25 + dy, hairLight);
+            }
+            else if (id.Contains("Tavares"))
+            {
+                // Cachos longos encorpados, volume escultural
+                Fill(t, 8, 26 + dy, 16, 6, hair);
+                Fill(t, 9, 30 + dy, 14, 2, hair);
+                Fill(t, 7, 21 + dy, 3, 9, hair); Fill(t, 23, 21 + dy, 3, 9, hair);
+                Pixel(t, 10, 29 + dy, hairLight); Pixel(t, 16, 31 + dy, hairLight);
+                Pixel(t, 21, 29 + dy, hairLight); Pixel(t, 8, 24 + dy, hairLight);
+            }
+            else if (id.Contains("Fabio"))
+            {
+                // Cabelo anos 90 dividido ao meio com risca central
+                Fill(t, 10, 26 + dy, 13, 5, hair);
+                Fill(t, 9, 24 + dy, 2, 5, hair); Fill(t, 22, 24 + dy, 2, 5, hair);
+                // Risca ao meio
+                Pixel(t, 16, 26 + dy, skin); Pixel(t, 16, 27 + dy, skin); Pixel(t, 16, 28 + dy, skin);
+                Fill(t, 12, 29 + dy, 4, 1, hairLight); Fill(t, 18, 29 + dy, 3, 1, hairLight);
+                // Óculos quadrados
+                Color gf = new Color(.12f, .14f, .20f); Color gs = new Color(.78f, .92f, 1f);
+                Fill(t, 12, 22 + dy, 4, 3, gf); Fill(t, 17, 22 + dy, 4, 3, gf);
+                Pixel(t, 16, 23 + dy, gf); Pixel(t, 13, 23 + dy, gs); Pixel(t, 18, 23 + dy, gs);
+            }
+            else if (id.Contains("Matias"))
+            {
+                // Cacheado com faixa azul royal na testa
+                Fill(t, 10, 27 + dy, 13, 5, hair);
+                Fill(t, 9, 26 + dy, 3, 4, hair); Fill(t, 21, 26 + dy, 3, 4, hair);
+                Pixel(t, 12, 29 + dy, hairLight); Pixel(t, 17, 30 + dy, hairLight);
+                Color hb = new Color(.10f, .40f, .94f); Color hbL = new Color(.48f, .74f, 1f);
+                Fill(t, 10, 25 + dy, 13, 2, hb); Fill(t, 11, 26 + dy, 11, 1, hbL);
+                // Pontas laterais da faixa
+                Fill(t, 8, 24 + dy, 2, 3, hb); Pixel(t, 8, 25 + dy, hbL);
+            }
+            else if (id.Contains("Marcos"))
+            {
+                // Cacheado compacto topo com burst fade nas têmporas
+                Fill(t, 11, 28 + dy, 11, 4, hair);
+                Fill(t, 10, 27 + dy, 13, 2, hair);
+                Pixel(t, 13, 30 + dy, hairLight); Pixel(t, 17, 31 + dy, hairLight);
+                // Burst fade degradê
+                Color fade1 = Color.Lerp(skin, hair, .22f);
+                Color fade2 = Color.Lerp(skin, hair, .52f);
+                Fill(t, 9, 22 + dy, 2, 5, fade1); Fill(t, 10, 23 + dy, 1, 4, fade2);
+                Fill(t, 22, 22 + dy, 2, 5, fade1); Fill(t, 21, 23 + dy, 1, 4, fade2);
+            }
+            else if (id.Contains("Pedro"))
+            {
+                // Juba cacheada longa e densa
+                Fill(t, 8, 26 + dy, 16, 6, hair);
+                Fill(t, 7, 22 + dy, 3, 8, hair); Fill(t, 23, 22 + dy, 3, 8, hair);
+                Pixel(t, 10, 29 + dy, hairLight); Pixel(t, 18, 30 + dy, hairLight);
+                // Óculos redondos
+                Color gf = new Color(.12f, .14f, .20f); Color gs = new Color(.78f, .92f, 1f);
+                Fill(t, 12, 22 + dy, 4, 3, gf); Fill(t, 17, 22 + dy, 4, 3, gf);
+                Pixel(t, 16, 23 + dy, gf); Pixel(t, 13, 23 + dy, gs); Pixel(t, 18, 23 + dy, gs);
+            }
+            else if (id.Contains("Messias"))
+            {
+                // Buzzcut rente: apenas uma camada fina
+                Fill(t, 11, 27 + dy, 11, 3, hair);
+                Fill(t, 10, 26 + dy, 13, 2, hair);
+                Pixel(t, 12, 29 + dy, hairLight); Pixel(t, 18, 29 + dy, hairLight);
+                // Barba e cavanhaque cheio
+                Color beard = Color.Lerp(hair, new Color(.08f, .06f, .05f), .35f);
+                Fill(t, 11, 18 + dy, 2, 5, beard); Fill(t, 20, 18 + dy, 2, 5, beard); // Costeletas
+                Fill(t, 13, 18 + dy, 7, 2, beard); // Queixo
+                Fill(t, 13, 20 + dy, 7, 1, beard); // Bigode
+                Pixel(t, 12, 20 + dy, Color.Lerp(beard, skin, .4f));
+                Pixel(t, 20, 20 + dy, Color.Lerp(beard, skin, .4f));
+            }
+            else if (id.Contains("Martins"))
+            {
+                // Cabelo liso e volumoso jogado para um lado
+                Fill(t, 8, 26 + dy, 16, 6, hair); // Volume principal
+                Fill(t, 7, 24 + dy, 8, 4, hair);  // Mecha lateral grande
+                Fill(t, 6, 22 + dy, 4, 4, hair);
+                Fill(t, 22, 24 + dy, 3, 5, hair); // Lateral direita
+                // Brilho do cabelo liso
+                Fill(t, 9, 28 + dy, 9, 2, hairLight);
+                Pixel(t, 8, 26 + dy, hairLight);
             }
         }
 

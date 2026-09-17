@@ -53,15 +53,13 @@ namespace Game.Varginha
             _player = GetComponent<EdelzioTopDownController>();
             _animation = GetComponent<VarginhaPlayerSpriteAnimation>();
             _attackFrames = LoadAttackFrames();
+            if (GetComponent<VarginhaCombatCursor>() == null) gameObject.AddComponent<VarginhaCombatCursor>();
         }
 
         private void Update()
         {
             if (!CanAttack) { _bufferUntil = float.NegativeInfinity; return; }
-            var mouse = Mouse.current;
             var keyboard = Keyboard.current;
-            bool mouseHeld = VarginhaInputBindings.GetMouseButton(VarginhaInputAction.Attack) >= 0
-                && VarginhaInputBindings.IsPressed(VarginhaInputAction.Attack);
             // J/K continuam aceitos como compatibilidade com os protótipos anteriores;
             // o botão configurado no menu é sempre a entrada principal.
             bool legacyHeld = keyboard?.jKey.isPressed == true || keyboard?.kKey.isPressed == true;
@@ -69,11 +67,6 @@ namespace Game.Varginha
             bool legacyPressed = keyboard?.jKey.wasPressedThisFrame == true || keyboard?.kKey.wasPressedThisFrame == true;
             bool pressed = VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Attack) || legacyPressed;
             Vector2 direction = _player.FacingDirection;
-            if (mouseHeld && mouse != null && Camera.main != null)
-            {
-                Vector2 aim = Camera.main.ScreenToWorldPoint(mouse.position.ReadValue());
-                if ((aim - (Vector2)transform.position).sqrMagnitude > .04f) direction = aim - (Vector2)transform.position;
-            }
             if (pressed) QueueAttack(direction);
             if (!_isAttacking && (held || Time.time <= _bufferUntil)) TryAttack(held ? direction : _bufferDirection);
         }
@@ -137,6 +130,7 @@ namespace Game.Varginha
         {
             if (!CanAttack) yield break;
             bool finisher = _comboStep == 3;
+            PlayCombatAudio(false, finisher);
             CreateSlashEffect(direction, false, _comboStep);
             var hits = Physics2D.OverlapCircleAll((Vector2)transform.position + direction * hitDistance,
                 hitRadius + (finisher ? .18f : 0f));
@@ -149,15 +143,18 @@ namespace Game.Varginha
                 float multiplier = finisher ? 1.45f : _comboStep == 2 ? 1.10f : 1f;
                 if (!target.ReceiveHit(damage * multiplier, direction, hitstopDuration)) continue;
                 connected = true;
+                if (target.GetComponentInParent<VarginhaCombatEnemy>() != null)
+                    CreateAlienIchorEffect(target.transform.position, direction, finisher);
                 if (finisher) target.GetComponent<VarginhaCombatEnemy>()?.ApplyAllyControl(direction, .38f);
             }
             if (!connected) yield break;
+            PlayCombatAudio(true, finisher);
             CreateSlashEffect(direction, true, _comboStep);
             var camera = Camera.main;
             if (camera != null)
             {
                 var shake = camera.GetComponent<VarginhaCameraShake>() ?? camera.gameObject.AddComponent<VarginhaCameraShake>();
-                shake.Shake(screenShakeDuration, screenShakeMagnitude * (finisher ? 1.4f : 1f));
+                shake.Shake(screenShakeDuration * (finisher ? 1.35f : 1f), screenShakeMagnitude * (finisher ? 1.75f : 1f));
             }
             if (Time.timeScale <= 0f) yield break;
             _previousTimeScale = Time.timeScale;
@@ -195,11 +192,83 @@ namespace Game.Varginha
             Destroy(effect, impact ? .12f : .16f);
         }
 
+        private void CreateAlienIchorEffect(Vector3 hitPoint, Vector2 direction, bool finisher)
+        {
+            var ichor = new GameObject("Ichor_ET_Splash");
+            ichor.transform.position = hitPoint + (Vector3)direction * 0.08f;
+            ichor.transform.rotation = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f));
+            ichor.transform.localScale = Vector3.one * (finisher ? 1.25f : .85f);
+            var renderer = ichor.AddComponent<SpriteRenderer>();
+            renderer.sprite = VarginhaPixelArtSprites.Create("Alien_Ichor", new Color(.20f, .95f, .38f));
+            renderer.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 4;
+            Destroy(ichor, finisher ? .22f : .16f);
+        }
+
         private void RestoreTimeScale()
         {
             // Não desfaz uma pausa que começou durante o impacto.
             if (_hitstopActive && Mathf.Approximately(Time.timeScale, _hitstopScale)) Time.timeScale = _previousTimeScale;
             _hitstopActive = false;
+        }
+
+        private static AudioClip _whooshClip;
+        private static AudioClip _impactClip;
+        private static AudioSource _combatAudio;
+
+        private static void PlayCombatAudio(bool isImpact, bool finisher)
+        {
+            if (_combatAudio == null)
+            {
+                var go = new GameObject("VarginhaCombatAudio");
+                Object.DontDestroyOnLoad(go);
+                _combatAudio = go.AddComponent<AudioSource>();
+                _combatAudio.playOnAwake = false;
+            }
+
+            if (isImpact)
+            {
+                if (_impactClip == null)
+                {
+                    int sampleRate = 22050;
+                    float dur = 0.12f;
+                    int count = Mathf.RoundToInt(sampleRate * dur);
+                    float[] data = new float[count];
+                    for (int i = 0; i < count; i++)
+                    {
+                        float t = (float)i / sampleRate;
+                        float env = Mathf.Exp(-t * 32f);
+                        float freq = Mathf.Lerp(160f, 45f, (float)i / count);
+                        float noise = (UnityEngine.Random.value * 2f - 1f) * 0.35f;
+                        data[i] = (Mathf.Sin(2f * Mathf.PI * freq * t) * 0.65f + noise) * env * 0.5f;
+                    }
+                    _impactClip = AudioClip.Create("CombatThudSplat", count, 1, sampleRate, false);
+                    _impactClip.SetData(data, 0);
+                }
+                _combatAudio.pitch = finisher ? 0.85f : UnityEngine.Random.Range(0.95f, 1.15f);
+                _combatAudio.PlayOneShot(_impactClip, finisher ? 0.45f : 0.32f);
+            }
+            else
+            {
+                if (_whooshClip == null)
+                {
+                    int sampleRate = 22050;
+                    float dur = 0.09f;
+                    int count = Mathf.RoundToInt(sampleRate * dur);
+                    float[] data = new float[count];
+                    for (int i = 0; i < count; i++)
+                    {
+                        float t = (float)i / sampleRate;
+                        float env = Mathf.Sin(Mathf.PI * (float)i / count);
+                        float freq = Mathf.Lerp(280f, 120f, (float)i / count);
+                        float noise = (UnityEngine.Random.value * 2f - 1f) * 0.45f;
+                        data[i] = (Mathf.Sin(2f * Mathf.PI * freq * t) * 0.4f + noise) * env * 0.28f;
+                    }
+                    _whooshClip = AudioClip.Create("CombatWhoosh", count, 1, sampleRate, false);
+                    _whooshClip.SetData(data, 0);
+                }
+                _combatAudio.pitch = finisher ? 0.9f : UnityEngine.Random.Range(1.0f, 1.25f);
+                _combatAudio.PlayOneShot(_whooshClip, 0.24f);
+            }
         }
 
         private static Vector2 Cardinalize(Vector2 direction) => direction.sqrMagnitude < .01f ? Vector2.down

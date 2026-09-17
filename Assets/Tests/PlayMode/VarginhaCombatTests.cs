@@ -92,5 +92,33 @@ namespace Game.Tests.PlayMode
             Assert.IsFalse(target.ReceiveHit(999f, Vector2.right, .075f));
             Assert.AreEqual(100f, health.CurrentHealth, .001f);
         }
+
+        [UnityTest]
+        public IEnumerator CombatCursorInstantiatesWithAttackAndDetectsTarget()
+        {
+            _targetObject = new GameObject("Edelzio_Cursor_Test");
+            var player = _targetObject.AddComponent<EdelzioTopDownController>();
+            var attack = _targetObject.AddComponent<VarginhaPlayerAttack>();
+            yield return null;
+
+            var cursor = _targetObject.GetComponent<VarginhaCombatCursor>();
+            Assert.IsNotNull(cursor, "VarginhaCombatCursor must be attached automatically to the player attack object.");
+            Assert.AreEqual(cursor, VarginhaCombatCursor.Instance);
+
+            var enemyGo = new GameObject("Test_Enemy");
+            enemyGo.transform.position = new Vector3(2f, 0f, 0f);
+            var col = enemyGo.AddComponent<BoxCollider2D>();
+            col.size = new Vector2(1f, 1f);
+            var combatTarget = enemyGo.AddComponent<VarginhaCombatTarget>();
+            yield return null;
+
+            // Invoca a detecção com coordenada próxima ao alvo
+            var detectMethod = typeof(VarginhaCombatCursor).GetMethod("DetectTargetAtAim",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            var detected = detectMethod.Invoke(cursor, new object[] { new Vector2(2f, 0.2f) });
+            Assert.AreEqual(combatTarget, detected, "Cursor must acquire target when hovering near enemy combat target.");
+
+            Object.DestroyImmediate(enemyGo);
+        }
     }
 }

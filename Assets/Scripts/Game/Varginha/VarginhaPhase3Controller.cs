@@ -92,6 +92,8 @@ namespace Game.Varginha
                 playerAttack.Configure(0f, true);
                 playerAttack.enabled = true;
             }
+            if (_player.GetComponent<EdelzioFlashlight>() == null)
+                _player.gameObject.AddComponent<EdelzioFlashlight>();
             _player.SetInputLocked(true);
             _player.SetCombatLocked(true);
         }
@@ -155,7 +157,8 @@ namespace Game.Varginha
 
         private bool AreAllEtDefeated()
         {
-            var enemies = Object.FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Include);
+            // Bug fix: usar Exclude para ignorar objetos inativos e evitar falsos positivos
+            var enemies = Object.FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Exclude);
             if (enemies.Length == 0) return false;
             foreach (var enemy in enemies)
             {
@@ -213,20 +216,30 @@ namespace Game.Varginha
             float width = Mathf.Min(430f, Screen.width - 32f);
             float height = Mathf.Min(118f, Screen.height - 140f);
             Rect panel = new Rect(Screen.width - width - 16f, 124f, width, height);
-            GUI.color = new Color(.015f, .035f, .06f, .94f);
-            GUI.Box(panel, GUIContent.none);
+
+            // Painel visual consistente com o HUD principal
+            bool allyReady = _squad.SelectedStudent?.IsReadyForManualAttack == true;
+            float pulse = allyReady ? 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 4.8f) : 1f;
+            Color panelBorder = allyReady
+                ? new Color(.42f * pulse, .92f * pulse, .72f)
+                : new Color(.32f, .46f, .54f);
+            var whiteTex = VarginhaGameHUD.Instance != null
+                ? Texture2D.whiteTexture
+                : Texture2D.whiteTexture;
+            PixelHUDFrame.Draw(panel, whiteTex, new Color(.015f, .035f, .06f, .94f), panelBorder);
+
             GUI.color = Color.white;
-            GUI.Label(new Rect(panel.x + 12f, panel.y + 8f, panel.width - 24f, 22f), "FASE 3 • ALIADOS • " + VarginhaDifficulty.Label, _phaseStyle);
+            GUI.Label(new Rect(panel.x + 12f, panel.y + 8f, panel.width - 24f, 22f), "FASE 3 \u2022 ALIADOS \u2022 " + VarginhaDifficulty.Label, _phaseStyle);
             GUI.Label(new Rect(panel.x + 12f, panel.y + 30f, panel.width - 24f, 18f),
-                VarginhaInputBindings.DisplayName(VarginhaInputAction.Attack) + ": EDELZIO • "
-                + VarginhaInputBindings.DisplayName(VarginhaInputAction.AllyCommand) + ": ALUNO • G: MOCHILA", _allyStyle);
+                VarginhaInputBindings.DisplayName(VarginhaInputAction.Attack) + ": EDELZIO \u2022 "
+                + VarginhaInputBindings.DisplayName(VarginhaInputAction.AllyCommand) + ": ALUNO \u2022 G: MOCHILA", _allyStyle);
             GUI.Label(new Rect(panel.x + 12f, panel.y + 48f, panel.width - 24f, 18f),
-                VarginhaInputBindings.DisplayName(VarginhaInputAction.Dodge) + ": ESQUIVAR • Turma: "
+                VarginhaInputBindings.DisplayName(VarginhaInputAction.Dodge) + ": ESQUIVAR \u2022 Turma: "
                 + (_squad.CommandCooldownRemaining > 0 ? "preparando comando" : "PRONTA"), _allyStyle);
 
             if (_squad.SelectedStudent == null)
             {
-                GUI.Label(new Rect(panel.x + 12, panel.y + 76, panel.width - 24, 22), "Nenhum aluno equipado • escolha na aba Alunos", _allyStyle);
+                GUI.Label(new Rect(panel.x + 12, panel.y + 76, panel.width - 24, 22), "Nenhum aluno equipado \u2022 escolha na aba Alunos", _allyStyle);
             }
             else
             {
@@ -240,10 +253,12 @@ namespace Game.Varginha
                 GUI.color = ally.IsReadyForManualAttack ? new Color(.5f, 1f, .75f) : new Color(.8f, .84f, .9f);
                 GUI.Label(new Rect(x, y, cellWidth, 18f), name, _allyStyle);
                 GUI.Label(new Rect(x, y + 15f, cellWidth, 18f), state, _allyStyle);
-                GUI.color = new Color(.16f, .22f, .29f);
-                GUI.DrawTexture(new Rect(x, y + 32f, cellWidth, 2f), Texture2D.whiteTexture);
+                // Barra de cooldown usando GUI blocks
+                GUI.color = new Color(.06f, .10f, .14f);
+                GUI.DrawTexture(new Rect(x, y + 32f, cellWidth, 3f), Texture2D.whiteTexture);
+                float cooldownFill = 1f - Mathf.Clamp01(ally.ManualCooldownRemaining / ally.ManualCooldownDuration);
                 GUI.color = ally.IsReadyForManualAttack ? new Color(.4f, 1f, .68f) : new Color(.85f, .66f, .3f);
-                GUI.DrawTexture(new Rect(x, y + 32f, cellWidth * (1f - Mathf.Clamp01(ally.ManualCooldownRemaining / ally.ManualCooldownDuration)), 2f), Texture2D.whiteTexture);
+                GUI.DrawTexture(new Rect(x, y + 32f, cellWidth * cooldownFill, 3f), Texture2D.whiteTexture);
                 GUI.color = Color.white;
             }
         }
@@ -332,7 +347,8 @@ namespace Game.Varginha
             camera.tag = "MainCamera";
             camera.orthographic = true;
             camera.orthographicSize = 7.2f;
-            camera.backgroundColor = new Color(.025f, .018f, .04f);
+            // Atmosfera sombria e misteriosa de catacumba sob a diocese
+            camera.backgroundColor = new Color(.008f, .006f, .014f);
             go.AddComponent<AudioListener>();
             go.AddComponent<CameraFollow2D>();
             VarginhaPixelPresentation.Configure(camera);
@@ -361,6 +377,7 @@ namespace Game.Varginha
             go.AddComponent<VarginhaPlayerSpriteAnimation>();
             go.AddComponent<VarginhaPlayerActionAnimation>();
             go.AddComponent<VarginhaPlayerAttack>();
+            go.AddComponent<EdelzioFlashlight>();
             return go;
         }
 

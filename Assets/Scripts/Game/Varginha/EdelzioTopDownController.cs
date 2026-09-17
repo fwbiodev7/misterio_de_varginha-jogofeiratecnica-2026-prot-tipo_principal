@@ -29,7 +29,17 @@ namespace Game.Varginha
         [SerializeField] private LayerMask interactableLayer;
 
         // Inventory State
-        public bool HasBackpack { get; set; }
+        [SerializeField] private bool hasBackpack;
+        public bool HasBackpack
+        {
+            get => hasBackpack;
+            set
+            {
+                hasBackpack = value;
+                GetComponent<VarginhaPlayerSpriteAnimation>()?.RefreshEquipmentAppearance();
+            }
+        }
+        public bool IsBackpackVisible => hasBackpack && _carriedItemsVisible;
         public bool HasFuscaKey { get; set; }
         public bool HasResearchNotebook { get; set; }
         public bool HasDecodedData { get; set; }
@@ -62,9 +72,7 @@ namespace Game.Varginha
         private bool _inputLocked;
         private bool _combatLocked;
         private InteractableProp _nearestInteractable;
-        private Transform _equippedBackpack;
         private Transform _heldNotebook;
-        private SpriteRenderer _backpackStraps;
         private bool _carriedItemsVisible = true;
         private PhysicsMaterial2D _movementMaterial;
         private float _dodgeRemaining;
@@ -295,27 +303,10 @@ namespace Game.Varginha
             }
         }
 
-        /// <summary>Coloca uma mochila visual atrás do personagem depois da coleta.</summary>
+        /// <summary>Ativa a mochila como parte da aparência e do estado de Edelzio.</summary>
         public void EquipBackpack()
         {
             HasBackpack = true;
-            if (_equippedBackpack != null) return;
-
-            var backpack = new GameObject("Mochila_Equipada");
-            backpack.transform.SetParent(transform, false);
-            backpack.transform.localScale = new Vector3(.56f, .56f, 1f);
-
-            var renderer = backpack.AddComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create("Backpack_Worn", Color.gray);
-            renderer.sortingOrder = _sr != null ? _sr.sortingOrder - 2 : 3;
-            _equippedBackpack = backpack.transform;
-            var straps = new GameObject("Mochila_Alcas");
-            straps.transform.SetParent(transform, false);
-            straps.transform.localPosition = new Vector3(0f, -.16f, 0f);
-            straps.transform.localScale = new Vector3(.90f, .90f, 1f);
-            _backpackStraps = straps.AddComponent<SpriteRenderer>();
-            _backpackStraps.sprite = VarginhaPixelArtSprites.Create("Backpack_Straps", Color.gray);
-            UpdateBackpackPosition();
         }
 
         /// <summary>Depois da decodificação, Edelzio carrega o notebook sob o braço.</summary>
@@ -337,9 +328,8 @@ namespace Game.Varginha
         public void SetCarriedItemsVisible(bool visible)
         {
             _carriedItemsVisible = visible;
-            if (_backpackStraps != null) _backpackStraps.enabled = visible;
-            SetChildSpriteVisible(_equippedBackpack, visible);
             SetChildSpriteVisible(_heldNotebook, visible);
+            GetComponent<VarginhaPlayerSpriteAnimation>()?.RefreshEquipmentAppearance();
         }
 
         private static void SetChildSpriteVisible(Transform item, bool visible)
@@ -351,7 +341,6 @@ namespace Game.Varginha
 
         private void LateUpdate()
         {
-            if (_equippedBackpack != null) UpdateBackpackPosition();
             if (_heldNotebook != null)
             {
                 var animation = GetComponent<VarginhaPlayerSpriteAnimation>();
@@ -373,31 +362,6 @@ namespace Game.Varginha
                 renderer.sortingLayerID = _sr.sortingLayerID;
                 renderer.sortingOrder = _sr.sortingOrder + (facingUp ? -2 : 2);
                 renderer.flipX = facingLeft;
-            }
-        }
-
-        private void UpdateBackpackPosition()
-        {
-            var animation = GetComponent<VarginhaPlayerSpriteAnimation>();
-            Vector2 facing = animation != null && animation.HasActionPose ? animation.ActionFacingDirection : _lastFacing;
-            bool sideways = Mathf.Abs(facing.x) > Mathf.Abs(facing.y);
-            float side = sideways ? (facing.x > 0 ? -.215f : .215f) : 0f;
-            bool facingUp = !sideways && facing.y > .05f;
-            _equippedBackpack.localPosition = new Vector3(side, -.145f, 0f);
-            _equippedBackpack.localScale = new Vector3(.37f, .34f, 1f);
-            var renderer = _equippedBackpack.GetComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create(sideways ? "Backpack_Side" : "Backpack_Worn", Color.gray);
-            renderer.flipX = sideways && facing.x < 0;
-            renderer.sortingLayerID = _sr.sortingLayerID;
-            renderer.sortingOrder = _sr.sortingOrder + (facingUp ? 1 : -2);
-            renderer.enabled = _carriedItemsVisible;
-            if (_backpackStraps != null)
-            {
-                _backpackStraps.transform.localPosition = new Vector3(0f, -.14f, 0f);
-                _backpackStraps.transform.localScale = new Vector3(.40f, .35f, 1f);
-                _backpackStraps.sortingLayerID = _sr.sortingLayerID;
-                _backpackStraps.sortingOrder = _sr.sortingOrder + (facingUp ? -1 : 1);
-                _backpackStraps.enabled = _carriedItemsVisible && !sideways && !facingUp;
             }
         }
 

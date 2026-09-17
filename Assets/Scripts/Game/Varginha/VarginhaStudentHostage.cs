@@ -52,6 +52,9 @@ namespace Game.Varginha
             _renderer = GetComponent<SpriteRenderer>();
             if (_renderer != null)
                 _renderer.sprite = VarginhaPixelArtSprites.Create("Student_" + name, shirtColor);
+            var animation = GetComponent<VarginhaStudentAnimation>();
+            if (animation == null) animation = gameObject.AddComponent<VarginhaStudentAnimation>();
+            animation.Configure(studentName);
             EnsureCage();
         }
 
@@ -92,7 +95,12 @@ namespace Game.Varginha
             // cada aluno entra na fila do carro para concluir a fase.
             if (!headingToCar)
                 destination = _leader.position + _followOffset;
+
+            Vector3 prev = transform.position;
             transform.position = Vector3.MoveTowards(transform.position, destination, followSpeed * Time.deltaTime);
+
+            transform.localScale = Vector3.one;
+
             if (headingToCar && Vector2.Distance(transform.position, destination) < .06f)
             {
                 transform.position = destination;
@@ -103,7 +111,7 @@ namespace Game.Varginha
 
         private void OnGUI()
         {
-            if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
+            if (VarginhaWorldFeedback.IsHidden) return;
             if (_renderer == null || !_renderer.enabled) return;
             var camera = Camera.main;
             if (camera == null) return;

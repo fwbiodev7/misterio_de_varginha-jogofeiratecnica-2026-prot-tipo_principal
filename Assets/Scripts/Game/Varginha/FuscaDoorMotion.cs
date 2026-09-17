@@ -16,11 +16,11 @@ namespace Game.Varginha
         public Vector3 SeatPosition => transform.TransformPoint(Hinge + new Vector3(-Direction * Width * .46f, 0, 0));
         private float Direction => _car != null && _car.flipX ? -1 : 1;
         private Bounds CarBounds => _car != null && _car.sprite != null ? _car.sprite.bounds : new Bounds(Vector3.zero, new Vector3(2.2f, 1.1f, 0));
-        // The 100px car frame has substantial transparent padding below the body.
-        // Fit the painted cabin aperture, not the height of the sprite canvas.
-        private float Width => CarBounds.size.x * .255f;
-        private float Height => CarBounds.size.y * .265f;
-        private Vector3 Hinge => CarBounds.center + new Vector3(Direction * CarBounds.size.x * .105f, CarBounds.size.y * .07f, 0);
+        // The 100px car frame has transparent padding. Its actual driver door
+        // spans x=34..61.5 and y=27..62 (image coordinates), glass AND body panel.
+        private float Width => CarBounds.size.x * .275f;
+        private float Height => CarBounds.size.y * .35f;
+        private Vector3 Hinge => CarBounds.center + new Vector3(Direction * CarBounds.size.x * .115f, CarBounds.size.y * .055f, 0);
 
         public static Vector2 ProjectFreeEdge(float openness, float width)
         {

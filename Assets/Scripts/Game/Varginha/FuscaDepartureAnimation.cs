@@ -51,32 +51,40 @@ namespace Game.Varginha
             Vector3 baseScale = transform.localScale;
             Quaternion baseRotation = transform.localRotation;
             float elapsed = 0f;
+            float nextSmoke = 0f;
             while (elapsed < startDuration)
             {
                 AnimateFrame(elapsed);
-                // Os quadros dão vida ao motor sem deslocar o carro e seus passageiros.
                 ApplySuspensionMotion(startPosition, baseScale, baseRotation, elapsed, .35f);
+                if (elapsed >= nextSmoke)
+                {
+                    SpawnExhaustSmoke();
+                    nextSmoke = elapsed + UnityEngine.Random.Range(0.12f, 0.18f);
+                }
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
-            // O ciclo de rodagem começa no quadro inicial; reaproveitar o tempo do
-            // motor fazia a primeira troca de sprite parecer um teleporte.
             elapsed = 0f;
             float travelled = 0f;
             float distance = distanceOverride >= 0f ? distanceOverride : exitDistance;
             distance = Mathf.Max(0f, distance);
             float speed = Mathf.Max(.01f, driveSpeed);
             float direction = _renderer != null && _renderer.flipX ? -1f : 1f;
+            nextSmoke = 0f;
             while (travelled < distance)
             {
                 AnimateFrame(elapsed);
                 float acceleration = Mathf.Lerp(.28f, 1f, Mathf.Clamp01(travelled / 4.5f));
                 travelled = Mathf.Min(distance, travelled + speed * acceleration * Time.deltaTime);
                 float launch = Mathf.Clamp01(travelled / 2.2f);
-                // Posição absoluta: Y/Z não acumulam oscilação nem variam com o FPS.
                 ApplySuspensionMotion(startPosition + Vector3.right * (direction * travelled),
                     baseScale, baseRotation, elapsed, Mathf.Lerp(.35f, 0f, launch));
+                if (elapsed >= nextSmoke && travelled < distance * 0.7f)
+                {
+                    SpawnExhaustSmoke();
+                    nextSmoke = elapsed + 0.14f;
+                }
                 elapsed += Time.deltaTime;
                 yield return null;
             }
@@ -105,6 +113,19 @@ namespace Game.Varginha
         {
             if (departureFrames == null || departureFrames.Length == 0 || _renderer == null) return;
             _renderer.sprite = departureFrames[Mathf.FloorToInt(elapsed * frameRate) % departureFrames.Length];
+        }
+
+        private void SpawnExhaustSmoke()
+        {
+            float dir = _renderer != null && _renderer.flipX ? -1f : 1f;
+            Vector3 exhaustPos = transform.position + new Vector3(-dir * 1.15f, -0.28f, 0f);
+            var puff = new GameObject("Fusca_Fumaca_Escapamento");
+            puff.transform.position = exhaustPos + (Vector3)UnityEngine.Random.insideUnitCircle * 0.05f;
+            puff.transform.localScale = Vector3.one * UnityEngine.Random.Range(0.45f, 0.70f);
+            var sr = puff.AddComponent<SpriteRenderer>();
+            sr.sprite = VarginhaPixelArtSprites.Create("Dodge_Dust", new Color(.78f, .82f, .85f, .75f));
+            sr.sortingOrder = _renderer != null ? _renderer.sortingOrder - 1 : 4;
+            Destroy(puff, 0.35f);
         }
     }
 }

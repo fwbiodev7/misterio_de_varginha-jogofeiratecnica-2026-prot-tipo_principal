@@ -41,36 +41,44 @@ namespace Game.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator BackpackFollowsBackInsteadOfFlipX()
+        public IEnumerator BackpackStateControlsIntegratedAppearanceInEveryDirection()
         {
-            _player.EquipBackpack();
-            var item = _go.transform.Find("Mochila_Equipada");
-            yield return null;
-            Assert.That(item.localPosition.x, Is.EqualTo(0f));
-            Assert.Less(item.GetComponent<SpriteRenderer>().sortingOrder, _go.GetComponent<SpriteRenderer>().sortingOrder);
-            typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic)
-                .SetValue(_player, Vector2.up);
-            yield return null;
-            Assert.That(item.localPosition.x, Is.EqualTo(0f));
-            Assert.Greater(item.GetComponent<SpriteRenderer>().sortingOrder, _go.GetComponent<SpriteRenderer>().sortingOrder);
-            Assert.IsNull(item.GetComponent<Collider2D>());
-            Assert.IsNull(item.GetComponent<Rigidbody2D>());
-            Assert.That(item.localScale.y, Is.InRange(.30f, .42f), "Backpack fits the torso, not the whole padded character canvas.");
-            var straps = _go.transform.Find("Mochila_Alcas").GetComponent<SpriteRenderer>();
-            Assert.IsFalse(straps.enabled);
-            typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic)
-                .SetValue(_player, Vector2.down);
-            yield return null;
-            Assert.IsTrue(straps.enabled);
-            Assert.Greater(straps.sortingOrder, _go.GetComponent<SpriteRenderer>().sortingOrder);
-            _player.SetCarriedItemsVisible(false);
-            yield return null;
-            Assert.IsFalse(straps.enabled);
-            Assert.IsFalse(item.GetComponent<SpriteRenderer>().enabled);
-            _player.SetCarriedItemsVisible(true);
-            yield return null;
-            Assert.IsTrue(straps.enabled);
-            Assert.IsTrue(item.GetComponent<SpriteRenderer>().enabled);
+            var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
+            var renderer = _go.GetComponent<SpriteRenderer>();
+            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
+            var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up };
+            var facing = typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic);
+            _player.SetInputLocked(true);
+            for (int direction = 0; direction < directions.Length; direction++)
+            {
+                facing.SetValue(_player, directions[direction]);
+                yield return null;
+                var body = renderer.sprite;
+                Assert.AreSame(atlas, body.texture);
+                _player.HasBackpack = true;
+                var equipped = renderer.sprite;
+                Assert.IsTrue(_player.IsBackpackVisible);
+                Assert.That(equipped.name, Does.EndWith("_ComMochila_" + direction));
+                Assert.AreNotSame(body.texture, equipped.texture);
+                AssertSameSpriteGeometry(body, equipped);
+                animation.RefreshEquipmentAppearance();
+                _player.EquipBackpack();
+                Assert.AreSame(equipped, renderer.sprite, "Repeated refresh reuses the same pose, without composing onto the backpack again.");
+
+                _player.SetCarriedItemsVisible(false);
+                Assert.IsTrue(_player.HasBackpack);
+                Assert.IsFalse(_player.IsBackpackVisible);
+                Assert.AreSame(body, renderer.sprite, "Entering the Fusca hides equipment without changing the character pose.");
+                _player.SetCarriedItemsVisible(true);
+                Assert.AreSame(equipped, renderer.sprite);
+                _player.HasBackpack = false;
+                Assert.IsFalse(_player.IsBackpackVisible);
+                Assert.AreSame(body, renderer.sprite);
+            }
+            Assert.IsNull(_go.transform.Find("Mochila_Equipada"));
+            Assert.IsNull(_go.transform.Find("Mochila_Alcas"));
+            Assert.AreEqual(1, _go.GetComponentsInChildren<Collider2D>().Length);
+            Assert.AreEqual(1, _go.GetComponentsInChildren<Rigidbody2D>().Length);
         }
 
         [Test]
@@ -102,15 +110,68 @@ namespace Game.Tests.PlayMode
             var radius = _go.GetComponent<CircleCollider2D>().radius;
             foreach (var pose in new[] { "Edelzio_Crouch", "Edelzio_Reach", "Edelzio_DrinkCoffee", "Edelzio_Sit", "Edelzio_UseNotebook" })
             {
+                _player.HasBackpack = false;
                 animation.SetActionPose(pose);
+                var body = renderer.sprite;
+                Assert.AreSame(atlas, body.texture);
+                _player.EquipBackpack();
                 yield return null;
-                Assert.AreSame(atlas, renderer.sprite.texture);
+                Assert.That(renderer.sprite.name, Does.EndWith("_ComMochila_0"), pose);
+                Assert.AreNotSame(atlas, renderer.sprite.texture, pose);
+                AssertSameSpriteGeometry(body, renderer.sprite);
                 Assert.AreEqual(scale, _go.transform.localScale);
                 Assert.AreEqual(radius, _go.GetComponent<CircleCollider2D>().radius);
             }
             Assert.IsTrue(animation.IsSeated);
             animation.ClearActionPose();
             Assert.IsFalse(animation.IsSeated);
+        }
+
+        [Test]
+        public void CombatPosesKeepEquipmentWithoutChangingGeometry()
+        {
+            var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
+            var renderer = _go.GetComponent<SpriteRenderer>();
+            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
+            Assert.IsNotNull(atlas);
+            var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up };
+            var scale = _go.transform.localScale;
+            var radius = _go.GetComponent<CircleCollider2D>().radius;
+            for (int direction = 0; direction < directions.Length; direction++)
+            for (int frame = 0; frame < 6; frame++)
+            {
+                var body = Sprite.Create(atlas,
+                    new Rect(frame * atlas.width / 6f, (3 - direction) * atlas.height / 4f, atlas.width / 6f, atlas.height / 4f),
+                    new Vector2(.5f, .5f), 44.1379f);
+                body.name = "Edelzio_Ataque_" + direction + "_" + frame;
+                try
+                {
+                    _player.EquipBackpack();
+                    animation.SetCombatPose(body, directions[direction]);
+                    var equipped = renderer.sprite;
+                    Assert.That(equipped.name, Does.EndWith("_ComMochila_" + direction), body.name);
+                    Assert.AreNotSame(atlas, equipped.texture);
+                    AssertSameSpriteGeometry(body, equipped);
+                    animation.RefreshEquipmentAppearance();
+                    Assert.AreSame(equipped, renderer.sprite);
+                    Assert.AreEqual(scale, _go.transform.localScale);
+                    Assert.AreEqual(radius, _go.GetComponent<CircleCollider2D>().radius);
+                    _player.HasBackpack = false;
+                    Assert.AreSame(body, renderer.sprite);
+                }
+                finally
+                {
+                    animation.ClearActionPose();
+                    Object.DestroyImmediate(body);
+                }
+            }
+        }
+
+        private static void AssertSameSpriteGeometry(Sprite expected, Sprite actual)
+        {
+            Assert.AreEqual(expected.rect.size, actual.rect.size);
+            Assert.AreEqual(expected.pivot, actual.pivot);
+            Assert.AreEqual(expected.pixelsPerUnit, actual.pixelsPerUnit);
         }
     }
 }

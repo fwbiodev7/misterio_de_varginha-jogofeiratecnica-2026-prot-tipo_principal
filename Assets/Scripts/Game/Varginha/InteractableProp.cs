@@ -155,7 +155,6 @@ namespace Game.Varginha
                     break;
 
                 case PropType.Backpack:
-                    edelzio.HasBackpack = true;
                     var pickupAnimation = GetComponent<BackpackPickupAnimation>();
                     if (pickupAnimation != null) pickupAnimation.PlayPickup(edelzio);
                     else
