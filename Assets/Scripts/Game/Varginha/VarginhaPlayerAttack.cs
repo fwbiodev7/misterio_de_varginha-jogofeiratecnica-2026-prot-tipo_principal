@@ -277,6 +277,18 @@ namespace Game.Varginha
 
         private static Sprite[][] LoadAttackFrames()
         {
+            if (VarginhaReferenceSprites.Attack(0, 0) != null)
+            {
+                var frames = new Sprite[4][];
+                int[] recovery = { 0, 0, 1, 3, 2, 0 };
+                for (int direction = 0; direction < 4; direction++)
+                {
+                    frames[direction] = new Sprite[6];
+                    for (int frame = 0; frame < 6; frame++)
+                        frames[direction][frame] = VarginhaReferenceSprites.Attack(direction, recovery[frame]);
+                }
+                return frames;
+            }
             var sheet = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
             if (sheet == null) return null;
             sheet.filterMode = FilterMode.Point;

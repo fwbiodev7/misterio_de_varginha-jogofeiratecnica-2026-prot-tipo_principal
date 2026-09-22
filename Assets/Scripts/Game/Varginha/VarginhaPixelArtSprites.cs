@@ -68,6 +68,9 @@ namespace Game.Varginha
 
         public static Sprite Create(string id, Color color)
         {
+            Sprite reference = id == "Student_Fabio" ? VarginhaReferenceSprites.Character(true, 0)
+                : id == "StudentHead_Fabio" ? VarginhaReferenceSprites.FabioPortrait() : VarginhaReferenceSprites.Prop(id);
+            if (reference != null) return reference;
             // Roster art has one source of truth in the authored, directional atlases.
             if (id.StartsWith("StudentHead_"))
             {

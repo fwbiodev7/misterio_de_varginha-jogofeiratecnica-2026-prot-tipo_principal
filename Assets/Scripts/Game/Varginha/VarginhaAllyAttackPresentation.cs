@@ -94,7 +94,7 @@ namespace Game.Varginha
                         actor.transform.position = Vector3.Lerp(start,destination + Vector3.right*sign*1.1f,Mathf.Pow(move,3));
                         weapon.transform.position = actor.transform.position + Vector3.right*sign*.7f;
                         weapon.transform.rotation = Quaternion.Euler(0,0,120 - 240*ease);
-                        weapon.transform.localScale = new Vector3(2.4f,.9f,1);
+                        weapon.transform.localScale = Vector3.one * 1.8f;
                         break;
                     case VarginhaStudentAllyStyle.PingPong:
                         actor.transform.position = start;

@@ -10,7 +10,6 @@ namespace Game.Tests.EditMode
         [TestCase("Yasmin")]
         [TestCase("Pedro")]
         [TestCase("Matias")]
-        [TestCase("Fabio")]
         [TestCase("Marcos")]
         [TestCase("Anna Sabia")]
         [TestCase("Ana Tavares")]
@@ -59,6 +58,32 @@ namespace Game.Tests.EditMode
             }
             RectInt front = VisibleBounds(first);
             Assert.That(portrait.rect.yMax, Is.GreaterThanOrEqualTo(192 + front.yMax), "Retrato não pode cortar o cabelo.");
+        }
+
+        [Test]
+        public void FabioUsesReferenceArtForWalkingPortraitsAndSummons()
+        {
+            var front = VarginhaStudentSprites.Frame("Fabio");
+            Assert.IsNotNull(front);
+            Assert.AreSame(VarginhaReferenceSprites.Character(true, 0), front);
+            Assert.AreSame(front, VarginhaPixelArtSprites.Create("Student_Fabio", Color.magenta));
+            var portrait = VarginhaStudentSprites.Portrait("Fabio");
+            Assert.AreSame(portrait, VarginhaPixelArtSprites.Create("StudentHead_Fabio", Color.magenta));
+            Assert.AreSame(front.texture, portrait.texture);
+            Assert.AreEqual(front.rect.yMax, portrait.rect.yMax, .01f);
+            for (int direction = 0; direction < 4; direction++)
+            {
+                var idle = VarginhaStudentSprites.Frame("Fabio", direction, 0);
+                var step = VarginhaStudentSprites.Frame("Fabio", direction, 1);
+                Assert.IsNotNull(idle);
+                Assert.IsNotNull(step);
+                Assert.AreNotSame(idle, step);
+                Assert.AreSame(front.texture, step.texture);
+                Assert.AreEqual(idle.pivot.y / idle.pixelsPerUnit,
+                    step.pivot.y / step.pixelsPerUnit, .001f, "Os pés devem manter a mesma base.");
+                Assert.AreEqual(FilterMode.Point, step.texture.filterMode);
+                Assert.AreEqual(1, step.texture.mipmapCount);
+            }
         }
 
         [Test]

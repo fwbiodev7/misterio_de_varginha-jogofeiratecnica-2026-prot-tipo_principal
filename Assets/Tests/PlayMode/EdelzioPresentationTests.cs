@@ -45,7 +45,7 @@ namespace Game.Tests.PlayMode
         {
             var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
             var renderer = _go.GetComponent<SpriteRenderer>();
-            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
+            var atlas = Resources.Load<Texture2D>("Varginha/CharacterReferencesV1");
             var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up };
             var facing = typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic);
             _player.SetInputLocked(true);
@@ -82,6 +82,33 @@ namespace Game.Tests.PlayMode
         }
 
         [Test]
+        public void ReferenceArtCoversDirectionsWeaponsAndPortrait()
+        {
+            for (int direction = 0; direction < 4; direction++)
+            {
+                foreach (bool fabio in new[] { false, true })
+                    foreach (bool walking in new[] { false, true })
+                    {
+                        var sprite = VarginhaReferenceSprites.Character(fabio, direction, walking);
+                        Assert.IsNotNull(sprite);
+                        Assert.AreEqual(FilterMode.Point, sprite.texture.filterMode);
+                        Assert.Greater(sprite.bounds.size.y, .8f);
+                        Assert.Less(sprite.bounds.size.y, 1.5f);
+                    }
+                for (int frame = 0; frame < 4; frame++)
+                    Assert.IsNotNull(VarginhaReferenceSprites.Attack(direction, frame));
+            }
+            Assert.IsNotNull(VarginhaReferenceSprites.FabioPortrait());
+            foreach (string id in new[] { "StudentAttack_Art", "StudentAttack_Microphone", "StudentAttack_Katana", "StudentAttack_FallingPiano", "HostageCage_Fabio" })
+            {
+                var sprite = VarginhaPixelArtSprites.Create(id, Color.magenta);
+                Assert.AreEqual("AllyReferencePropsV1", sprite.texture.name);
+            }
+            Assert.AreNotSame(VarginhaPixelArtSprites.Create("Padre_Fabio", Color.white),
+                VarginhaPixelArtSprites.Create("Student_Fabio", Color.white));
+        }
+
+        [Test]
         public void HotbarReflectsActualCollectedItems()
         {
             for (int slot = 0; slot < 5; slot++) Assert.IsFalse(_player.HasInventoryItem(slot));
@@ -104,7 +131,7 @@ namespace Game.Tests.PlayMode
         {
             var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
             var renderer = _go.GetComponent<SpriteRenderer>();
-            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
+            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioReferenceActionsV1");
             Assert.IsNotNull(atlas);
             var scale = _go.transform.localScale;
             var radius = _go.GetComponent<CircleCollider2D>().radius;
