@@ -29,7 +29,8 @@ namespace Game.Varginha
             if (string.IsNullOrEmpty(assetName)) return null;
             if (Atlases.TryGetValue(assetName, out var existing) && existing.Texture != null
                 && existing.Frames[0] != null) return existing;
-            var texture = Resources.Load<Texture2D>("Varginha/Allies/" + assetName);
+            var texture = assetName == "Fabio" ? VarginhaReferenceSprites.FabioAtlas() ?? Resources.Load<Texture2D>("Varginha/Allies/" + assetName)
+                : Resources.Load<Texture2D>("Varginha/Allies/" + assetName);
             if (texture == null) return null;
             if (texture.width != CellSize * 4 || texture.height != CellSize * 4)
             {

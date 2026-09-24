@@ -23,6 +23,7 @@ namespace Game.Varginha
             _color = color;
             _caption = student.ToUpperInvariant() + " • " + Signature(student, style);
             _root = new GameObject("Animacao_" + student);
+            var presentationRoot = _root;
             _captionPosition = destination + Vector3.up * 2.3f;
             var actor = Part("Aluno", VarginhaPixelArtSprites.Create("Student_" + student, color), Color.white, 1.55f, 110);
             var shadow = Part("Sombra_do_aluno", _disc, new Color(.015f, .025f, .045f, .45f), 1f, 100);
@@ -67,6 +68,7 @@ namespace Game.Varginha
             float sign = destination.x >= source.x ? 1 : -1;
             while (time < anticipation + action + recovery)
             {
+                if (presentationRoot == null || _root != presentationRoot) yield break;
                 if (!canAdvance()) { yield return null; continue; }
                 time += Time.deltaTime;
                 float wind = Mathf.Clamp01(time / anticipation);
@@ -92,9 +94,10 @@ namespace Game.Varginha
                         break;
                     case VarginhaStudentAllyStyle.Katana:
                         actor.transform.position = Vector3.Lerp(start,destination + Vector3.right*sign*1.1f,Mathf.Pow(move,3));
-                        weapon.transform.position = actor.transform.position + Vector3.right*sign*.7f;
-                        weapon.transform.rotation = Quaternion.Euler(0,0,120 - 240*ease);
-                        weapon.transform.localScale = new Vector3(2.4f,.9f,1);
+                        weapon.transform.rotation = Quaternion.Euler(0,0,(60 - 150*ease)*sign);
+                        weapon.transform.localScale = Vector3.one * 2.1f;
+                        weapon.transform.position = actor.transform.position + Vector3.right*sign*.5f
+                            + weapon.transform.up * .65f;
                         break;
                     case VarginhaStudentAllyStyle.PingPong:
                         actor.transform.position = start;
@@ -140,7 +143,9 @@ namespace Game.Varginha
                     case VarginhaStudentAllyStyle.Microphone:
                         actor.transform.position = start;
                         weapon.transform.position = start + Vector3.right*sign*.7f + Vector3.up*.25f;
-                        weapon.transform.rotation = Quaternion.Euler(0,0,-20*sign);
+                        weapon.transform.rotation = Quaternion.identity;
+                        weapon.transform.localScale = Vector3.one * 1.9f;
+                        weapon.flipX = sign < 0;
                         halo.transform.position = Vector3.Lerp(start,destination,ease);
                         halo.transform.localScale = Vector3.one*(.3f + move*2f);
                         break;
@@ -196,7 +201,7 @@ namespace Game.Varginha
                 }
                 yield return null;
             }
-            Cancel();
+            if (_root == presentationRoot) Cancel();
         }
 
         /// <summary>O segundo alvo só recebe o dano quando a bolinha chega até ele.</summary>

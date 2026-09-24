@@ -10,7 +10,7 @@ namespace Game.Varginha
     public sealed class VarginhaPlayerSpriteAnimation : MonoBehaviour
     {
         [SerializeField] private float idleFrameRate = 2.4f;
-        [SerializeField] private float runFrameRate = 12.5f;
+        [SerializeField] private float runFrameRate = 8.5f;
 
         private EdelzioTopDownController _controller;
         private SpriteRenderer _renderer;
@@ -50,6 +50,7 @@ namespace Game.Varginha
         {
             _controller = GetComponent<EdelzioTopDownController>();
             _renderer = GetComponent<SpriteRenderer>();
+            VarginhaContactShadow.Ensure(_renderer);
             _fallbackSprite = _renderer != null ? _renderer.sprite : null;
             _lastValidScale = IsVisibleScale(transform.localScale) ? transform.localScale : new Vector3(1.08f, 1.08f, 1f);
             NormalizeScale();
@@ -84,7 +85,7 @@ namespace Game.Varginha
                 {
                     Sprite[] walk = _directionalWalkFrames[direction];
                     _directionalIdleFrames[direction] = walk != null && walk.Length >= 4
-                        ? new[] { walk[0], walk[1], walk[0], walk[3] }
+                        ? new[] { walk[0] }
                         : null;
                 }
             }
@@ -94,10 +95,8 @@ namespace Game.Varginha
                 for (int direction = 0; direction < _directionalWalkFrames.Length; direction++)
                 {
                     Sprite[] walk = _directionalWalkFrames[direction];
-                    // O retorno passa por poses intermediárias em vez de saltar
-                    // diretamente do quarto para o primeiro quadro.
                     _directionalRunFrames[direction] = walk != null && walk.Length >= 4
-                        ? new[] { walk[0], walk[1], walk[2], walk[3], walk[2], walk[1], walk[0], walk[1] }
+                        ? new[] { walk[0], walk[1], walk[2], walk[3] }
                         : null;
                 }
             }
@@ -105,7 +104,7 @@ namespace Game.Varginha
             if (_idleFrames == null || _idleFrames.Length == 0)
             {
                 _idleFrames = referenceFrames != null
-                    ? new[] { referenceFrames[0], referenceFrames[1], referenceFrames[0], referenceFrames[3] }
+                    ? new[] { referenceFrames[0] }
                     : new[]
                 {
                     VarginhaPixelArtSprites.Create("Edelzio_IdleA", jacket),
@@ -152,9 +151,8 @@ namespace Game.Varginha
 
             bool moving = _controller != null && _controller.IsMoving;
             SetRunning(moving);
-            // O relógio não depende do frame rate e continua acompanhando uma
-            // câmera em câmera lenta sem saltar quadros de pixel art.
-            _time += Time.unscaledDeltaTime;
+            // A animação acompanha o tempo do jogo, inclusive pausa e câmera lenta.
+            _time += Time.deltaTime;
             Sprite[] directionalFrames = _isRunning ? GetDirectionalFrames() : GetDirectionalIdleFrames();
             Sprite[] frames = directionalFrames ?? (_isRunning ? _runFrames : _idleFrames);
             float frameRate = _isRunning ? runFrameRate : idleFrameRate;
@@ -270,6 +268,11 @@ namespace Game.Varginha
         private void EnsureBeardLayer()
         {
             if (_renderer == null) return;
+            if (VarginhaReferenceSprites.HasEdelzio)
+            {
+                if (_beardRenderer != null) _beardRenderer.enabled = false;
+                return;
+            }
             // Nunca reutiliza um componente destruído durante hot-reload. O
             // objeto legado tinha o nome da camada, mas não possuía
             // SpriteRenderer e gerava MissingComponentException no Play Mode.
@@ -296,6 +299,7 @@ namespace Game.Varginha
         private void SetBeard(bool attackSheet, int direction)
         {
             EnsureBeardLayer();
+            if (VarginhaReferenceSprites.HasEdelzio) return;
             if (_beardRenderer == null) return;
             if (_renderer == null || _beardRenderer == null) return;
             _beardRenderer.sprite = VarginhaPixelArtSprites.CreateEdelzioBeard(attackSheet, direction);
@@ -327,6 +331,15 @@ namespace Game.Varginha
 
         private Sprite[][] LoadReferenceWalkFrames()
         {
+            var reference = VarginhaReferenceSprites.EdelzioWalkFrames();
+            if (reference != null)
+            {
+                _actionFrames = new Sprite[8];
+                for (int i = 0; i < 4; i++) _actionFrames[i] = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_DrinkCoffee", i);
+                string[] actions = { "Edelzio_Crouch", "Edelzio_Reach", "Edelzio_Sit", "Edelzio_UseNotebook" };
+                for (int i = 0; i < actions.Length; i++) _actionFrames[i + 4] = VarginhaReferenceSprites.EdelzioActionFrame(actions[i]);
+                return reference;
+            }
             var sheet = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
             if (sheet == null) return null;
 

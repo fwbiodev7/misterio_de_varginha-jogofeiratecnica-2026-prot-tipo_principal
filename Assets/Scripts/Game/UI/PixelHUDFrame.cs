@@ -38,6 +38,36 @@ namespace Game.UI
 
         public static void DrawHeart(Rect rect, Texture2D pixel, Color color)
         {
+            if (Game.Varginha.VarginhaReferenceSprites.Heart(true) == null)
+                DrawLegacyHeart(rect, pixel, color);
+            else DrawHealthHeart(rect, color.maxColorComponent > .5f ? 1f : 0f);
+        }
+
+        public static void DrawHealthHeart(Rect rect, float fill)
+        {
+            var full = Game.Varginha.VarginhaReferenceSprites.Heart(true);
+            var empty = Game.Varginha.VarginhaReferenceSprites.Heart(false);
+            var previousColor = GUI.color;
+            fill = Mathf.Clamp01(fill);
+            if (full == null || empty == null)
+            {
+                DrawLegacyHeart(rect, Texture2D.whiteTexture, Color.Lerp(new Color(.27f, .20f, .24f), new Color(.87f, .24f, .29f), fill));
+                GUI.color = previousColor;
+                return;
+            }
+            GUI.color = Color.white;
+            GUI.DrawTexture(rect, empty.texture, ScaleMode.StretchToFill, true);
+            if (fill > 0f)
+            {
+                GUI.BeginGroup(new Rect(rect.x, rect.yMax - rect.height * fill, rect.width, rect.height * fill));
+                GUI.DrawTexture(new Rect(0, -rect.height * (1 - fill), rect.width, rect.height), full.texture);
+                GUI.EndGroup();
+            }
+            GUI.color = previousColor;
+        }
+
+        private static void DrawLegacyHeart(Rect rect, Texture2D pixel, Color color)
+        {
             float u = Mathf.Max(1f, Mathf.Floor(rect.width / 9f));
             rect.x = Mathf.Round(rect.x + (rect.width - u * 9f) * .5f);
             rect.y = Mathf.Round(rect.y);

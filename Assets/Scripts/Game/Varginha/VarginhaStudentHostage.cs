@@ -86,7 +86,7 @@ namespace Game.Varginha
             {
                 // O brilho pulsa para comunicar que os alunos ainda estão presos.
                 float pulse = .82f + Mathf.Sin(Time.unscaledTime * 3.5f) * .12f;
-                _cageRenderer.color = new Color(.72f, 1f, .76f, pulse);
+                _cageRenderer.color = new Color(1f, 1f, 1f, pulse);
             }
             if (!_released || _fusca == null || _arrived) return;
             bool headingToCar = _leader == null || Vector2.Distance(_leader.position, _fusca.position) <= 3.4f;
@@ -141,7 +141,7 @@ namespace Game.Varginha
             int studentOrder = _renderer != null ? _renderer.sortingOrder : 5;
             _cageRenderer.sortingOrder = studentOrder + 2;
             _cageRenderer.sprite = VarginhaPixelArtSprites.Create("HostageCage_" + studentName, new Color(.2f, .78f, .34f));
-            _cageRenderer.color = new Color(.72f, 1f, .76f, .92f);
+            _cageRenderer.color = new Color(1f, 1f, 1f, .94f);
             _cageRenderer.enabled = !_released;
         }
     }

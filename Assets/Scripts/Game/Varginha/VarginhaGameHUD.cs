@@ -17,7 +17,7 @@ namespace Game.Varginha
         private VarginhaBackpackInventory _backpack;
         private int _blockInputThroughFrame = -1;
         public bool IsInventoryOpen => _backpack != null && _backpack.IsOpen;
-        public bool BlocksGameplayInput => IsInventoryOpen || Time.frameCount <= _blockInputThroughFrame;
+        public bool BlocksGameplayInput => _isGameOver || _isPaused || VarginhaMainMenu.IsOpen || IsInventoryOpen || Time.frameCount <= _blockInputThroughFrame;
 
         public bool OpenBackpack()
         {
@@ -57,7 +57,18 @@ namespace Game.Varginha
         private bool _isVictoryOpen;
         public bool IsVictoryOpen => _isVictoryOpen;
         private bool _isGameOver;
+        private string _gameOverReason;
+        private float _gameOverOpenedAt;
+        public bool IsGameplayVisible => !VarginhaMainMenu.IsOpen && _edelzio != null
+            && _edelzio.gameObject.scene == SceneManager.GetActiveScene();
         public bool IsGameOver => _isGameOver;
+        private bool _isPaused;
+        public bool IsPaused => _isPaused;
+        private bool _isControlsOpen;
+        private GUIStyle _pauseTextStyle;
+        private Vector2 _controlsScroll;
+        private static readonly string[] PauseLabels = { "CONTINUAR", "CONTROLES", "SAIR AO MENU" };
+        private static readonly VarginhaInputAction[] ControlActions = (VarginhaInputAction[])System.Enum.GetValues(typeof(VarginhaInputAction));
 
         private Texture2D _whiteTex;
         private GUIStyle _dialogueBoxStyle;
@@ -82,8 +93,45 @@ namespace Game.Varginha
         private float HotbarSlotSize => Mathf.Clamp((Screen.width - 44f) / 5f, 28f, 76f);
         private float HotbarHeight => HotbarSlotSize + (Screen.height < 420f ? 38f : 46f);
 
+        public void TogglePause()
+        {
+            if (!IsGameplayVisible || _isVictoryOpen || _isGameOver || VarginhaTravelCinematic.IsTravelling) return;
+            _isPaused = !_isPaused;
+            Time.timeScale = _isPaused ? 0f : 1f;
+            if (_isPaused)
+            {
+                _isControlsOpen = false;
+                _controlsScroll = Vector2.zero;
+                CloseBackpack();
+            }
+        }
+
+        public void ResumePause()
+        {
+            if (!_isPaused) return;
+            _isPaused = false;
+            Time.timeScale = 1f;
+        }
+
         private void Update()
         {
+            if (_edelzio == null) _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
+            if (!IsGameplayVisible || VarginhaTravelCinematic.IsTravelling) return;
+            var keyboard = Keyboard.current;
+
+            // Pause toggle — ESC or P, always available unless victory/game-over
+            if (keyboard != null && (keyboard.escapeKey.wasPressedThisFrame || keyboard.pKey.wasPressedThisFrame))
+            {
+                if (!_isVictoryOpen && !_isGameOver)
+                {
+                    if (_isControlsOpen) { _isControlsOpen = false; return; }
+                    TogglePause();
+                    return;
+                }
+            }
+
+            if (_isPaused) return; // block all gameplay input while paused
+
             if (_edelzio == null) return;
             if (IsInventoryOpen) return;
             for (int i = 0; i < 5; i++)
@@ -110,7 +158,6 @@ namespace Game.Varginha
                     return;
                 }
             }
-            var keyboard = Keyboard.current;
             if (keyboard == null) return;
             if (keyboard.gKey.wasPressedThisFrame) { _selectedSlot = 0; OpenBackpack(); }
             if (keyboard.digit1Key.wasPressedThisFrame) _selectedSlot = 0;
@@ -122,6 +169,7 @@ namespace Game.Varginha
 
         private void Awake()
         {
+            if (Instance != null && Instance != this) { enabled = false; return; }
             Instance = this;
             _rodrigoTypewriter.Set(_rodrigoHint);
         }
@@ -130,6 +178,7 @@ namespace Game.Varginha
         {
             // Com Enter Play Mode Options, Awake pode não rodar entre tentativas.
             // Reafirma a instância que desenha as interfaces de interação.
+            if (Instance != null && Instance != this) { enabled = false; return; }
             Instance = this;
             SceneManager.sceneLoaded += HandleSceneLoaded;
         }
@@ -148,6 +197,9 @@ namespace Game.Varginha
             _isVictoryOpen = false;
             _isDialogueOpen = false;
             _isGameOver = false;
+            _isPaused = false;
+            _isControlsOpen = false;
+            Time.timeScale = 1f;
             _lastInteractionInstruction = null;
             _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
             System.Array.Clear(_hotbarOwned, 0, _hotbarOwned.Length);
@@ -158,7 +210,7 @@ namespace Game.Varginha
         private void Start()
         {
             _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
-            if (GameManager.Instance != null && !GameManager.Instance.IsPlaying)
+            if (IsGameplayVisible && GameManager.Instance != null && !GameManager.Instance.IsPlaying)
             {
                 GameManager.Instance.StartGame();
             }
@@ -281,17 +333,21 @@ namespace Game.Varginha
             _isVictoryOpen = true;
         }
 
-        /// <summary>Abre a tela de Game Over antes do retorno automático para a Fase 1.</summary>
-        public void ShowGameOver()
+        /// <summary>Death overlay remains until the player chooses where to continue.</summary>
+        public void ShowGameOver(string reason = "EDELZIO FOI DERROTADO")
         {
             CloseBackpack();
             _isDialogueOpen = false;
             _isVictoryOpen = false;
+            _isPaused = _isControlsOpen = false;
+            _gameOverReason = reason;
+            _gameOverOpenedAt = Time.unscaledTime;
             _isGameOver = true;
         }
 
         private void OnGUI()
         {
+            if (!IsGameplayVisible) return;
             if (IsInventoryOpen) return;
             if (Game.Varginha.VarginhaTravelCinematic.IsTravelling) return;
             InitStyles();
@@ -317,7 +373,20 @@ namespace Game.Varginha
                 _edelzio = Object.FindAnyObjectByType<EdelzioTopDownController>();
             }
 
+            if (_isGameOver || GameManager.Instance?.IsGameOver == true)
+            {
+                DrawGameOverWindow();
+                return;
+            }
             DrawTopBar();
+
+            // Pause screen overrides all other overlays except the top bar
+            if (_isPaused)
+            {
+                DrawPauseScreen();
+                return;
+            }
+
             DrawInventoryBar();
             DrawCombatHint();
             DrawInteractionPrompt();
@@ -350,14 +419,12 @@ namespace Game.Varginha
             PixelHUDFrame.Draw(stabilityPanel, _whiteTex, PanelColor, PanelBorder);
             GUI.Label(new Rect(stabilityPanel.x, stabilityPanel.y + 6, stabilityPanel.width, 20), "SAUDE", _promptStyle);
 
-            int filledHearts = Mathf.Clamp(Mathf.CeilToInt(ratio * 3f), 0, 3);
             float heartSize = Mathf.Clamp((stabilityPanel.width - 44f) / 3f, 28f, panelHeight - 52f);
             float heartGap = Mathf.Clamp(6f * heartSize / 52f, 3f, 6f);
             float heartX = stabilityPanel.x + (stabilityPanel.width - heartSize * 3f - heartGap * 2f) * .5f;
             for (int heart = 0; heart < 3; heart++)
             {
-                Color heartColor = heart < filledHearts ? new Color(.87f, .24f, .29f) : new Color(.27f, .20f, .24f);
-                PixelHUDFrame.DrawHeart(new Rect(heartX + heart * (heartSize + heartGap), stabilityPanel.y + 28f, heartSize, heartSize), _whiteTex, heartColor);
+                PixelHUDFrame.DrawHealthHeart(new Rect(heartX + heart * (heartSize + heartGap), stabilityPanel.y + 28f, heartSize, heartSize), Mathf.Clamp01(ratio * 3f - heart));
             }
 
             _healthStyle.normal.textColor = ratio <= 1f / 3f ? new Color(1f, .61f, .60f) : PaperColor;
@@ -581,6 +648,137 @@ namespace Game.Varginha
             _typewriterSource.PlayOneShot(_typewriterClip, 0.18f);
         }
 
+        // The pause and radio dialogue share the same frame, grain and paper palette.
+        private void PauseLabel(Rect rect, string text, int fontSize, Color color,
+            TextAnchor alignment = TextAnchor.MiddleLeft)
+        {
+            if (_pauseTextStyle == null)
+            {
+                _pauseTextStyle = new GUIStyle(GUI.skin.label)
+                {
+                    padding = new RectOffset(0, 0, 0, 0),
+                    margin = new RectOffset(0, 0, 0, 0),
+                    wordWrap = false,
+                    clipping = TextClipping.Clip,
+                    fontStyle = FontStyle.Normal
+                };
+                PixelUIFont.Apply(_pauseTextStyle);
+            }
+            _pauseTextStyle.alignment = alignment;
+            _pauseTextStyle.normal.textColor = color;
+            _pauseTextStyle.fontSize = Mathf.Max(4, fontSize);
+            var content = new GUIContent(text);
+            // Measure the actual pixel font; inherited button padding used to crop labels.
+            while (_pauseTextStyle.fontSize > 4 &&
+                (_pauseTextStyle.CalcSize(content).x > rect.width || _pauseTextStyle.CalcSize(content).y > rect.height))
+                _pauseTextStyle.fontSize--;
+            GUI.Label(rect, content, _pauseTextStyle);
+        }
+
+        private void PauseSeparator(Rect modal, float y)
+        {
+            DrawHudBlock(new Rect(modal.x + 16f, y, modal.width - 32f, 1f), PanelBorder);
+        }
+
+        private void PauseHeader(Rect modal, string title, string subtitle, float scale)
+        {
+            float pad = 22f;
+            Color muted = new Color(.64f, .73f, .75f);
+            // A small steady radio indicator avoids an oversized neon title.
+            DrawHudBlock(new Rect(modal.x + pad, modal.y + 20f * scale, 4f, 4f), muted);
+            PauseLabel(new Rect(modal.x + pad + 12f, modal.y + 12f * scale, modal.width - pad * 2f - 12f, 20f * scale),
+                "TRANSMISSAO • 96.4 MHz • SISTEMA", Mathf.RoundToInt(9f * scale), muted);
+            PauseSeparator(modal, modal.y + 40f * scale);
+            PauseLabel(new Rect(modal.x + pad, modal.y + 53f * scale, modal.width - pad * 2f, 30f * scale),
+                title, Mathf.RoundToInt(20f * scale), PaperColor);
+            PauseLabel(new Rect(modal.x + pad, modal.y + 89f * scale, modal.width - pad * 2f, 18f * scale),
+                subtitle, Mathf.RoundToInt(9f * scale), muted);
+        }
+
+        private bool PauseButton(Rect rect, string label, string marker, float scale)
+        {
+            bool hover = rect.Contains(Event.current.mousePosition);
+            Color accent = new Color(.64f, .84f, .86f);
+            PixelHUDFrame.Draw(rect, _whiteTex,
+                hover ? new Color(.10f, .15f, .17f, .98f) : PanelColor,
+                hover ? accent : PanelBorder);
+            if (hover) DrawHudBlock(new Rect(rect.x + 3f, rect.y + 5f, 2f, rect.height - 10f), accent);
+            PauseLabel(new Rect(rect.x + 14f, rect.y, 26f, rect.height), hover ? ">" : marker,
+                Mathf.RoundToInt(9f * scale), hover ? accent : new Color(.48f, .59f, .61f));
+            PauseLabel(new Rect(rect.x + 48f, rect.y, rect.width - 60f, rect.height), label,
+                Mathf.RoundToInt(12f * scale), hover ? Color.white : PaperColor);
+            return GUI.Button(rect, GUIContent.none, GUIStyle.none);
+        }
+
+        private void DrawPauseScreen()
+        {
+            DrawHudBlock(new Rect(0, 0, Screen.width, Screen.height), new Color(.005f, .01f, .015f, .76f));
+            if (_isControlsOpen)
+            {
+                DrawControlsPanel();
+                return;
+            }
+
+            Rect modal = GetModalRect(520f, 344f);
+            float scale = Mathf.Min(1f, modal.height / 344f);
+            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, PanelBorder);
+            PauseHeader(modal, "PAUSADO", "INVESTIGACAO EM ESPERA", scale);
+
+            float buttonY = modal.y + 124f * scale;
+            for (int i = 0; i < PauseLabels.Length; i++)
+            {
+                Rect button = new Rect(modal.x + 22f, buttonY + i * 54f * scale, modal.width - 44f, 44f * scale);
+                if (!PauseButton(button, PauseLabels[i], "0" + (i + 1), scale)) continue;
+                switch (i)
+                {
+                    case 0: ResumePause(); break;
+                    case 1: _isControlsOpen = true; break;
+                    case 2: QuitToMenu(); break;
+                }
+            }
+            PauseSeparator(modal, modal.yMax - 43f * scale);
+            PauseLabel(new Rect(modal.x + 22f, modal.yMax - 34f * scale, modal.width - 44f, 20f * scale),
+                "[ESC] / [P]  RETOMAR INVESTIGACAO", Mathf.RoundToInt(9f * scale),
+                new Color(.64f, .73f, .75f), TextAnchor.MiddleCenter);
+        }
+
+        private void DrawControlsPanel()
+        {
+            Rect modal = GetModalRect(600f, 506f);
+            float scale = Mathf.Min(1f, modal.height / 344f);
+            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, PanelBorder);
+            PauseHeader(modal, "CONTROLES", "GUIA DO INVESTIGADOR", scale);
+
+            Rect viewport = new Rect(modal.x + 22f, modal.y + 119f * scale,
+                modal.width - 44f, Mathf.Max(24f, modal.height - 193f * scale));
+            const float rowHeight = 32f;
+            float contentHeight = ControlActions.Length * rowHeight;
+            float contentWidth = viewport.width - (contentHeight > viewport.height ? 18f : 0f);
+            _controlsScroll = GUI.BeginScrollView(viewport, _controlsScroll,
+                new Rect(0, 0, contentWidth, contentHeight));
+            // Both columns use the same measured size, even with long custom bindings.
+            int rowFont = Mathf.Clamp(Mathf.FloorToInt(contentWidth / 48f), 6, 10);
+            for (int i = 0; i < ControlActions.Length; i++)
+            {
+                float y = i * rowHeight;
+                if (i % 2 == 0) DrawHudBlock(new Rect(0, y, contentWidth, rowHeight), new Color(.10f, .14f, .16f, .55f));
+                PauseLabel(new Rect(8f, y, contentWidth * .55f - 12f, rowHeight),
+                    VarginhaInputBindings.ActionName(ControlActions[i]).ToUpperInvariant(), rowFont, PaperColor);
+                PauseLabel(new Rect(contentWidth * .55f, y, contentWidth * .45f - 8f, rowHeight),
+                    VarginhaInputBindings.DisplayName(ControlActions[i]), rowFont,
+                    new Color(.64f, .84f, .86f), TextAnchor.MiddleRight);
+            }
+            GUI.EndScrollView();
+            PauseSeparator(modal, modal.yMax - 66f * scale);
+            if (PauseButton(new Rect(modal.x + 22f, modal.yMax - 54f * scale, modal.width - 44f, 38f * scale),
+                "VOLTAR", "<", scale)) _isControlsOpen = false;
+        }
+        private void QuitToMenu()
+        {
+            ResumePause();
+            VarginhaGameOverFlow.ReturnToMenu();
+        }
+
         private void DrawVictoryWindow()
         {
             Rect modal = GetModalRect(800f, Mathf.Min(520f, Screen.height * .88f));
@@ -615,31 +813,27 @@ namespace Game.Varginha
 
         private void DrawGameOverWindow()
         {
-            Rect modal = GetModalRect(700f, 360f);
-            float pad = Mathf.Clamp(modal.width * .06f, 12f, 38f);
-            float buttonHeight = Mathf.Clamp(modal.height * .16f, 30f, 48f);
-            _buttonStyle.fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 48f), 8, 14);
-
-            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, new Color(.76f, .35f, .40f));
-            GUI.color = Color.white;
-
-            var titleStyle = new GUIStyle(GUI.skin.label) { fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 30f), 10, 22), fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, wordWrap = true };
-            titleStyle.normal.textColor = Color.red;
-            PixelUIFont.Apply(titleStyle);
-            float titleHeight = titleStyle.CalcHeight(new GUIContent("GAME OVER"), modal.width - pad * 2f);
-            GUI.Label(new Rect(modal.x + pad, modal.y + pad, modal.width - pad * 2f, titleHeight), "GAME OVER", titleStyle);
-
-            var descStyle = new GUIStyle(GUI.skin.label) { fontSize = Mathf.Clamp(Mathf.RoundToInt(modal.width / 48f), 8, 15), wordWrap = true, alignment = TextAnchor.MiddleCenter };
-            descStyle.normal.textColor = Color.white;
-            PixelUIFont.Apply(descStyle);
-            float contentTop = modal.y + pad + titleHeight + pad * .6f;
-            GUI.Label(new Rect(modal.x + pad, contentTop, modal.width - pad * 2f, modal.yMax - contentTop - buttonHeight - pad * 1.6f), "EDELZIO FOI DERROTADO.\nVOLTANDO PARA A FASE 1...", descStyle);
-
-            float buttonWidth = Mathf.Min(modal.width - pad * 2f, 300f);
-            if (GUI.Button(new Rect(modal.x + (modal.width - buttonWidth) * .5f, modal.yMax - buttonHeight - pad * .55f, buttonWidth, buttonHeight), "VOLTAR A FASE 1", _buttonStyle))
-            {
-                VarginhaGameOverFlow.ReturnToPhaseOne();
-            }
+            float fade = Mathf.Clamp01((Time.unscaledTime - _gameOverOpenedAt) / .4f);
+            DrawHudBlock(new Rect(0, 0, Screen.width, Screen.height), new Color(.005f, .01f, .015f, .84f * fade));
+            Rect modal = GetModalRect(560f, 390f);
+            float scale = Mathf.Min(1f, modal.height / 390f);
+            PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, new Color(.51f, .32f, .34f));
+            PauseHeader(modal, "SINAL PERDIDO", _gameOverReason ?? "EDELZIO FOI DERROTADO", scale);
+            PauseLabel(new Rect(modal.x + 22, modal.y + 119f * scale, modal.width - 44, 22f * scale),
+                "A investigacao pode continuar. Tente outra vez.", Mathf.RoundToInt(9 * scale), PaperColor);
+            bool previousEnabled = GUI.enabled;
+            // A held attack click cannot immediately dismiss the death screen.
+            GUI.enabled = previousEnabled && Time.unscaledTime - _gameOverOpenedAt >= .65f;
+            if (PauseButton(new Rect(modal.x + 22, modal.y + 161f * scale, modal.width - 44, 44f * scale),
+                "TENTAR ESTA FASE NOVAMENTE", "01", scale)) VarginhaGameOverFlow.RetryCurrentPhase();
+            if (PauseButton(new Rect(modal.x + 22, modal.y + 215f * scale, modal.width - 44, 44f * scale),
+                "REINICIAR INVESTIGACAO", "02", scale)) VarginhaGameOverFlow.ReturnToPhaseOne();
+            if (PauseButton(new Rect(modal.x + 22, modal.y + 269f * scale, modal.width - 44, 44f * scale),
+                "SAIR AO MENU", "03", scale)) VarginhaGameOverFlow.ReturnToMenu();
+            GUI.enabled = previousEnabled;
+            PauseSeparator(modal, modal.yMax - 43f * scale);
+            PauseLabel(new Rect(modal.x + 22, modal.yMax - 34f * scale, modal.width - 44, 20f * scale),
+                "A DIFICULDADE ESCOLHIDA SERA MANTIDA", Mathf.RoundToInt(9 * scale), PixelMenuTheme.Muted, TextAnchor.MiddleCenter);
         }
 
         private void RestartScene()

@@ -14,6 +14,16 @@ namespace Game.Varginha
         [SerializeField] private string gameplaySceneName = "FaseTopView_Varginha";
         [SerializeField] private string phase3SceneName = "Fase3_Igreja_Guardiao";
 
+        public static bool IsOpen { get; private set; }
+        private void OnEnable()
+        {
+            IsOpen = true;
+            Time.timeScale = 1f;
+            Game.Managers.GameManager.Instance?.ReturnToMenu();
+        }
+        private void OnDisable() => IsOpen = false;
+        private void OnDestroy() { if (pixel != null) Destroy(pixel); }
+
         private enum Panel { None, Controls, Credits, Difficulty, Keybinds }
         private Panel panel;
         private string _pendingScene;
@@ -64,46 +74,25 @@ namespace Game.Varginha
                 return;
             }
 
-            float scale = Mathf.Clamp(Mathf.Min(Screen.width / 1280f, Screen.height / 720f), .55f, 1.15f);
-            ConfigureResponsiveFonts(scale);
-
-            float width = Mathf.Min(940f * scale, Screen.width - 48f);
-            float x = (Screen.width - width) * .5f;
-            float y = Mathf.Max(24f, Screen.height * .07f);
-            float titleLineHeight = 58f * scale;
-            float subtitleY = y + titleLineHeight * 2f + 6f * scale;
-            float descriptionPanelY = subtitleY + 34f * scale;
-            float descriptionPanelHeight = 212f * scale;
-
-            GUI.Label(new Rect(x, y, width, titleLineHeight), "MISTERIO DE", titleStyle);
-            GUI.Label(new Rect(x, y + titleLineHeight, width, titleLineHeight), "VARGINHA", titleStyle);
-            GUI.Label(new Rect(x, subtitleY, width, 28f * scale), "PROTOTIPO  •  INVESTIGACAO SOBRENATURAL", subtitleStyle);
-
-            GUI.color = new Color(.025f, .06f, .10f, .88f);
-            GUI.DrawTexture(new Rect(x, descriptionPanelY, width, descriptionPanelHeight), pixel);
-            GUI.color = Color.white;
-
-            GUI.Label(new Rect(x + 42f * scale, descriptionPanelY + 22f * scale, width - 84f * scale, 98f * scale),
-                "Varginha, 2026. Luzes voltaram a surgir sobre a cidade — e as memórias de Edelzio sobre 1996 não são mais confiáveis.", infoStyle);
-            GUI.Label(new Rect(x + 42f * scale, descriptionPanelY + 132f * scale, width - 84f * scale, 48f * scale),
-                "Explore, conecte pistas e descubra o que ainda dorme sob a cidade.", smallStyle);
-
-            float buttonWidth = Mathf.Min(480f * scale, width - 96f * scale);
-            float buttonX = x + (width - buttonWidth) * .5f;
-            float buttonY = descriptionPanelY + descriptionPanelHeight + 28f * scale;
-            if (GUI.Button(new Rect(buttonX, buttonY, buttonWidth, 52f * scale), "INICIAR INVESTIGAÇÃO", buttonStyle))
-                StartInvestigation();
-            if (GUI.Button(new Rect(buttonX, buttonY + 66f * scale, buttonWidth, 42f * scale), "TUTORIAL / CONTROLES", buttonStyle))
-                OpenPanel(Panel.Controls);
-            if (GUI.Button(new Rect(buttonX, buttonY + 120f * scale, buttonWidth, 42f * scale), "CREDITOS", buttonStyle))
-                OpenPanel(Panel.Credits);
-            if (GUI.Button(new Rect(buttonX, buttonY + 174f * scale, buttonWidth, 42f * scale), "JOGAR FASE 3 — O GUARDIAO", buttonStyle))
-                StartPhase3();
-
-            GUI.Label(new Rect(20, Screen.height - 42, Screen.width - 40, 24),
-                "SINAL DETECTADO  •  VARGINHA / MG  •  21:17", smallStyle);
-
-            if (panel == Panel.Controls || panel == Panel.Credits) DrawPanel();
+            // A fixed design canvas scales as a whole, including very short Game Views.
+            float scale = Mathf.Min(1f, Mathf.Min((Screen.width - 24f) / 560f, (Screen.height - 24f) / 488f));
+            var previous = GUI.matrix;
+            GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 560f * scale) * .5f,
+                (Screen.height - 488f * scale) * .5f), Quaternion.identity, Vector3.one * scale);
+            PixelMenuTheme.Panel(new Rect(0, 0, 560, 488));
+            PixelMenuTheme.Label(new Rect(24, 14, 512, 22), "• TRANSMISSAO • 96.4 MHz • VARGINHA / MG", 9, PixelMenuTheme.Muted);
+            PixelMenuTheme.Separator(new Rect(16, 42, 528, 1));
+            PixelMenuTheme.Label(new Rect(24, 57, 512, 28), "MISTERIO DE VARGINHA", 23, PixelMenuTheme.Paper);
+            PixelMenuTheme.Label(new Rect(24, 96, 512, 22), "INVESTIGACAO SOBRENATURAL", 10, PixelMenuTheme.Muted);
+            PixelMenuTheme.Label(new Rect(24, 133, 512, 22), "Varginha, 2026. As luzes voltaram.", 10, PixelMenuTheme.Paper);
+            PixelMenuTheme.Label(new Rect(24, 158, 512, 22), "As pistas de 1996 ainda esperam por Edelzio.", 9, PixelMenuTheme.Muted);
+            if (PixelMenuTheme.Button(new Rect(22, 204, 516, 44), "INICIAR INVESTIGACAO", "01")) StartInvestigation();
+            if (PixelMenuTheme.Button(new Rect(22, 258, 516, 44), "TUTORIAL / CONTROLES", "02")) OpenPanel(Panel.Controls);
+            if (PixelMenuTheme.Button(new Rect(22, 312, 516, 44), "CREDITOS", "03")) OpenPanel(Panel.Credits);
+            if (PixelMenuTheme.Button(new Rect(22, 366, 516, 44), "JOGAR FASE 3 — O GUARDIAO", "04")) StartPhase3();
+            PixelMenuTheme.Separator(new Rect(16, 440, 528, 1));
+            PixelMenuTheme.Label(new Rect(24, 450, 512, 22), "SINAL DETECTADO • 21:17", 9, PixelMenuTheme.Muted, TextAnchor.MiddleCenter);
+            GUI.matrix = previous;
         }
 
         private void DrawBackground()
@@ -133,8 +122,7 @@ namespace Game.Varginha
             float height = Mathf.Min(panel == Panel.Controls ? 550f : 300f, Screen.height - 24f);
             float x = (Screen.width - width) * .5f;
             float y = (Screen.height - height) * .5f;
-            GUI.color = new Color(.03f, .08f, .13f, .98f);
-            GUI.DrawTexture(new Rect(x, y, width, height), pixel);
+            PixelMenuTheme.Panel(new Rect(x, y, width, height));
             GUI.color = Color.white;
 
             string heading = panel == Panel.Controls ? "CONTROLES DE INVESTIGACAO" : "CREDITOS";
@@ -158,8 +146,7 @@ namespace Game.Varginha
             float height = Mathf.Min(650f, Screen.height - 24f);
             float x = (Screen.width - width) * .5f;
             float y = (Screen.height - height) * .5f;
-            GUI.color = new Color(.025f, .07f, .12f, .99f);
-            GUI.DrawTexture(new Rect(x, y, width, height), pixel);
+            PixelMenuTheme.Panel(new Rect(x, y, width, height));
             GUI.color = Color.white;
             GUI.Label(new Rect(x + 30, y + 20, width - 60, 30), "EDITAR CONTROLES", subtitleStyle);
             GUI.Label(new Rect(x + 30, y + 52, width - 60, 26),
@@ -289,8 +276,7 @@ namespace Game.Varginha
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1280 * scale) * .5f,
                 (Screen.height - 720 * scale) * .5f), Quaternion.identity, Vector3.one * scale);
-            GUI.color = new Color(.02f, .05f, .09f, .97f);
-            GUI.DrawTexture(new Rect(90, 70, 1100, 580), pixel);
+            PixelMenuTheme.Panel(new Rect(90, 70, 1100, 580));
             GUI.color = Color.white;
             GUI.Label(new Rect(150, 105, 980, 60), "COMO VOCÊ VAI INVESTIGAR?", titleStyle);
             GUI.Label(new Rect(180, 175, 920, 40), "A escolha vale para todas as fases e para as novas tentativas.", infoStyle);
@@ -339,9 +325,9 @@ namespace Game.Varginha
         {
             if (titleStyle != null) return;
             titleStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 42, fontStyle = FontStyle.Bold, wordWrap = false };
-            titleStyle.normal.textColor = new Color(.62f, 1f, .94f);
+            titleStyle.normal.textColor = PixelMenuTheme.Paper;
             subtitleStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 14, fontStyle = FontStyle.Bold };
-            subtitleStyle.normal.textColor = new Color(.38f, .85f, .9f);
+            subtitleStyle.normal.textColor = PixelMenuTheme.Muted;
             infoStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 15, wordWrap = true };
             infoStyle.normal.textColor = new Color(.88f, .95f, 1f);
             leftInfoStyle = new GUIStyle(infoStyle) { alignment = TextAnchor.MiddleLeft, wordWrap = false };
@@ -353,6 +339,7 @@ namespace Game.Varginha
             PixelUIFont.Apply(titleStyle);
             PixelUIFont.Apply(subtitleStyle);
             PixelUIFont.Apply(infoStyle);
+            PixelUIFont.Apply(leftInfoStyle);
             PixelUIFont.Apply(smallStyle);
             PixelUIFont.Apply(buttonStyle);
         }

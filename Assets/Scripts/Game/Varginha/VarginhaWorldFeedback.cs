@@ -4,6 +4,9 @@ namespace Game.Varginha
     public static class VarginhaWorldFeedback
     {
         public static bool IsHidden => VarginhaTravelCinematic.IsTravelling
+            || VarginhaMainMenu.IsOpen
+            || VarginhaGameHUD.Instance?.IsPaused == true
+            || VarginhaGameHUD.Instance?.IsGameOver == true
             || VarginhaGameHUD.Instance?.IsInventoryOpen == true
             || VarginhaGameHUD.Instance?.IsDialogueOpen == true
             || VarginhaGameHUD.Instance?.IsVictoryOpen == true

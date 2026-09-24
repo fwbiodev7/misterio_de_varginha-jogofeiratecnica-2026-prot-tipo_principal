@@ -9,6 +9,7 @@ namespace Game.Varginha
 
         public static void EnsureSchool(Transform school)
         {
+            RefreshReferenceFurniture(school);
             if (!NeedsRefresh(school)) return;
             RefreshSurfaces(school, true);
             var decor = Root(school);
@@ -45,6 +46,8 @@ namespace Game.Varginha
 
         public static void EnsureDiocese(Transform church)
         {
+            RefreshReferenceFurniture(church);
+            RefreshFlames(church);
             if (!NeedsRefresh(church)) return;
             RefreshSurfaces(church, false);
             var decor = Root(church);
@@ -102,10 +105,12 @@ namespace Game.Varginha
             }
             ContactShadows(church, decor);
             VarginhaSoftLighting.Build(church, decor);
+            RefreshFlames(church);
         }
 
         public static void EnsureHouse(Transform house)
         {
+            RefreshReferenceFurniture(house);
             if (!NeedsRefresh(house)) return;
             var decor = Root(house);
             foreach (var renderer in house.GetComponentsInChildren<SpriteRenderer>(true))
@@ -157,6 +162,44 @@ namespace Game.Varginha
             Dust(decor, new Vector2(-4.1f, 4.7f), new Vector2(2.1f, 1.2f), 6, new Color(.64f, .82f, .95f, .45f));
             Dust(decor, new Vector2(14.3f, -4.8f), new Vector2(3.5f, 2.6f), 7, new Color(.75f, .94f, .58f, .65f));
             VarginhaSoftLighting.Build(house, decor);
+        }
+
+        private static void RefreshReferenceFurniture(Transform parent)
+        {
+            if (parent == null) return;
+            foreach (var renderer in parent.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                string id = renderer.name;
+                if (id.StartsWith("CenarioV2_Carteira_")) id = "SchoolDesk";
+                else if (id.StartsWith("CenarioV2_Cadeira_")) id = "SchoolChair";
+                else if (id.StartsWith("CenarioV2_Banco_Igreja_")) id = "ChurchPew";
+                else if (id == "CenarioV2_Altar_Visual") id = "ChurchAltar";
+                var sprite = VarginhaReferenceSprites.ForId(id);
+                if (sprite == null || renderer.sprite == sprite) continue;
+                // Polished furniture uses its own dimensions with scale one.
+                if (id == "SchoolDesk") sprite = VarginhaSceneryArt.Create("Desk", new Vector2(.88f, .62f));
+                else if (id == "ChurchPew") sprite = VarginhaSceneryArt.Create("Pew", new Vector2(2.15f, .65f));
+                else if (id == "ChurchAltar") sprite = VarginhaSceneryArt.Create("Altar", new Vector2(1.6f, 1.3f));
+                else { renderer.sprite = sprite; renderer.color = Color.white; continue; }
+                renderer.sprite = sprite;
+                renderer.transform.localScale = Vector3.one;
+                renderer.color = Color.white;
+            }
+        }
+
+        private static void RefreshFlames(Transform church)
+        {
+            if (church == null) return;
+            foreach (var renderer in church.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                if (renderer.name.StartsWith("CenarioV2_Vela_"))
+                {
+                    renderer.sprite = VarginhaPixelArtSprites.Create("ChurchCandle", new Color(.83f, .56f, .20f));
+                    VarginhaFlameAnimation.Ensure(renderer.transform, new Vector2(0f, .32f), .38f);
+                }
+                else if (renderer.name.StartsWith("Arandela_"))
+                    VarginhaFlameAnimation.Ensure(renderer.transform, new Vector2(0f, .23f), .28f);
+            }
         }
 
         private static bool NeedsRefresh(Transform parent)

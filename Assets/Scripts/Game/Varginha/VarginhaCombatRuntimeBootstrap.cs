@@ -17,6 +17,7 @@ namespace Game.Varginha
 
         private static void InstallOnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            if (scene.name == VarginhaGameOverFlow.MenuScene) return;
             foreach (var root in scene.GetRootGameObjects())
             {
                 var house = root.transform.Find("House_And_Yard");
@@ -44,6 +45,15 @@ namespace Game.Varginha
                 var target = ai.GetComponent<VarginhaCombatTarget>() ?? ai.gameObject.AddComponent<VarginhaCombatTarget>();
                 target.SetKind(VarginhaCombatTarget.EnemyKind.AncestralEntity);
                 if (ai.GetComponent<HealthSystem>() == null) ai.gameObject.AddComponent<HealthSystem>();
+            }
+            // Scene builders run in Awake; dynamic allies install their contact in their own animation.
+            foreach (var root in scene.GetRootGameObjects())
+            foreach (var renderer in root.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                bool actor = renderer.GetComponent<VarginhaCombatEnemy>() != null;
+                bool prop = renderer.name.StartsWith("Tree_") || renderer.GetComponent<FuscaLevelExit>() != null
+                    || renderer.GetComponent<FuscaDepartureAnimation>() != null;
+                if (actor || prop) VarginhaContactShadow.Ensure(renderer, actor);
             }
         }
     }

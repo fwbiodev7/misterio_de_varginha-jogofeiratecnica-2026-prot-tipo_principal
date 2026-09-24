@@ -68,6 +68,8 @@ namespace Game.Varginha
 
         public static Sprite Create(string id, Color color)
         {
+            var reference = VarginhaReferenceSprites.ForId(id);
+            if (reference != null) return reference;
             // Roster art has one source of truth in the authored, directional atlases.
             if (id.StartsWith("StudentHead_"))
             {
@@ -208,6 +210,7 @@ namespace Game.Varginha
             else DrawCrate(texture, mid, dark, light);
 
             AddMicroDetails(texture, id, dark, light);
+            AddSurfaceFinish(texture, id);
             texture.anisoLevel = 0;
             if (id.StartsWith("Flashlight_Cone")) texture.filterMode = FilterMode.Bilinear;
             texture.Apply(false, false);
@@ -418,9 +421,15 @@ namespace Game.Varginha
 
         private static void DrawChurchCandle(Texture2D t, Color mid, Color dark, Color light)
         {
-            Color flame = new Color(1f, .72f, .25f);
-            Fill(t, 14, 10, 4, 16, dark); Fill(t, 11, 25, 10, 3, mid); Fill(t, 15, 5, 2, 6, flame);
-            Pixel(t, 15, 4, Color.white); Pixel(t, 16, 4, flame); Fill(t, 10, 28, 12, 2, dark);
+            Fill(t, 14, 10, 4, 16, dark); Fill(t, 11, 25, 10, 3, mid);
+            Fill(t, 10, 28, 12, 2, dark);
+            // The animated reference flame is a separate decorative child.
+            if (VarginhaReferenceSprites.Fire(0) == null)
+            {
+                Color flame = new Color(1f, .72f, .25f);
+                Fill(t, 15, 5, 2, 6, flame);
+                Pixel(t, 15, 4, Color.white); Pixel(t, 16, 4, flame);
+            }
         }
 
         private static void DrawChurchLectern(Texture2D t, Color mid, Color dark, Color light)
@@ -486,13 +495,43 @@ namespace Game.Varginha
         private static void DrawGrass(Texture2D t, Color mid, Color dark, Color light)
         {
             Fill(t, 0, 0, 32, 32, mid);
-            for (int i = 0; i < 7; i++)
+            // Small olive leaf clusters echo the reference canopy, keeping the night palette.
+            for (int i = 0; i < 37; i++)
             {
                 int x = (i * 13 + 3) % 30, y = (i * 17 + 7) % 30;
-                Pixel(t, x, y, Color.Lerp(mid, light, .16f));
+                Pixel(t, x, y, Color.Lerp(mid, new Color(.39f, .46f, .24f), .22f));
                 Pixel(t, x + 1, y + 1, Color.Lerp(mid, dark, .16f));
                 Pixel(t, x + 2, y, Color.Lerp(mid, light, .11f));
             }
+        }
+
+        private static void AddSurfaceFinish(Texture2D texture, string id)
+        {
+            bool wood = id == "Floor_House" || id == "SchoolFloor";
+            bool grass = id == "Floor_Yard";
+            bool stone = id.StartsWith("ChurchFloor") || id.StartsWith("Wall") || id.EndsWith("Wall")
+                || id.StartsWith("Driveway") || id.StartsWith("Street");
+            bool furnishing = id.StartsWith("Bed_") || id.StartsWith("Sofa_") || id.StartsWith("Kitchen_")
+                || id.StartsWith("Bookshelf") || id.StartsWith("SchoolLocker");
+            if (!wood && !grass && !stone && !furnishing) return;
+            Color[] pixels = texture.GetPixels();
+            int width = texture.width;
+            for (int y = 0; y < texture.height; y++) for (int x = 0; x < width; x++)
+            {
+                int index = y * width + x;
+                Color color = pixels[index];
+                if (color.a < .5f) continue;
+                // Deterministic clustered grain, not random noise on characters, items or effects.
+                int cluster = ((x / (wood ? 8 : 3)) * 31 + (y / (wood ? 2 : 3)) * 17) % 13;
+                int fine = (x * 13 + y * 7 + x * y) % 11;
+                float shade = (cluster - 6) * .004f + (fine < 2 ? -.025f : fine > 8 ? .018f : 0f);
+                if (wood && y % 16 > 3 && (x + (y / 16) * 11) % 27 < 9 && y % 5 == 0) shade -= .025f;
+                Color tint = shade > 0 ? new Color(.83f, .79f, .63f) : new Color(.07f, .10f, .12f);
+                Color result = Color.Lerp(color, tint, Mathf.Abs(shade));
+                result.a = color.a;
+                pixels[index] = result;
+            }
+            texture.SetPixels(pixels);
         }
 
         private static void DrawStreet(Texture2D t, Color mid, Color dark, Color light)
@@ -1867,23 +1906,43 @@ namespace Game.Varginha
 
         private static void DrawHostageCage(Texture2D t, Color mid, Color dark, Color light)
         {
-            // Jaula simples em primeiro plano: barras verdes luminosas e contorno quase preto.
-            // O centro fica transparente para que o aluno continue legível por baixo.
-            Color frame = new Color(.035f, .09f, .045f);
-            Color bars = new Color(.20f, .78f, .34f);
-            Color glow = new Color(.47f, .96f, .40f);
-            Fill(t, 5, 5, 22, 2, frame);
-            Fill(t, 5, 25, 22, 2, frame);
-            Fill(t, 5, 7, 2, 18, frame);
-            Fill(t, 25, 7, 2, 18, frame);
-            Fill(t, 7, 7, 1, 18, bars);
-            Fill(t, 12, 7, 1, 18, bars);
-            Fill(t, 18, 7, 1, 18, bars);
-            Fill(t, 23, 7, 1, 18, bars);
-            Fill(t, 6, 7, 20, 1, glow);
-            Fill(t, 6, 24, 20, 1, bars);
-            Pixel(t, 8, 6, glow); Pixel(t, 23, 6, glow);
-            Pixel(t, 8, 26, bars); Pixel(t, 23, 26, bars);
+            // Modelo de jaula metálica com pilares laterais, barras de aço e placa de fechadura central.
+            Color outline = new Color(.08f, .10f, .14f);
+            Color steelDark = new Color(.38f, .44f, .55f);
+            Color steelMid = new Color(.56f, .64f, .75f);
+            Color steelLight = new Color(.78f, .84f, .92f);
+            Color lockPlate = new Color(.48f, .54f, .65f);
+
+            // Vigas e pilares externos
+            Fill(t, 4, 4, 24, 2, outline);
+            Fill(t, 4, 26, 24, 2, outline);
+            Fill(t, 4, 6, 4, 20, outline);
+            Fill(t, 24, 6, 4, 20, outline);
+
+            Fill(t, 5, 5, 22, 1, steelLight);
+            Fill(t, 5, 26, 22, 1, steelDark);
+            Fill(t, 5, 6, 2, 20, steelMid);
+            Fill(t, 25, 6, 2, 20, steelMid);
+
+            // Barras verticais de aço
+            int[] barXs = { 9, 13, 18, 22 };
+            foreach (int bx in barXs)
+            {
+                Fill(t, bx - 1, 6, 3, 20, outline);
+                Fill(t, bx, 6, 1, 20, steelLight);
+                Fill(t, bx + 1, 6, 1, 20, steelDark);
+            }
+
+            // Travessa horizontal central
+            Fill(t, 5, 15, 22, 3, outline);
+            Fill(t, 5, 16, 22, 1, steelMid);
+
+            // Placa central de fechadura
+            Fill(t, 13, 13, 6, 7, outline);
+            Fill(t, 14, 14, 4, 5, lockPlate);
+            Fill(t, 14, 14, 4, 1, steelLight);
+            Pixel(t, 15, 16, outline);
+            Pixel(t, 15, 17, outline);
         }
 
         private static void DrawETAttack(Texture2D t, Color mid, Color dark, Color light)

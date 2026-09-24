@@ -95,11 +95,16 @@ namespace Game.Varginha
             : attackStyle == VarginhaStudentAllyStyle.MarcosChute ? 1.75f
             : attackStyle == VarginhaStudentAllyStyle.MarcosCotovelo ? 1.35f : 1.6f;
         public VarginhaCombatTarget CurrentTarget { get; private set; }
+        private bool LeaderDefeated => _leader == null
+            || _leader.GetComponent<HealthSystem>()?.IsDead == true
+            || _leader.GetComponent<EdelzioTopDownController>()?.CurrentSanity <= 0f;
         public bool CanCommand => _active && isActiveAndEnabled && _leader != null && Time.timeScale > 0f
+            && !LeaderDefeated
             && _leader.GetComponent<EdelzioTopDownController>()?.IsInputLocked != true
             && _leader.GetComponent<EdelzioTopDownController>()?.IsScriptedMotion != true
             && !VarginhaTravelCinematic.IsTravelling
-            && VarginhaGameHUD.Instance?.IsDialogueOpen != true;
+            && VarginhaGameHUD.Instance?.IsDialogueOpen != true
+            && VarginhaGameHUD.Instance?.IsVictoryOpen != true;
 
         // Invocações são locais e respeitam paredes; a turma não acerta ETs do outro lado do mapa.
         public bool CanReachTarget(VarginhaCombatTarget target)
@@ -211,6 +216,11 @@ namespace Game.Varginha
         private void Update()
         {
             if (!_active) return;
+            if (LeaderDefeated)
+            {
+                CancelAttack();
+                return;
+            }
             if (_leader != null && (!_manualMode || _equippedPresentation))
             {
                 // A formação é uma preferência, não um trilho. O pequeno movimento
@@ -352,6 +362,17 @@ namespace Game.Varginha
             CurrentTarget = null;
             if (_manualMode) SetManualPresentation(true);
         }
+
+        private void CancelAttack()
+        {
+            StopAllCoroutines();
+            GetComponent<VarginhaAllyAttackPresentation>()?.Cancel();
+            _attacking = false;
+            CurrentTarget = null;
+            if (_manualMode) SetManualPresentation(true);
+        }
+
+        private void OnDisable() => CancelAttack();
 
         private void ApplyTacticalHit(VarginhaCombatTarget target, Vector2 direction, Vector2 impactPoint,
             VarginhaAllyAttackPresentation presentation)

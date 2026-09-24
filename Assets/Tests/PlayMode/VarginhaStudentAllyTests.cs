@@ -57,6 +57,47 @@ namespace Game.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator DeathCancelsPendingAllyAndPlayerAttacksWhileTimeIsPaused()
+        {
+            CreateSquad();
+            var health = _leader.gameObject.AddComponent<HealthSystem>();
+            var playerAttack = _leader.gameObject.AddComponent<VarginhaPlayerAttack>();
+            var target = Enemy(Vector2.right * 3f);
+            var ally = Student("Fabio");
+            Physics2D.SyncTransforms();
+            Assert.IsTrue(ally.TryManualAttack(target));
+            Assert.IsTrue(playerAttack.TryAttack(Vector2.right));
+            health.InstantKill();
+            Time.timeScale = 0f;
+            yield return null;
+            yield return null;
+            Assert.IsFalse(ally.CanCommand);
+            Assert.IsFalse(Student("Yasmin").TryManualAttack(target));
+            Assert.IsNull(ally.CurrentTarget);
+            Assert.IsNull(GameObject.Find("Animacao_Fabio"));
+            Assert.IsFalse(playerAttack.IsAttacking);
+            Assert.AreEqual(0f, Time.timeScale);
+            Time.timeScale = 1f;
+            yield return new WaitForSeconds(1.4f);
+            Assert.AreEqual(100f, target.GetComponent<HealthSystem>().CurrentHealth);
+        }
+
+        [UnityTest]
+        public IEnumerator DisabledAllyCancelsPresentationWithoutLeavingLateDamage()
+        {
+            CreateSquad();
+            var target = Enemy(Vector2.right * 3f);
+            var ally = Student("Fabio");
+            Physics2D.SyncTransforms();
+            Assert.IsTrue(ally.TryManualAttack(target));
+            ally.enabled = false;
+            yield return new WaitForSeconds(1.4f);
+            Assert.IsNull(ally.CurrentTarget);
+            Assert.IsNull(GameObject.Find("Animacao_Fabio"));
+            Assert.AreEqual(100f, target.GetComponent<HealthSystem>().CurrentHealth);
+        }
+
+        [UnityTest]
         public IEnumerator IndividualCooldownBlocksRepeatButLeavesOtherStudentsReady()
         {
             CreateSquad();

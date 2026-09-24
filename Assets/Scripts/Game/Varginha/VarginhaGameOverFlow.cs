@@ -1,4 +1,3 @@
-using System.Collections;
 using Game.Managers;
 using Game.Player;
 using UnityEngine;
@@ -6,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 namespace Game.Varginha
 {
-    /// <summary>Mostra o fim de jogo para os dois tipos de morte e reinicia a investigação pela Fase 1.</summary>
+    /// <summary>One death event, then an explicit retry or return to the menu.</summary>
     [DisallowMultipleComponent]
     public sealed class VarginhaGameOverFlow : MonoBehaviour
     {
         public const string PhaseOneScene = "FaseTopView_Varginha";
-        private const float ReturnDelay = 3.2f;
+        public const string MenuScene = "Menu_MisterioDeVarginha";
 
         private EdelzioTopDownController _player;
         private HealthSystem _health;
@@ -42,22 +41,33 @@ namespace Game.Varginha
             if (_triggered || VarginhaTravelCinematic.IsTravelling) return;
             _triggered = true;
             GameManager.Instance?.TriggerGameOver();
-            VarginhaGameHUD.Instance?.ShowGameOver();
+            _player?.SetInputLocked(true);
+            VarginhaGameHUD.Instance?.ShowGameOver(_health != null && _health.IsDead
+                ? "EDELZIO FOI DERROTADO" : "A SANIDADE DE EDELZIO SE ESGOTOU");
             Time.timeScale = 0f;
-            StartCoroutine(ReturnAfterGameOver());
         }
 
-        private IEnumerator ReturnAfterGameOver()
+        public static void RetryCurrentPhase()
         {
-            yield return new WaitForSecondsRealtime(ReturnDelay);
-            if (_triggered) ReturnToPhaseOne();
+            LoadInvestigation(SceneManager.GetActiveScene().name);
         }
 
-        public static void ReturnToPhaseOne()
+        public static void ReturnToPhaseOne() => LoadInvestigation(PhaseOneScene);
+
+        private static void LoadInvestigation(string scene)
         {
+            if (!Application.CanStreamedLevelBeLoaded(scene)) return;
             Time.timeScale = 1f;
             GameManager.Instance?.StartGame();
-            SceneManager.LoadScene(PhaseOneScene);
+            SceneManager.LoadScene(scene);
+        }
+
+        public static void ReturnToMenu()
+        {
+            if (!Application.CanStreamedLevelBeLoaded(MenuScene)) return;
+            Time.timeScale = 1f;
+            GameManager.Instance?.ReturnToMenu();
+            SceneManager.LoadScene(MenuScene);
         }
     }
 }

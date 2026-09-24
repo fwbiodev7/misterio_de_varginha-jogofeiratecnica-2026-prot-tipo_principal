@@ -18,7 +18,7 @@ namespace Game.Editor.Testing
             importer.alphaIsTransparency = true;
             importer.isReadable = true;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.maxTextureSize = 1024;
+            importer.maxTextureSize = 2048;
             importer.wrapMode = TextureWrapMode.Clamp;
         }
     }

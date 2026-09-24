@@ -17,12 +17,12 @@ namespace Game.Varginha
         [SerializeField] private float screenShakeDuration = .09f;
         [SerializeField] private float screenShakeMagnitude = .045f;
         private const float ComboWindow = .75f;
-        private static readonly float[] Durations = { .055f, .05f, .065f, .07f, .075f, .085f };
+        private static readonly float[] Durations = { .045f, .07f, .045f, .055f, .07f, .065f };
         private static readonly int[][] ComboFrames =
         {
-            new[] { 0, 0, 1, 2, 3, 4 }, // corte horizontal
-            new[] { 1, 1, 2, 3, 4, 5 }, // cruzado, com mais alcance visual
-            new[] { 2, 2, 3, 4, 5, 5 }  // finalizador pesado
+            new[] { 0, 1, 2, 3, 4, 5 }, // corte horizontal
+            new[] { 0, 1, 2, 3, 4, 5 }, // cruzado, com mais alcance visual
+            new[] { 0, 1, 2, 3, 4, 5 }  // finalizador pesado
         };
         private EdelzioTopDownController _player;
         private VarginhaPlayerSpriteAnimation _animation;
@@ -58,6 +58,12 @@ namespace Game.Varginha
 
         private void Update()
         {
+            if (_isAttacking && (_player == null || _player.CurrentSanity <= 0f
+                || GetComponent<Game.Player.HealthSystem>()?.IsDead == true))
+            {
+                CancelAttack();
+                return;
+            }
             if (!CanAttack) { _bufferUntil = float.NegativeInfinity; return; }
             var keyboard = Keyboard.current;
             // J/K continuam aceitos como compatibilidade com os protótipos anteriores;
@@ -94,7 +100,8 @@ namespace Game.Varginha
             _isAttacking = true;
             int row = DirectionIndex(direction);
             int[] frames = ComboFrames[Mathf.Clamp(_comboStep - 1, 0, ComboFrames.Length - 1)];
-            int impactPose = Mathf.Clamp(_comboStep + 1, 2, 4);
+            const int impactPose = 3;
+            int variant = _attackFrames[row].Length >= 18 ? (_comboStep - 1) * 6 : 0;
             bool interrupted = false;
             for (int pose = 0; pose < frames.Length; pose++)
             {
@@ -106,7 +113,7 @@ namespace Game.Varginha
                     interrupted = true;
                     break;
                 }
-                _animation.SetCombatPose(_attackFrames[row][frames[pose]], direction);
+                _animation.SetCombatPose(_attackFrames[row][variant + frames[pose]], direction);
                 if (pose == impactPose) yield return ImpactRoutine(direction);
                 float elapsed = 0f;
                 float duration = Durations[pose] * (_comboStep == 3 ? 1.12f : 1f);
@@ -183,11 +190,12 @@ namespace Game.Varginha
             effect.transform.position = transform.position + (Vector3)direction * (hitDistance + .06f);
             effect.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             bool finisher = comboStep == 3;
-            effect.transform.localScale = Vector3.one * (finisher ? 1.05f : comboStep == 2 ? .88f : .74f);
+            effect.transform.localScale = Vector3.one * (finisher ? .78f : comboStep == 2 ? .64f : .56f);
             var renderer = effect.AddComponent<SpriteRenderer>();
             renderer.sprite = VarginhaPixelArtSprites.Create(impact ? "Attack_Impact" : comboStep == 3 ? "Attack_HeavySlash"
                 : comboStep == 2 ? "Attack_CrossSlash" : "Attack_Slash",
-                impact ? Color.white : new Color(1f, .78f, .22f));
+                impact ? new Color(1f, .94f, .78f) : new Color(.86f, .73f, .43f));
+            renderer.color = new Color(1f, 1f, 1f, impact ? .88f : .68f);
             renderer.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 3;
             Destroy(effect, impact ? .12f : .16f);
         }
@@ -277,6 +285,8 @@ namespace Game.Varginha
 
         private static Sprite[][] LoadAttackFrames()
         {
+            var reference = VarginhaReferenceSprites.EdelzioAttackFrames();
+            if (reference != null) return reference;
             var sheet = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
             if (sheet == null) return null;
             sheet.filterMode = FilterMode.Point;
@@ -294,7 +304,9 @@ namespace Game.Varginha
             return result;
         }
 
-        private void OnDisable()
+        private void OnDisable() => CancelAttack();
+
+        private void CancelAttack()
         {
             StopAllCoroutines();
             RestoreTimeScale();
@@ -307,6 +319,7 @@ namespace Game.Varginha
         private void OnDestroy()
         {
             if (_attackFrames == null) return;
+            if (ReferenceEquals(_attackFrames, VarginhaReferenceSprites.EdelzioAttackFrames())) return;
             foreach (var row in _attackFrames) foreach (var sprite in row) if (sprite != null) Destroy(sprite);
         }
     }

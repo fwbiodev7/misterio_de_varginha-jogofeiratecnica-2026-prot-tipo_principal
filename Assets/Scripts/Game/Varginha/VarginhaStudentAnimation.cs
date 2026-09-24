@@ -19,6 +19,7 @@ namespace Game.Varginha
         {
             _student = student;
             _renderer = GetComponent<SpriteRenderer>();
+            VarginhaContactShadow.Ensure(_renderer);
             _previous = transform.position;
             _stride = 0;
             _direction = 0;
@@ -33,20 +34,20 @@ namespace Game.Varginha
             if (_renderer == null || !_renderer.enabled || string.IsNullOrEmpty(_student)) return;
             if (Time.timeScale <= 0f) return;
             float distance = movement.magnitude;
-            if (distance > .002f && distance < .75f)
+            if (distance > .0015f && distance < .75f)
             {
                 // A small hysteresis prevents diagonal steering from flickering left/up.
                 Vector2 facing = _direction == 1 ? Vector2.left : _direction == 2 ? Vector2.right
                     : _direction == 3 ? Vector2.up : Vector2.down;
-                if (Vector2.Dot(facing, movement.normalized) < .6f)
+                if (Vector2.Dot(facing, movement.normalized) < .55f)
                     _direction = VarginhaStudentSprites.Direction(movement);
-                _stride += distance * 7f;
+                _stride += Mathf.Max(Time.deltaTime * 8.5f, distance * 4.0f);
                 Present(Mathf.FloorToInt(_stride) & 3);
             }
             else
             {
                 _stride = 0;
-                Present(1);
+                Present(0);
             }
         }
 

@@ -13,6 +13,11 @@ namespace Game.Varginha
 
         public static Sprite Create(string motif, Vector2 size)
         {
+            if (motif == "Desk" || motif == "Pew" || motif == "Altar")
+            {
+                var reference = VarginhaReferenceSprites.Wood(motif, size);
+                if (reference != null) return reference;
+            }
             int width = Mathf.Max(4, Mathf.RoundToInt(size.x * 32));
             int height = Mathf.Max(4, Mathf.RoundToInt(size.y * 32));
             string key = motif + "_" + width + "x" + height;
@@ -260,8 +265,11 @@ namespace Game.Varginha
             c.Rect(cx - 3, 2, 6, c.H / 2, Hex(0x76604b));
             c.Rect(cx - 7, c.H / 3, 14, 3, Gold);
             c.Rect(cx - 2, c.H / 3, 4, c.H / 3, Hex(0xeee0bb));
-            c.Ellipse(cx, c.H * 3 / 4, 3, 5, Hex(0xe9a04e));
-            c.Rect(cx, c.H * 3 / 4 - 2, 1, 4, Hex(0xfff0bf));
+            if (VarginhaReferenceSprites.Fire(0) == null)
+            {
+                c.Ellipse(cx, c.H * 3 / 4, 3, 5, Hex(0xe9a04e));
+                c.Rect(cx, c.H * 3 / 4 - 2, 1, 4, Hex(0xfff0bf));
+            }
         }
 
         private static void Pew(Canvas c)

@@ -45,7 +45,9 @@ namespace Game.Tests.PlayMode
         {
             var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
             var renderer = _go.GetComponent<SpriteRenderer>();
-            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
+            var atlas = VarginhaReferenceSprites.HasEdelzio
+                ? VarginhaReferenceSprites.EdelzioWalkFrames()[0][0].texture
+                : Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
             var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up };
             var facing = typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic);
             _player.SetInputLocked(true);
