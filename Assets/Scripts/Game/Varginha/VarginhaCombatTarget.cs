@@ -16,6 +16,9 @@ namespace Game.Varginha
         private void Awake()
         {
             _health = GetComponent<HealthSystem>();
+            // Enemy contact protection must end before the next distinct punch in the combo.
+            // Player damage protection keeps HealthSystem's regular duration.
+            _health.SetInvincibilityDuration(.12f);
             // A entidade principal segue o GDD: ela persegue e causa medo, mas não pode ser derrotada pelo golpe comum.
             if (GetComponent<EntityManifestationAI>() != null) kind = EnemyKind.AncestralEntity;
         }

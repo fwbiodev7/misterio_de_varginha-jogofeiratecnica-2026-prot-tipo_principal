@@ -2,10 +2,10 @@ using NUnit.Framework;
 using UnityEngine;
 using Game.Player;
 
-namespace Game.Tests.EditMode
+namespace Game.Tests.PlayMode
 {
     /// <summary>
-    /// Testa o HealthSystem sem precisar de cena aberta (EditMode).
+    /// Testa o HealthSystem em PlayMode, onde Awake inicializa a vida.
     /// Cobre: dano, cura, morte, invincibilidade, limites.
     /// </summary>
     public class HealthSystemTests

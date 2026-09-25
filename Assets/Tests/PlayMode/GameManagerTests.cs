@@ -2,7 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using Game.Managers;
 
-namespace Game.Tests.EditMode
+namespace Game.Tests.PlayMode
 {
     /// <summary>
     /// Testa o GameManager: estados, transições, eventos, singleton.
@@ -23,6 +23,7 @@ namespace Game.Tests.EditMode
         [TearDown]
         public void TearDown()
         {
+            Time.timeScale = 1f;
             GameManager.ResetForTesting();
             if (_go != null) Object.DestroyImmediate(_go);
         }

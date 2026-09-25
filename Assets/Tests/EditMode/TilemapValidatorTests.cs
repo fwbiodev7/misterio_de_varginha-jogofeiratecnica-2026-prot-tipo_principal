@@ -72,8 +72,12 @@ namespace Game.Tests.EditMode
             _tilemap.SetTile(Vector3Int.zero, tile);
             _tilemap.SetTile(new Vector3Int(1, 0, 0), tile);
             _tilemap.SetTile(new Vector3Int(2, 0, 0), tile);
-            Assert.AreEqual(3, _tilemap.GetUsedTilesCount(),
-                "Contagem de tiles deve aumentar.");
+            // GetUsedTilesCount counts distinct Tile assets, not occupied cells.
+            Assert.AreEqual(1, _tilemap.GetUsedTilesCount());
+            int occupied = 0;
+            foreach (var position in _tilemap.cellBounds.allPositionsWithin)
+                if (_tilemap.HasTile(position)) occupied++;
+            Assert.AreEqual(3, occupied, "Três células devem estar preenchidas.");
             Object.DestroyImmediate(tile);
         }
 

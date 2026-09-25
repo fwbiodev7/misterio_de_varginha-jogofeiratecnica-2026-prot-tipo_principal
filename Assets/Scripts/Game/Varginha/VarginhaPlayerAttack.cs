@@ -17,12 +17,12 @@ namespace Game.Varginha
         [SerializeField] private float screenShakeDuration = .09f;
         [SerializeField] private float screenShakeMagnitude = .045f;
         private const float ComboWindow = .75f;
-        private static readonly float[] Durations = { .045f, .07f, .045f, .055f, .07f, .065f };
+        private static readonly float[] Durations = { .025f, .05f, .025f, .07f, .05f, .04f };
         private static readonly int[][] ComboFrames =
         {
-            new[] { 0, 1, 2, 3, 4, 5 }, // corte horizontal
-            new[] { 0, 1, 2, 3, 4, 5 }, // cruzado, com mais alcance visual
-            new[] { 0, 1, 2, 3, 4, 5 }  // finalizador pesado
+            new[] { 0, 1, 2, 3, 4, 5 }, // jab
+            new[] { 0, 1, 2, 3, 4, 5 }, // direto com o braço oposto
+            new[] { 0, 1, 2, 3, 4, 5 }  // soco finalizador
         };
         private EdelzioTopDownController _player;
         private VarginhaPlayerSpriteAnimation _animation;
@@ -58,8 +58,7 @@ namespace Game.Varginha
 
         private void Update()
         {
-            if (_isAttacking && (_player == null || _player.CurrentSanity <= 0f
-                || GetComponent<Game.Player.HealthSystem>()?.IsDead == true))
+            if (_isAttacking && MustInterrupt)
             {
                 CancelAttack();
                 return;
@@ -80,7 +79,8 @@ namespace Game.Varginha
         public void QueueAttack(Vector2 direction)
         {
             if (!CanAttack) return;
-            _bufferUntil = Time.time + .18f;
+            // One pending punch survives anticipation/contact; repeated clicks never queue an endless chain.
+            _bufferUntil = _isAttacking ? float.PositiveInfinity : Time.time + .18f;
             _bufferDirection = direction;
         }
 
@@ -103,31 +103,31 @@ namespace Game.Varginha
             const int impactPose = 3;
             int variant = _attackFrames[row].Length >= 18 ? (_comboStep - 1) * 6 : 0;
             bool interrupted = false;
+            float remaining = 0f;
             for (int pose = 0; pose < frames.Length; pose++)
             {
-                if (_player.IsDodging || _player.IsInputLocked || _player.CurrentSanity <= 0f
-                    || GetComponent<Game.Player.HealthSystem>()?.IsDead == true
-                    || VarginhaGameHUD.Instance?.IsDialogueOpen == true
-                    || VarginhaGameHUD.Instance?.IsVictoryOpen == true)
+                if (MustInterrupt)
                 {
                     interrupted = true;
                     break;
                 }
                 _animation.SetCombatPose(_attackFrames[row][variant + frames[pose]], direction);
                 if (pose == impactPose) yield return ImpactRoutine(direction);
-                float elapsed = 0f;
                 float duration = Durations[pose] * (_comboStep == 3 ? 1.12f : 1f);
-                while (elapsed < duration)
+                remaining += duration;
+                while (remaining > 0f)
                 {
-                    elapsed += Time.deltaTime;
                     yield return null;
+                    remaining -= Time.deltaTime;
+                    if (MustInterrupt) { interrupted = true; break; }
                 }
+                if (interrupted) break;
             }
-            _animation.ClearActionPose();
+            _animation.ClearCombatPose();
             if (interrupted)
             {
                 _comboStep = 0;
-                _lastAttackFinished = float.NegativeInfinity;
+                _lastAttackFinished = _bufferUntil = float.NegativeInfinity;
             }
             else _lastAttackFinished = Time.time;
             _isAttacking = false;
@@ -138,7 +138,7 @@ namespace Game.Varginha
             if (!CanAttack) yield break;
             bool finisher = _comboStep == 3;
             PlayCombatAudio(false, finisher);
-            CreateSlashEffect(direction, false, _comboStep);
+            CreatePunchEffect(direction, false, _comboStep);
             var hits = Physics2D.OverlapCircleAll((Vector2)transform.position + direction * hitDistance,
                 hitRadius + (finisher ? .18f : 0f));
             bool connected = false;
@@ -156,7 +156,7 @@ namespace Game.Varginha
             }
             if (!connected) yield break;
             PlayCombatAudio(true, finisher);
-            CreateSlashEffect(direction, true, _comboStep);
+            CreatePunchEffect(direction, true, _comboStep);
             var camera = Camera.main;
             if (camera != null)
             {
@@ -184,20 +184,19 @@ namespace Game.Varginha
             return true;
         }
 
-        private void CreateSlashEffect(Vector2 direction, bool impact, int comboStep)
+        private void CreatePunchEffect(Vector2 direction, bool impact, int comboStep)
         {
-            var effect = new GameObject(impact ? "Impacto_Ataque" : "Arco_Ataque");
+            var effect = new GameObject(impact ? "Impacto_Soco" : "Rastro_Soco");
             effect.transform.position = transform.position + (Vector3)direction * (hitDistance + .06f);
             effect.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             bool finisher = comboStep == 3;
-            effect.transform.localScale = Vector3.one * (finisher ? .78f : comboStep == 2 ? .64f : .56f);
+            effect.transform.localScale = Vector3.one * (finisher ? .50f : .36f);
             var renderer = effect.AddComponent<SpriteRenderer>();
-            renderer.sprite = VarginhaPixelArtSprites.Create(impact ? "Attack_Impact" : comboStep == 3 ? "Attack_HeavySlash"
-                : comboStep == 2 ? "Attack_CrossSlash" : "Attack_Slash",
+            renderer.sprite = VarginhaPixelArtSprites.Create(impact ? "Attack_Impact" : "Attack_PunchTrail",
                 impact ? new Color(1f, .94f, .78f) : new Color(.86f, .73f, .43f));
-            renderer.color = new Color(1f, 1f, 1f, impact ? .88f : .68f);
+            renderer.color = new Color(1f, 1f, 1f, impact ? .88f : .40f);
             renderer.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 3;
-            Destroy(effect, impact ? .12f : .16f);
+            Destroy(effect, impact ? .09f : .06f);
         }
 
         private void CreateAlienIchorEffect(Vector3 hitPoint, Vector2 direction, bool finisher)
@@ -319,11 +318,15 @@ namespace Game.Varginha
 
         private void OnDisable() => CancelAttack();
 
+        private bool MustInterrupt => _player == null || _player.IsDodging || _player.IsInputLocked
+            || _player.CurrentSanity <= 0f || GetComponent<Game.Player.HealthSystem>()?.IsDead == true
+            || VarginhaGameHUD.Instance?.IsDialogueOpen == true || VarginhaGameHUD.Instance?.IsVictoryOpen == true;
+
         private void CancelAttack()
         {
             StopAllCoroutines();
             RestoreTimeScale();
-            if (_animation != null) _animation.ClearActionPose();
+            if (_isAttacking && _animation != null) _animation.ClearCombatPose();
             _isAttacking = false;
             _comboStep = 0;
             _lastAttackFinished = _bufferUntil = float.NegativeInfinity;

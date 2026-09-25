@@ -43,6 +43,12 @@ namespace Game.Player
 
         // ─── Public API ───────────────────────────────────────────────────────
 
+        public void SetInvincibilityDuration(float seconds)
+        {
+            invincibilityDuration = Mathf.Max(0f, seconds);
+            _invincibilityTimer = Mathf.Min(_invincibilityTimer, invincibilityDuration);
+        }
+
         /// <summary>Aplica dano. Respeita invincibilidade.</summary>
         public void TakeDamage(float amount)
         {

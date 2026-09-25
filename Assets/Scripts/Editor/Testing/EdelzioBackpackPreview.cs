@@ -13,19 +13,19 @@ namespace Game.Editor.Testing
         {
             var pipeline = GraphicsSettings.currentRenderPipeline;
             Debug.Log("Edelzio backpack QA pipeline: " + (pipeline == null ? "Built-in" : pipeline.GetType().FullName));
-            var sheet = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
-            var attack = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
+            var sheet = Resources.Load<Texture2D>("Varginha/Allies/Edelzio");
+            var attack = Resources.Load<Texture2D>("Varginha/EdelzioPunchV2");
             Directory.CreateDirectory("Logs/BackpackQA");
             using var appearance = new EdelzioBackpackAppearance();
-            ExportAtlas(sheet, 4, 6, appearance, "Logs/BackpackQA/edelzio-equipped-atlas.png");
-            ExportAtlas(attack, 6, 4, appearance, "Logs/BackpackQA/edelzio-equipped-combat.png");
+            ExportAtlas(sheet, 4, 4, appearance, "Logs/BackpackQA/edelzio-equipped-atlas.png");
+            ExportAtlas(attack, 18, 4, appearance, "Logs/BackpackQA/edelzio-equipped-combat.png");
             var comparison = new Texture2D(256, 128, TextureFormat.RGBA32, false);
             comparison.SetPixels(new Color[256 * 128]);
             for (int direction = 0; direction < 4; direction++)
             {
-                var body = Sprite.Create(sheet, new Rect(0, (5 - direction) * 64, 64, 64), new Vector2(.5f, .5f), 64 / 1.45f);
+                var body = Sprite.Create(sheet, new Rect(0, (3 - direction) * 64, 64, 64), new Vector2(.5f, .5f), VarginhaReferenceSprites.EdelzioPixelsPerUnit);
                 body.name = "Edelzio_Preview_" + direction;
-                comparison.SetPixels(direction * 64, 64, 64, 64, sheet.GetPixels(0, (5 - direction) * 64, 64, 64));
+                comparison.SetPixels(direction * 64, 64, 64, 64, sheet.GetPixels(0, (3 - direction) * 64, 64, 64));
                 comparison.SetPixels(direction * 64, 0, 64, 64, appearance.GetFrame(body, direction).texture.GetPixels());
                 Object.DestroyImmediate(body);
             }

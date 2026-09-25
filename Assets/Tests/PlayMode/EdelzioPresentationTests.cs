@@ -161,25 +161,22 @@ namespace Game.Tests.PlayMode
         {
             var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
             var renderer = _go.GetComponent<SpriteRenderer>();
-            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
-            Assert.IsNotNull(atlas);
+            var attacks = VarginhaReferenceSprites.EdelzioAttackFrames();
+            Assert.IsNotNull(attacks);
             var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up };
             var scale = _go.transform.localScale;
             var radius = _go.GetComponent<CircleCollider2D>().radius;
             for (int direction = 0; direction < directions.Length; direction++)
-            for (int frame = 0; frame < 6; frame++)
+            for (int frame = 0; frame < 18; frame++)
             {
-                var body = Sprite.Create(atlas,
-                    new Rect(frame * atlas.width / 6f, (3 - direction) * atlas.height / 4f, atlas.width / 6f, atlas.height / 4f),
-                    new Vector2(.5f, .5f), 44.1379f);
-                body.name = "Edelzio_Ataque_" + direction + "_" + frame;
+                var body = attacks[direction][frame];
                 try
                 {
                     _player.EquipBackpack();
                     animation.SetCombatPose(body, directions[direction]);
                     var equipped = renderer.sprite;
                     Assert.That(equipped.name, Does.EndWith("_ComMochila_" + direction), body.name);
-                    Assert.AreNotSame(atlas, equipped.texture);
+                    Assert.AreNotSame(body.texture, equipped.texture);
                     AssertSameSpriteGeometry(body, equipped);
                     animation.RefreshEquipmentAppearance();
                     Assert.AreSame(equipped, renderer.sprite);
@@ -191,7 +188,6 @@ namespace Game.Tests.PlayMode
                 finally
                 {
                     animation.ClearActionPose();
-                    Object.DestroyImmediate(body);
                 }
             }
         }

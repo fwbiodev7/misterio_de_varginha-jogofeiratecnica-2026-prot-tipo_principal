@@ -50,6 +50,9 @@ namespace Game.Varginha
             { name = "Cenario_" + key, filterMode = IsSoftLighting(motif) ? FilterMode.Bilinear : FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp, anisoLevel = 0 };
             texture.SetPixels32(canvas.Pixels);
+            // Same restrained material grain as the house/yard, including school and church props.
+            // Light projections retain their continuous alpha and never receive surface noise.
+            if (!IsSoftLighting(motif)) VarginhaPixelArtSprites.AddSurfaceFinish(texture, motif);
             texture.Apply(false, false);
             var sprite = Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(.5f, .5f), 32f, 0, SpriteMeshType.FullRect);
             sprite.name = texture.name;

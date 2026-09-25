@@ -70,29 +70,28 @@ namespace Game.Tests.EditMode
         public void KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds()
         {
             VarginhaReferenceSprites.ClearCache();
-            var katana = VarginhaReferenceSprites.GetProp("Katana");
+            var katana = VarginhaReferenceSprites.Prop("StudentAttack_Katana");
             Assert.IsNotNull(katana);
             Assert.AreEqual(FilterMode.Point, katana.texture.filterMode);
-            var kPixels = katana.texture.GetPixels32();
-            Assert.Greater(kPixels.Count(p => p.a > 0), 200);
-            Assert.Greater(kPixels.Count(p => p.a == 0), 100);
-            Assert.AreEqual(0, kPixels[0].a);
+            AssertTransparentProp(katana);
 
-            var piano = VarginhaReferenceSprites.GetProp("Piano");
+            var piano = VarginhaReferenceSprites.Prop("StudentAttack_FallingPiano");
             Assert.IsNotNull(piano);
             Assert.AreEqual(FilterMode.Point, piano.texture.filterMode);
-            var pPixels = piano.texture.GetPixels32();
-            Assert.Greater(pPixels.Count(p => p.a > 0), 1000);
-            Assert.Greater(pPixels.Count(p => p.a == 0), 200);
-            Assert.AreEqual(0, pPixels[0].a);
+            AssertTransparentProp(piano);
 
-            var cage = VarginhaReferenceSprites.GetProp("Cage");
+            var cage = VarginhaReferenceSprites.Prop("HostageCage_Fabio");
             Assert.IsNotNull(cage);
             Assert.AreEqual(FilterMode.Point, cage.texture.filterMode);
-            var cPixels = cage.texture.GetPixels32();
-            Assert.Greater(cPixels.Count(p => p.a > 0), 1500);
-            Assert.Greater(cPixels.Count(p => p.a == 0), 300);
-            Assert.AreEqual(0, cPixels[0].a);
+            AssertTransparentProp(cage);
+        }
+
+        private static void AssertTransparentProp(Sprite sprite)
+        {
+            var rect = sprite.rect;
+            var pixels = sprite.texture.GetPixels((int)rect.x, (int)rect.y, (int)rect.width, (int)rect.height);
+            Assert.Greater(pixels.Count(p => p.a > .5f), pixels.Length / 10, sprite.name);
+            Assert.Greater(pixels.Count(p => p.a == 0), pixels.Length / 20, sprite.name);
         }
 
         [Test]
@@ -122,12 +121,13 @@ namespace Game.Tests.EditMode
 
             var fabioFrontFrame = VarginhaStudentSprites.Frame("Fabio", 0, 0);
             Assert.IsNotNull(fabioFrontFrame);
-            Assert.AreEqual(64, fabioFrontFrame.rect.width);
-            Assert.AreEqual(64, fabioFrontFrame.rect.height);
+            Assert.AreSame(VarginhaReferenceSprites.Character(true, 0), fabioFrontFrame);
+            Assert.Greater(fabioFrontFrame.bounds.size.y, .8f);
+            Assert.Less(fabioFrontFrame.bounds.size.y, 1.5f);
 
             var fabioPortrait = VarginhaStudentSprites.Portrait("Fabio");
             Assert.IsNotNull(fabioPortrait);
-            Assert.AreEqual(fabioTexture, fabioPortrait.texture);
+            Assert.AreEqual(fabioFrontFrame.texture, fabioPortrait.texture);
         }
 
         [Test]
@@ -136,15 +136,15 @@ namespace Game.Tests.EditMode
             VarginhaReferenceSprites.ClearCache();
             var katanaAttack = VarginhaPixelArtSprites.Create("StudentAttack_Katana", Color.white);
             Assert.IsNotNull(katanaAttack);
-            Assert.That(katanaAttack.name, Does.StartWith("Reference_Katana"));
+            Assert.AreEqual("AllyReferencePropsV1", katanaAttack.texture.name);
 
             var pianoAttack = VarginhaPixelArtSprites.Create("StudentAttack_FallingPiano", Color.white);
             Assert.IsNotNull(pianoAttack);
-            Assert.That(pianoAttack.name, Does.StartWith("Reference_Piano"));
+            Assert.AreEqual("AllyReferencePropsV1", pianoAttack.texture.name);
 
             var hostageCage = VarginhaPixelArtSprites.Create("HostageCage_Fabio", Color.white);
             Assert.IsNotNull(hostageCage);
-            Assert.That(hostageCage.name, Does.StartWith("Reference_Cage"));
+            Assert.AreEqual("AllyReferencePropsV1", hostageCage.texture.name);
         }
     }
 }

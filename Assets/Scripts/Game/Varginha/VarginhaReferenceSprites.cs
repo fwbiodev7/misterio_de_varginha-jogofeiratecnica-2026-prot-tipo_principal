@@ -358,8 +358,10 @@ namespace Game.Varginha
 
         public static Sprite[][] EdelzioAttackFrames()
         {
-            if (_attack != null && _attack[0] != null && _attack[0][0] != null) return _attack;
-            var texture = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
+            if (_attack != null && _attack[0] != null && _attack[0][0] != null
+                && _attack[0][0].texture != null) return _attack;
+            var texture = Resources.Load<Texture2D>("Varginha/EdelzioPunchV2")
+                ?? Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
             if (texture != null)
             {
                 texture.filterMode = FilterMode.Point;

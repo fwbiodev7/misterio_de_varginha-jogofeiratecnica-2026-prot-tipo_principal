@@ -15,6 +15,7 @@ namespace Game.Tests.PlayMode
         public void TearDown()
         {
             if (_targetObject != null) Object.DestroyImmediate(_targetObject);
+            Time.timeScale = 1f;
         }
 
         [UnityTest]
@@ -58,12 +59,144 @@ namespace Game.Tests.PlayMode
         }
 
         [Test]
-        public void AttackAtlasHasFourDirectionsAndSixKeyframes()
+        public void PunchAtlasHasFourDirectionsAndThreeSixFrameCombos()
         {
-            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
+            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioPunchV2");
             Assert.IsNotNull(atlas);
-            Assert.AreEqual(384, atlas.width);
+            Assert.AreEqual(1152, atlas.width);
             Assert.AreEqual(256, atlas.height);
+        }
+
+        private VarginhaPlayerAttack CreateAttacker()
+        {
+            _targetObject = new GameObject("Edelzio_Punch_Test");
+            _targetObject.AddComponent<CircleCollider2D>();
+            return _targetObject.AddComponent<VarginhaPlayerAttack>();
+        }
+
+        [UnityTest]
+        public IEnumerator AllThreeComboContactsDealDamage()
+        {
+            var attack = CreateAttacker();
+            var enemy = new GameObject("Combo_Target");
+            try
+            {
+                enemy.transform.position = new Vector3(.67f, 0, 0);
+                enemy.AddComponent<BoxCollider2D>().isTrigger = true;
+                enemy.AddComponent<VarginhaCombatTarget>();
+                var health = enemy.GetComponent<HealthSystem>();
+                health.SetMaxHealth(250f, false);
+                Physics2D.SyncTransforms();
+                foreach (int step in new[] { 1, 2, 3 })
+                {
+                    Assert.IsTrue(attack.TryAttack(Vector2.right));
+                    Assert.AreEqual(step, attack.ComboStep);
+                    float deadline = Time.realtimeSinceStartup + 2f;
+                    while (attack.IsAttacking && Time.realtimeSinceStartup < deadline) yield return null;
+                    Assert.IsFalse(attack.IsAttacking);
+                }
+                Assert.AreEqual(250f - 34f * (1f + 1.10f + 1.45f), health.CurrentHealth, .001f,
+                    "Enemy invincibility must not swallow the middle punch.");
+            }
+            finally { Object.DestroyImmediate(enemy); }
+        }
+
+        [UnityTest]
+        public IEnumerator EarlyQueuedClickChainsExactlyOnePunch()
+        {
+            var attack = CreateAttacker();
+            Assert.IsTrue(attack.TryAttack(Vector2.right));
+            attack.QueueAttack(Vector2.left);
+            attack.QueueAttack(Vector2.left);
+            float deadline = Time.realtimeSinceStartup + 2f;
+            while (attack.ComboStep != 2 && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.AreEqual(2, attack.ComboStep, "Early input must survive the first punch.");
+            Assert.AreEqual(Vector2.left, _targetObject.GetComponent<VarginhaPlayerSpriteAnimation>().ActionFacingDirection);
+            while (attack.IsAttacking && Time.realtimeSinceStartup < deadline) yield return null;
+            yield return null;
+            Assert.IsFalse(attack.IsAttacking, "Multiple clicks buffer one punch, not an unlimited chain.");
+            Assert.AreEqual(2, attack.ComboStep);
+        }
+
+        [UnityTest]
+        public IEnumerator LockCancelsQueuedPunchWithoutErasingInteractionPose()
+        {
+            var attack = CreateAttacker();
+            var player = _targetObject.GetComponent<EdelzioTopDownController>();
+            var animation = _targetObject.GetComponent<VarginhaPlayerSpriteAnimation>();
+            attack.TryAttack(Vector2.right);
+            attack.QueueAttack(Vector2.right);
+            player.SetInputLocked(true);
+            animation.SetActionPose("Edelzio_Sit");
+            yield return null;
+            Assert.IsFalse(attack.IsAttacking);
+            Assert.IsTrue(animation.IsSeated, "Attack cleanup must not erase the new interaction.");
+            player.SetInputLocked(false);
+            yield return null;
+            Assert.IsFalse(attack.IsAttacking);
+            Assert.IsTrue(attack.TryAttack());
+            Assert.AreEqual(1, attack.ComboStep);
+        }
+
+        [UnityTest]
+        public IEnumerator PunchDamagesOnlyAtContactAndOnlyOnceForMultipleColliders()
+        {
+            var attack = CreateAttacker();
+            var enemy = new GameObject("Punch_Target");
+            try
+            {
+                enemy.transform.position = new Vector3(.67f, 0, 0);
+                enemy.AddComponent<BoxCollider2D>().isTrigger = true;
+                enemy.AddComponent<CircleCollider2D>().isTrigger = true;
+                var target = enemy.AddComponent<VarginhaCombatTarget>();
+                var health = enemy.GetComponent<HealthSystem>();
+                Physics2D.SyncTransforms();
+                attack.TryAttack(Vector2.right);
+                Assert.AreEqual(100f, health.CurrentHealth);
+                yield return new WaitForSecondsRealtime(.04f);
+                Assert.AreEqual(100f, health.CurrentHealth, "Anticipation cannot deal damage.");
+                float deadline = Time.realtimeSinceStartup + 2f;
+                while (attack.IsAttacking && Time.realtimeSinceStartup < deadline) yield return null;
+                Assert.AreEqual(66f, health.CurrentHealth, .001f);
+                Assert.AreEqual(1f, Time.timeScale);
+            }
+            finally { Object.DestroyImmediate(enemy); }
+        }
+
+        [UnityTest]
+        public IEnumerator WallBlocksPunchAndDisableRestoresHitstop()
+        {
+            var attack = CreateAttacker();
+            var enemy = new GameObject("Punch_Target");
+            var wall = new GameObject("Punch_Wall");
+            try
+            {
+                enemy.transform.position = new Vector3(.67f, 0, 0);
+                enemy.AddComponent<BoxCollider2D>().isTrigger = true;
+                enemy.AddComponent<VarginhaCombatTarget>();
+                var health = enemy.GetComponent<HealthSystem>();
+                wall.transform.position = new Vector3(.35f, 0, 0);
+                wall.AddComponent<BoxCollider2D>().size = new Vector2(.1f, 2f);
+                Physics2D.SyncTransforms();
+                attack.TryAttack(Vector2.right);
+                float deadline = Time.realtimeSinceStartup + 2f;
+                while (attack.IsAttacking && Time.realtimeSinceStartup < deadline) yield return null;
+                Assert.AreEqual(100f, health.CurrentHealth, "Punches cannot cross walls.");
+                Object.DestroyImmediate(wall);
+                Physics2D.SyncTransforms();
+                attack.TryAttack(Vector2.right);
+                deadline = Time.realtimeSinceStartup + 2f;
+                while (health.CurrentHealth == 100f && Time.realtimeSinceStartup < deadline) yield return null;
+                Assert.Less(health.CurrentHealth, 100f);
+                attack.enabled = false;
+                Assert.AreEqual(1f, Time.timeScale);
+                Assert.IsFalse(attack.IsAttacking);
+            }
+            finally
+            {
+                Object.DestroyImmediate(enemy);
+                if (wall != null) Object.DestroyImmediate(wall);
+            }
         }
 
         [UnityTest]

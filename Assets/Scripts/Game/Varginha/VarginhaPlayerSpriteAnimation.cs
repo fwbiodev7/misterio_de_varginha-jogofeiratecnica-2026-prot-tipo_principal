@@ -33,6 +33,11 @@ namespace Game.Varginha
         public bool HasActionPose => _actionPose != null;
         public Vector2 ActionFacingDirection { get; private set; } = Vector2.down;
 
+        public void ClearCombatPose()
+        {
+            if (_attackPose) ClearActionPose();
+        }
+
         public void SetCombatPose(Sprite pose, Vector2 direction)
         {
             _actionPose = pose;

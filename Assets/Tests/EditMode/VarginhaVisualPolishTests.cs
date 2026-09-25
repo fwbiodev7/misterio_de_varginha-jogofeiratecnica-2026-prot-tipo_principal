@@ -45,5 +45,21 @@ namespace Game.Tests.EditMode
                 }
             }
         }
+
+        [Test]
+        public void ClearCombatPoseClearsAttackPose()
+        {
+            var go = new GameObject("PlayerTest");
+            var anim = go.AddComponent<VarginhaPlayerSpriteAnimation>();
+            var testSprite = Sprite.Create(new Texture2D(4, 4), new Rect(0, 0, 4, 4), Vector2.one * .5f);
+            testSprite.name = "TestPose";
+            
+            anim.SetCombatPose(testSprite, Vector2.down);
+            Assert.IsTrue(anim.HasActionPose);
+
+            anim.ClearCombatPose();
+            Assert.IsFalse(anim.HasActionPose);
+            Object.DestroyImmediate(go);
+        }
     }
 }

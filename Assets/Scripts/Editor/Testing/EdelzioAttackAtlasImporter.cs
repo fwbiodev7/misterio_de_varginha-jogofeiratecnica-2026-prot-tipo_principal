@@ -8,7 +8,8 @@ namespace Game.Editor.Testing
     {
         private void OnPreprocessTexture()
         {
-            if (assetPath != "Assets/Resources/Varginha/EdelzioAttackV1.png") return;
+            if (assetPath != "Assets/Resources/Varginha/EdelzioAttackV1.png"
+                && assetPath != "Assets/Resources/Varginha/EdelzioPunchV2.png") return;
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;

@@ -52,7 +52,7 @@ A cena começa com uma transição cinematográfica: o Fusca aparece, Edelzio sa
 
 **Yasmin, Pedro, Matias, Fabio, Marcos, Anna Sabia, Ana Tavares, Luis Miguel Messias e Luis Martins.**
 
-O jogador derrota os subordinados usando o combo de três golpes: corte inicial, golpe cruzado e finalizador pesado. Os ETs alternam papéis de atirador, investidor e sentinela, com ataques sinalizados que afetam vida e sanidade. Depois da última derrota, as jaulas pixel art desaparecem, os alunos são libertados, acompanham Edelzio e formam uma fila no Fusca. Quando toda a turma chega ao carro e Edelzio se aproxima, a partida inicia a viagem para a Fase 3.
+O jogador derrota os subordinados usando o combo de três socos: jab, direto com o braço oposto e finalizador pesado. Clicar durante um golpe guarda o próximo soco; manter o botão pressionado continua a sequência. Os ETs alternam papéis de atirador, investidor e sentinela, com ataques sinalizados que afetam vida e sanidade. Depois da última derrota, as jaulas pixel art desaparecem, os alunos são libertados, acompanham Edelzio e formam uma fila no Fusca. Quando toda a turma chega ao carro e Edelzio se aproxima, a partida inicia a viagem para a Fase 3.
 
 ### Fase 3 — O Guardião
 
@@ -96,6 +96,7 @@ Packages/                         Dependências UPM
 - [Visão técnica e arquitetura](Docs/ARCHITECTURE.md)
 - [Atualizações desta versão](Docs/CHANGELOG.md)
 - [Arte e animações do Edelzio V3](Docs/EdelzioV3.md)
+- [Socos do Edelzio V2 — arte, sequência e importação](Docs/EdelzioPunchV2.md)
 
 ## Validação
 

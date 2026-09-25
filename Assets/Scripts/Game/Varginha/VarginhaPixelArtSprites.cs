@@ -188,6 +188,12 @@ namespace Game.Varginha
             else if (id == "Attack_Slash" || id == "Attack_HeavySlash") DrawAttackSlash(texture, mid, dark, light, id.Contains("Heavy"));
             else if (id == "Attack_CrossSlash") DrawCrossSlash(texture, mid, dark, light);
             else if (id == "Attack_Impact") DrawAttackImpact(texture, mid, dark, light);
+            else if (id == "Attack_PunchTrail")
+            {
+                Fill(texture, 9, 15, 18, 2, light);
+                Fill(texture, 5, 11, 13, 1, mid);
+                Fill(texture, 7, 20, 14, 1, mid);
+            }
             else if (id == "Alien_Ichor") DrawAlienIchor(texture);
             else if (id == "Dodge_Dust") DrawDodgeDust(texture, mid, dark, light);
             else if (id.StartsWith("HostageCage")) DrawHostageCage(texture, mid, dark, light);
@@ -507,14 +513,15 @@ namespace Game.Varginha
             }
         }
 
-        private static void AddSurfaceFinish(Texture2D texture, string id)
+        internal static void AddSurfaceFinish(Texture2D texture, string id)
         {
             bool wood = id == "Floor_House" || id == "SchoolFloor";
-            bool grass = id == "Floor_Yard";
+            bool grass = id == "Floor_Yard" || id == "Plant" || id == "Leaves";
             bool stone = id.StartsWith("ChurchFloor") || id.StartsWith("Wall") || id.EndsWith("Wall")
-                || id.StartsWith("Driveway") || id.StartsWith("Street");
+                || id.StartsWith("Driveway") || id.StartsWith("Street") || id == "Column" || id == "Parking";
             bool furnishing = id.StartsWith("Bed_") || id.StartsWith("Sofa_") || id.StartsWith("Kitchen_")
-                || id.StartsWith("Bookshelf") || id.StartsWith("SchoolLocker");
+                || id.StartsWith("Bookshelf") || id.StartsWith("SchoolLocker")
+                || id == "Books" || id == "Noticeboard" || id == "Blackboard" || id == "Rug";
             if (!wood && !grass && !stone && !furnishing) return;
             Color[] pixels = texture.GetPixels();
             int width = texture.width;
