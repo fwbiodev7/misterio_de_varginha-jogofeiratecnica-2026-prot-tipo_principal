@@ -20,7 +20,7 @@ Fabio, young male student with warm light skin, brown hair parted cleanly DOWN T
 
 ## Marcos
 
-Marcos, young male student with warm medium brown skin, a clearly visible high FADE HAIRCUT, closely SHAVED SIDES and taller textured curly dark top. Thin black rectangular glasses. Purple hoodie over cream T-shirt, dark jeans, violet gray trainers. Sides of head expose skin with a short dark fade gradient, NOT a round mop of curls covering ears.
+Marcos, young male student with warm medium brown skin, a clearly visible high FADE HAIRCUT, closely SHAVED SIDES and taller textured curly dark top. NO glasses, clear expressive dark eyes. Purple hoodie over cream T-shirt, dark jeans, violet gray trainers. Sides of head expose skin with a short dark fade gradient, NOT a round mop of curls covering ears.
 
 ## AnnaSabia
 
@@ -36,7 +36,7 @@ Luis Messias, young adult male student, warm medium tan skin, short dark hair, n
 
 ## LuisMartins
 
-Luis Martins, young male student, warm fair skin, STRAIGHT BROWN hair smoothly side-parted, no curls, thin dark rectangular glasses clear lenses. RED HOODED SWEATSHIRT with a front kangaroo pocket, hood down and drawstrings, dark blue jeans, dark gray sneakers. Strong clean red clothing identity. No gray jacket.
+Luis Martins, young male student, warm fair skin, STRAIGHT BROWN hair smoothly side-parted, no curls, NO glasses, clear visible eyes. RED HOODED SWEATSHIRT with a front kangaroo pocket, hood down and drawstrings, dark blue jeans, dark gray sneakers. Strong clean red clothing identity. No gray jacket.
 
 ## Geração
 
