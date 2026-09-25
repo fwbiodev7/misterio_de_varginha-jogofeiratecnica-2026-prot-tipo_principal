@@ -39,7 +39,11 @@ namespace Game.Varginha
             _attackPose = true;
             ActionFacingDirection = direction;
             IsSeated = IsDrinking = false;
-            if (_renderer != null && pose != null) { _renderer.flipX = false; PresentPose(pose, DirectionIndex(direction)); }
+            if (_renderer != null && pose != null)
+            {
+                _renderer.flipX = direction.x < -.5f && pose.name.StartsWith("EdelzioReferenceActionsV1");
+                PresentPose(pose, DirectionIndex(direction));
+            }
             SetBeard(true, DirectionIndex(direction));
         }
         private Vector3 _lastValidScale;
@@ -151,8 +155,9 @@ namespace Game.Varginha
 
             bool moving = _controller != null && _controller.IsMoving;
             SetRunning(moving);
-            // A animação acompanha o tempo do jogo, inclusive pausa e câmera lenta.
-            _time += Time.deltaTime;
+            // O relógio não depende do frame rate e continua acompanhando uma
+            // câmera em câmera lenta sem saltar quadros de pixel art.
+            _time += Time.unscaledDeltaTime;
             Sprite[] directionalFrames = _isRunning ? GetDirectionalFrames() : GetDirectionalIdleFrames();
             Sprite[] frames = directionalFrames ?? (_isRunning ? _runFrames : _idleFrames);
             float frameRate = _isRunning ? runFrameRate : idleFrameRate;
@@ -267,6 +272,12 @@ namespace Game.Varginha
 
         private void EnsureBeardLayer()
         {
+            if (VarginhaReferenceSprites.Character(false, 0) != null)
+            {
+                var oldLayer = transform.Find("Edelzio_Barba_Overlay_Runtime");
+                if (oldLayer != null) oldLayer.gameObject.SetActive(false);
+                return;
+            }
             if (_renderer == null) return;
             if (VarginhaReferenceSprites.HasEdelzio)
             {
@@ -298,6 +309,7 @@ namespace Game.Varginha
 
         private void SetBeard(bool attackSheet, int direction)
         {
+            if (VarginhaReferenceSprites.Character(false, 0) != null) return;
             EnsureBeardLayer();
             if (VarginhaReferenceSprites.HasEdelzio) return;
             if (_beardRenderer == null) return;
@@ -340,6 +352,25 @@ namespace Game.Varginha
                 for (int i = 0; i < actions.Length; i++) _actionFrames[i + 4] = VarginhaReferenceSprites.EdelzioActionFrame(actions[i]);
                 return reference;
             }
+
+            if (VarginhaReferenceSprites.Character(false, 0) != null)
+            {
+                _actionFrames = new[] {
+                    VarginhaReferenceSprites.Action(0), VarginhaReferenceSprites.Action(0),
+                    VarginhaReferenceSprites.Action(0), VarginhaReferenceSprites.Action(0),
+                    VarginhaReferenceSprites.Action(1), VarginhaReferenceSprites.Action(2),
+                    VarginhaReferenceSprites.Action(3), VarginhaReferenceSprites.Action(3)
+                };
+                var frames = new Sprite[4][];
+                for (int direction = 0; direction < 4; direction++)
+                {
+                    var idle = VarginhaReferenceSprites.Character(false, direction);
+                    var walk = VarginhaReferenceSprites.Character(false, direction, true);
+                    frames[direction] = new[] { idle, walk, idle, walk };
+                }
+                return frames;
+            }
+
             var sheet = Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
             if (sheet == null) return null;
 

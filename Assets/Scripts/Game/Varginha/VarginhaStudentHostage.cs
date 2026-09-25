@@ -32,7 +32,7 @@ namespace Game.Varginha
             _renderer = _renderer != null ? _renderer : GetComponent<SpriteRenderer>();
             if (_renderer != null)
             {
-                if (_renderer.sprite == null)
+                if (_renderer.sprite == null || studentName == "Fabio")
                     _renderer.sprite = VarginhaPixelArtSprites.Create("Student_" + studentName, new Color(.25f, .52f, .88f));
                 _renderer.sortingOrder = sortingOrder;
                 _renderer.enabled = true;

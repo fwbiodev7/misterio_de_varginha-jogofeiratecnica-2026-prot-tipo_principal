@@ -118,6 +118,8 @@ namespace Game.Varginha
             if (worldCup != null) worldCup.enabled = false;
             var cup = CreateHeldProp("Coffee_Held", new Color(.80f, .79f, .74f), new Vector3(-.11f, -.20f, 0f), .19f);
             _heldCup = cup;
+            // The reference pose already contains a cup; do not draw a second one.
+            if (cup != null && VarginhaReferenceSprites.Action(0) != null) cup.SetActive(false);
             _spriteAnimation?.SetActionPose("Edelzio_DrinkCoffee");
             // Três goles deixam claro que Edelzio tomou toda a xícara, não apenas um gole rápido.
             for (int sip = 0; sip < 3; sip++)
