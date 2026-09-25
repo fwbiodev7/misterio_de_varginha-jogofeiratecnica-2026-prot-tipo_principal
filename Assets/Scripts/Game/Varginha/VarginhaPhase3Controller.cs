@@ -82,6 +82,12 @@ namespace Game.Varginha
             _player.HasResearchNotebook = true;
             _player.HasDecodedData = true;
             _player.HasHistoricalDocument = true;
+            if (EdelzioTopDownController.PersistentHasFlashlight)
+            {
+                _player.HasFlashlight = true;
+                _player.IsFlashlightEquippedInHotbar = EdelzioTopDownController.PersistentFlashlightInHotbar;
+                _player.FlashlightActive = EdelzioTopDownController.PersistentFlashlightActive;
+            }
             _player.EquipBackpack();
             _player.CompleteHouseInventory();
 

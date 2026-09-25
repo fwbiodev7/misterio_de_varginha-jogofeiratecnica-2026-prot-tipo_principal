@@ -102,10 +102,11 @@ namespace Game.Varginha
             _collected = true;
 
             edelzio.HasFlashlight = true;
+            edelzio.IsFlashlightEquippedInHotbar = false;
 
             // Notificação ao jogador
             var hud = VarginhaGameHUD.Instance ?? FindAnyObjectByType<VarginhaGameHUD>();
-            hud?.ShowDialogue("Edelzio", "🔦 Você pegou a LANTERNA!\n• Pressione [V] a qualquer momento para ligar ou desligar.\n• Você também pode selecioná-la na Mochila [G] para gerenciar.");
+            hud?.ShowDialogue("Edelzio", "🔦 Você pegou a LANTERNA!\nEla foi guardada na sua Mochila.\nAbra a Mochila [G] para EQUIPÁ-LA na Hotbar e poder usá-la!");
 
             StartCoroutine(CollectAnimationRoutine(edelzio));
         }

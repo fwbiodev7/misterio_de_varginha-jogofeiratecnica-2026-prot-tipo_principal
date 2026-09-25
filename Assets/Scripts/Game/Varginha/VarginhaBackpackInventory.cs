@@ -39,7 +39,7 @@ namespace Game.Varginha
             "As anotações de 1996. Edelzio precisa delas para iniciar a viagem.",
             "Notebook cinza usado na decodificação. As informações obtidas ficam registradas após o uso.",
             "Documento histórico. A pista permanece conhecida depois da leitura.",
-            "Lanterna portátil encontrada no baú. Pressione V para ligar/desligar. Ilumina áreas escuras à frente de Edelzio."
+            "Lanterna de exploração. Guarde-a na mochila ou equipe-a na Hotbar para poder selecioná-la e iluminar locais escuros à frente."
         };
 
         private TMP_Text _name, _description, _availability, _equipped, _items;
@@ -145,7 +145,7 @@ namespace Game.Varginha
 
             if (!ShowingStudents && _inspected == 5 && _player != null && _player.HasFlashlight)
             {
-                _player.ToggleFlashlight();
+                _player.IsFlashlightEquippedInHotbar = !_player.IsFlashlightEquippedInHotbar;
                 Refresh();
             }
         }
@@ -191,8 +191,16 @@ namespace Game.Varginha
                     if (owned) _cellPortraits[i].sprite = VarginhaPixelArtSprites.Create(ItemArt[i], Color.gray);
                     _cellNames[i].text = owned ? ItemNames[i] : "";
                     _cellNames[i].color = PaperColor;
-                    _states[i].text = owned ? (i == 0 ? "EQUIPAMENTO" : i == 5 ? (_player.FlashlightActive ? "LIGADA" : "DESLIGADA") : "GUARDADO") : "VAZIO";
-                    _states[i].color = owned ? (i == 0 ? FocusGold : i == 5 && _player.FlashlightActive ? new Color(.96f, .82f, .28f) : AccentCyan) : MutedCyan;
+                    _states[i].text = owned
+                        ? (i == 0 ? "EQUIPAMENTO"
+                          : i == 5 ? (_player.IsFlashlightEquippedInHotbar ? "NA HOTBAR" : "NA MOCHILA")
+                          : "GUARDADO")
+                        : "VAZIO";
+                    _states[i].color = owned
+                        ? (i == 0 ? FocusGold
+                          : i == 5 ? (_player.IsFlashlightEquippedInHotbar ? FocusGold : AccentCyan)
+                          : AccentCyan)
+                        : MutedCyan;
                 }
 
                 bool selectedOwned = _inspected < ItemNames.Length && _player != null && _player.HasInventoryItem(_inspected);
@@ -204,11 +212,14 @@ namespace Game.Varginha
                 _description.color = PaperColor;
                 if (_inspected == 5 && selectedOwned)
                 {
-                    _availability.text = "Pressione [ENTER] para ligar/desligar no inventário, ou use a tecla [V] durante a exploração.";
-                    _availability.color = FocusGold;
+                    bool inHotbar = _player.IsFlashlightEquippedInHotbar;
+                    _availability.text = inHotbar
+                        ? "Lanterna equipada na Hotbar! Selecione-a na barra rápida (tecla [6] ou clique) e ligue/desligue com [ESPAÇO], [ENTER] ou [V]."
+                        : "Pressione [ENTER] ou clique abaixo para EQUIPAR a lanterna na Hotbar (barra rápida de itens).";
+                    _availability.color = inHotbar ? FocusGold : AccentCyan;
                     _equip.interactable = true;
                     _equip.image.sprite = _buttonActiveSprite;
-                    _equipCaption.text = _player.FlashlightActive ? "DESLIGAR" : "LIGAR";
+                    _equipCaption.text = inHotbar ? "DESEQUIPAR DA HOTBAR" : "EQUIPAR NA HOTBAR";
                     _equipCaption.color = PaperColor;
                 }
                 else

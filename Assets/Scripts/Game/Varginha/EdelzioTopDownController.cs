@@ -44,8 +44,37 @@ namespace Game.Varginha
         public bool HasResearchNotebook { get; set; }
         public bool HasDecodedData { get; set; }
         public bool HasHistoricalDocument { get; set; }
-        public bool HasFlashlight { get; set; }
-        public bool FlashlightActive { get; private set; }
+        public static bool PersistentHasFlashlight { get; set; }
+        public static bool PersistentFlashlightActive { get; set; }
+        public static bool PersistentFlashlightInHotbar { get; set; }
+
+        private bool _hasFlashlight;
+        public bool HasFlashlight
+        {
+            get => _hasFlashlight || PersistentHasFlashlight;
+            set
+            {
+                _hasFlashlight = value;
+                if (value) PersistentHasFlashlight = true;
+            }
+        }
+
+        private bool _isFlashlightEquippedInHotbar;
+        public bool IsFlashlightEquippedInHotbar
+        {
+            get => _isFlashlightEquippedInHotbar || PersistentFlashlightInHotbar;
+            set
+            {
+                _isFlashlightEquippedInHotbar = value;
+                PersistentFlashlightInHotbar = value;
+            }
+        }
+
+        public bool FlashlightActive
+        {
+            get => PersistentFlashlightActive;
+            set => PersistentFlashlightActive = value;
+        }
         // Knowledge survives consumption; the hotbar only shows physical items still in use.
         private int _usedInventoryItems;
 
@@ -116,9 +145,11 @@ namespace Game.Varginha
 
         public void ToggleFlashlight()
         {
-            if (!HasFlashlight) return;
+            if (!HasFlashlight || !IsFlashlightEquippedInHotbar) return;
             FlashlightActive = !FlashlightActive;
             var flashlight = GetComponent<EdelzioFlashlight>();
+            if (flashlight == null && FlashlightActive)
+                flashlight = gameObject.AddComponent<EdelzioFlashlight>();
             if (flashlight != null) flashlight.enabled = FlashlightActive;
         }
 
@@ -209,9 +240,9 @@ namespace Game.Varginha
             if (VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Interact))
                 TryInteract();
 
-            // V key toggles the flashlight on/off
+            // V key toggles the flashlight on/off if equipped in hotbar
             var kb = Keyboard.current;
-            if (kb != null && kb.vKey.wasPressedThisFrame && HasFlashlight)
+            if (kb != null && kb.vKey.wasPressedThisFrame && HasFlashlight && IsFlashlightEquippedInHotbar)
                 ToggleFlashlight();
 
             if (IsGameplayBlocked) return;

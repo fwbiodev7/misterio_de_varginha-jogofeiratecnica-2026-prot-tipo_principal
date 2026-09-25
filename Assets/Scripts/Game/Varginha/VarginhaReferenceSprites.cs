@@ -372,11 +372,20 @@ namespace Game.Varginha
                     _attack[d] = new Sprite[cols];
                     for (int f = 0; f < cols; f++)
                     {
-                        _attack[d][f] = Sprite.Create(texture,
-                            new Rect(f * 64, (3 - d) * 64, 64, 64),
+                        var cellPixels = texture.GetPixels(f * 64, (3 - d) * 64, 64, 64);
+                        var cellTex = new Texture2D(64, 64, TextureFormat.RGBA32, false)
+                        {
+                            name = $"Edelzio_Attack_{d}_{f}",
+                            filterMode = FilterMode.Point,
+                            wrapMode = TextureWrapMode.Clamp
+                        };
+                        cellTex.SetPixels(cellPixels);
+                        cellTex.Apply(false, false);
+                        _attack[d][f] = Sprite.Create(cellTex,
+                            new Rect(0, 0, 64, 64),
                             new Vector2(.5f, .5f - (26f / 64f) * (1f - 1f / EdelzioVisualScale)),
                             EdelzioPixelsPerUnit);
-                        _attack[d][f].name = $"Edelzio_Attack_{d}_{f}";
+                        _attack[d][f].name = cellTex.name;
                     }
                 }
                 return _attack;

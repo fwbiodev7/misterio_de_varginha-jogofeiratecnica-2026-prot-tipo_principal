@@ -36,8 +36,8 @@ namespace Game.Varginha
         public Rect HotbarSlotRect(int index)
         {
             float size = HotbarSlotSize;
-            float width = size * 5 + 24;
-            return new Rect(Mathf.Round((Screen.width - width) * .5f) + index * (size + 6),
+            float width = size * 6f + 30f;
+            return new Rect(Mathf.Round((Screen.width - width) * .5f) + index * (size + 6f),
                 Mathf.Max(8, Mathf.Round(Screen.height - HotbarHeight - 8)) + 22, size, size);
         }
 
@@ -85,12 +85,12 @@ namespace Game.Varginha
         private static readonly Color PanelBorder = new(.28f, .40f, .44f, .98f);
         private static readonly Color PaperColor = new(.92f, .91f, .82f);
         private static readonly Color FocusColor = new(.96f, .78f, .34f);
-        private readonly Sprite[] _hotbarIcons = new Sprite[5];
-        private readonly bool[] _hotbarOwned = new bool[5];
-        private readonly float[] _hotbarCollectedAt = new float[5];
-        private static readonly string[] HotbarNames = { "MOCHILA", "CHAVE DO FUSCA", "CADERNO DE 1996", "NOTEBOOK", "DOCUMENTO DE 1898" };
+        private readonly Sprite[] _hotbarIcons = new Sprite[6];
+        private readonly bool[] _hotbarOwned = new bool[6];
+        private readonly float[] _hotbarCollectedAt = new float[6];
+        private static readonly string[] HotbarNames = { "MOCHILA", "CHAVE DO FUSCA", "CADERNO DE 1996", "NOTEBOOK", "DOCUMENTO DE 1898", "LANTERNA" };
         private int _selectedSlot;
-        private float HotbarSlotSize => Mathf.Clamp((Screen.width - 44f) / 5f, 28f, 76f);
+        private float HotbarSlotSize => Mathf.Clamp((Screen.width - 44f) / 6f, 28f, 72f);
         private float HotbarHeight => HotbarSlotSize + (Screen.height < 420f ? 38f : 46f);
 
         public void TogglePause()
@@ -134,9 +134,11 @@ namespace Game.Varginha
 
             if (_edelzio == null) return;
             if (IsInventoryOpen) return;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
-                bool owned = _edelzio.HasInventoryItem(i);
+                bool owned = (i == 5)
+                    ? (_edelzio.HasFlashlight && _edelzio.IsFlashlightEquippedInHotbar)
+                    : _edelzio.HasInventoryItem(i);
                 if (owned && !_hotbarOwned[i])
                 {
                     _hotbarCollectedAt[i] = Time.unscaledTime;
@@ -149,11 +151,15 @@ namespace Game.Varginha
             if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame))
             {
                 Vector2 point = mouse.position.ReadValue(); point.y = Screen.height - point.y;
-                for (int slot = 0; slot < 5; slot++)
+                for (int slot = 0; slot < 6; slot++)
                 {
                     if (!HotbarSlotRect(slot).Contains(point)) continue;
                     _selectedSlot = slot;
                     if (slot == 0 && mouse.leftButton.wasPressedThisFrame) OpenBackpack();
+                    if (slot == 5 && mouse.leftButton.wasPressedThisFrame && _edelzio.HasFlashlight && _edelzio.IsFlashlightEquippedInHotbar)
+                    {
+                        _edelzio.ToggleFlashlight();
+                    }
                     _blockInputThroughFrame = Time.frameCount + 1;
                     return;
                 }
@@ -165,6 +171,16 @@ namespace Game.Varginha
             if (keyboard.digit3Key.wasPressedThisFrame) _selectedSlot = 2;
             if (keyboard.digit4Key.wasPressedThisFrame) _selectedSlot = 3;
             if (keyboard.digit5Key.wasPressedThisFrame) _selectedSlot = 4;
+            if (keyboard.digit6Key.wasPressedThisFrame) _selectedSlot = 5;
+
+            // Se o slot 5 (Lanterna) estiver selecionado na hotbar, ESPAÇO, ENTER ou V liga/desliga a lanterna
+            if (_selectedSlot == 5 && _edelzio.HasFlashlight && _edelzio.IsFlashlightEquippedInHotbar)
+            {
+                if (keyboard.spaceKey.wasPressedThisFrame || keyboard.enterKey.wasPressedThisFrame || keyboard.vKey.wasPressedThisFrame)
+                {
+                    _edelzio.ToggleFlashlight();
+                }
+            }
         }
 
         private void Awake()
@@ -284,6 +300,7 @@ namespace Game.Varginha
             _hotbarIcons[2] = VarginhaPixelArtSprites.Create("Inventory_Journal", Color.white);
             _hotbarIcons[3] = VarginhaPixelArtSprites.Create("Notebook_Inventory", new Color(.30f, .90f, 1f));
             _hotbarIcons[4] = VarginhaPixelArtSprites.Create("Doc_Inventory", new Color(.9f, .85f, .7f));
+            _hotbarIcons[5] = VarginhaPixelArtSprites.Create("Inventory_Flashlight", Color.white);
         }
 
         private Sprite EnsureHotbarIcon(int index)
@@ -297,7 +314,9 @@ namespace Game.Varginha
                 case 1: icon = VarginhaPixelArtSprites.Create("Inventory_Key", Color.white); break;
                 case 2: icon = VarginhaPixelArtSprites.Create("Inventory_Journal", Color.white); break;
                 case 3: icon = VarginhaPixelArtSprites.Create("Notebook_Inventory", new Color(.30f, .90f, 1f)); break;
-                default: icon = VarginhaPixelArtSprites.Create("Doc_Inventory", new Color(.9f, .85f, .7f)); break;
+                case 4: icon = VarginhaPixelArtSprites.Create("Doc_Inventory", new Color(.9f, .85f, .7f)); break;
+                case 5: icon = VarginhaPixelArtSprites.Create("Inventory_Flashlight", Color.white); break;
+                default: icon = VarginhaPixelArtSprites.Create("Inventory_Flashlight", Color.white); break;
             }
 
             _hotbarIcons[index] = icon;
@@ -463,7 +482,7 @@ namespace Game.Varginha
             if (_edelzio == null || _isVictoryOpen || _edelzio.CurrentSanity <= 0 || Time.timeScale == 0f) return;
             float slotSize = HotbarSlotSize;
             const float gap = 6f;
-            float width = slotSize * 5f + gap * 4f;
+            float width = slotSize * 6f + gap * 5f;
             float x = Mathf.Round((Screen.width - width) * .5f);
             float y = Mathf.Round(Screen.height - HotbarHeight - 8f);
             y = Mathf.Max(8f, y);
@@ -471,14 +490,18 @@ namespace Game.Varginha
             DrawHudBlock(new Rect(x, y + 1f, width, 18f), new Color(.035f, .045f, .055f, .88f));
             GUI.Label(new Rect(x, y, width, 20f), "ITENS COLETADOS", _hotbarLabelStyle);
             int hovered = -1;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Rect slot = new Rect(x + i * (slotSize + gap), y + 22f, slotSize, slotSize);
-                bool owned = _edelzio.HasInventoryItem(i);
+                bool owned = (i == 5)
+                    ? (_edelzio.HasFlashlight && _edelzio.IsFlashlightEquippedInHotbar)
+                    : _edelzio.HasInventoryItem(i);
                 bool selected = i == _selectedSlot;
                 bool isHovered = slot.Contains(Event.current.mousePosition);
                 bool newlyCollected = owned && Time.unscaledTime - _hotbarCollectedAt[i] < 1.4f;
-                Color border = selected ? FocusColor : isHovered ? new Color(.65f, .74f, .76f)
+                bool isFlashlightOn = i == 5 && owned && _edelzio.FlashlightActive;
+                Color border = isFlashlightOn ? new Color(.98f, .85f, .30f)
+                    : selected ? FocusColor : isHovered ? new Color(.65f, .74f, .76f)
                     : owned ? PanelBorder : new Color(.23f, .28f, .32f);
                 if (newlyCollected) border = Color.Lerp(border, Color.white, .3f + .25f * Mathf.Sin(Time.unscaledTime * 8f));
                 PixelHUDFrame.Draw(slot, _whiteTex, selected ? new Color(.15f, .17f, .18f, .99f) : PanelColor, border);
@@ -503,15 +526,32 @@ namespace Game.Varginha
                 _hotbarNumberStyle.normal.textColor = selected ? FocusColor : new Color(.68f, .73f, .75f);
                 GUI.Label(numberBadge, (i + 1).ToString(), _hotbarNumberStyle);
                 if (selected)
-                    DrawHudBlock(new Rect(slot.x + 8, slot.yMax - 6, slot.width - 16, 2), FocusColor);
+                    DrawHudBlock(new Rect(slot.x + 8, slot.yMax - 6, slot.width - 16, 2), isFlashlightOn ? new Color(.98f, .85f, .30f) : FocusColor);
                 if (owned)
-                    DrawHudBlock(new Rect(slot.xMax - 9, slot.yMax - 10, 3, 3), new Color(.58f, .79f, .70f));
+                {
+                    Color indicatorColor = isFlashlightOn ? new Color(.98f, .88f, .25f) : new Color(.58f, .79f, .70f);
+                    DrawHudBlock(new Rect(slot.xMax - 9, slot.yMax - 10, isFlashlightOn ? 5 : 3, isFlashlightOn ? 5 : 3), indicatorColor);
+                }
                 if (isHovered) hovered = i;
                 // Input is handled in Update before combat, preventing click-through attacks.
             }
             int describedSlot = hovered >= 0 ? hovered : _selectedSlot;
-            string label = _edelzio.HasInventoryItem(describedSlot) ? HotbarNames[describedSlot] : "ESPAÇO VAZIO";
-            if (describedSlot == 0 && _edelzio.HasBackpack) label = "MOCHILA • CLIQUE OU [G]";
+            string label;
+            if (describedSlot == 0 && _edelzio.HasBackpack)
+                label = "MOCHILA • CLIQUE OU [G]";
+            else if (describedSlot == 5)
+            {
+                if (_edelzio.HasFlashlight && _edelzio.IsFlashlightEquippedInHotbar)
+                    label = _edelzio.FlashlightActive
+                        ? "LANTERNA • LIGADA [CLIQUE/ESPAÇO/V]"
+                        : "LANTERNA • DESLIGADA [CLIQUE/ESPAÇO/V]";
+                else
+                    label = "ESPAÇO VAZIO • EQUIPE NA MOCHILA [G]";
+            }
+            else
+            {
+                label = _edelzio.HasInventoryItem(describedSlot) ? HotbarNames[describedSlot] : "ESPAÇO VAZIO";
+            }
             Rect description = new Rect(x, y + slotSize + (Screen.height < 420f ? 14f : 24f), width, 20f);
             DrawHudBlock(description, new Color(.035f, .045f, .055f, .92f));
             GUI.Label(description, label, _hotbarLabelStyle);

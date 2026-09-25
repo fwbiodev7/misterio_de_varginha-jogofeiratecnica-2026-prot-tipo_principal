@@ -65,7 +65,8 @@ namespace Game.Varginha
             if (_renderer == null) return;
             bool visible = !VarginhaTravelCinematic.IsTravelling
                 && _controller != null && _controller.CurrentSanity > 0
-                && _controller.HasFlashlight && _controller.FlashlightActive;
+                && _controller.HasFlashlight && _controller.FlashlightActive
+                && _controller.IsFlashlightEquippedInHotbar;
             _renderer.enabled = visible;
             if (!visible || (Time.timeScale <= 0f && _hasDirection)) return;
             Vector2 direction = _controller.FacingDirection;
