@@ -148,7 +148,13 @@ namespace Game.Varginha
                     GetComponent<ToyBoxOpenAnimation>()?.PlayOpen(edelzio);
                     edelzio.HasFuscaKey = true;
                     edelzio.HasResearchNotebook = true;
-                    message = "📦 Você puxa a caixa debaixo da cama...\nEncontrou a CHAVE DO FUSCA e o CADERNO DE 1996!\nNa última página está escrito: 'ELA AINDA ESTÁ AQUI'!";
+                    if (!edelzio.HasFlashlight)
+                    {
+                        FlashlightWorldPickup.SpawnFromChest(transform.position);
+                    }
+                    var flashlightComp = edelzio.GetComponent<EdelzioFlashlight>();
+                    if (flashlightComp != null) flashlightComp.enabled = true;
+                    message = "📦 Você puxa o baú debaixo da cama...\nEncontrou a CHAVE DO FUSCA e o CADERNO DE 1996!\nUma LANTERNA rolou de dentro do baú!\nPressione [V] para ligar/desligar a lanterna.\nNa última página está escrito: 'ELA AINDA ESTÁ AQUI'!";
                     GetHud()?.ShowDialogue("Edelzio", message);
                     GetHud()?.ShowRodrigoHint("Rodrigo: 'O que foi isso?! As luzes começaram a piscar! Pegue seu notebook e vá até o Fusca no quintal rápido!'");
                     EntityManifestationAI.AwakenEntity();

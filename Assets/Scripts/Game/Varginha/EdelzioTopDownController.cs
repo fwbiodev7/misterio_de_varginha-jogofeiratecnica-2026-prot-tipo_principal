@@ -44,6 +44,8 @@ namespace Game.Varginha
         public bool HasResearchNotebook { get; set; }
         public bool HasDecodedData { get; set; }
         public bool HasHistoricalDocument { get; set; }
+        public bool HasFlashlight { get; set; }
+        public bool FlashlightActive { get; private set; }
         // Knowledge survives consumption; the hotbar only shows physical items still in use.
         private int _usedInventoryItems;
 
@@ -99,7 +101,7 @@ namespace Game.Varginha
 
         public bool HasInventoryItem(int slot)
         {
-            if (slot < 0 || slot > 4 || (_usedInventoryItems & (1 << slot)) != 0) return false;
+            if (slot < 0 || slot > 5 || (_usedInventoryItems & (1 << slot)) != 0) return false;
             switch (slot)
             {
                 case 0: return HasBackpack;
@@ -107,8 +109,17 @@ namespace Game.Varginha
                 case 2: return HasResearchNotebook;
                 case 3: return HasDecodedData;
                 case 4: return HasHistoricalDocument;
+                case 5: return HasFlashlight;
                 default: return false;
             }
+        }
+
+        public void ToggleFlashlight()
+        {
+            if (!HasFlashlight) return;
+            FlashlightActive = !FlashlightActive;
+            var flashlight = GetComponent<EdelzioFlashlight>();
+            if (flashlight != null) flashlight.enabled = FlashlightActive;
         }
 
         public float CurrentSanity => currentSanity;
@@ -197,6 +208,11 @@ namespace Game.Varginha
 
             if (VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Interact))
                 TryInteract();
+
+            // V key toggles the flashlight on/off
+            var kb = Keyboard.current;
+            if (kb != null && kb.vKey.wasPressedThisFrame && HasFlashlight)
+                ToggleFlashlight();
 
             if (IsGameplayBlocked) return;
             _moveInput = new Vector2(x, y).normalized;

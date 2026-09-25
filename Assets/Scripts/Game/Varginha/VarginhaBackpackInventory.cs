@@ -31,14 +31,15 @@ namespace Game.Varginha
         private TMP_Text _itemsTabLabel, _studentsTabLabel;
         private TMP_Text _equipCaption;
 
-        private static readonly string[] ItemNames = { "Mochila", "Chave do Fusca", "Caderno de 1996", "Notebook", "Documento de 1898" };
-        private static readonly string[] ItemArt = { "Backpack_Inventory", "Inventory_Key", "Inventory_Journal", "Notebook_Inventory", "Doc_Inventory" };
+        private static readonly string[] ItemNames = { "Mochila", "Chave do Fusca", "Caderno de 1996", "Notebook", "Documento de 1898", "Lanterna" };
+        private static readonly string[] ItemArt = { "Backpack_Inventory", "Inventory_Key", "Inventory_Journal", "Notebook_Inventory", "Doc_Inventory", "Inventory_Flashlight" };
         private static readonly string[] ItemDescriptions = {
             "Mochila cinza de Edelzio, com alças reforçadas. Guarda os objetos da investigação e permite organizar os especiais da turma.",
             "Abre o Fusca. É usada somente ao confirmar a saída com o caderno de pesquisas.",
             "As anotações de 1996. Edelzio precisa delas para iniciar a viagem.",
             "Notebook cinza usado na decodificação. As informações obtidas ficam registradas após o uso.",
-            "Documento histórico. A pista permanece conhecida depois da leitura."
+            "Documento histórico. A pista permanece conhecida depois da leitura.",
+            "Lanterna portátil encontrada no baú. Pressione V para ligar/desligar. Ilumina áreas escuras à frente de Edelzio."
         };
 
         private TMP_Text _name, _description, _availability, _equipped, _items;
@@ -136,7 +137,17 @@ namespace Game.Varginha
 
         private void Equip()
         {
-            if (ShowingStudents && _squad != null && _squad.SelectStudent(_inspected)) Refresh();
+            if (ShowingStudents && _squad != null && _squad.SelectStudent(_inspected))
+            {
+                Refresh();
+                return;
+            }
+
+            if (!ShowingStudents && _inspected == 5 && _player != null && _player.HasFlashlight)
+            {
+                _player.ToggleFlashlight();
+                Refresh();
+            }
         }
 
         public void ShowTab(bool students)
@@ -172,7 +183,7 @@ namespace Game.Varginha
             {
                 for (int i = 0; i < 9; i++)
                 {
-                    bool owned = i < 5 && _player != null && _player.HasInventoryItem(i);
+                    bool owned = i < ItemNames.Length && _player != null && _player.HasInventoryItem(i);
                     bool selected = i == _inspected;
                     _cells[i].sprite = selected ? _slotSelectedSprite : _slotNormalSprite;
                     _cells[i].color = Color.white;
@@ -180,23 +191,35 @@ namespace Game.Varginha
                     if (owned) _cellPortraits[i].sprite = VarginhaPixelArtSprites.Create(ItemArt[i], Color.gray);
                     _cellNames[i].text = owned ? ItemNames[i] : "";
                     _cellNames[i].color = PaperColor;
-                    _states[i].text = owned ? (i == 0 ? "EQUIPAMENTO" : "GUARDADO") : "VAZIO";
-                    _states[i].color = owned ? (i == 0 ? FocusGold : AccentCyan) : MutedCyan;
+                    _states[i].text = owned ? (i == 0 ? "EQUIPAMENTO" : i == 5 ? (_player.FlashlightActive ? "LIGADA" : "DESLIGADA") : "GUARDADO") : "VAZIO";
+                    _states[i].color = owned ? (i == 0 ? FocusGold : i == 5 && _player.FlashlightActive ? new Color(.96f, .82f, .28f) : AccentCyan) : MutedCyan;
                 }
 
-                bool selectedOwned = _inspected < 5 && _player != null && _player.HasInventoryItem(_inspected);
+                bool selectedOwned = _inspected < ItemNames.Length && _player != null && _player.HasInventoryItem(_inspected);
                 _name.text = selectedOwned ? ItemNames[_inspected] : "Espaço livre";
                 _name.color = selectedOwned ? AccentCyan : MutedCyan;
                 _portrait.enabled = selectedOwned;
                 if (selectedOwned) _portrait.sprite = VarginhaPixelArtSprites.Create(ItemArt[_inspected], Color.gray);
                 _description.text = selectedOwned ? ItemDescriptions[_inspected] : "Nenhum objeto guardado neste espaço.";
                 _description.color = PaperColor;
-                _availability.text = "Objetos são usados ao interagir com o cenário. As pistas obtidas ficam salvas permanentemente no caderno.";
-                _availability.color = MutedCyan;
-                _equip.interactable = false;
-                _equip.image.sprite = _buttonNormalSprite;
-                _equipCaption.text = "USO NO CENÁRIO";
-                _equipCaption.color = MutedCyan;
+                if (_inspected == 5 && selectedOwned)
+                {
+                    _availability.text = "Pressione [ENTER] para ligar/desligar no inventário, ou use a tecla [V] durante a exploração.";
+                    _availability.color = FocusGold;
+                    _equip.interactable = true;
+                    _equip.image.sprite = _buttonActiveSprite;
+                    _equipCaption.text = _player.FlashlightActive ? "DESLIGAR" : "LIGAR";
+                    _equipCaption.color = PaperColor;
+                }
+                else
+                {
+                    _availability.text = "Objetos são usados ao interagir com o cenário. As pistas obtidas ficam salvas permanentemente no caderno.";
+                    _availability.color = MutedCyan;
+                    _equip.interactable = false;
+                    _equip.image.sprite = _buttonNormalSprite;
+                    _equipCaption.text = "USO NO CENÁRIO";
+                    _equipCaption.color = MutedCyan;
+                }
                 return;
             }
 

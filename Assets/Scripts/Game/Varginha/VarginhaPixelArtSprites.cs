@@ -170,6 +170,7 @@ namespace Game.Varginha
             else if (id.StartsWith("Backpack")) DrawBackpack(texture, mid, dark, light);
             else if (id == "Inventory_Key") DrawInventoryKey(texture);
             else if (id == "Inventory_Journal") DrawInventoryJournal(texture);
+            else if (id == "Inventory_Flashlight" || id.StartsWith("Flashlight_Prop")) DrawInventoryFlashlight(texture);
             else if (id == "Notebook_Held") DrawNotebookClosed(texture, mid, dark, light);
             else if (id.StartsWith("Notebook")) DrawNotebook(texture, mid, dark, light);
             else if (id.StartsWith("Coffee_Empty")) DrawCoffeeEmpty(texture, mid, dark, light);
@@ -875,6 +876,38 @@ namespace Game.Varginha
             Fill(t, 13, 17, 10, 6, new Color(.90f, .80f, .57f));
             Fill(t, 12, 7, 12, 2, new Color(.91f, .86f, .69f));
             Fill(t, 20, 4, 2, 7, new Color(.65f, .15f, .12f));
+        }
+
+        private static void DrawInventoryFlashlight(Texture2D t)
+        {
+            // Corpo metálico cinza-escuro da lanterna
+            var body = new Color(.38f, .40f, .44f);
+            var edge = new Color(.15f, .15f, .17f);
+            var highlight = new Color(.58f, .60f, .64f);
+            // Lente amarelo-quente
+            var lens = new Color(.96f, .82f, .28f);
+            var lensGlow = new Color(1f, .94f, .62f);
+
+            // Corpo cilíndrico (vertical, apontando para cima)
+            Fill(t, 12, 3, 8, 20, edge);
+            Fill(t, 13, 4, 6, 18, body);
+            Fill(t, 14, 5, 4, 16, highlight);
+            // Grip texturizado
+            Fill(t, 13, 5, 1, 14, new Color(.28f, .30f, .34f));
+            Fill(t, 18, 5, 1, 14, new Color(.28f, .30f, .34f));
+            for (int y = 6; y < 18; y += 3)
+                Fill(t, 14, y, 4, 1, new Color(.32f, .33f, .37f));
+            // Cabeça da lanterna (mais larga)
+            Fill(t, 10, 22, 12, 6, edge);
+            Fill(t, 11, 23, 10, 4, body);
+            Fill(t, 12, 24, 8, 2, highlight);
+            // Lente
+            Fill(t, 11, 27, 10, 4, edge);
+            Fill(t, 12, 28, 8, 2, lens);
+            Fill(t, 14, 29, 4, 1, lensGlow);
+            // Botão liga/desliga
+            Fill(t, 15, 19, 2, 2, new Color(.72f, .22f, .18f));
+            Pixel(t, 15, 20, new Color(.88f, .34f, .26f));
         }
 
         private static void DrawNotebook(Texture2D t, Color mid, Color dark, Color light)
