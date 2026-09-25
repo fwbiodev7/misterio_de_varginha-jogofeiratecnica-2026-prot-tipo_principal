@@ -68,6 +68,11 @@ namespace Game.Varginha
 
         public static Sprite Create(string id, Color color)
         {
+            if (id.StartsWith("Padre_Fabio"))
+            {
+                var priest = VarginhaReferenceSprites.PadreFabio();
+                if (priest != null) return priest;
+            }
             Sprite reference = VarginhaReferenceSprites.Prop(id) ?? VarginhaReferenceSprites.ForId(id);
             if (reference != null) return reference;
             // Roster art has one source of truth in the authored, directional atlases.

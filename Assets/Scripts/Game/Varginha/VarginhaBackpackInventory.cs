@@ -34,12 +34,12 @@ namespace Game.Varginha
         private static readonly string[] ItemNames = { "Mochila", "Chave do Fusca", "Caderno de 1996", "Notebook", "Documento de 1898", "Lanterna" };
         private static readonly string[] ItemArt = { "Backpack_Inventory", "Inventory_Key", "Inventory_Journal", "Notebook_Inventory", "Doc_Inventory", "Inventory_Flashlight" };
         private static readonly string[] ItemDescriptions = {
-            "Mochila cinza de Edelzio, com alças reforçadas. Guarda os objetos da investigação e permite organizar os especiais da turma.",
-            "Abre o Fusca. É usada somente ao confirmar a saída com o caderno de pesquisas.",
-            "As anotações de 1996. Edelzio precisa delas para iniciar a viagem.",
-            "Notebook cinza usado na decodificação. As informações obtidas ficam registradas após o uso.",
-            "Documento histórico. A pista permanece conhecida depois da leitura.",
-            "Lanterna de exploração. Guarde-a na mochila ou equipe-a na Hotbar para poder selecioná-la e iluminar locais escuros à frente."
+            "Guarda itens e organiza a equipe.",
+            "Abre o Fusca.",
+            "Anotações de 1996. Necessário para viajar.",
+            "Usado na decodificação de dados.",
+            "Pista histórica importante.",
+            "Equipe na Hotbar [G] e ligue com [V]."
         };
 
         private TMP_Text _name, _description, _availability, _equipped, _items;

@@ -19,6 +19,8 @@ namespace Game.Editor.Testing
         [MenuItem("Varginha/Art/Rebuild Edelzio Punch Atlas")]
         public static void Build()
         {
+            BuildWalk("Assets/ArtSource/EdelzioCleanSourceV2.png", "Assets/Resources/Varginha/Allies/Edelzio.png");
+            BuildWalk("Assets/ArtSource/PadreFabioSourceV1.png", "Assets/Resources/Varginha/PadreFabioV1.png");
             var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             var baseline = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             var atlas = new Texture2D(18 * 64, 4 * 64, TextureFormat.RGBA32, false);
@@ -94,10 +96,48 @@ namespace Game.Editor.Testing
             }
         }
 
-        private static RectInt Cell(Texture2D texture, int row, int column)
+        private static void BuildWalk(string sourcePath, string outputPath)
         {
-            int x = Mathf.RoundToInt(column * texture.width / 9f);
-            int right = Mathf.RoundToInt((column + 1) * texture.width / 9f);
+            var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            var output = new Texture2D(256, 256, TextureFormat.RGBA32, false);
+            try
+            {
+                source.LoadImage(File.ReadAllBytes(sourcePath));
+                var pixels = new Color32[256 * 256];
+                for (int row = 0; row < 4; row++)
+                {
+                    var neutral = Bounds(source, GridCell(source, row, 0, 4));
+                    float scale = 42f / neutral.height;
+                    for (int frame = 0; frame < 4; frame++)
+                    {
+                        var bounds = Bounds(source, GridCell(source, row, frame, 4));
+                        for (int y = 1; y < 63; y++)
+                        for (int x = 1; x < 63; x++)
+                        {
+                            int sx = Mathf.FloorToInt(bounds.center.x + (x + .5f - 32) / scale);
+                            int sy = Mathf.FloorToInt(bounds.yMin + (y + .5f - 6) / scale);
+                            if (!bounds.Contains(new Vector2Int(sx, sy))) continue;
+                            Color32 color = source.GetPixel(sx, sy);
+                            if (color.a < 128) continue;
+                            pixels[((3 - row) * 64 + y) * 256 + frame * 64 + x] = color;
+                        }
+                    }
+                }
+                output.SetPixels32(pixels);
+                output.Apply();
+                File.WriteAllBytes(outputPath, output.EncodeToPNG());
+                AssetDatabase.ImportAsset(outputPath, ImportAssetOptions.ForceUpdate);
+            }
+            finally { Object.DestroyImmediate(source); Object.DestroyImmediate(output); }
+        }
+
+        private static RectInt Cell(Texture2D texture, int row, int column)
+            => GridCell(texture, row, column, 9);
+
+        private static RectInt GridCell(Texture2D texture, int row, int column, int columns)
+        {
+            int x = Mathf.RoundToInt(column * texture.width / (float)columns);
+            int right = Mathf.RoundToInt((column + 1) * texture.width / (float)columns);
             int y = Mathf.RoundToInt((3 - row) * texture.height / 4f);
             int top = Mathf.RoundToInt((4 - row) * texture.height / 4f);
             return new RectInt(x, y, right - x, top - y);

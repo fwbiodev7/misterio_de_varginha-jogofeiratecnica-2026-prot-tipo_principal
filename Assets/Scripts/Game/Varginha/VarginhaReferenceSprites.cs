@@ -38,6 +38,21 @@ namespace Game.Varginha
             return Cell("AllyReferencePropsV1", row, column, row == 1 && column == 1 ? 1.25f : 1f);
         }
 
+        public static Sprite PadreFabio(int direction = 0, int frame = 0)
+        {
+            direction = Mathf.Clamp(direction, 0, 3);
+            frame &= 3;
+            string key = "PadreFabio_" + direction + "_" + frame;
+            if (Cache.TryGetValue(key, out var cached) && cached != null && cached.texture != null) return cached;
+            var texture = Resources.Load<Texture2D>("Varginha/PadreFabioV1");
+            if (texture == null) return null;
+            var sprite = Sprite.Create(texture, new Rect(frame * 64, (3 - direction) * 64, 64, 64),
+                new Vector2(.5f, .5f), 44f, 0, SpriteMeshType.FullRect);
+            sprite.name = key;
+            Cache[key] = sprite;
+            return sprite;
+        }
+
         public static Sprite Character(bool fabio, int direction, bool walking = false)
         {
             int row = (fabio ? 2 : 0) + (walking ? 1 : 0);

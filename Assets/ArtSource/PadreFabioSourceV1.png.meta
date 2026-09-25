@@ -1,0 +1,899 @@
+fileFormatVersion: 2
+guid: eb9f1c6aeb749ca48af4a765d2665441
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5153231536282943276
+    second: PadreFabioSourceV1_0
+  - first:
+      213: 6600246061568429258
+    second: PadreFabioSourceV1_1
+  - first:
+      213: -320957649994546724
+    second: PadreFabioSourceV1_2
+  - first:
+      213: -2799005475762541430
+    second: PadreFabioSourceV1_3
+  - first:
+      213: 5490798081467689205
+    second: PadreFabioSourceV1_4
+  - first:
+      213: 485871856516136313
+    second: PadreFabioSourceV1_5
+  - first:
+      213: -1328359090411259831
+    second: PadreFabioSourceV1_6
+  - first:
+      213: 3219618177266584377
+    second: PadreFabioSourceV1_7
+  - first:
+      213: 8571013292729877824
+    second: PadreFabioSourceV1_8
+  - first:
+      213: 8665263412972587761
+    second: PadreFabioSourceV1_9
+  - first:
+      213: 4043112149635366418
+    second: PadreFabioSourceV1_10
+  - first:
+      213: 4134470173429321950
+    second: PadreFabioSourceV1_11
+  - first:
+      213: -4786483045044142746
+    second: PadreFabioSourceV1_12
+  - first:
+      213: -5337140743323947383
+    second: PadreFabioSourceV1_13
+  - first:
+      213: 8113898547951406428
+    second: PadreFabioSourceV1_14
+  - first:
+      213: -5885856380788187161
+    second: PadreFabioSourceV1_15
+  - first:
+      213: -8435308757831568387
+    second: PadreFabioSourceV1_16
+  - first:
+      213: 4301020016157795555
+    second: PadreFabioSourceV1_17
+  - first:
+      213: -5778338034201022406
+    second: PadreFabioSourceV1_18
+  - first:
+      213: 2124622602893576050
+    second: PadreFabioSourceV1_19
+  - first:
+      213: -4801632362062007501
+    second: PadreFabioSourceV1_20
+  - first:
+      213: 2616331137556398528
+    second: PadreFabioSourceV1_21
+  - first:
+      213: 1429504742346615729
+    second: PadreFabioSourceV1_22
+  - first:
+      213: -190301668785432369
+    second: PadreFabioSourceV1_23
+  - first:
+      213: 4665485485052210924
+    second: PadreFabioSourceV1_24
+  - first:
+      213: -6290265550883121947
+    second: PadreFabioSourceV1_25
+  - first:
+      213: 6373250069637269504
+    second: PadreFabioSourceV1_26
+  - first:
+      213: 7313401421084712208
+    second: PadreFabioSourceV1_27
+  - first:
+      213: 8647398235907326379
+    second: PadreFabioSourceV1_28
+  - first:
+      213: 2520820373988546779
+    second: PadreFabioSourceV1_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 962
+        width: 255
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2f3c7d77c4f38740800000000000000
+      internalID: 5153231536282943276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_1
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 907
+        width: 218
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acc05f9c2d8c89b50800000000000000
+      internalID: 6600246061568429258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_2
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 827
+        width: 59
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd18124c7babb8bf0800000000000000
+      internalID: -320957649994546724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_3
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 962
+        width: 325
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ceccc795fe729d0800000000000000
+      internalID: -2799005475762541430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_4
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 963
+        width: 275
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8274b73cb333c40800000000000000
+      internalID: 5490798081467689205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_5
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 610
+        width: 214
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97df00611e92eb600800000000000000
+      internalID: 485871856516136313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_6
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 678
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94830e9f178b09de0800000000000000
+      internalID: -1328359090411259831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_7
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 680
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b8d588ca16eac20800000000000000
+      internalID: 3219618177266584377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_8
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 489
+        width: 270
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 045c056bd2b52f670800000000000000
+      internalID: 8571013292729877824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_9
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 646
+        width: 168
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa8b6fd923314870800000000000000
+      internalID: 8665263412972587761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_10
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 578
+        width: 325
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ef41a24150c1830800000000000000
+      internalID: 4043112149635366418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_11
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 630
+        width: 30
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed0d3b5a7b6906930800000000000000
+      internalID: 4134470173429321950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 269
+        height: 305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66db6b8c70ff29db0800000000000000
+      internalID: -4786483045044142746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_13
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 521
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e69e575caaee5b0800000000000000
+      internalID: -5337140743323947383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_14
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 336
+        width: 200
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5d83367dbb5a9070800000000000000
+      internalID: 8113898547951406428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_15
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 335
+        width: 196
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ef57286ecc315ea0800000000000000
+      internalID: -5885856380788187161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_16
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 296
+        width: 246
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df335be7063cfea80800000000000000
+      internalID: -8435308757831568387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_17
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 457
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e42eeabaea40bb30800000000000000
+      internalID: 4301020016157795555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_18
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 451
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a30b15f3c283fcfa0800000000000000
+      internalID: -5778338034201022406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_19
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 440
+        width: 55
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 277cc37200d2c7d10800000000000000
+      internalID: 2124622602893576050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_20
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 435
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 333364d8ecc2d5db0800000000000000
+      internalID: -4801632362062007501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_21
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 410
+        width: 8
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1c7d4ce431f4420800000000000000
+      internalID: 2616331137556398528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_22
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 355
+        width: 8
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bb6e444dfe96d310800000000000000
+      internalID: 1429504742346615729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_23
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 326
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc851e7f3a9eb5df0800000000000000
+      internalID: -190301668785432369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 274
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cee274174522fb040800000000000000
+      internalID: 4665485485052210924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_25
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 23
+        width: 133
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e41cb80fcc74b8a0800000000000000
+      internalID: -6290265550883121947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_26
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 81
+        width: 123
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0088671eb25527850800000000000000
+      internalID: 6373250069637269504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_27
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 23
+        width: 229
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01d579b28db6e7560800000000000000
+      internalID: 7313401421084712208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_28
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 87
+        width: 79
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba1889231eab10870800000000000000
+      internalID: 8647398235907326379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PadreFabioSourceV1_29
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 22
+        width: 150
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd8972636c0cbf220800000000000000
+      internalID: 2520820373988546779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PadreFabioSourceV1_0: 5153231536282943276
+      PadreFabioSourceV1_1: 6600246061568429258
+      PadreFabioSourceV1_10: 4043112149635366418
+      PadreFabioSourceV1_11: 4134470173429321950
+      PadreFabioSourceV1_12: -4786483045044142746
+      PadreFabioSourceV1_13: -5337140743323947383
+      PadreFabioSourceV1_14: 8113898547951406428
+      PadreFabioSourceV1_15: -5885856380788187161
+      PadreFabioSourceV1_16: -8435308757831568387
+      PadreFabioSourceV1_17: 4301020016157795555
+      PadreFabioSourceV1_18: -5778338034201022406
+      PadreFabioSourceV1_19: 2124622602893576050
+      PadreFabioSourceV1_2: -320957649994546724
+      PadreFabioSourceV1_20: -4801632362062007501
+      PadreFabioSourceV1_21: 2616331137556398528
+      PadreFabioSourceV1_22: 1429504742346615729
+      PadreFabioSourceV1_23: -190301668785432369
+      PadreFabioSourceV1_24: 4665485485052210924
+      PadreFabioSourceV1_25: -6290265550883121947
+      PadreFabioSourceV1_26: 6373250069637269504
+      PadreFabioSourceV1_27: 7313401421084712208
+      PadreFabioSourceV1_28: 8647398235907326379
+      PadreFabioSourceV1_29: 2520820373988546779
+      PadreFabioSourceV1_3: -2799005475762541430
+      PadreFabioSourceV1_4: 5490798081467689205
+      PadreFabioSourceV1_5: 485871856516136313
+      PadreFabioSourceV1_6: -1328359090411259831
+      PadreFabioSourceV1_7: 3219618177266584377
+      PadreFabioSourceV1_8: 8571013292729877824
+      PadreFabioSourceV1_9: 8665263412972587761
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

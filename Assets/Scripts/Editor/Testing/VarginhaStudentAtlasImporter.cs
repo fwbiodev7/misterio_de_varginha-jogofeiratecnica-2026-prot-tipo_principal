@@ -41,6 +41,8 @@ namespace Game.Editor.Testing
 
         private static void QueueSource(string path)
         {
+            // Edelzio has his own walk/combat builder and photo-based source; never overwrite it with the legacy ally sheet.
+            if (path.EndsWith("/Edelzio.png", StringComparison.OrdinalIgnoreCase)) return;
             // Only source imports enqueue work. Importing the generated PNG cannot enqueue itself.
             if (!path.StartsWith(SourceFolder + "/", StringComparison.Ordinal)
                 || !path.EndsWith(".png", StringComparison.OrdinalIgnoreCase)) return;
@@ -81,6 +83,7 @@ namespace Game.Editor.Testing
 
         private static void Export(string path)
         {
+            if (path.EndsWith("/Edelzio.png", StringComparison.OrdinalIgnoreCase)) return;
             var source = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             if (source == null) throw new InvalidOperationException("Atlas não importado: " + path);
             if (source.width != source.height)
