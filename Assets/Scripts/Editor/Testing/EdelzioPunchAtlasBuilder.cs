@@ -36,6 +36,18 @@ namespace Game.Editor.Testing
                     for (int combo = 0; combo < 3; combo++)
                     for (int phase = 0; phase < 6; phase++)
                     {
+                        int column = combo * 6 + phase;
+                        if (phase == 0 || phase == 5)
+                        {
+                            for (int y = 0; y < 64; y++)
+                            for (int x = 0; x < 64; x++)
+                            {
+                                Color32 baseColor = baseline.GetPixel(x, (3 - direction) * 64 + y);
+                                pixels[((3 - direction) * 64 + y) * atlas.width + column * 64 + x] = baseColor;
+                            }
+                            continue;
+                        }
+
                         RectInt bounds = Bounds(source, Cell(source, direction, Poses[combo][phase]));
                         // Align the foot support, not the arm's changing bounding box.
                         int footLeft = bounds.xMax, footRight = bounds.xMin;
@@ -45,7 +57,6 @@ namespace Game.Editor.Testing
                             if (source.GetPixel(x, y).a >= .5f)
                             { footLeft = Mathf.Min(footLeft, x); footRight = Mathf.Max(footRight, x); }
                         float anchor = (footLeft + footRight + 1) * .5f;
-                        int column = combo * 6 + phase;
                         for (int y = 1; y < 63; y++)
                         for (int x = 1; x < 63; x++)
                         {
@@ -54,6 +65,17 @@ namespace Game.Editor.Testing
                             if (!bounds.Contains(new Vector2Int(sx, sy))) continue;
                             Color32 color = source.GetPixel(sx, sy);
                             if (color.a < 128) continue;
+                            // Harmonize active punch colors with standing Edelzio
+                            if (color.r > 160 && color.g > 90 && color.b < 90)
+                            {
+                                color.r = (byte)Mathf.Clamp(color.r, (byte)190, (byte)255);
+                                color.g = (byte)Mathf.Clamp(color.g, (byte)120, (byte)170);
+                                color.b = (byte)Mathf.Min(color.b, (byte)60);
+                            }
+                            else if (color.r < 60 && color.g < 60 && color.b < 60 && y >= 42)
+                            {
+                                color = new Color32(32, 31, 33, color.a);
+                            }
                             pixels[((3 - direction) * 64 + y) * atlas.width + column * 64 + x] = color;
                         }
                     }

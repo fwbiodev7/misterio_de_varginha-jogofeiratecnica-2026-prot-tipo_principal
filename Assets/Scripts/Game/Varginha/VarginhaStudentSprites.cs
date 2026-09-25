@@ -75,23 +75,10 @@ namespace Game.Varginha
         }
 
         public static Sprite Frame(string student, int direction = 0, int frame = 0)
-        {
-            if (AssetName(student) == "Fabio")
-            {
-                var reference = VarginhaReferenceSprites.Character(true, direction, (frame & 1) != 0);
-                if (reference != null) return reference;
-            }
-            return Load(student)?.Frames[Mathf.Clamp(direction, 0, 3) * 4 + (frame & 3)];
-        }
+            => Load(student)?.Frames[Mathf.Clamp(direction, 0, 3) * 4 + (frame & 3)];
+
         public static Sprite Portrait(string student)
-        {
-            if (AssetName(student) == "Fabio")
-            {
-                var reference = VarginhaReferenceSprites.FabioPortrait();
-                if (reference != null) return reference;
-            }
-            return Load(student)?.Portrait;
-        }
+            => Load(student)?.Portrait;
         public static int Direction(Vector2 movement)
             => Mathf.Abs(movement.x) > Mathf.Abs(movement.y)
                 ? movement.x < 0 ? 1 : 2 : movement.y > 0 ? 3 : 0;

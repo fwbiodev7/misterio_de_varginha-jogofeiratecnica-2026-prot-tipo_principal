@@ -121,7 +121,7 @@ namespace Game.Tests.EditMode
 
             var fabioFrontFrame = VarginhaStudentSprites.Frame("Fabio", 0, 0);
             Assert.IsNotNull(fabioFrontFrame);
-            Assert.AreSame(VarginhaReferenceSprites.Character(true, 0), fabioFrontFrame);
+            Assert.AreEqual(fabioTexture, fabioFrontFrame.texture);
             Assert.Greater(fabioFrontFrame.bounds.size.y, .8f);
             Assert.Less(fabioFrontFrame.bounds.size.y, 1.5f);
 

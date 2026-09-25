@@ -15,6 +15,7 @@ namespace Game.Tests.EditMode
         [TestCase("Ana Tavares")]
         [TestCase("Luis Miguel Messias")]
         [TestCase("Luis Martins")]
+        [TestCase("Fabio")]
         public void EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(string student)
         {
             var first = VarginhaStudentSprites.Frame(student);
@@ -61,16 +62,17 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
-        public void FabioUsesReferenceArtForWalkingPortraitsAndSummons()
+        public void FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons()
         {
             var front = VarginhaStudentSprites.Frame("Fabio");
             Assert.IsNotNull(front);
-            Assert.AreSame(VarginhaReferenceSprites.Character(true, 0), front);
+            Assert.AreEqual(256, front.texture.width);
+            Assert.AreEqual(256, front.texture.height);
             Assert.AreSame(front, VarginhaPixelArtSprites.Create("Student_Fabio", Color.magenta));
             var portrait = VarginhaStudentSprites.Portrait("Fabio");
+            Assert.IsNotNull(portrait);
             Assert.AreSame(portrait, VarginhaPixelArtSprites.Create("StudentHead_Fabio", Color.magenta));
             Assert.AreSame(front.texture, portrait.texture);
-            Assert.AreEqual(front.rect.yMax, portrait.rect.yMax, .01f);
             for (int direction = 0; direction < 4; direction++)
             {
                 var idle = VarginhaStudentSprites.Frame("Fabio", direction, 0);
@@ -79,10 +81,6 @@ namespace Game.Tests.EditMode
                 Assert.IsNotNull(step);
                 Assert.AreNotSame(idle, step);
                 Assert.AreSame(front.texture, step.texture);
-                Assert.AreEqual(idle.pivot.y / idle.pixelsPerUnit,
-                    step.pivot.y / step.pixelsPerUnit, .001f, "Os pés devem manter a mesma base.");
-                Assert.AreEqual(FilterMode.Point, step.texture.filterMode);
-                Assert.AreEqual(1, step.texture.mipmapCount);
             }
         }
 
