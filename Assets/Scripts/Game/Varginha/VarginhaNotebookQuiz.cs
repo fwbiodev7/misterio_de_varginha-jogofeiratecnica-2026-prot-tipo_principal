@@ -37,6 +37,8 @@ namespace Game.Varginha
         private string _feedback;
         private bool _isOpen;
         private float _timeScaleBeforeOpening = 1f;
+        private float _reactionUntil;
+        private float _webcamStarted;
 
         private void Awake()
         {
@@ -61,6 +63,8 @@ namespace Game.Varginha
             _questionIndex = 0;
             _feedback = "DECODIFIQUE AS PISTAS PARA LIBERAR O NOTEBOOK";
             _isOpen = true;
+            _reactionUntil = 0f;
+            _webcamStarted = Time.unscaledTime;
             _player.SetInputLocked(true);
             _timeScaleBeforeOpening = Time.timeScale;
             Time.timeScale = 0f;
@@ -120,7 +124,7 @@ namespace Game.Varginha
             GUI.Label(new Rect(sidebar.x + 28f * scale, sidebar.y + 65f * scale, sidebar.width - 38f * scale, 18f * scale), "> pistas/", _sidebarStyle);
             GUI.Label(new Rect(sidebar.x + 28f * scale, sidebar.y + 88f * scale, sidebar.width - 38f * scale, 34f * scale), "  caso_varginha.quiz", _sidebarStyle);
             GUI.Label(new Rect(sidebar.x + 28f * scale, sidebar.y + 126f * scale, sidebar.width - 38f * scale, 18f * scale), "  caderno_1996.log", _sidebarStyle);
-            GUI.Label(new Rect(sidebar.x + 18f * scale, sidebar.yMax - 52f * scale, sidebar.width - 32f * scale, 40f * scale), "ARQUIVOS\n3 PISTAS", _feedbackStyle);
+            DrawWebcam(sidebar, scale);
 
             PixelHUDFrame.Draw(workspace, _pixel, new Color(.012f, .035f, .07f), new Color(.08f, .34f, .48f));
             float tabHeight = Mathf.Max(26f, 34f * scale);
@@ -175,6 +179,7 @@ namespace Game.Varginha
             }
 
             _questionIndex++;
+            _reactionUntil = Time.unscaledTime + 1.1f;
             if (_questionIndex < _questions.Length)
             {
                 _feedback = "PISTA CONFIRMADA. PROXIMA PERGUNTA.";
@@ -222,6 +227,20 @@ namespace Game.Varginha
             PixelUIFont.Apply(_sidebarStyle);
             PixelUIFont.Apply(_codeStyle);
             PixelUIFont.Apply(_lineNumberStyle);
+        }
+
+        private void DrawWebcam(Rect sidebar, float scale)
+        {
+            float size = Mathf.Min(sidebar.width - 16f * scale, sidebar.height - 168f * scale);
+            if (size < 42f) return;
+            Rect frame = new Rect(sidebar.center.x - size * .5f, sidebar.yMax - size - 24f * scale, size, size);
+            PixelHUDFrame.Draw(frame, _pixel, new Color(.04f, .085f, .10f), new Color(.25f, .65f, .57f));
+            // This is Edelzio's fictional notebook camera, animated even while the quiz pauses the world.
+            var portrait = VarginhaInteractionSprites.Webcam(Time.unscaledTime - _webcamStarted, Time.unscaledTime < _reactionUntil);
+            VarginhaDialoguePortraits.Draw(new Rect(frame.x + 5f, frame.y + 12f * scale, frame.width - 10f, frame.height - 16f * scale), portrait);
+            DrawFill(new Rect(frame.x + 7f, frame.y + 7f, 4f * scale, 4f * scale), new Color(.35f, .95f, .58f));
+            GUI.Label(new Rect(frame.x + 14f * scale, frame.y + 2f, frame.width - 20f * scale, 14f * scale), "CAM 01", _feedbackStyle);
+            GUI.Label(new Rect(frame.x, frame.yMax + 3f, frame.width, 18f * scale), "EDELZIO • AO VIVO", _feedbackStyle);
         }
 
         private void ConfigureStyles(float scale)

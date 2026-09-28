@@ -10,6 +10,11 @@ namespace Game.Varginha
 
         public static void Ensure(Transform school)
         {
+            // A continuous base covers the side gardens as the camera follows the player
+            // between the narrower school and the wider parking lot.
+            if (school.Find("Terreno_Continuo_Escola") == null)
+                Tile(school, "Terreno_Continuo_Escola", "Floor_Yard", new(0, -4.1f),
+                    new(25, 20.4f), new(.13f, .25f, .21f), -3);
             // Migrate the old unbroken south wall, leaving a 2.5-unit doorway.
             var south = school.Find("CenarioV2_Parede_Sul");
             if (south != null)

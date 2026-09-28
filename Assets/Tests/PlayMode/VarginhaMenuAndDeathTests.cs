@@ -10,6 +10,20 @@ namespace Game.Tests.PlayMode
     public class VarginhaMenuAndDeathTests
     {
         private GameObject _root;
+
+        [Test]
+        public void NewInvestigationAlwaysSelectsPhaseOne()
+        {
+            _root = new GameObject("MenuStartTest");
+            var camera = new GameObject("Main Camera");
+            camera.transform.SetParent(_root.transform);
+            camera.tag = "MainCamera";
+            camera.AddComponent<Camera>();
+            var menu = _root.AddComponent<VarginhaMainMenu>();
+            const System.Reflection.BindingFlags flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+            typeof(VarginhaMainMenu).GetMethod("StartInvestigation", flags).Invoke(menu, null);
+            Assert.AreEqual("FaseTopView_Varginha", typeof(VarginhaMainMenu).GetField("_pendingScene", flags).GetValue(menu));
+        }
         [TearDown]
         public void Cleanup()
         {

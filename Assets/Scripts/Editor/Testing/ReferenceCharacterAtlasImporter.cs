@@ -9,7 +9,9 @@ namespace Game.Editor.Testing
         {
             if (assetPath != "Assets/Resources/Varginha/CharacterReferencesV1.png"
                 && assetPath != "Assets/Resources/Varginha/AllyReferencePropsV1.png"
-                && assetPath != "Assets/Resources/Varginha/EdelzioReferenceActionsV1.png") return;
+                && assetPath != "Assets/Resources/Varginha/EdelzioReferenceActionsV1.png"
+                && assetPath != "Assets/Resources/Varginha/EdelzioInteractionsV1.png"
+                && assetPath != "Assets/Resources/Varginha/TravelPixel/CabinStudentsV2.png") return;
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;

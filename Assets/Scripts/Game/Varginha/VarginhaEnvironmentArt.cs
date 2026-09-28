@@ -46,6 +46,7 @@ namespace Game.Varginha
                 diocese = dioceseObject.transform;
             }
             if (diocese.Find(DioceseMarker) == null) BuildDiocese(diocese);
+            EnsureDioceseGround(diocese);
             VarginhaEnvironmentPolish.EnsureDiocese(diocese);
             return diocese;
         }
@@ -154,6 +155,7 @@ namespace Game.Varginha
         public static void BuildDiocese(Transform parent)
         {
             if (parent == null) return;
+            EnsureDioceseGround(parent);
             if (parent.Find(DioceseMarker) != null)
             {
                 VarginhaEnvironmentPolish.EnsureDiocese(parent);
@@ -212,6 +214,16 @@ namespace Game.Varginha
             CreateSprite(parent, "CenarioV2_Porta_Sacristia", new Vector3(-6.9f, -6.28f), new Vector3(1.1f, .4f, 1f),
                 "ChurchDoor", new Color(.20f, .12f, .12f), 3);
             VarginhaEnvironmentPolish.EnsureDiocese(parent);
+        }
+
+        private static void EnsureDioceseGround(Transform parent)
+        {
+            if (parent.Find("Piso_Continuo_Diocese") != null) return;
+            var ground = CreateSprite(parent, "Piso_Continuo_Diocese", new Vector3(.5f, 0f),
+                Vector3.one, "ChurchFloor", new Color(.25f, .26f, .29f), -1);
+            var renderer = ground.GetComponent<SpriteRenderer>();
+            renderer.drawMode = SpriteDrawMode.Tiled;
+            renderer.size = new Vector2(18f, 13f);
         }
 
         private static GameObject CreateSprite(Transform parent, string name, Vector3 position, Vector3 scale,

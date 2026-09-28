@@ -81,7 +81,7 @@ namespace Game.Varginha
             if (_art != null) return;
             _art = new VarginhaTravelPixelArt(Load("TravelPixel/NightRoad"),
                 Load("TravelPixel/FuscaReference"), Load("TravelPixel/TreeReference"),
-                Load("TravelPixel/CabinStudents"));
+                Load("TravelPixel/CabinStudentsV2") ?? Load("TravelPixel/CabinStudents"));
             _frame = new Texture2D(VarginhaTravelPixelArt.Width,VarginhaTravelPixelArt.Height,TextureFormat.RGBA32,false)
             { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, name = "Loading_PixelArt_384x216" };
             _frameColors = new Color32[VarginhaTravelPixelArt.Width * VarginhaTravelPixelArt.Height];

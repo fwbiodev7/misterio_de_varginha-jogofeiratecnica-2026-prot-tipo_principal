@@ -63,7 +63,7 @@ namespace Game.Varginha
             BeginAction();
             _notebookSession = true;
             _standingPosition = transform.position;
-            var chair = GameObject.Find("Chair_Office");
+            var chair = VarginhaHouseComposition.EnsureNotebookChair(notebook);
             if (chair != null)
             {
                 _seatCollider = chair.GetComponent<Collider2D>();
@@ -74,11 +74,22 @@ namespace Game.Varginha
                     Physics2D.IgnoreCollision(_playerCollider, _seatCollider, true);
                 }
                 yield return MoveToPosition(chair.transform.position, .34f);
+                if (Vector2.Distance(transform.position, chair.transform.position) > .4f)
+                {
+                    RestoreSeatCollision();
+                    _notebookSession = false;
+                    EndAction();
+                    VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Vou me aproximar da cadeira pelo lado livre da mesa para usar o notebook.");
+                    yield break;
+                }
             }
             else
                 yield return MoveCloseTo(notebook, .38f, .72f);
-            _spriteAnimation?.SetActionPose("Edelzio_Sit");
-            yield return new WaitForSeconds(.24f);
+            for (int frame = 0; frame < 3; frame++)
+            {
+                _spriteAnimation?.SetSeatingFrame(frame);
+                yield return new WaitForSeconds(.16f);
+            }
             _spriteAnimation?.SetActionPose("Edelzio_UseNotebook");
             yield return new WaitForSeconds(.38f);
             // Preserva a pose sentada durante todo o quiz; Close encerra a sessão.
@@ -95,6 +106,11 @@ namespace Game.Varginha
 
         private IEnumerator StandUpRoutine()
         {
+            for (int frame = 2; frame >= 0; frame--)
+            {
+                _spriteAnimation?.SetSeatingFrame(frame);
+                yield return new WaitForSeconds(.12f);
+            }
             _spriteAnimation?.ClearActionPose();
             yield return MoveToPosition(_standingPosition, .24f);
             RestoreSeatCollision();
@@ -119,14 +135,17 @@ namespace Game.Varginha
             var cup = CreateHeldProp("Coffee_Held", new Color(.80f, .79f, .74f), new Vector3(-.11f, -.20f, 0f), .19f);
             _heldCup = cup;
             // The reference pose already contains a cup; do not draw a second one.
-            if (cup != null && VarginhaReferenceSprites.Action(0) != null) cup.SetActive(false);
+            if (cup != null && VarginhaInteractionSprites.Frame(0, 0) != null) cup.SetActive(false);
             _spriteAnimation?.SetActionPose("Edelzio_DrinkCoffee");
             // Três goles deixam claro que Edelzio tomou toda a xícara, não apenas um gole rápido.
             for (int sip = 0; sip < 3; sip++)
             {
+                _spriteAnimation?.SetCoffeeFrame(0);
+                yield return new WaitForSeconds(.12f);
                 _spriteAnimation?.SetCoffeeFrame(1);
                 yield return MoveCup(cup, new Vector3(-.045f, -.055f, 0), -14f, .14f);
-                yield return new WaitForSeconds(.18f);
+                _spriteAnimation?.SetCoffeeFrame(2);
+                yield return new WaitForSeconds(.28f);
                 _spriteAnimation?.SetCoffeeFrame(3);
                 yield return MoveCup(cup, new Vector3(-.11f, -.20f, 0), 0f, .14f);
                 yield return new WaitForSeconds(.12f);
@@ -136,7 +155,7 @@ namespace Game.Varginha
             {
                 Destroy(cup);
             }
-            if (worldCup != null) worldCup.enabled = true;
+            if (worldCup != null) worldCup.enabled = _worldCupWasVisible;
             _worldCup = null;
             _heldCup = null;
             _spriteAnimation?.ClearActionPose();

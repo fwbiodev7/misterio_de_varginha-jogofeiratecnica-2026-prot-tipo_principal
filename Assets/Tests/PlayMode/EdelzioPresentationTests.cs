@@ -133,8 +133,8 @@ namespace Game.Tests.PlayMode
         {
             var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
             var renderer = _go.GetComponent<SpriteRenderer>();
-            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioReferenceActionsV1");
-            Assert.IsNotNull(atlas);
+            var interactionAtlas = Resources.Load<Texture2D>(VarginhaInteractionSprites.ResourcePath);
+            Assert.IsNotNull(interactionAtlas);
             var scale = _go.transform.localScale;
             var radius = _go.GetComponent<CircleCollider2D>().radius;
             foreach (var pose in new[] { "Edelzio_Crouch", "Edelzio_Reach", "Edelzio_DrinkCoffee", "Edelzio_Sit", "Edelzio_UseNotebook" })
@@ -142,6 +142,8 @@ namespace Game.Tests.PlayMode
                 _player.HasBackpack = false;
                 animation.SetActionPose(pose);
                 var body = renderer.sprite;
+                var atlas = pose == "Edelzio_Crouch" || pose == "Edelzio_Reach"
+                    ? VarginhaReferenceSprites.EdelzioWalkFrames()[0][0].texture : interactionAtlas;
                 Assert.AreSame(atlas, body.texture);
                 _player.EquipBackpack();
                 yield return null;

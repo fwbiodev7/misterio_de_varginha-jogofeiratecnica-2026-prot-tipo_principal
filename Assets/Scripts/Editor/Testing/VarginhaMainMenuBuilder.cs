@@ -51,36 +51,12 @@ namespace Game.Editor.Testing
         }
     }
 
-    /// <summary>Gera uma única vez a cena ao término da próxima compilação do Editor.</summary>
-    [InitializeOnLoad]
-    internal static class VarginhaMainMenuRefreshOnce
-    {
-        private const string RefreshKey = "VarginhaMainMenuRefreshOnce_20260911_MenuFirstAndFurniture";
-
-        static VarginhaMainMenuRefreshOnce()
-        {
-            if (EditorPrefs.GetBool(RefreshKey, false)) return;
-            EditorApplication.delayCall += Refresh;
-        }
-
-        private static void Refresh()
-        {
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-            {
-                EditorApplication.delayCall += Refresh;
-                return;
-            }
-
-            EditorPrefs.SetBool(RefreshKey, true);
-            VarginhaMainMenuBuilder.BuildAndSaveSceneSilently();
-        }
-    }
-
     /// <summary>Garante que Play sempre inicie pelo menu, mesmo com outra cena aberta no Editor.</summary>
     [InitializeOnLoad]
     internal static class VarginhaPlayModeStartScene
     {
         private const string MenuPath = "Assets/Scenes/Menu_MisterioDeVarginha.unity";
+        private const string PlayCurrentSceneOnce = "Varginha.PlayCurrentSceneOnce";
 
         static VarginhaPlayModeStartScene()
         {
@@ -91,9 +67,16 @@ namespace Game.Editor.Testing
 
         private static void EnsureMenuBeforePlay(PlayModeStateChange state)
         {
-            if (state == PlayModeStateChange.ExitingEditMode) Apply();
-            if (state == PlayModeStateChange.EnteredPlayMode && !Application.isBatchMode
-                && !SessionState.GetBool("Varginha.SuppressMenuForTests", false))
+            if (Application.isBatchMode) return;
+            if (state == PlayModeStateChange.ExitingEditMode)
+            {
+                bool testCurrentScene = SessionState.GetBool(PlayCurrentSceneOnce, false);
+                SessionState.EraseBool(PlayCurrentSceneOnce);
+                if (testCurrentScene) EditorSceneManager.playModeStartScene = null;
+                else Apply();
+            }
+            if (state == PlayModeStateChange.EnteredEditMode) Apply();
+            if (state == PlayModeStateChange.EnteredPlayMode)
             {
                 // Keyboard input belongs to Game View; a focused Inspector/Scene view does not feed it.
                 var gameView = typeof(EditorWindow).Assembly.GetType("UnityEditor.GameView");
@@ -103,11 +86,19 @@ namespace Game.Editor.Testing
 
         private static void Apply()
         {
-            // Session-only opt-out for test/visual QA runs; survives assembly reloads,
-            // unlike removing the callback. Normal Play still always starts at the menu.
-            if (SessionState.GetBool("Varginha.SuppressMenuForTests", false)) return;
+            // The old QA flag could leak into every subsequent Play in the session.
+            SessionState.EraseBool("Varginha.SuppressMenuForTests");
+            if (Application.isBatchMode || EditorApplication.isPlaying) return;
             var menuScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(MenuPath);
             if (menuScene != null) EditorSceneManager.playModeStartScene = menuScene;
+        }
+
+        [MenuItem("Tools/Varginha/Testar cena atual uma vez")]
+        private static void PlayCurrentScene()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+            SessionState.SetBool(PlayCurrentSceneOnce, true);
+            EditorApplication.isPlaying = true;
         }
     }
 }
