@@ -20,6 +20,8 @@ namespace Game.Varginha
             if (scene.name == VarginhaGameOverFlow.MenuScene) return;
             foreach (var root in scene.GetRootGameObjects())
             {
+                // Saved house props also live under Investigation_Props, beside House_And_Yard.
+                VarginhaEnvironmentPolish.RefreshReferenceFurniture(root.transform);
                 var house = root.transform.Find("House_And_Yard");
                 if (house != null) VarginhaEnvironmentPolish.EnsureHouse(house);
                 else if (root.name == "House_And_Yard") VarginhaEnvironmentPolish.EnsureHouse(root.transform);

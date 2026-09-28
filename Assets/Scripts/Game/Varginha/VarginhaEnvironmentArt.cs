@@ -15,7 +15,7 @@ namespace Game.Varginha
 
         // Uma única referência evita que o marcador, o carro de runtime e o
         // builder acabem usando vagas diferentes.
-        public static readonly Vector3 FuscaParkingPosition = new(-4.75f, -1.2f, 0f);
+        public static readonly Vector3 FuscaParkingPosition = new(-5.5f, -10.4f, 0f);
         public static readonly Vector3 FuscaParkingSize = new(5.5f, 3f, 1f);
 
         public static Transform EnsureSchool(Transform root)
@@ -30,6 +30,7 @@ namespace Game.Varginha
             }
             if (school.Find(SchoolMarker) == null) BuildSchool(school);
             EnsureFuscaParking(school);
+            VarginhaSchoolExterior.Ensure(school);
             VarginhaEnvironmentPolish.EnsureSchool(school);
             return school;
         }
@@ -55,6 +56,7 @@ namespace Game.Varginha
             if (parent.Find(SchoolMarker) != null)
             {
                 EnsureFuscaParking(parent);
+                VarginhaSchoolExterior.Ensure(parent);
                 VarginhaEnvironmentPolish.EnsureSchool(parent);
                 return;
             }
@@ -76,8 +78,7 @@ namespace Game.Varginha
             CreateWall(parent, "CenarioV2_Divisoria_Sala", new Vector3(3.7f, 3.3f), new Vector3(7.5f, .45f, 1f), wall);
             CreateWall(parent, "CenarioV2_Divisoria_Fundo", new Vector3(-4.1f, -3.4f), new Vector3(7.2f, .45f, 1f), wall);
 
-            // Vaga interna para o Fusca: longe da parede oeste, com margem para a
-            // câmera e para a fila dos alunos durante a saída da fase.
+            // A vaga externa compartilha a referência usada pela chegada e pelo resgate.
             CreateSprite(parent, "CenarioV2_Vaga_Fusca", FuscaParkingPosition,
                 FuscaParkingSize, "FuscaParking", new Color(.22f, .34f, .39f), 1);
 
@@ -127,6 +128,7 @@ namespace Game.Varginha
             CreateSprite(parent, "CenarioV2_Saida", new Vector3(7.88f, 4.72f), new Vector3(.85f, .3f, 1f),
                 "SchoolExitSign", new Color(.24f, .75f, .42f), 4);
             EnsureFuscaParking(parent);
+            VarginhaSchoolExterior.Ensure(parent);
             VarginhaEnvironmentPolish.EnsureSchool(parent);
         }
 

@@ -6,10 +6,13 @@ namespace Game.Varginha
     public static class VarginhaEnvironmentPolish
     {
         private const string Marker = "Cenario_Acabamento_V3";
+        private static readonly Vector2 SchoolDeskSize = new(.95f, .78f);
+        private static readonly Vector2 SchoolChairSize = new(.5f, .57f);
 
         public static void EnsureSchool(Transform school)
         {
             RefreshReferenceFurniture(school);
+            AlignSchoolSeating(school);
             if (!NeedsRefresh(school)) return;
             RefreshSurfaces(school, true);
             var decor = Root(school);
@@ -25,13 +28,13 @@ namespace Game.Varginha
                 FitWindowBeam(window, light, Vector2.down, false);
             }
             Part(decor, "Mural_Trabalhos", "Noticeboard", new Vector2(1.1f, 4.1f), new Vector2(1.65f, .78f), 3);
-            Part(decor, "Biblioteca_Sala", "Books", new Vector2(-6.66f, 3.95f), new Vector2(.65f, 1.6f), 3);
-            Part(decor, "Livros_Corredor", "Books", new Vector2(7.75f, -4.7f), new Vector2(.85f, 1.15f), 3);
+            Part(decor, "Biblioteca_Sala", "Bookshelf", new Vector2(-6.66f, 3.95f), new Vector2(.95f, 1.6f), 3);
+            Part(decor, "Livros_Corredor", "Bookshelf", new Vector2(7.75f, -4.7f), new Vector2(.85f, 1.15f), 3);
             Part(decor, "Planta_Entrada", "Plant", new Vector2(7.55f, -3.8f), new Vector2(.55f, .85f), 3);
             Part(decor, "Planta_Sala", "Plant", new Vector2(-6.65f, 1.55f), new Vector2(.5f, .75f), 3);
             foreach (var renderer in school.GetComponentsInChildren<SpriteRenderer>(true))
             {
-                if (renderer.name.StartsWith("CenarioV2_Carteira_")) Replace(renderer.transform, "Desk", new Vector2(.88f, .62f));
+                if (renderer.name.StartsWith("CenarioV2_Carteira_")) Replace(renderer.transform, "Desk", SchoolDeskSize);
                 else if (renderer.name.StartsWith("CenarioV2_Lousa_")) Replace(renderer.transform, "Blackboard", new Vector2(2.1f, .65f));
             }
             // A restrained runner and ceiling light pools organize the open corridor.
@@ -89,7 +92,7 @@ namespace Game.Varginha
                 if (renderer.name.StartsWith("CenarioV2_Banco_Igreja_")) Replace(renderer.transform, "Pew", new Vector2(2.15f, .65f));
                 else if (renderer.name == "CenarioV2_Altar_Visual") Replace(renderer.transform, "Altar", new Vector2(1.6f, 1.3f));
             }
-            Part(decor, "Arquivo_Sacristia", "Books", new Vector2(7.55f, 4.6f), new Vector2(1.45f, 1.2f), 3);
+            Part(decor, "Arquivo_Sacristia", "Bookshelf", new Vector2(7.55f, 4.4f), new Vector2(1.45f, 1.65f), 3);
             Part(decor, "Planta_Sacristia", "Plant", new Vector2(7.75f, -5.4f), new Vector2(.8f, 1.2f), 3);
             Part(decor, "Planta_Entrada", "Plant", new Vector2(-7.85f, -5.65f), new Vector2(.7f, 1f), 3);
             for (int i = 0; i < 4; i++)
@@ -110,8 +113,11 @@ namespace Game.Varginha
 
         public static void EnsureHouse(Transform house)
         {
-            RefreshReferenceFurniture(house);
-            if (!NeedsRefresh(house)) return;
+            if (house == null) return;
+            var scope = VarginhaHouseComposition.Scope(house);
+            RefreshReferenceFurniture(scope);
+            VarginhaHouseComposition.Apply(house);
+            if (!NeedsRefresh(house, true)) return;
             var decor = Root(house);
             foreach (var renderer in house.GetComponentsInChildren<SpriteRenderer>(true))
             {
@@ -138,13 +144,17 @@ namespace Game.Varginha
                 ray.transform.rotation = Quaternion.Euler(0, 0, i == 2 ? 90 : -90);
                 FitWindowBeam(window.transform, ray, i == 2 ? Vector2.up : Vector2.down, false);
             }
-            Pool(decor, "Luz_Abajur", new Vector2(-3.25f, 4.65f), new Vector2(3.3f, 2.8f), .85f, true);
-            Pool(decor, "Luz_Escritorio", new Vector2(-3.7f, -3.15f), new Vector2(3.6f, 2.8f), .85f, true);
+            Part(decor, "Abajur_Cabeceira", "Lamp", new Vector2(-4.55f, 5.7f), new Vector2(.5f, .65f), 4);
+            Pool(decor, "Luz_Abajur", new Vector2(-4.55f, 5.15f), new Vector2(3.1f, 2.5f), .85f, true);
+            Pool(decor, "Luz_Escritorio", new Vector2(-3.95f, -3.2f), new Vector2(3.6f, 2.8f), .85f, true);
             Pool(decor, "Luz_Cozinha", new Vector2(4.55f, -4.8f), new Vector2(4.6f, 2.45f), .6f);
             Pool(decor, "Luz_TV", new Vector2(4.5f, 4.6f), new Vector2(3.5f, 2.1f), .6f, true).color = new Color(.35f, .72f, 1f, .55f);
-            Part(decor, "Memorias_1996", "Noticeboard", new Vector2(-8.1f, -1.7f), new Vector2(.95f, 1.2f), 3);
-            Part(decor, "Livros_Quarto", "Books", new Vector2(-1.3f, 5.9f), new Vector2(.9f, 1.2f), 3);
-            Part(decor, "Samambaia_Sala", "Plant", new Vector2(1f, 1.55f), new Vector2(.6f, .95f), 3);
+            Part(decor, "Memorias_1996", "Noticeboard", new Vector2(-5f, -.85f), new Vector2(1.8f, .85f), 3);
+            Part(decor, "Livros_Quarto", "Bookshelf", new Vector2(-1.65f, 5.45f), new Vector2(1.5f, 1.85f), 3);
+            Part(decor, "Aparador_Arquivo", "Dresser", new Vector2(-2.25f, -5.4f), new Vector2(1.7f, 1.45f), 3);
+            Part(decor, "Tapete_Escritorio", "Rug", new Vector2(-5f, -3.3f), new Vector2(4.2f, 3.1f), 1);
+            Part(decor, "Cadeira_Cafe", "Chair", new Vector2(3.25f, -2f), new Vector2(.75f, 1.05f), 3);
+            Part(decor, "Samambaia_Sala", "Plant", new Vector2(7.45f, 1.6f), new Vector2(.6f, .95f), 3);
             Part(decor, "Planta_Varanda", "Plant", new Vector2(10.6f, -1.45f), new Vector2(.7f, 1.1f), 3);
             Part(decor, "Tapete_Porta", "Rug", new Vector2(7.8f, 0), new Vector2(1.3f, 1.55f), 1);
             Pool(decor, "Luz_Poste", new Vector2(25.7f, 2.1f), new Vector2(4.5f, 2.85f), .95f, true, 2);
@@ -158,13 +168,13 @@ namespace Game.Varginha
                 Shadow(decor, foliage[i] + Vector2.down * .55f, new Vector2(3.2f, 1.25f));
             }
             // Keep the road and the escape interaction clear of new collision geometry.
-            ContactShadows(house, decor);
+            ContactShadows(scope, decor);
             Dust(decor, new Vector2(-4.1f, 4.7f), new Vector2(2.1f, 1.2f), 6, new Color(.64f, .82f, .95f, .45f));
             Dust(decor, new Vector2(14.3f, -4.8f), new Vector2(3.5f, 2.6f), 7, new Color(.75f, .94f, .58f, .65f));
             VarginhaSoftLighting.Build(house, decor);
         }
 
-        private static void RefreshReferenceFurniture(Transform parent)
+        public static void RefreshReferenceFurniture(Transform parent)
         {
             if (parent == null) return;
             foreach (var renderer in parent.GetComponentsInChildren<SpriteRenderer>(true))
@@ -175,15 +185,46 @@ namespace Game.Varginha
                 else if (id.StartsWith("CenarioV2_Banco_Igreja_")) id = "ChurchPew";
                 else if (id == "CenarioV2_Altar_Visual") id = "ChurchAltar";
                 var sprite = VarginhaReferenceSprites.ForId(id);
+                if (sprite != null) VarginhaFurnitureArt.CorrectLegacyProportions(renderer.transform);
                 if (sprite == null || renderer.sprite == sprite) continue;
                 // Polished furniture uses its own dimensions with scale one.
-                if (id == "SchoolDesk") sprite = VarginhaSceneryArt.Create("Desk", new Vector2(.88f, .62f));
+                if (id == "SchoolDesk") sprite = VarginhaSceneryArt.Create("Desk", SchoolDeskSize);
+                else if (id == "SchoolChair") sprite = VarginhaSceneryArt.Create("Chair", SchoolChairSize);
                 else if (id == "ChurchPew") sprite = VarginhaSceneryArt.Create("Pew", new Vector2(2.15f, .65f));
                 else if (id == "ChurchAltar") sprite = VarginhaSceneryArt.Create("Altar", new Vector2(1.6f, 1.3f));
                 else { renderer.sprite = sprite; renderer.color = Color.white; continue; }
                 renderer.sprite = sprite;
                 renderer.transform.localScale = Vector3.one;
                 renderer.color = Color.white;
+            }
+        }
+
+        private static void AlignSchoolSeating(Transform school)
+        {
+            if (school == null) return;
+            // The original north-right row intersected the classroom partition.
+            for (int i = 0; i < 11; i++)
+            {
+                var desk = school.Find("CenarioV2_Carteira_" + i);
+                var chair = school.Find("CenarioV2_Cadeira_" + i);
+                if (desk == null || chair == null) continue;
+                var oldOffset = chair.position - desk.position;
+                bool paired = Mathf.Abs(oldOffset.x) < .05f && Mathf.Abs(oldOffset.y + .47f) < .05f;
+                if (paired && (i == 4 || i == 5) && Mathf.Abs(desk.position.y - 3.45f) < .05f)
+                    desk.position += Vector3.up * .8f;
+                if (paired) chair.position = desk.position + Vector3.down * .4f;
+            }
+            var board = school.Find("CenarioV2_Lousa_Direita");
+            if (board != null && Mathf.Abs(board.position.y - 4.72f) < .05f)
+                board.position += Vector3.up * .3f;
+            board = school.Find("CenarioV2_Lousa_Fundo");
+            if (board != null && (Mathf.Abs(board.position.y + 4.63f) < .05f ||
+                Mathf.Abs(board.position.y + 3.65f) < .05f))
+            {
+                // Mount on the partition's visible face, centered above the desks.
+                board.position = new Vector3(-3.25f, -3.4f, board.position.z);
+                var renderer = board.GetComponent<SpriteRenderer>();
+                if (renderer != null) renderer.sortingOrder = 4;
             }
         }
 
@@ -202,7 +243,7 @@ namespace Game.Varginha
             }
         }
 
-        private static bool NeedsRefresh(Transform parent)
+        private static bool NeedsRefresh(Transform parent, bool composedHouse = false)
         {
             if (parent == null) return false;
             var previous = parent.Find(Marker);
@@ -211,8 +252,14 @@ namespace Game.Varginha
             // survive a scene reload while its textures do not; repair that case.
             var renderers = previous.GetComponentsInChildren<SpriteRenderer>(true);
             bool valid = renderers.Length > 0 && previous.Find(VarginhaSoftLighting.LayerName) != null;
+            if (composedHouse && previous.Find("Abajur_Cabeceira") == null) valid = false;
             foreach (var renderer in renderers)
+            {
                 if (renderer.sprite == null || renderer.sprite.texture == null) { valid = false; break; }
+                if ((renderer.name == "Biblioteca_Sala" || renderer.name == "Livros_Corredor" ||
+                    renderer.name == "Arquivo_Sacristia") && !renderer.sprite.name.StartsWith("Furniture_Bookshelf"))
+                { valid = false; break; }
+            }
             if (valid) return false;
             previous.name = Marker + "_Replacing";
             previous.gameObject.SetActive(false);
@@ -308,7 +355,9 @@ namespace Game.Varginha
                 if (renderer.transform.IsChildOf(decor)) continue;
                 string n = renderer.name;
                 if (!(n.Contains("Carteira_") || n.Contains("Armario_") || n.Contains("Banco_Igreja_") || n.Contains("Altar_Visual")
-                    || n.StartsWith("Bookshelf") || n.StartsWith("Kitchen_") || n.StartsWith("Sofa_") || n.StartsWith("Dresser_"))) continue;
+                    || n.StartsWith("Bookshelf") || n.StartsWith("Kitchen_") || n.StartsWith("Sofa_") || n.StartsWith("Dresser_")
+                    || n.StartsWith("Desk_") || n.StartsWith("Bed_") || n.StartsWith("TV_") || n.StartsWith("Nightstand_")
+                    || n.StartsWith("Fridge_") || n.StartsWith("Stove_") || n.StartsWith("CoffeeTable_"))) continue;
                 var b = renderer.bounds;
                 Shadow(decor, new Vector2(b.center.x + .13f, b.min.y + .04f), new Vector2(b.size.x + .22f, Mathf.Max(.25f, b.size.y * .35f)));
             }

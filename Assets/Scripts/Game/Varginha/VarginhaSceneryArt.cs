@@ -13,6 +13,8 @@ namespace Game.Varginha
 
         public static Sprite Create(string motif, Vector2 size)
         {
+            var furniture = VarginhaFurnitureArt.Create(motif == "Desk" ? "SchoolDesk" : motif, size);
+            if (furniture != null) return furniture;
             if (motif == "Desk" || motif == "Pew" || motif == "Altar")
             {
                 var reference = VarginhaReferenceSprites.Wood(motif, size);

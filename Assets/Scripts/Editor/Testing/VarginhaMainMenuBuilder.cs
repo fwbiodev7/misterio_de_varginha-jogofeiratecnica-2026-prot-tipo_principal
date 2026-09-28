@@ -92,6 +92,13 @@ namespace Game.Editor.Testing
         private static void EnsureMenuBeforePlay(PlayModeStateChange state)
         {
             if (state == PlayModeStateChange.ExitingEditMode) Apply();
+            if (state == PlayModeStateChange.EnteredPlayMode && !Application.isBatchMode
+                && !SessionState.GetBool("Varginha.SuppressMenuForTests", false))
+            {
+                // Keyboard input belongs to Game View; a focused Inspector/Scene view does not feed it.
+                var gameView = typeof(EditorWindow).Assembly.GetType("UnityEditor.GameView");
+                if (gameView != null) EditorWindow.GetWindow(gameView).Focus();
+            }
         }
 
         private static void Apply()

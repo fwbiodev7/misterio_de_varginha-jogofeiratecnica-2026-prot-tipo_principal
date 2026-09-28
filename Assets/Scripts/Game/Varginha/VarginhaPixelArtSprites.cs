@@ -235,6 +235,10 @@ namespace Game.Varginha
 
         private static void DrawWoodFloor(Texture2D t, Color mid, Color dark, Color light)
         {
+            // Muted walnut from the shared furniture set; floor contrast stays below interactable props.
+            mid = new Color32(100, 78, 58, 255);
+            dark = new Color32(62, 51, 44, 255);
+            light = new Color32(142, 114, 81, 255);
             Fill(t, 0, 0, 32, 32, mid);
             for (int y = 0; y < 32; y += 8)
             {
@@ -251,7 +255,9 @@ namespace Game.Varginha
         {
             // Woven parquet: four blocks with perpendicular wood grain, quiet
             // contrast so characters and floor lighting remain easy to read.
-            Color plank = new Color(.52f, .46f, .35f);
+            Color plank = new Color32(123, 103, 77, 255);
+            dark = new Color32(69, 61, 49, 255);
+            light = new Color32(161, 137, 99, 255);
             for (int y = 0; y < 32; y++)
             for (int x = 0; x < 32; x++)
             {
@@ -277,18 +283,18 @@ namespace Game.Varginha
 
         private static void DrawChurchFloor(Texture2D t, Color mid, Color dark, Color light)
         {
-            Color stone = new Color(.225f, .235f, .255f);
-            Color seam = new Color(.125f, .14f, .17f);
+            Color stone = new Color32(61, 69, 74, 255);
+            Color seam = new Color32(45, 51, 56, 255);
             Fill(t, 0, 0, 32, 32, stone);
             // Large dressed stone slabs replace the wall-like brick pattern.
             for (int by = 0; by < 2; by++) for (int bx = 0; bx < 2; bx++)
             {
                 int x = bx * 16, y = by * 16;
                 Fill(t, x, y, 16, 1, seam); Fill(t, x, y, 1, 16, seam);
-                Fill(t, x + 1, y + 1, 14, 1, new Color(.285f, .29f, .30f));
-                Fill(t, x + 1, y + 2, 1, 13, new Color(.26f, .27f, .29f));
-                Fill(t, x + 4, y + 11, 4, 1, new Color(.245f, .255f, .275f));
-                Pixel(t, x + 11, y + 5, new Color(.20f, .215f, .235f));
+                Fill(t, x + 1, y + 1, 14, 1, new Color32(75, 81, 83, 255));
+                Fill(t, x + 1, y + 2, 1, 13, new Color32(68, 75, 79, 255));
+                Fill(t, x + 4, y + 11, 4, 1, new Color32(65, 72, 77, 255));
+                Pixel(t, x + 11, y + 5, new Color32(56, 63, 68, 255));
             }
         }
 
@@ -506,14 +512,18 @@ namespace Game.Varginha
 
         private static void DrawGrass(Texture2D t, Color mid, Color dark, Color light)
         {
+            mid = new Color32(43, 62, 39, 255);
             Fill(t, 0, 0, 32, 32, mid);
-            // Small olive leaf clusters echo the reference canopy, keeping the night palette.
-            for (int i = 0; i < 37; i++)
+            // Hash-scattered tufts avoid the old repeated diagonal stripes.
+            uint seed = 731;
+            for (int i = 0; i < 55; i++)
             {
-                int x = (i * 13 + 3) % 30, y = (i * 17 + 7) % 30;
-                Pixel(t, x, y, Color.Lerp(mid, new Color(.39f, .46f, .24f), .22f));
-                Pixel(t, x + 1, y + 1, Color.Lerp(mid, dark, .16f));
-                Pixel(t, x + 2, y, Color.Lerp(mid, light, .11f));
+                seed = unchecked(seed * 1664525u + 1013904223u);
+                int x = (int)((seed >> 16) % 32);
+                seed = unchecked(seed * 1664525u + 1013904223u);
+                int y = (int)((seed >> 16) % 32);
+                Pixel(t, x, y, new Color32(54, 72, 44, 255));
+                Pixel(t, (x + 1) % 32, (y + 1) % 32, new Color32(37, 55, 35, 255));
             }
         }
 
@@ -549,20 +559,30 @@ namespace Game.Varginha
 
         private static void DrawStreet(Texture2D t, Color mid, Color dark, Color light)
         {
-            Fill(t, 0, 0, 32, 32, mid);
-            for (int y = 4; y < 32; y += 9) Fill(t, 2, y, 28, 1, dark);
-            for (int x = 2; x < 32; x += 10) Fill(t, x, 15, 5, 2, light);
-            Pixel(t, 7, 7, light); Pixel(t, 25, 25, light); Pixel(t, 18, 4, dark);
+            // Asphalt is a continuous surface; lane markings belong to their own object.
+            for (int y = 0; y < 32; y++)
+            for (int x = 0; x < 32; x++)
+            {
+                int grain = (x * 17 + y * 31 + x * y * 7) % 11;
+                byte value = (byte)(43 + grain / 2);
+                Pixel(t, x, y, new Color32(value, (byte)(value + 5), (byte)(value + 7), 255));
+            }
         }
 
         private static void DrawStone(Texture2D t, Color mid, Color dark, Color light)
         {
-            Fill(t, 0, 0, 32, 32, dark);
-            for (int y = 1; y < 32; y += 8)
-            for (int x = ((y / 8) & 1) == 0 ? 1 : 5; x < 32; x += 10)
+            // Broad weathered pavers with narrow joints, instead of high-contrast wall bricks.
+            Fill(t, 0, 0, 32, 32, new Color32(58, 61, 57, 255));
+            for (int y = 0; y < 32; y++)
+            for (int x = 0; x < 32; x++)
             {
-                Fill(t, x, y, 8, 6, mid);
-                Fill(t, x + 1, y + 4, 5, 1, Color.Lerp(mid, light, .22f));
+                int offset = y < 16 ? 0 : 8;
+                int px = (x + offset) % 16, py = y % 16;
+                if (px == 0 || py == 0) continue;
+                int grain = (x * 13 + y * 23 + x * y * 3) % 9;
+                int value = 79 + grain;
+                if (py == 15 || px == 1) value += 5;
+                Pixel(t, x, y, new Color32((byte)value, (byte)(value + 2), (byte)(value - 2), 255));
             }
         }
 

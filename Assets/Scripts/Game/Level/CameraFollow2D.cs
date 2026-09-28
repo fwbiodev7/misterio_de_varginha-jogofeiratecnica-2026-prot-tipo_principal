@@ -25,6 +25,14 @@ namespace Game.Level
             set => target = value;
         }
 
+        public void ConfigureTopDown(Transform followTarget)
+        {
+            target = followTarget;
+            offset = new Vector3(0, 0, -10);
+            limitMinY = false;
+            _velocity = Vector3.zero;
+        }
+
         private void Start()
         {
             if (target == null)

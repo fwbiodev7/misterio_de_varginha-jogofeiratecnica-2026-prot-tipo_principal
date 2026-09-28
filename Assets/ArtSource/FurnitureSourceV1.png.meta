@@ -1,0 +1,587 @@
+fileFormatVersion: 2
+guid: f251d7f7b9f228944828feafe27521e9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7811990155798540693
+    second: FurnitureSourceV1_0
+  - first:
+      213: 5004842035482863061
+    second: FurnitureSourceV1_1
+  - first:
+      213: 2106460514604019529
+    second: FurnitureSourceV1_2
+  - first:
+      213: -5437288759007143733
+    second: FurnitureSourceV1_3
+  - first:
+      213: -4474456057654933719
+    second: FurnitureSourceV1_4
+  - first:
+      213: -2932193929403722693
+    second: FurnitureSourceV1_5
+  - first:
+      213: -9141135301637245493
+    second: FurnitureSourceV1_6
+  - first:
+      213: -6026140876897828395
+    second: FurnitureSourceV1_7
+  - first:
+      213: -6174931975745236761
+    second: FurnitureSourceV1_8
+  - first:
+      213: 6169137294010716237
+    second: FurnitureSourceV1_9
+  - first:
+      213: -7678392297737088072
+    second: FurnitureSourceV1_10
+  - first:
+      213: -8967654780482854473
+    second: FurnitureSourceV1_11
+  - first:
+      213: -3010478911940562943
+    second: FurnitureSourceV1_12
+  - first:
+      213: -2372401699506077567
+    second: FurnitureSourceV1_13
+  - first:
+      213: 2703548073218360052
+    second: FurnitureSourceV1_14
+  - first:
+      213: 2185198044160981692
+    second: FurnitureSourceV1_15
+  - first:
+      213: 643012983373432887
+    second: FurnitureSourceV1_16
+  - first:
+      213: 218103617560809501
+    second: FurnitureSourceV1_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FurnitureSourceV1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 742
+        width: 403
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 591783138a3c96c60800000000000000
+      internalID: 7811990155798540693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 1028
+        width: 30
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d526e18055c47540800000000000000
+      internalID: 5004842035482863061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_2
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 684
+        width: 219
+        height: 388
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94feb527da6ab3d10800000000000000
+      internalID: 2106460514604019529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_3
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 680
+        width: 393
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc897228eaeda84b0800000000000000
+      internalID: -5437288759007143733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_4
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 976
+        width: 160
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92702681ce987e1c0800000000000000
+      internalID: -4474456057654933719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_5
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 1010
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3495591821ce47d0800000000000000
+      internalID: -2932193929403722693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_6
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 990
+        width: 84
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5f02effd9242180800000000000000
+      internalID: -9141135301637245493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_7
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 744
+        width: 310
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d14b02ecc8de5ca0800000000000000
+      internalID: -6026140876897828395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 370
+        width: 397
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e01181951c3e4aa0800000000000000
+      internalID: -6174931975745236761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_9
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 696
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d409f14fead2d9550800000000000000
+      internalID: 6169137294010716237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_10
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 45
+        width: 306
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b3194713eed07590800000000000000
+      internalID: -7678392297737088072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_11
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 341
+        width: 243
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b16cf46d7d7c8380800000000000000
+      internalID: -8967654780482854473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_12
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 31
+        width: 387
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1007af93161a836d0800000000000000
+      internalID: -3010478911940562943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_13
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 349
+        width: 341
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 180486c4939831fd0800000000000000
+      internalID: -2372401699506077567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_14
+      rect:
+        serializedVersion: 2
+        x: 1094
+        y: 329
+        width: 313
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f24f5906aee48520800000000000000
+      internalID: 2703548073218360052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_15
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 331
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbaf7122b02635e10800000000000000
+      internalID: 2185198044160981692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_16
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 17
+        width: 255
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73800fbc6e07ce800800000000000000
+      internalID: 643012983373432887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FurnitureSourceV1_17
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 78
+        width: 309
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1090f8a51cd60300800000000000000
+      internalID: 218103617560809501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FurnitureSourceV1_0: 7811990155798540693
+      FurnitureSourceV1_1: 5004842035482863061
+      FurnitureSourceV1_10: -7678392297737088072
+      FurnitureSourceV1_11: -8967654780482854473
+      FurnitureSourceV1_12: -3010478911940562943
+      FurnitureSourceV1_13: -2372401699506077567
+      FurnitureSourceV1_14: 2703548073218360052
+      FurnitureSourceV1_15: 2185198044160981692
+      FurnitureSourceV1_16: 643012983373432887
+      FurnitureSourceV1_17: 218103617560809501
+      FurnitureSourceV1_2: 2106460514604019529
+      FurnitureSourceV1_3: -5437288759007143733
+      FurnitureSourceV1_4: -4474456057654933719
+      FurnitureSourceV1_5: -2932193929403722693
+      FurnitureSourceV1_6: -9141135301637245493
+      FurnitureSourceV1_7: -6026140876897828395
+      FurnitureSourceV1_8: -6174931975745236761
+      FurnitureSourceV1_9: 6169137294010716237
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

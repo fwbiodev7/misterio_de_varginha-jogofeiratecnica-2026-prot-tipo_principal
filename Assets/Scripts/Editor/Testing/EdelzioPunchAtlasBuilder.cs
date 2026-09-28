@@ -19,6 +19,8 @@ namespace Game.Editor.Testing
         [MenuItem("Varginha/Art/Rebuild Edelzio Punch Atlas")]
         public static void Build()
         {
+            BuildFurniture();
+            BuildHouseProps();
             BuildWalk("Assets/ArtSource/EdelzioCleanSourceV2.png", "Assets/Resources/Varginha/Allies/Edelzio.png");
             BuildWalk("Assets/ArtSource/PadreFabioSourceV1.png", "Assets/Resources/Varginha/PadreFabioV1.png");
             var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
@@ -39,7 +41,7 @@ namespace Game.Editor.Testing
                     for (int phase = 0; phase < 6; phase++)
                     {
                         int column = combo * 6 + phase;
-                        if (phase == 0 || phase == 5)
+                        if (phase == 0 && combo == 0)
                         {
                             for (int y = 0; y < 64; y++)
                             for (int x = 0; x < 64; x++)
@@ -67,24 +69,14 @@ namespace Game.Editor.Testing
                             if (!bounds.Contains(new Vector2Int(sx, sy))) continue;
                             Color32 color = source.GetPixel(sx, sy);
                             if (color.a < 128) continue;
-                            // Harmonize active punch colors with standing Edelzio
-                            if (color.r > 160 && color.g > 90 && color.b < 90)
-                            {
-                                color.r = (byte)Mathf.Clamp(color.r, (byte)190, (byte)255);
-                                color.g = (byte)Mathf.Clamp(color.g, (byte)120, (byte)170);
-                                color.b = (byte)Mathf.Min(color.b, (byte)60);
-                            }
-                            else if (color.r < 60 && color.g < 60 && color.b < 60 && y >= 42)
-                            {
-                                color = new Color32(32, 31, 33, color.a);
-                            }
+                            // Preserve the authored skin/shirt/hair palette shared with the walk sheet.
                             pixels[((3 - direction) * 64 + y) * atlas.width + column * 64 + x] = color;
                         }
                     }
                 }
                 atlas.SetPixels32(pixels);
                 atlas.Apply();
-                File.WriteAllBytes(Output, atlas.EncodeToPNG());
+                WritePng(Output, atlas);
                 AssetDatabase.ImportAsset(Output, ImportAssetOptions.ForceUpdate);
                 Debug.Log("Edelzio punch atlas built: 72 aligned frames, " + Output);
             }
@@ -125,10 +117,98 @@ namespace Game.Editor.Testing
                 }
                 output.SetPixels32(pixels);
                 output.Apply();
-                File.WriteAllBytes(outputPath, output.EncodeToPNG());
+                WritePng(outputPath, output);
                 AssetDatabase.ImportAsset(outputPath, ImportAssetOptions.ForceUpdate);
             }
             finally { Object.DestroyImmediate(source); Object.DestroyImmediate(output); }
+        }
+
+        private static void BuildFurniture()
+        {
+            var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            var output = new Texture2D(256, 192, TextureFormat.RGBA32, false);
+            const string path = "Assets/Resources/Varginha/FurnitureV1.png";
+            try
+            {
+                source.LoadImage(File.ReadAllBytes("Assets/ArtSource/FurnitureSourceV1.png"));
+                // Source gutters are irregular: these boundaries avoid clipping the wide desk and sofa.
+                float[] columns = { 0, .285f, .485f, .75f, 1 };
+                var pixels = new Color32[256 * 192];
+                for (int row = 0; row < 3; row++)
+                for (int column = 0; column < 4; column++)
+                {
+                    int left = Mathf.RoundToInt(columns[column] * source.width);
+                    int right = Mathf.RoundToInt(columns[column + 1] * source.width);
+                    int bottom = Mathf.RoundToInt((2 - row) * source.height / 3f);
+                    int top = Mathf.RoundToInt((3 - row) * source.height / 3f);
+                    var bounds = Bounds(source, new RectInt(left, bottom, right - left, top - bottom));
+                    // The saved scene's transform supplies each object's width/height, just as for legacy art.
+                    for (int y = 4; y < 60; y++)
+                    for (int x = 4; x < 60; x++)
+                    {
+                        int sx = bounds.xMin + Mathf.FloorToInt((x - 3.5f) * bounds.width / 56f);
+                        int sy = bounds.yMin + Mathf.FloorToInt((y - 3.5f) * bounds.height / 56f);
+                        Color32 color = source.GetPixel(sx, sy);
+                        if (color.a < 128) continue;
+                        pixels[((2 - row) * 64 + y) * 256 + column * 64 + x] = color;
+                    }
+                }
+                output.SetPixels32(pixels);
+                output.Apply();
+                WritePng(path, output);
+                AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+            }
+            finally { Object.DestroyImmediate(source); Object.DestroyImmediate(output); }
+        }
+
+        private static void BuildHouseProps()
+        {
+            var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            var output = new Texture2D(256, 256, TextureFormat.RGBA32, false);
+            const string path = "Assets/Resources/Varginha/HousePropsV1.png";
+            try
+            {
+                source.LoadImage(File.ReadAllBytes("Assets/ArtSource/HousePropsSourceV1.png"));
+                var pixels = new Color32[256 * 256];
+                float[] rows = { 0f, .29f, .51f, .735f, 1f };
+                for (int row = 0; row < 4; row++)
+                for (int column = 0; column < 4; column++)
+                {
+                    int left = Mathf.RoundToInt(column * source.width / 4f);
+                    int right = Mathf.RoundToInt((column + 1) * source.width / 4f);
+                    int bottom = Mathf.RoundToInt((1f - rows[row + 1]) * source.height);
+                    int top = Mathf.RoundToInt((1f - rows[row]) * source.height);
+                    var bounds = Bounds(source, new RectInt(left, bottom, right - left, top - bottom));
+                    for (int y = 4; y < 60; y++)
+                    for (int x = 4; x < 60; x++)
+                    {
+                        int sx = bounds.xMin + Mathf.FloorToInt((x - 3.5f) * bounds.width / 56f);
+                        int sy = bounds.yMin + Mathf.FloorToInt((y - 3.5f) * bounds.height / 56f);
+                        Color32 color = source.GetPixel(sx, sy);
+                        if (color.a >= 128)
+                            pixels[((3 - row) * 64 + y) * 256 + column * 64 + x] = color;
+                    }
+                }
+                output.SetPixels32(pixels);
+                output.Apply();
+                WritePng(path, output);
+                AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+            }
+            finally { Object.DestroyImmediate(source); Object.DestroyImmediate(output); }
+        }
+
+        private static void WritePng(string path, Texture2D texture)
+        {
+            var bytes = texture.EncodeToPNG();
+            if (File.Exists(path))
+            {
+                var previous = File.ReadAllBytes(path);
+                bool same = previous.Length == bytes.Length;
+                for (int i = 0; same && i < bytes.Length; i++) same = bytes[i] == previous[i];
+                if (same) return;
+            }
+            AssetDatabase.ReleaseCachedFileHandles();
+            File.WriteAllBytes(path, bytes);
         }
 
         private static RectInt Cell(Texture2D texture, int row, int column)

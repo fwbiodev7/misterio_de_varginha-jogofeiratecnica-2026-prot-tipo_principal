@@ -109,7 +109,12 @@ namespace Game.Tests.PlayMode
             attack.QueueAttack(Vector2.left);
             attack.QueueAttack(Vector2.left);
             float deadline = Time.realtimeSinceStartup + 2f;
-            while (attack.ComboStep != 2 && Time.realtimeSinceStartup < deadline) yield return null;
+            while (attack.ComboStep != 2 && Time.realtimeSinceStartup < deadline)
+            {
+                Assert.IsTrue(attack.IsAttacking, "A queued combo must not leave an idle frame between punches.");
+                Assert.IsTrue(_targetObject.GetComponent<VarginhaPlayerSpriteAnimation>().HasActionPose);
+                yield return null;
+            }
             Assert.AreEqual(2, attack.ComboStep, "Early input must survive the first punch.");
             Assert.AreEqual(Vector2.left, _targetObject.GetComponent<VarginhaPlayerSpriteAnimation>().ActionFacingDirection);
             while (attack.IsAttacking && Time.realtimeSinceStartup < deadline) yield return null;
@@ -230,6 +235,7 @@ namespace Game.Tests.PlayMode
         public IEnumerator CombatCursorInstantiatesWithAttackAndDetectsTarget()
         {
             _targetObject = new GameObject("Edelzio_Cursor_Test");
+            _targetObject.AddComponent<CircleCollider2D>();
             var player = _targetObject.AddComponent<EdelzioTopDownController>();
             var attack = _targetObject.AddComponent<VarginhaPlayerAttack>();
             yield return null;

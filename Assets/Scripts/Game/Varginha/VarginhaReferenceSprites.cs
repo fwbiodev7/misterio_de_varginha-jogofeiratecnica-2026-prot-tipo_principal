@@ -215,6 +215,8 @@ namespace Game.Varginha
         public static Sprite ForId(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
+            var furniture = VarginhaFurnitureArt.ForId(id);
+            if (furniture != null) return furniture;
             if (id.StartsWith("HostageCage")) return GetProp("Cage");
             if (id == "StudentAttack_Katana") return GetProp("Katana");
             if (id == "StudentAttack_FallingPiano") return GetProp("Piano");

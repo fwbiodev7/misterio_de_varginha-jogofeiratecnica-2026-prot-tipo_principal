@@ -65,7 +65,7 @@ namespace Game.Editor.Testing
             CreateManagers(root.transform);
 
             var camera = CreateCamera(root.transform);
-            var player = CreatePlayer(root.transform, new Vector3(-6.1f, -1.2f, 0f));
+            var player = CreatePlayer(root.transform, VarginhaEnvironmentArt.FuscaParkingPosition + Vector3.right * 1.05f);
             var follow = camera.GetComponent<CameraFollow2D>();
             follow.Target = player.transform;
             var soFollow = new SerializedObject(follow);
@@ -77,7 +77,7 @@ namespace Game.Editor.Testing
             environment.SetParent(root.transform);
             BuildSchool(environment);
 
-            // A vaga fica dentro da área visível e alinhada ao marcador desenhado pelo ambiente.
+            // A vaga externa fica alinhada ao marcador e à entrada da escola.
             var car = CreateFusca(root.transform, VarginhaEnvironmentArt.FuscaParkingPosition);
             CreateSubordinate(root.transform, "ET_Subordinado_1", new Vector3(2.8f, 2.6f, 0f));
             CreateSubordinate(root.transform, "ET_Subordinado_2", new Vector3(5.1f, -2.4f, 0f));

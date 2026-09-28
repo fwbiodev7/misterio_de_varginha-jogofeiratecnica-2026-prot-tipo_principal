@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Varginha
@@ -17,6 +18,10 @@ namespace Game.Varginha
         private SpriteRenderer _cageRenderer;
         private bool _released;
         private bool _arrived;
+        private Transform _school;
+        private readonly List<Vector2> _path = new();
+        private Vector2 _pathDestination;
+        private float _nextPathTime;
 
         public string StudentName => studentName;
         public bool IsReleased => _released;
@@ -69,6 +74,7 @@ namespace Game.Varginha
             _released = true;
             _fusca = fusca;
             _leader = leader;
+            _school = GameObject.Find("Escola_3_Sistema_Ambiente")?.transform;
             // A fila do Fusca usa um espaço compacto; durante o acompanhamento eles
             // mantêm uma formação 3x3 atrás do Edelzio, evitando que um sprite cubra os outros.
             int column = index % 3;
@@ -96,8 +102,23 @@ namespace Game.Varginha
             if (!headingToCar)
                 destination = _leader.position + _followOffset;
 
-            Vector3 prev = transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, destination, followSpeed * Time.deltaTime);
+            Vector2 next = destination;
+            if (_school != null)
+            {
+                if (Time.time >= _nextPathTime && (_path.Count == 0 ||
+                    ((Vector2)destination - _pathDestination).sqrMagnitude > .36f))
+                {
+                    VarginhaSchoolNavigation.FindPath(_school, transform.position, destination, _path);
+                    _pathDestination = destination;
+                    _nextPathTime = Time.time + .65f;
+                }
+                while (_path.Count > 0 && Vector2.Distance(transform.position, _path[0]) < .08f) _path.RemoveAt(0);
+                // Take the farthest visible waypoint, keeping every movement segment clear of walls.
+                while (_path.Count > 1 && VarginhaSchoolNavigation.CanWalkSegment(transform.position, _path[1])) _path.RemoveAt(0);
+                if (_path.Count == 0 && Vector2.Distance(transform.position, destination) >= .06f) return;
+                if (_path.Count > 0) next = _path[0];
+            }
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(next.x, next.y, transform.position.z), followSpeed * Time.deltaTime);
 
             transform.localScale = Vector3.one;
 

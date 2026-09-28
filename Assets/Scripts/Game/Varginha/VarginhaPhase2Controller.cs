@@ -123,7 +123,7 @@ namespace Game.Varginha
                 yield return null;
             }
 
-            VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Subordinados ETs enjaularam meus alunos e estão atacando. Vou quebrar essas jaulas e tirá-los daqui!");
+            VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Vou deixar o Fusca no estacionamento. A porta da escola está aberta: preciso encontrar meus alunos!");
             if (playerAnimation != null) playerAnimation.enabled = true;
             Vector3 exit = _fusca.position + Vector3.right * 1.05f;
             Vector3 start = _player.transform.position;
@@ -146,7 +146,7 @@ namespace Game.Varginha
             _player.SetInputLocked(false);
             _arrivalFinished = true;
             VarginhaGameHUD.Instance?.CloseDialogue();
-            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Cuidado com as rajadas verdes dos ETs. Derrote-os e depois leve os nove alunos, ainda enjaulados, até o Fusca.'");
+            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Siga a faixa até a porta da escola. Derrote os ETs e traga os nove alunos de volta ao estacionamento.'");
         }
 
         private void Update()
@@ -185,7 +185,7 @@ namespace Game.Varginha
             if (_rescueStarted || _students.Length < StudentNames.Length || _fusca == null) return;
             _rescueStarted = true;
             VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Consegui! A escola está livre. Todos para o Fusca, rápido!");
-            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Os alunos estão livres. Fique perto deles e conduza a turma até o Fusca.'");
+            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Os alunos estão livres. Saia pela porta e conduza a turma até o Fusca no estacionamento.'");
             for (int i = 0; i < _students.Length; i++)
                 _students[i].ReleaseTo(_fusca, i, _player != null ? _player.transform : null);
         }
@@ -270,8 +270,8 @@ namespace Game.Varginha
         {
             CreateManagers(root);
             var camera = CreateCamera(root);
-            var player = CreatePlayer(root, new Vector3(-6.1f, -1.2f));
-            camera.GetComponent<CameraFollow2D>().Target = player.transform;
+            var player = CreatePlayer(root, VarginhaEnvironmentArt.FuscaParkingPosition + Vector3.right * 1.05f);
+            camera.GetComponent<CameraFollow2D>().ConfigureTopDown(player.transform);
             BuildSchool(root);
             CreateFusca(root, VarginhaEnvironmentArt.FuscaParkingPosition);
             CreateSubordinate(root, "ET_Subordinado_1", new Vector3(2.8f, 2.6f));
@@ -298,7 +298,7 @@ namespace Game.Varginha
             if (camera == null)
                 camera = CreateCamera(root).GetComponent<Camera>();
             var follow = camera.GetComponent<CameraFollow2D>() ?? camera.gameObject.AddComponent<CameraFollow2D>();
-            if (player != null) follow.Target = player.transform;
+            if (player != null) follow.ConfigureTopDown(player.transform);
 
             var existingCar = GameObject.Find("Fusca_1996_Fase2");
             if (existingCar == null)

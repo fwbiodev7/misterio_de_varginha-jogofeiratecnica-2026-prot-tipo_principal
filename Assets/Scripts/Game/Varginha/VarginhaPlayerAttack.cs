@@ -123,7 +123,6 @@ namespace Game.Varginha
                 }
                 if (interrupted) break;
             }
-            _animation.ClearCombatPose();
             if (interrupted)
             {
                 _comboStep = 0;
@@ -131,6 +130,9 @@ namespace Game.Varginha
             }
             else _lastAttackFinished = Time.time;
             _isAttacking = false;
+            // Consume the buffered input immediately: no one-frame idle flash between punches.
+            if (!interrupted && Time.time <= _bufferUntil && TryAttack(_bufferDirection)) yield break;
+            _animation.ClearCombatPose();
         }
 
         private IEnumerator ImpactRoutine(Vector2 direction)

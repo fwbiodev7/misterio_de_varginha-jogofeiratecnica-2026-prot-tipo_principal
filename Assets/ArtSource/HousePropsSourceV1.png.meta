@@ -1,0 +1,561 @@
+fileFormatVersion: 2
+guid: 7d0d2676c0d1dc44ca02c27b7f0baa24
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7829385492174535262
+    second: HousePropsSourceV1_0
+  - first:
+      213: -2256990861885271466
+    second: HousePropsSourceV1_1
+  - first:
+      213: 722473021809575120
+    second: HousePropsSourceV1_2
+  - first:
+      213: -6460539192873604167
+    second: HousePropsSourceV1_3
+  - first:
+      213: 2914902168148211986
+    second: HousePropsSourceV1_4
+  - first:
+      213: -8580755924997479537
+    second: HousePropsSourceV1_5
+  - first:
+      213: -8259668172643875839
+    second: HousePropsSourceV1_6
+  - first:
+      213: -616724191339890765
+    second: HousePropsSourceV1_7
+  - first:
+      213: 3935314309991554095
+    second: HousePropsSourceV1_8
+  - first:
+      213: -6541739691020648691
+    second: HousePropsSourceV1_9
+  - first:
+      213: -6000807096636376666
+    second: HousePropsSourceV1_10
+  - first:
+      213: 8640890099910141183
+    second: HousePropsSourceV1_11
+  - first:
+      213: 6349072157513235516
+    second: HousePropsSourceV1_12
+  - first:
+      213: 6158221190375694147
+    second: HousePropsSourceV1_13
+  - first:
+      213: 3372544487240713792
+    second: HousePropsSourceV1_14
+  - first:
+      213: 6138184745460112996
+    second: HousePropsSourceV1_15
+  - first:
+      213: 2562505273633806117
+    second: HousePropsSourceV1_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HousePropsSourceV1_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 913
+        width: 261
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a50751706f685390800000000000000
+      internalID: -7829385492174535262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_1
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 903
+        width: 245
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6529608e4ce8da0e0800000000000000
+      internalID: -2256990861885271466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_2
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 911
+        width: 229
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d443c0b26db60a00800000000000000
+      internalID: 722473021809575120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_3
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 1135
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bba74f55dd8756a0800000000000000
+      internalID: -6460539192873604167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_4
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 946
+        width: 210
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2197d7ff310d37820800000000000000
+      internalID: 2914902168148211986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 622
+        width: 257
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f836232f2f70be880800000000000000
+      internalID: -8580755924997479537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_6
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 624
+        width: 216
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10446fefe83cf5d80800000000000000
+      internalID: -8259668172643875839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_7
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 625
+        width: 266
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b7bbc29d94f077f0800000000000000
+      internalID: -616724191339890765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_8
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 606
+        width: 248
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2cde86c38b0d9630800000000000000
+      internalID: 3935314309991554095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_9
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 286
+        width: 214
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0ff3af19621735a0800000000000000
+      internalID: -6541739691020648691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_10
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 335
+        width: 305
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a9785f3db9d8bca0800000000000000
+      internalID: -6000807096636376666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_11
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 296
+        width: 267
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff46554b3cb9ae770800000000000000
+      internalID: 8640890099910141183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_12
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 335
+        width: 279
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c36e90d7f6c1850800000000000000
+      internalID: 6349072157513235516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_13
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 63
+        width: 295
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34f50a48b85667550800000000000000
+      internalID: 6158221190375694147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_14
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 74
+        width: 215
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0464f27b75fadce20800000000000000
+      internalID: 3372544487240713792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_15
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 55
+        width: 285
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e1fd621863f2550800000000000000
+      internalID: 6138184745460112996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousePropsSourceV1_16
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 23
+        width: 252
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527120a38f8df8320800000000000000
+      internalID: 2562505273633806117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HousePropsSourceV1_0: -7829385492174535262
+      HousePropsSourceV1_1: -2256990861885271466
+      HousePropsSourceV1_10: -6000807096636376666
+      HousePropsSourceV1_11: 8640890099910141183
+      HousePropsSourceV1_12: 6349072157513235516
+      HousePropsSourceV1_13: 6158221190375694147
+      HousePropsSourceV1_14: 3372544487240713792
+      HousePropsSourceV1_15: 6138184745460112996
+      HousePropsSourceV1_16: 2562505273633806117
+      HousePropsSourceV1_2: 722473021809575120
+      HousePropsSourceV1_3: -6460539192873604167
+      HousePropsSourceV1_4: 2914902168148211986
+      HousePropsSourceV1_5: -8580755924997479537
+      HousePropsSourceV1_6: -8259668172643875839
+      HousePropsSourceV1_7: -616724191339890765
+      HousePropsSourceV1_8: 3935314309991554095
+      HousePropsSourceV1_9: -6541739691020648691
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
