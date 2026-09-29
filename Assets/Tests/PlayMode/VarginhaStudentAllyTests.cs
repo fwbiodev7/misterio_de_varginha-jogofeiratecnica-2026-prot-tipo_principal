@@ -145,6 +145,27 @@ namespace Game.Tests.PlayMode
             Assert.AreEqual(0f, _squad.Allies[0].ManualCooldownRemaining);
         }
 
+        [UnityTest]
+        public IEnumerator AlliesRouteThroughADoorInsteadOfStoppingAtThePartition()
+        {
+            CreateSquad();
+            _squad.Setup(_leader.transform, true);
+            Wall(new Vector2(-3.25f, 0f), new Vector2(7.5f, .5f));
+            Wall(new Vector2(4.25f, 0f), new Vector2(5.5f, .5f));
+            Wall(new Vector2(-7.4f, 0f), new Vector2(.5f, 10f));
+            Wall(new Vector2(7.4f, 0f), new Vector2(.5f, 10f));
+
+            var ally = Student("Marcos");
+            ally.transform.position = new Vector2(-2f, -2f);
+            _leader.transform.position = new Vector2(5f, 2f);
+            Physics2D.SyncTransforms();
+
+            yield return new WaitForSeconds(5f);
+
+            Assert.Greater(ally.transform.position.y, .4f,
+                "O aliado deve encontrar o vão da divisória em vez de ficar preso no lado inicial.");
+        }
+
         [Test]
         public void EveryRescuedStudentHasAnAllyProfile()
         {
@@ -205,7 +226,14 @@ namespace Game.Tests.PlayMode
             Assert.AreEqual(100f, target.GetComponent<HealthSystem>().CurrentHealth, "A cortada precisa de antecipação.");
             var ball = GameObject.Find("Bola_de_volei");
             Assert.IsNotNull(ball, "Marcos deve apresentar uma bola de vôlei própria.");
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(.75f);
+            var attackGlow = GameObject.Find("Iluminacao_da_area")?.GetComponent<SpriteRenderer>();
+            Assert.IsNotNull(attackGlow, "O impacto deve iluminar a área do golpe.");
+            Assert.AreEqual(30002, attackGlow.sortingOrder, "O brilho precisa ficar acima da escuridão da igreja.");
+            StringAssert.Contains("AttackGlow", attackGlow.sprite.name);
+            Assert.Greater(attackGlow.color.a, .5f);
+            Assert.Greater(attackGlow.color.r, attackGlow.color.b, "A cortada deve iluminar em dourado.");
+            yield return new WaitForSeconds(.55f);
             Assert.AreEqual(66f, target.GetComponent<HealthSystem>().CurrentHealth, .01f);
             Assert.AreEqual(79.6f, nearby.GetComponent<HealthSystem>().CurrentHealth, .01f);
             Assert.AreEqual(100f, distant.GetComponent<HealthSystem>().CurrentHealth, .01f);

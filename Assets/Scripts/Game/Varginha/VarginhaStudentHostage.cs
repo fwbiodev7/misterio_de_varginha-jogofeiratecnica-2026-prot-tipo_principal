@@ -11,9 +11,9 @@ namespace Game.Varginha
         [SerializeField] private float followSpeed = 2.6f;
 
         private Transform _fusca;
-        private Transform _leader;
+        private Rigidbody2D _body;
+        private CircleCollider2D _bodyCollider;
         private Vector3 _carOffset;
-        private Vector3 _followOffset;
         private SpriteRenderer _renderer;
         private SpriteRenderer _cageRenderer;
         private bool _released;
@@ -22,13 +22,46 @@ namespace Game.Varginha
         private readonly List<Vector2> _path = new();
         private Vector2 _pathDestination;
         private float _nextPathTime;
-        private bool _headingToCar;
         private Vector2 _arrivalPoint;
+        private Vector2 _movementTarget;
+        private bool _hasMovementTarget;
+        private static PhysicsMaterial2D _movementMaterial;
 
         public string StudentName => studentName;
         public bool IsReleased => _released;
         public bool IsCaged => !_released;
         public bool IsAtFusca => _arrived;
+
+        private void Awake()
+        {
+            EnsurePhysicsBody();
+        }
+
+        private void EnsurePhysicsBody()
+        {
+            _body = GetComponent<Rigidbody2D>();
+            if (_body == null) _body = gameObject.AddComponent<Rigidbody2D>();
+            _body.bodyType = RigidbodyType2D.Dynamic;
+            _body.gravityScale = 0f;
+            _body.constraints = RigidbodyConstraints2D.FreezeRotation;
+            _body.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            _body.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+            _bodyCollider = GetComponent<CircleCollider2D>();
+            if (_bodyCollider == null) _bodyCollider = gameObject.AddComponent<CircleCollider2D>();
+            _bodyCollider.radius = .22f;
+            _bodyCollider.isTrigger = false;
+            if (_movementMaterial == null)
+                _movementMaterial = new PhysicsMaterial2D("StudentHostage_NoFriction") { friction = 0f, bounciness = 0f };
+            _bodyCollider.sharedMaterial = _movementMaterial;
+
+            foreach (var other in FindObjectsByType<VarginhaStudentHostage>(FindObjectsInactive.Include))
+            {
+                if (other == null || other == this) continue;
+                foreach (var otherCollider in other.GetComponentsInChildren<Collider2D>(true))
+                    if (otherCollider != _bodyCollider) Physics2D.IgnoreCollision(_bodyCollider, otherCollider, true);
+            }
+        }
 
         /// <summary>
         /// Reaplica a apresentação visual quando uma cena antiga foi salva sem a jaula
@@ -75,14 +108,12 @@ namespace Game.Varginha
             if (_released || fusca == null) return;
             _released = true;
             _fusca = fusca;
-            _leader = leader;
             _school = GameObject.Find("Escola_3_Sistema_Ambiente")?.transform;
             // A fila do Fusca usa um espaço compacto; durante o acompanhamento eles
             // mantêm uma formação 3x3 atrás do Edelzio, evitando que um sprite cubra os outros.
             int column = index % 3;
             int row = index / 3;
             _carOffset = new Vector3(-1.35f - column * .70f, (row - 1) * .82f, 0f);
-            _followOffset = new Vector3(-1.75f - column * 1.05f, (1 - row) * 1.12f, 0f);
             if (_renderer != null) _renderer.sortingOrder = 8 + Mathf.Clamp(index, 0, 8);
             if (_renderer != null) _renderer.color = Color.white;
             if (_cageRenderer != null) _cageRenderer.enabled = false;
@@ -90,6 +121,7 @@ namespace Game.Varginha
 
         private void Update()
         {
+            _hasMovementTarget = false;
             if (!_released && _cageRenderer != null)
             {
                 // O brilho pulsa para comunicar que os alunos ainda estão presos.
@@ -97,21 +129,7 @@ namespace Game.Varginha
                 _cageRenderer.color = new Color(1f, 1f, 1f, pulse);
             }
             if (!_released || _fusca == null || _arrived) return;
-            // Once the escort reaches the parking area, finish boarding even if Edelzio
-            // steps away briefly. Do not keep reversing the entire group's route.
-            bool wasHeadingToCar = _headingToCar;
-            _headingToCar |= _leader == null || Vector2.Distance(_leader.position, _fusca.position) <= VarginhaPhase2Controller.BoardingRadius;
-            if (_headingToCar && !wasHeadingToCar)
-            {
-                _path.Clear();
-                _nextPathTime = 0f;
-            }
-            bool headingToCar = _headingToCar;
             Vector3 destination = _fusca.position + _carOffset;
-            // Enquanto Edelzio ainda está na escola, a turma o acompanha; quando ele volta ao Fusca,
-            // cada aluno entra na fila do carro para concluir a fase.
-            if (!headingToCar)
-                destination = _leader.position + _followOffset;
 
             Vector2 next = destination;
             if (_school == null) _arrivalPoint = destination;
@@ -127,22 +145,38 @@ namespace Game.Varginha
                     // point, rather than waiting forever for an exact point inside a collider.
                     _arrivalPoint = _path.Count > 0 ? _path[_path.Count - 1] : (Vector2)destination;
                 }
+                while (_path.Count > 0 && Vector2.Distance(transform.position, _path[0]) < .08f)
+                    _path.RemoveAt(0);
                 // Take the farthest visible waypoint, keeping every movement segment clear of walls.
                 while (_path.Count > 1 && VarginhaSchoolNavigation.CanWalkSegment(transform.position, _path[1])) _path.RemoveAt(0);
                 if (_path.Count == 0 && Vector2.Distance(transform.position, _arrivalPoint) >= .2f) return;
                 if (_path.Count == 0) next = _arrivalPoint;
                 if (_path.Count > 0) next = _path[0];
             }
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(next.x, next.y, transform.position.z), followSpeed * Time.deltaTime);
+            _movementTarget = next;
+            _hasMovementTarget = true;
 
             transform.localScale = Vector3.one;
 
-            if (headingToCar && Vector2.Distance(transform.position, _arrivalPoint) < .2f
-                && Vector2.Distance(_arrivalPoint, destination) <= 1f)
+            if (Vector2.Distance(transform.position, destination) < .3f)
             {
                 _arrived = true;
                 VarginhaPhase2Controller.NotifyStudentAtFusca(this);
             }
+        }
+
+        private void FixedUpdate()
+        {
+            if (_body == null) EnsurePhysicsBody();
+            if (_body == null) return;
+            if (!_released || !_hasMovementTarget)
+            {
+                _body.linearVelocity = Vector2.zero;
+                return;
+            }
+
+            Vector2 next = Vector2.MoveTowards(_body.position, _movementTarget, followSpeed * Time.fixedDeltaTime);
+            _body.MovePosition(next);
         }
 
         private void OnGUI()

@@ -53,6 +53,37 @@ namespace Game.Tests.PlayMode
             yield return Rescue(true);
         }
 
+        [UnityTest]
+        public IEnumerator ReleasedStudentGoesToTheCarAndWaitsWhileLeaderIsAway()
+        {
+            Time.timeScale = 1;
+            _root = new GameObject("InteriorDoorFollowTest");
+            VarginhaEnvironmentArt.EnsureSchool(_root.transform);
+            var car = new GameObject("TestCar").transform;
+            car.SetParent(_root.transform);
+            car.position = VarginhaEnvironmentArt.FuscaParkingPosition;
+            var leader = new GameObject("TestLeader").transform;
+            leader.SetParent(_root.transform);
+            leader.position = car.position + Vector3.right * 9f;
+            var studentObject = new GameObject("TestStudent");
+            studentObject.transform.SetParent(_root.transform);
+            studentObject.transform.position = new Vector3(-7f, -4.8f);
+            var student = studentObject.AddComponent<VarginhaStudentHostage>();
+            student.ReleaseTo(car, 0, leader);
+            Assert.AreEqual(RigidbodyType2D.Dynamic, student.GetComponent<Rigidbody2D>().bodyType);
+            Assert.IsFalse(student.GetComponent<CircleCollider2D>().isTrigger);
+
+            float deadline = Time.realtimeSinceStartup + 15f;
+            while (!student.IsAtFusca && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.IsTrue(student.IsAtFusca, "O aluno deve ir até o Fusca sem esperar Edelzio.");
+            Vector3 parked = student.transform.position;
+
+            yield return new WaitForSeconds(1f);
+
+            Assert.That(Vector2.Distance(student.transform.position, parked), Is.LessThan(.05f),
+                "O aluno deve esperar no Fusca até Edelzio chegar.");
+        }
+
         private IEnumerator Rescue(bool obstructSlot)
         {
             Time.timeScale = 1;

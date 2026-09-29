@@ -28,8 +28,9 @@ namespace Game.Varginha
             if (motif == "Glass") Glass(canvas);
             else if (motif == "GlassLight") Projection(canvas, true);
             else if (motif == "WindowLight") Projection(canvas, false);
-            else if (motif == "Glow") Glow(canvas, false);
-            else if (motif == "Shadow") Glow(canvas, true);
+            else if (motif == "Glow") Glow(canvas, false, .24f);
+            else if (motif == "AttackGlow") Glow(canvas, false, .5f);
+            else if (motif == "Shadow") Glow(canvas, true, .34f);
             else if (motif == "Window") Window(canvas);
             else if (motif == "Books") Books(canvas);
             else if (motif == "Noticeboard") Noticeboard(canvas);
@@ -121,14 +122,14 @@ namespace Game.Varginha
             }
         }
 
-        private static void Glow(Canvas c, bool shadow)
+        private static void Glow(Canvas c, bool shadow, float peakAlpha)
         {
             for (int y = 0; y < c.H; y++)
             for (int x = 0; x < c.W; x++)
             {
                 float dx = (x + .5f) / c.W * 2 - 1, dy = (y + .5f) / c.H * 2 - 1;
                 float strength = Mathf.Clamp01(1f - dx * dx - dy * dy);
-                float alpha = strength * strength * strength * (shadow ? .34f : .24f);
+                float alpha = strength * strength * strength * peakAlpha;
                 c.Pixel(x, y, shadow ? Hex(0x0b1020, alpha) : Hex(0xffce83, alpha));
             }
         }

@@ -16,7 +16,7 @@ namespace Game.Varginha
             if (Cache.TryGetValue(key, out var cached) && cached != null && cached.texture != null) return cached;
             Sprite portrait = null;
             if (key == "edelzio") portrait = VarginhaStudentSprites.Portrait("Edelzio");
-            else if (key == "padre fabio") portrait = VarginhaStudentSprites.Portrait("PadreFabio");
+            else if (key == "padre fabio") portrait = PadreFabioPortrait();
             else
             {
                 foreach (var student in VarginhaPhase2Controller.StudentNames)
@@ -31,6 +31,19 @@ namespace Game.Varginha
                 portrait = VarginhaPixelArtSprites.Create(icon, new Color(.45f, .65f, .68f));
             }
             Cache[key] = portrait;
+            return portrait;
+        }
+
+        private static Sprite PadreFabioPortrait()
+        {
+            var character = VarginhaReferenceSprites.PadreFabio();
+            if (character == null) return VarginhaStudentSprites.Portrait("PadreFabio");
+
+            Rect frame = character.rect;
+            var portraitFrame = new Rect(frame.x + 8f, frame.y + 19f, frame.width - 16f, frame.height - 19f);
+            var portrait = Sprite.Create(character.texture, portraitFrame, new Vector2(.5f, .5f),
+                character.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+            portrait.name = "PadreFabio_Portrait_FromWorldSprite";
             return portrait;
         }
 

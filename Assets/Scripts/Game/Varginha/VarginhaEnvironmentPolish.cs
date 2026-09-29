@@ -52,7 +52,8 @@ namespace Game.Varginha
             RefreshReferenceFurniture(church);
             EnsurePewCollisions(church);
             RefreshFlames(church);
-            if (!NeedsRefresh(church)) return;
+            EmphasizeStainedGlass(church);
+            if (!NeedsRefresh(church, false, true)) return;
             RefreshSurfaces(church, false);
             var decor = Root(church);
             // Lateral beams point into the nave, away from the wall. Rays and
@@ -96,20 +97,27 @@ namespace Game.Varginha
             Part(decor, "Arquivo_Sacristia", "Bookshelf", new Vector2(7.55f, 4.4f), new Vector2(1.45f, 1.65f), 3);
             Part(decor, "Planta_Sacristia", "Plant", new Vector2(7.75f, -5.4f), new Vector2(.8f, 1.2f), 3);
             Part(decor, "Planta_Entrada", "Plant", new Vector2(-7.85f, -5.65f), new Vector2(.7f, 1f), 3);
-            for (int i = 0; i < 4; i++)
-            {
-                Vector2 pos = new Vector2(i % 2 == 0 ? 3.95f : 6.45f, i < 2 ? 1.45f : -1f);
-                Pool(decor, "Luz_Vela_Altar_" + i, pos + Vector2.down * .18f, new Vector2(2.3f, 1.55f), 1f, true);
-            }
             for (int i = 0; i < 3; i++)
             {
                 var pos = new Vector2(-3.4f + i * 3.4f, 5.9f);
                 Part(decor, "Arandela_" + i, "Sconce", pos, new Vector2(.45f, .8f), 4);
-                Pool(decor, "Luz_Arandela_" + i, pos + Vector2.down * .5f, new Vector2(2.3f, 1.45f), .85f, true);
             }
             ContactShadows(church, decor);
             VarginhaSoftLighting.Build(church, decor);
             RefreshFlames(church);
+            EmphasizeStainedGlass(church);
+        }
+
+        private static void EmphasizeStainedGlass(Transform church)
+        {
+            foreach (var renderer in church.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                if (!renderer.name.StartsWith("CenarioV2_Vitral_")) continue;
+                renderer.color = renderer.name.Contains("Fundo")
+                    ? new Color(1f, .58f, .76f)
+                    : new Color(.52f, .84f, 1f);
+                renderer.sortingOrder = 30001;
+            }
         }
 
         public static void EnsurePewCollisions(Transform church)
@@ -262,15 +270,22 @@ namespace Game.Varginha
             {
                 if (renderer.name.StartsWith("CenarioV2_Vela_"))
                 {
-                    renderer.sprite = VarginhaPixelArtSprites.Create("ChurchCandle", new Color(.83f, .56f, .20f));
-                    VarginhaFlameAnimation.Ensure(renderer.transform, new Vector2(0f, .32f), .38f);
+                    renderer.sprite = VarginhaPixelArtSprites.Create("ChurchCandle", new Color(.38f, .32f, .25f));
+                    renderer.color = Color.white;
+                    DisableFlame(renderer.transform);
                 }
                 else if (renderer.name.StartsWith("Arandela_"))
-                    VarginhaFlameAnimation.Ensure(renderer.transform, new Vector2(0f, .23f), .28f);
+                    DisableFlame(renderer.transform);
             }
         }
 
-        private static bool NeedsRefresh(Transform parent, bool composedHouse = false)
+        private static void DisableFlame(Transform holder)
+        {
+            var flame = holder.Find("Chama_Referencia");
+            if (flame != null) flame.gameObject.SetActive(false);
+        }
+
+        private static bool NeedsRefresh(Transform parent, bool composedHouse = false, bool churchLighting = false)
         {
             if (parent == null) return false;
             var previous = parent.Find(Marker);
@@ -280,6 +295,8 @@ namespace Game.Varginha
             var renderers = previous.GetComponentsInChildren<SpriteRenderer>(true);
             bool valid = renderers.Length > 0 && previous.Find(VarginhaSoftLighting.LayerName) != null;
             if (composedHouse && previous.Find("Abajur_Cabeceira") == null) valid = false;
+            if (churchLighting && (previous.Find("Luz_Vela_Altar_0") != null
+                || previous.Find("Luz_Arandela_0") != null || previous.Find("Brilho_Vela_Altar_0") != null)) valid = false;
             foreach (var renderer in renderers)
             {
                 if (renderer.sprite == null || renderer.sprite.texture == null) { valid = false; break; }

@@ -47,23 +47,37 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
-        public void DioceseHasSevenAnimatedFlamesWithoutDuplicateChildrenOrColliders()
+        public void DioceseKeepsCandlesUnlitAndStainedGlassVisible()
         {
             var root = new GameObject("ReferenceDioceseTest");
             try
             {
                 var church = VarginhaEnvironmentArt.EnsureDiocese(root.transform);
-                var flames = church.GetComponentsInChildren<VarginhaFlameAnimation>(true);
-                Assert.AreEqual(7, flames.Length);
+                Assert.IsEmpty(church.GetComponentsInChildren<VarginhaFlameAnimation>(true));
+                Assert.That(VarginhaDarkness.ChurchOpacity, Is.InRange(.8f, .85f));
+                var sideWindow = church.Find("CenarioV2_Vitral_Lateral_0").GetComponent<SpriteRenderer>();
+                var northWindow = church.Find("CenarioV2_Vitral_Fundo_0").GetComponent<SpriteRenderer>();
+                Assert.Greater(sideWindow.sortingOrder, 30000);
+                Assert.Greater(northWindow.sortingOrder, 30000);
+                Assert.Greater(sideWindow.color.b, sideWindow.color.r);
+                Assert.Greater(northWindow.color.r, northWindow.color.b);
+                Assert.IsNull(church.Find("Cenario_Acabamento_V3/Luz_Vela_Altar_0"));
+                Assert.IsNull(church.Find("Cenario_Acabamento_V3/Luz_Arandela_0"));
+                Assert.IsNull(church.Find("Cenario_Acabamento_V3/Brilho_Vela_Altar_0"));
                 VarginhaEnvironmentArt.EnsureDiocese(root.transform);
-                Assert.AreEqual(7, church.GetComponentsInChildren<VarginhaFlameAnimation>(true).Length);
-                foreach (var flame in flames)
-                {
-                    Assert.IsNull(flame.GetComponent<Collider2D>());
-                    Assert.That(flame.GetComponent<SpriteRenderer>().sprite.name, Does.StartWith("Reference_Fire_"));
-                }
+                Assert.IsEmpty(church.GetComponentsInChildren<VarginhaFlameAnimation>(true));
             }
             finally { Object.DestroyImmediate(root); }
+        }
+
+        [Test]
+        public void OfficialTravelCabinLoadsUpdatedComposition()
+        {
+            var cabin = Resources.Load<Texture2D>("Varginha/TravelPixel/CabinStudents");
+            Assert.IsNotNull(cabin);
+            Assert.AreEqual(1672, cabin.width);
+            Assert.AreEqual(941, cabin.height);
+            Assert.AreEqual(FilterMode.Point, cabin.filterMode);
         }
 
         [Test]

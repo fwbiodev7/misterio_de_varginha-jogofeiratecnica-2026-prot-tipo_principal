@@ -186,7 +186,7 @@ namespace Game.Varginha
             if (_rescueStarted || _students.Length < StudentNames.Length || _fusca == null) return;
             _rescueStarted = true;
             VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Consegui! A escola está livre. Todos para o Fusca, rápido!");
-            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Os alunos estão livres. Saia pela porta e conduza a turma até o Fusca no estacionamento.'");
+            VarginhaGameHUD.Instance?.ShowRodrigoHint("Rodrigo: 'Os alunos vão até o Fusca sozinhos. Vá para o estacionamento; Edelzio embarca quando todos chegarem.'");
             for (int i = 0; i < _students.Length; i++)
                 _students[i].ReleaseTo(_fusca, i, _player != null ? _player.transform : null);
         }

@@ -28,8 +28,13 @@ namespace Game.Varginha
             return true;
         }
 
-        private static bool IsWall(Collider2D collider) => collider != null && !collider.isTrigger &&
-            (collider.attachedRigidbody == null || collider.attachedRigidbody.bodyType == RigidbodyType2D.Static);
+        private static bool IsWall(Collider2D collider)
+        {
+            if (collider == null || collider.isTrigger) return false;
+            if (collider.GetComponentInParent<VarginhaStudentHostage>() != null) return false;
+            if (collider.GetComponentInParent<VarginhaStudentAlly>() != null) return false;
+            return collider.attachedRigidbody == null || collider.attachedRigidbody.bodyType == RigidbodyType2D.Static;
+        }
 
         public static void FindPath(Transform environment, Vector2 start, Vector2 destination, List<Vector2> path)
         {

@@ -16,7 +16,7 @@ namespace Game.Varginha
             if (_eyes == null) return;
             _eyes.enabled = _body.enabled && GetComponent<VarginhaCombatTarget>()?.IsDead != true;
             _eyes.flipX = _body.flipX; _eyes.flipY = _body.flipY;
-            _eyes.color = new Color(.6f, .13f, .1f, .72f);
+            _eyes.color = new Color(.9f, .012f, .025f, .98f);
         }
         private void Rebuild()
         {

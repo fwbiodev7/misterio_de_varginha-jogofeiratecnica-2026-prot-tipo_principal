@@ -144,7 +144,7 @@ namespace Game.Varginha
             int offset = sway == 0 ? -1 : sway == 2 ? 1 : 0;
             if (_cabin != null)
             {
-                Blit(_cabin, -1, 25 + offset, Width + 2, 160);
+                Blit(_cabin, 0, offset, Width, Height);
             }
             else
             {
@@ -167,6 +167,7 @@ namespace Game.Varginha
             Fill(176, 179, 32, 1, 0xff3b6680);
             Fill(panelGlow, 171, 2, 1, 0xffe0b45f);
         }
+
         private void Fill(int x,int y,int w,int h,uint color)
         {
             for(int yy=Math.Max(0,y);yy<Math.Min(Height,y+h);yy++)

@@ -54,8 +54,14 @@ namespace Game.Tests.PlayMode
         [TestCase("Luis Miguel Messias", "LuisMiguelMessias")]
         public void PortraitUsesTheSpeakersCurrentAtlas(string speaker, string asset)
         {
-            Assert.AreSame(Resources.Load<Texture2D>("Varginha/Allies/" + asset),
-                VarginhaDialoguePortraits.ForSpeaker(speaker).texture);
+            var portrait = VarginhaDialoguePortraits.ForSpeaker(speaker);
+            if (asset == "PadreFabio")
+            {
+                var worldSprite = VarginhaReferenceSprites.PadreFabio();
+                Assert.AreSame(worldSprite.texture, portrait.texture);
+                Assert.Less(portrait.rect.height, worldSprite.rect.height);
+            }
+            else Assert.AreSame(Resources.Load<Texture2D>("Varginha/Allies/" + asset), portrait.texture);
         }
 
         [UnityTest] public IEnumerator InterruptedCoffeeRestoresCupAndMovement()

@@ -21,6 +21,8 @@ namespace Game.Varginha
         private Color32[] _frameColors;
         private VarginhaTravelPixelArt _art;
         private int _lastTick = -1;
+        private bool _artUnavailable;
+        private bool _artWarningShown;
 
         public static bool Begin(bool withStudents)
         {
@@ -78,10 +80,23 @@ namespace Game.Varginha
 
         private void EnsureArt()
         {
-            if (_art != null) return;
-            _art = new VarginhaTravelPixelArt(Load("TravelPixel/NightRoad"),
-                Load("TravelPixel/FuscaReference"), Load("TravelPixel/TreeReference"),
-                Load("TravelPixel/CabinStudentsV2") ?? Load("TravelPixel/CabinStudents"));
+            if (_art != null || _artUnavailable) return;
+            var night = Load("TravelPixel/NightRoad");
+            var car = Load("TravelPixel/FuscaReference");
+            var tree = Load("TravelPixel/TreeReference");
+            if (night == null || car == null || tree == null)
+            {
+                _artUnavailable = true;
+                if (!_artWarningShown)
+                {
+                    Debug.LogError("Arte obrigatória da viagem do Fusca ausente; a transição seguirá sem a ilustração.");
+                    _artWarningShown = true;
+                }
+                return;
+            }
+
+            var cabin = Load("TravelPixel/CabinStudents");
+            _art = new VarginhaTravelPixelArt(night, car, tree, cabin);
             _frame = new Texture2D(VarginhaTravelPixelArt.Width,VarginhaTravelPixelArt.Height,TextureFormat.RGBA32,false)
             { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, name = "Loading_PixelArt_384x216" };
             _frameColors = new Color32[VarginhaTravelPixelArt.Width * VarginhaTravelPixelArt.Height];
@@ -89,7 +104,7 @@ namespace Game.Varginha
         private static VarginhaTravelPixelArt.Picture Load(string name)
         {
             var texture = Resources.Load<Texture2D>("Varginha/" + name);
-            if (texture == null) throw new System.InvalidOperationException("Arte de viagem ausente: " + name);
+            if (texture == null) return null;
             texture.filterMode = FilterMode.Point;
             Color32[] colors;
             try
@@ -123,6 +138,7 @@ namespace Game.Varginha
         private void Update()
         {
             EnsureArt();
+            if (_art == null) return;
             int tick=Mathf.FloorToInt(_elapsed*12f);
             if(_lastTick==tick)return;
             _lastTick=tick;

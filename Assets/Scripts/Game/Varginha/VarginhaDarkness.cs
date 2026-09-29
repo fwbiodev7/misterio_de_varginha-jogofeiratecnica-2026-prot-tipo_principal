@@ -6,6 +6,7 @@ namespace Game.Varginha
     [DefaultExecutionOrder(500)]
     public sealed class VarginhaDarkness : MonoBehaviour
     {
+        public const float ChurchOpacity = .90f;
         private EdelzioTopDownController _player;
         private bool _church;
         private Material _material;
@@ -63,7 +64,7 @@ namespace Game.Varginha
             if (_renderer == null || _material == null) return;
             var camera = Camera.main;
             if (camera == null) return;
-            Opacity = _church ? .995f : SurgeOpacity(_surgeStarted < 0 ? -1 : Time.time - _surgeStarted);
+            Opacity = _church ? ChurchOpacity : SurgeOpacity(_surgeStarted < 0 ? -1 : Time.time - _surgeStarted);
             _renderer.enabled = Opacity > 0 && !VarginhaTravelCinematic.IsTravelling;
             var layer = _renderer.transform;
             layer.position = new Vector3(camera.transform.position.x, camera.transform.position.y, 0);

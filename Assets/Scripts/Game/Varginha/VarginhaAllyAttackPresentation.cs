@@ -41,6 +41,11 @@ namespace Game.Varginha
             warning.transform.position = destination;
             float warningRadius = style == VarginhaStudentAllyStyle.PingPong || style == VarginhaStudentAllyStyle.Katana
                 ? .75f : areaRadius;
+            var areaGlow = Part("Iluminacao_da_area", VarginhaSceneryArt.Create("AttackGlow", new Vector2(2.5f, 2.5f)),
+                Color.white, 1f, 30002);
+            areaGlow.enabled = false;
+            areaGlow.transform.position = destination;
+            areaGlow.transform.localScale = Vector3.one * Mathf.Max(.55f, warningRadius / 1.25f);
             bool customImpact = volleyball || marcosKick || marcosElbow || style == VarginhaStudentAllyStyle.Art
                 || style == VarginhaStudentAllyStyle.Guitar || style == VarginhaStudentAllyStyle.Microphone;
             var burst = Part("Impacto_cartoon", customImpact
@@ -175,6 +180,12 @@ namespace Game.Varginha
                 if (struck)
                 {
                     warning.enabled = false;
+                    Color glowColor = AttackGlowColor(style, color, time);
+                    areaGlow.enabled = true;
+                    glowColor = Color.Lerp(glowColor, Color.white, .12f);
+                    areaGlow.color = new Color(glowColor.r, glowColor.g, glowColor.b, (1f - after) * .9f);
+                    float pulse = 1f + Mathf.Sin(time * 11f) * .045f;
+                    areaGlow.transform.localScale = Vector3.one * (Mathf.Max(.55f, warningRadius / 1.25f) * pulse);
                     burst.transform.position = destination;
                     burst.transform.localScale = Vector3.one*(2.6f + after*.8f);
                     burst.transform.rotation = Quaternion.Euler(0,0,after*35);
@@ -318,6 +329,25 @@ namespace Game.Varginha
                 clip=AudioClip.Create("Impacto_"+style,count,1,rate,false);clip.SetData(samples,0);Sounds[style]=clip;
             }
             var audio=_root.AddComponent<AudioSource>();audio.playOnAwake=false;audio.spatialBlend=0;audio.volume=.35f;audio.PlayOneShot(clip);
+        }
+
+        private static Color AttackGlowColor(VarginhaStudentAllyStyle style, Color studentColor, float time)
+        {
+            if (style == VarginhaStudentAllyStyle.Art)
+                return Color.HSVToRGB(Mathf.Repeat(time * .75f, 1f), .8f, 1f);
+            switch (style)
+            {
+                case VarginhaStudentAllyStyle.JiuJitsu: return new Color(.24f, .52f, 1f);
+                case VarginhaStudentAllyStyle.PingPong: return new Color(.35f, 1f, .72f);
+                case VarginhaStudentAllyStyle.Guitar: return new Color(1f, .62f, .2f);
+                case VarginhaStudentAllyStyle.Microphone: return new Color(.22f, .82f, 1f);
+                case VarginhaStudentAllyStyle.Katana: return new Color(.58f, .82f, 1f);
+                case VarginhaStudentAllyStyle.FallingPiano: return new Color(1f, .72f, .3f);
+                case VarginhaStudentAllyStyle.Volleyball: return new Color(1f, .83f, .24f);
+                case VarginhaStudentAllyStyle.MarcosChute: return new Color(1f, .28f, .18f);
+                case VarginhaStudentAllyStyle.MarcosCotovelo: return new Color(.74f, .42f, 1f);
+                default: return Color.Lerp(studentColor, Color.white, .35f);
+            }
         }
 
         public static string Signature(string name, VarginhaStudentAllyStyle style)

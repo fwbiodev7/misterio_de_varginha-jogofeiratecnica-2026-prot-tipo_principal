@@ -31,6 +31,19 @@ namespace Game.Tests.EditMode
                 "A fachada permanece sólida fora da porta.");
         }
 
+        [Test] public void HostageColliderDoesNotBlockTheOpenDoor()
+        {
+            var student = new GameObject("HostageInDoor", typeof(BoxCollider2D), typeof(VarginhaStudentHostage));
+            student.transform.SetParent(_root.transform);
+            student.transform.position = VarginhaSchoolExterior.Entrance;
+            Physics2D.SyncTransforms();
+
+            Vector2 start = VarginhaSchoolExterior.Entrance + Vector2.down * 2;
+            Vector2 finish = VarginhaSchoolExterior.Entrance + Vector2.up * 2;
+            Assert.IsTrue(VarginhaSchoolNavigation.CanWalkSegment(start, finish),
+                "Um aluno parado no vão não deve ser tratado como parede para os outros.");
+        }
+
         [Test] public void AllNineStudentsHaveWallFreeRoutesThroughTheEntrance()
         {
             for (int i = 0; i < 9; i++)

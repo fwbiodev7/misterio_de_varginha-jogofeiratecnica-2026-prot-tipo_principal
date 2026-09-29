@@ -57,6 +57,9 @@ namespace Game.Varginha
         private Transform _leader;
         private VarginhaStudentAllySquad _squad;
         private Vector3 _formationOffset;
+        private readonly List<Vector2> _followPath = new();
+        private Vector2 _followPathDestination;
+        private float _nextFollowPathTime;
         private SpriteRenderer _renderer;
         private SpriteRenderer _headRenderer;
         private Color _shirtColor = new Color(.25f, .52f, .88f);
@@ -166,6 +169,8 @@ namespace Game.Varginha
             CurrentTarget = null;
             _leader = leader;
             _squad = GetComponentInParent<VarginhaStudentAllySquad>();
+            _followPath.Clear();
+            _nextFollowPathTime = 0f;
             _active = true;
             _manualMode = false;
             _manualPresentation = false;
@@ -200,6 +205,7 @@ namespace Game.Varginha
             _attacking = false;
             _manualMode = false;
             _manualPresentation = false;
+            _followPath.Clear();
             CurrentTarget = null;
             StopAllCoroutines();
             GetComponent<VarginhaAllyAttackPresentation>()?.Cancel();
@@ -241,11 +247,7 @@ namespace Game.Varginha
                 }
                 Vector3 offset = _manualMode ? new Vector3(-.7f, -.5f, 0) : _formationOffset;
                 Vector3 destination = _leader.position + offset + freeMotion + separation * .75f;
-                destination = ResolveFreeDestination(destination);
-                Vector3 prevPos = transform.position;
-                float distance = Vector3.Distance(transform.position, destination);
-                transform.position = Vector3.MoveTowards(transform.position, destination,
-                    Mathf.Max(followSpeed, distance * 3f) * Time.deltaTime);
+                FollowPath(destination);
 
                 // The directional atlas supplies the walk; fixed scale keeps every pixel crisp.
                 transform.localScale = Vector3.one;
@@ -256,6 +258,28 @@ namespace Game.Varginha
             if (_manualMode || _attacking || _cooldownTimer > 0f) return;
             var target = FindNearestTargetForNextAttack();
             if (target != null) StartCoroutine(AttackRoutine(target));
+        }
+
+        private void FollowPath(Vector3 destination)
+        {
+            if (Time.time >= _nextFollowPathTime && (_followPath.Count == 0
+                || ((Vector2)destination - _followPathDestination).sqrMagnitude > .36f))
+            {
+                VarginhaSchoolNavigation.FindPath(_leader, transform.position, destination, _followPath);
+                _followPathDestination = destination;
+                _nextFollowPathTime = Time.time + .3f;
+            }
+
+            while (_followPath.Count > 1
+                && VarginhaSchoolNavigation.CanWalkSegment(transform.position, _followPath[1]))
+                _followPath.RemoveAt(0);
+            if (_followPath.Count == 0) return;
+
+            Vector2 waypoint = _followPath[0];
+            float distance = Vector2.Distance(transform.position, waypoint);
+            transform.position = Vector3.MoveTowards(transform.position,
+                new Vector3(waypoint.x, waypoint.y, transform.position.z),
+                Mathf.Max(followSpeed, distance * 3f) * Time.deltaTime);
         }
 
         private void EnsureHeadRenderer()
