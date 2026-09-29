@@ -45,12 +45,33 @@ namespace Game.Tests.PlayMode
 
         [UnityTest] public IEnumerator NineReleasedStudentsWalkOutTheDoorAndReachExternalFusca()
         {
+            yield return Rescue(false);
+        }
+
+        [UnityTest] public IEnumerator BoardingFinishesWithBlockedSlotAndLeaderLeavingTheRadius()
+        {
+            yield return Rescue(true);
+        }
+
+        private IEnumerator Rescue(bool obstructSlot)
+        {
             Time.timeScale = 1;
             _root = new GameObject("SchoolRescueTest");
             VarginhaEnvironmentArt.EnsureSchool(_root.transform);
             var car = new GameObject("RescueCar").transform;
             car.SetParent(_root.transform);
             car.position = VarginhaEnvironmentArt.FuscaParkingPosition;
+            var leader = new GameObject("EscortLeader").transform;
+            leader.SetParent(_root.transform);
+            leader.position = car.position + Vector3.right * 3.8f;
+            if (obstructSlot)
+            {
+                var obstacle = new GameObject("BlockedBoardingSlot");
+                obstacle.transform.SetParent(_root.transform);
+                obstacle.transform.position = car.position + new Vector3(-1.35f, -.82f);
+                obstacle.AddComponent<BoxCollider2D>().size = Vector2.one * .4f;
+            }
+            Physics2D.SyncTransforms();
             var students = new VarginhaStudentHostage[9];
             var positions = new Vector2[9];
             for (int i = 0; i < 9; i++)
@@ -60,10 +81,12 @@ namespace Game.Tests.PlayMode
                 go.transform.position = new Vector3(-2.2f + i % 3 * 2.2f, 1.8f - i / 3 * 1.8f);
                 go.AddComponent<SpriteRenderer>();
                 students[i] = go.AddComponent<VarginhaStudentHostage>();
-                students[i].ReleaseTo(car, i, car);
+                students[i].ReleaseTo(car, i, leader);
                 positions[i] = go.transform.position;
             }
             float deadline = Time.realtimeSinceStartup + 25;
+            yield return null;
+            if (obstructSlot) leader.position = car.position + Vector3.right * 7f;
             while (students.Any(student => !student.IsAtFusca) && Time.realtimeSinceStartup < deadline)
             {
                 yield return null;

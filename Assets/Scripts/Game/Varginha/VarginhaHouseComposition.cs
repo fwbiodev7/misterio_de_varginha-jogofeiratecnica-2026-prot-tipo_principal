@@ -49,6 +49,26 @@ namespace Game.Varginha
             Place(pieces, "KitchenRunner", 4.55f, -3.85f, 4.65f, -3.85f, 4.5f, .85f);
             Place(pieces, "CoffeeTable_Kitchen", 4.6f, -2.55f, 4.6f, -2.05f, 1.45f, .85f);
             Place(pieces, "Coffee_Cup", 4.6f, -2.55f, 4.6f, -1.86f, .48f, .48f);
+            if (pieces.TryGetValue("Notebook_TI", out var notebook)) EnsureNotebookChair(notebook);
+        }
+
+        public static GameObject EnsureNotebookChair(Transform notebook)
+        {
+            if (notebook == null) return null;
+            GameObject chair = null;
+            foreach (var item in notebook.root.GetComponentsInChildren<Transform>(true))
+                if (item.name == "Chair_Office") { chair = item.gameObject; break; }
+            if (chair == null)
+            {
+                chair = new GameObject("Chair_Office");
+                chair.transform.SetParent(notebook.parent, true);
+                chair.transform.position = notebook.position + Vector3.up;
+                var renderer = chair.AddComponent<SpriteRenderer>();
+                renderer.sprite = VarginhaSceneryArt.Create("Chair", new Vector2(.85f, 1.2f));
+                renderer.sortingOrder = 3;
+                chair.AddComponent<BoxCollider2D>().size = new Vector2(.6f, .55f);
+            }
+            return chair;
         }
 
         private static void Place(Dictionary<string, Transform> pieces, string name,

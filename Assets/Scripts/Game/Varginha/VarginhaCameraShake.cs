@@ -53,7 +53,10 @@ namespace Game.Varginha
                 _offset.x = Mathf.Round(_offset.x / pixel) * pixel;
                 _offset.y = Mathf.Round(_offset.y / pixel) * pixel;
             }
-            transform.position += _offset;
+            var position = transform.position;
+            var follow = GetComponent<Game.Level.CameraFollow2D>();
+            transform.position = follow != null ? follow.ConstrainPosition(position + _offset) : position + _offset;
+            _offset = transform.position - position;
             _time = Mathf.Max(0f, _time - Time.unscaledDeltaTime);
         }
 

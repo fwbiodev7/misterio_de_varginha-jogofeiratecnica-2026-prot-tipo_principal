@@ -28,12 +28,14 @@ namespace Game.Varginha
         private bool _departureStarted;
         private bool _encounterReady;
         private int _studentsAtFusca;
+        private int _lastBoardingHintCount = -1;
         private readonly HashSet<VarginhaStudentHostage> _arrivedStudents = new();
 
         public bool RescueStarted => _rescueStarted;
         public bool IsComplete => _departureStarted;
         public int StudentCount => _students.Length;
         public int StudentsAtFusca => _studentsAtFusca;
+        public const float BoardingRadius = 4.2f;
 
         private void Awake()
         {
@@ -198,8 +200,18 @@ namespace Game.Varginha
         private void LateUpdate()
         {
             if (!_rescueStarted || _departureStarted || _fusca == null || _player == null) return;
+            if (VarginhaGameHUD.Instance != null && VarginhaGameHUD.Instance.BlocksGameplayInput) return;
+            if (Vector2.Distance(_player.transform.position, _fusca.position) > BoardingRadius)
+            {
+                _lastBoardingHintCount = -1;
+                return;
+            }
+            if (_lastBoardingHintCount != _studentsAtFusca)
+            {
+                _lastBoardingHintCount = _studentsAtFusca;
+                VarginhaGameHUD.Instance?.ShowRodrigoHint($"Embarque: {_studentsAtFusca}/{_students.Length} alunos. Aguarde perto do Fusca; Edelzio entra automaticamente quando todos chegarem.");
+            }
             if (_studentsAtFusca < _students.Length) return;
-            if (Vector2.Distance(_player.transform.position, _fusca.position) > 3.4f) return;
             _departureStarted = true;
             StartCoroutine(DepartureRoutine());
         }
@@ -208,13 +220,24 @@ namespace Game.Varginha
         {
             _player.SetInputLocked(true);
             _player.SetCombatLocked(true);
+            _player.IsScriptedMotion = true;
+            // Physics must not fight the scripted movement into the seat or the car departure.
             var body = _player.GetComponent<Rigidbody2D>();
             if (body != null)
             {
                 body.linearVelocity = Vector2.zero;
                 body.simulated = false;
             }
-            _player.transform.position = _fusca.position + Vector3.left * .10f;
+            Vector3 start = _player.transform.position;
+            Vector3 seat = _fusca.position + Vector3.left * .10f;
+            float elapsed = 0f;
+            while (elapsed < .5f)
+            {
+                elapsed += Time.deltaTime;
+                _player.transform.position = Vector3.Lerp(start, seat, Mathf.SmoothStep(0f, 1f, elapsed / .5f));
+                yield return null;
+            }
+            _player.transform.position = seat;
             var flashlight = _player.GetComponent<EdelzioFlashlight>();
             if (flashlight != null) flashlight.enabled = false;
 

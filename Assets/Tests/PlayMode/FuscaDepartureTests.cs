@@ -9,6 +9,41 @@ namespace Game.Tests.PlayMode
 {
     public class FuscaDepartureTests
     {
+        [Test]
+        public void SchoolBoardingStopsPhysicsBeforeMovingIntoTheSeat()
+        {
+            var root = new GameObject("Boarding_Test");
+            IEnumerator routine = null;
+            try
+            {
+                var car = new GameObject("Car");
+                car.transform.SetParent(root.transform);
+                var actor = new GameObject("Player");
+                actor.transform.SetParent(root.transform);
+                actor.AddComponent<SpriteRenderer>();
+                var body = actor.AddComponent<Rigidbody2D>();
+                body.gravityScale = 0f;
+                actor.AddComponent<CircleCollider2D>();
+                var player = actor.AddComponent<EdelzioTopDownController>();
+                var controller = root.AddComponent<VarginhaPhase2Controller>();
+                controller.enabled = false;
+                const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
+                typeof(VarginhaPhase2Controller).GetField("_player", flags).SetValue(controller, player);
+                typeof(VarginhaPhase2Controller).GetField("_fusca", flags).SetValue(controller, car.transform);
+                body.linearVelocity = Vector2.right * 5f;
+                routine = (IEnumerator)typeof(VarginhaPhase2Controller).GetMethod("DepartureRoutine", flags).Invoke(controller, null);
+                Assert.IsTrue(routine.MoveNext());
+                Assert.IsFalse(body.simulated);
+                Assert.AreEqual(Vector2.zero, body.linearVelocity);
+                Assert.IsTrue(player.IsScriptedMotion);
+            }
+            finally
+            {
+                (routine as System.IDisposable)?.Dispose();
+                Object.DestroyImmediate(root);
+            }
+        }
+
         [UnityTest]
         public IEnumerator DepartureKeepsLaneAndEndsAtExactDistance()
         {

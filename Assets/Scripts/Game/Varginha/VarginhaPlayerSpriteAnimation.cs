@@ -25,6 +25,7 @@ namespace Game.Varginha
         private Sprite[] _actionFrames;
         private SpriteRenderer _beardRenderer;
         private bool _attackPose;
+        private bool _typing;
         private readonly EdelzioBackpackAppearance _backpackAppearance = new();
         private Sprite _bodyPose;
         private int _bodyDirection;
@@ -40,6 +41,7 @@ namespace Game.Varginha
 
         public void SetCombatPose(Sprite pose, Vector2 direction)
         {
+            _typing = false;
             _actionPose = pose;
             _attackPose = true;
             ActionFacingDirection = direction;
@@ -152,6 +154,8 @@ namespace Game.Varginha
 
             if (_actionPose != null)
             {
+                if (_typing)
+                    _actionPose = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_UseNotebook", Mathf.FloorToInt(Time.unscaledTime * 3f));
                 _renderer.enabled = true;
                 PresentPose(_actionPose, DirectionIndex(ActionFacingDirection));
                 SetBeard(_attackPose, DirectionIndex(ActionFacingDirection));
@@ -193,6 +197,7 @@ namespace Game.Varginha
             EnsureFrames();
             IsSeated = poseId == "Edelzio_Sit" || poseId == "Edelzio_UseNotebook";
             IsDrinking = poseId == "Edelzio_DrinkCoffee";
+            _typing = poseId == "Edelzio_UseNotebook";
             int index = poseId == "Edelzio_Crouch" ? 4 : poseId == "Edelzio_Reach" ? 5 :
                 poseId == "Edelzio_Sit" ? 6 : poseId == "Edelzio_UseNotebook" ? 7 : 0;
             _actionPose = _actionFrames != null ? _actionFrames[index] : _fallbackSprite;
@@ -207,9 +212,17 @@ namespace Game.Varginha
             if (_renderer != null) PresentPose(_actionPose, DirectionIndex(ActionFacingDirection));
         }
 
+        public void SetSeatingFrame(int frame)
+        {
+            SetActionPose("Edelzio_Sit");
+            _actionPose = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_Sit", frame);
+            if (_renderer != null) PresentPose(_actionPose, 0);
+        }
+
         public void ClearActionPose()
         {
             _actionPose = null;
+            _typing = false;
             _attackPose = false;
             IsSeated = false;
             IsDrinking = false;

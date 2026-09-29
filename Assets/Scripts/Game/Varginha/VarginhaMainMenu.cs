@@ -11,7 +11,6 @@ namespace Game.Varginha
     /// </summary>
     public class VarginhaMainMenu : MonoBehaviour
     {
-        [SerializeField] private string gameplaySceneName = "FaseTopView_Varginha";
         [SerializeField] private string phase3SceneName = "Fase3_Igreja_Guardiao";
 
         public static bool IsOpen { get; private set; }
@@ -256,7 +255,7 @@ namespace Game.Varginha
 
         private void StartInvestigation()
         {
-            _pendingScene = gameplaySceneName;
+            _pendingScene = VarginhaGameOverFlow.PhaseOneScene;
             panel = Panel.Difficulty;
         }
 

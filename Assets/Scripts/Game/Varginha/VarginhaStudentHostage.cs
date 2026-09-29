@@ -22,6 +22,8 @@ namespace Game.Varginha
         private readonly List<Vector2> _path = new();
         private Vector2 _pathDestination;
         private float _nextPathTime;
+        private bool _headingToCar;
+        private Vector2 _arrivalPoint;
 
         public string StudentName => studentName;
         public bool IsReleased => _released;
@@ -95,7 +97,16 @@ namespace Game.Varginha
                 _cageRenderer.color = new Color(1f, 1f, 1f, pulse);
             }
             if (!_released || _fusca == null || _arrived) return;
-            bool headingToCar = _leader == null || Vector2.Distance(_leader.position, _fusca.position) <= 3.4f;
+            // Once the escort reaches the parking area, finish boarding even if Edelzio
+            // steps away briefly. Do not keep reversing the entire group's route.
+            bool wasHeadingToCar = _headingToCar;
+            _headingToCar |= _leader == null || Vector2.Distance(_leader.position, _fusca.position) <= VarginhaPhase2Controller.BoardingRadius;
+            if (_headingToCar && !wasHeadingToCar)
+            {
+                _path.Clear();
+                _nextPathTime = 0f;
+            }
+            bool headingToCar = _headingToCar;
             Vector3 destination = _fusca.position + _carOffset;
             // Enquanto Edelzio ainda está na escola, a turma o acompanha; quando ele volta ao Fusca,
             // cada aluno entra na fila do carro para concluir a fase.
@@ -103,6 +114,7 @@ namespace Game.Varginha
                 destination = _leader.position + _followOffset;
 
             Vector2 next = destination;
+            if (_school == null) _arrivalPoint = destination;
             if (_school != null)
             {
                 if (Time.time >= _nextPathTime && (_path.Count == 0 ||
@@ -111,19 +123,23 @@ namespace Game.Varginha
                     VarginhaSchoolNavigation.FindPath(_school, transform.position, destination, _path);
                     _pathDestination = destination;
                     _nextPathTime = Time.time + .65f;
+                    // Navigation can end beside an obstructed slot. Accept that reachable
+                    // point, rather than waiting forever for an exact point inside a collider.
+                    _arrivalPoint = _path.Count > 0 ? _path[_path.Count - 1] : (Vector2)destination;
                 }
                 // Take the farthest visible waypoint, keeping every movement segment clear of walls.
-                while (_path.Count > 1 && VarginhaSchoolNavigation.CanNavigateSegment(transform.position, _path[1])) _path.RemoveAt(0);
-                if (_path.Count == 0 && Vector2.Distance(transform.position, destination) >= .06f) return;
+                while (_path.Count > 1 && VarginhaSchoolNavigation.CanWalkSegment(transform.position, _path[1])) _path.RemoveAt(0);
+                if (_path.Count == 0 && Vector2.Distance(transform.position, _arrivalPoint) >= .2f) return;
+                if (_path.Count == 0) next = _arrivalPoint;
                 if (_path.Count > 0) next = _path[0];
             }
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(next.x, next.y, transform.position.z), followSpeed * Time.deltaTime);
 
             transform.localScale = Vector3.one;
 
-            if (headingToCar && Vector2.Distance(transform.position, destination) < .06f)
+            if (headingToCar && Vector2.Distance(transform.position, _arrivalPoint) < .2f
+                && Vector2.Distance(_arrivalPoint, destination) <= 1f)
             {
-                transform.position = destination;
                 _arrived = true;
                 VarginhaPhase2Controller.NotifyStudentAtFusca(this);
             }

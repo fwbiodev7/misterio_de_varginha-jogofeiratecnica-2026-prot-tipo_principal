@@ -43,6 +43,8 @@ namespace Game.Varginha
 
         private EdelzioTopDownController _edelzio;
         private string _activeSpeaker;
+        private Sprite _speakerPortrait;
+        private Vector2 _dialogueScroll;
         private string _activeDialogue;
         private readonly TypewriterText _dialogueTypewriter = new TypewriterText();
         private readonly TypewriterText _rodrigoTypewriter = new TypewriterText();
@@ -329,6 +331,8 @@ namespace Game.Varginha
         {
             CloseBackpack();
             _activeSpeaker = speaker;
+            _speakerPortrait = VarginhaDialoguePortraits.ForSpeaker(speaker);
+            _dialogueScroll = Vector2.zero;
             _activeDialogue = message;
             _dialogueTypewriter.Set(message);
             _isDialogueOpen = true;
@@ -628,7 +632,7 @@ namespace Game.Varginha
 
         private void DrawDialogueWindow()
         {
-            Rect modal = GetBottomDialogRect(760f, Mathf.Min(300f, Screen.height * .48f));
+            Rect modal = GetBottomDialogRect(900f, Mathf.Min(280f, Screen.height * .48f));
             float pad = Mathf.Clamp(modal.width * .055f, 12f, 34f);
             float buttonHeight = Mathf.Clamp(modal.height * .18f, 30f, 46f);
             float speakerHeight = Mathf.Clamp(modal.height * .18f, 24f, 40f);
@@ -639,8 +643,20 @@ namespace Game.Varginha
             PixelHUDFrame.Draw(modal, _whiteTex, PanelColor, PanelBorder);
             GUI.color = Color.white;
 
-            GUI.Label(new Rect(modal.x + pad, modal.y + pad * .35f, modal.width - pad * 2f, speakerHeight), $"> {_activeSpeaker}", _speakerStyle);
-            GUI.Label(new Rect(modal.x + pad, modal.y + speakerHeight + pad, modal.width - pad * 2f, modal.height - speakerHeight - buttonHeight - pad * 2.5f), _dialogueTypewriter.VisibleText, _dialogueTextStyle);
+            float portraitSize = Mathf.Min(modal.width * .19f, modal.height - buttonHeight - pad * 2f);
+            Rect portrait = new Rect(modal.x + pad, modal.y + pad, portraitSize, portraitSize);
+            PixelHUDFrame.Draw(portrait, _whiteTex, new Color(.06f, .10f, .14f), new Color(.44f, .66f, .66f));
+            VarginhaDialoguePortraits.Draw(new Rect(portrait.x + 6, portrait.y + 6, portrait.width - 12, portrait.height - 12), _speakerPortrait);
+            float textX = portrait.xMax + pad * .7f;
+            float textWidth = modal.xMax - pad - textX;
+            GUI.Label(new Rect(textX, modal.y + pad * .35f, textWidth, speakerHeight), _activeSpeaker, _speakerStyle);
+            Rect textArea = new Rect(textX, modal.y + speakerHeight + pad, textWidth,
+                Mathf.Max(24f, modal.height - speakerHeight - buttonHeight - pad * 2.5f));
+            float contentHeight = _dialogueTextStyle.CalcHeight(new GUIContent(_activeDialogue), textWidth - 18f);
+            _dialogueScroll = GUI.BeginScrollView(textArea, _dialogueScroll,
+                new Rect(0, 0, textWidth - 18f, Mathf.Max(textArea.height, contentHeight)));
+            GUI.Label(new Rect(0, 0, textWidth - 18f, Mathf.Max(textArea.height, contentHeight)), _dialogueTypewriter.VisibleText, _dialogueTextStyle);
+            GUI.EndScrollView();
 
             float buttonWidth = Mathf.Min(modal.width - pad * 2f, 250f);
             if (GUI.Button(new Rect(modal.x + (modal.width - buttonWidth) * .5f, modal.yMax - buttonHeight - pad * .55f, buttonWidth, buttonHeight), "CONTINUAR", _buttonStyle))
