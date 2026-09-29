@@ -47,6 +47,7 @@ namespace Game.Varginha
             _player = Object.FindAnyObjectByType<EdelzioTopDownController>();
             _padre = GameObject.Find("Padre_Fabio")?.GetComponent<InteractableProp>();
             _tome = GameObject.Find("Livro_Tombo_Secreto")?.GetComponent<InteractableProp>();
+            if (_padre != null) _padre.transform.position = new Vector3(5.2f, 1.2f);
             _squad = Object.FindAnyObjectByType<VarginhaStudentAllySquad>();
 
             if (_squad == null && _player != null)
@@ -64,6 +65,7 @@ namespace Game.Varginha
             if (_tome != null) _tome.OnInteracted += HandleTomeInteracted;
 
             PrepareEdelzio();
+            VarginhaDarkness.Ensure(_player, true);
             StartCoroutine(ArrivalCinematic());
         }
 
@@ -82,6 +84,9 @@ namespace Game.Varginha
             _player.HasResearchNotebook = true;
             _player.HasDecodedData = true;
             _player.HasHistoricalDocument = true;
+            // Opening this scene directly must also provide its essential light source.
+            _player.HasFlashlight = true;
+            _player.IsFlashlightEquippedInHotbar = true;
             if (EdelzioTopDownController.PersistentHasFlashlight)
             {
                 _player.HasFlashlight = true;
@@ -299,9 +304,9 @@ namespace Game.Varginha
         public static void Build(Transform root)
         {
             CreateManagers(root);
-            var player = CreatePlayer(root, new Vector3(-5.4f, -3.3f));
+            var player = CreatePlayer(root, new Vector3(-.2f, -5.25f));
             var camera = CreateCamera(root);
-            camera.GetComponent<CameraFollow2D>().Target = player.transform;
+            camera.GetComponent<CameraFollow2D>().ConfigureTopDown(player.transform);
             BuildChurch(root);
             CreateEnemyWave(root);
             CreatePadre(root);
@@ -319,7 +324,7 @@ namespace Game.Varginha
             var camera = Object.FindAnyObjectByType<Camera>();
             if (camera == null) camera = CreateCamera(root).GetComponent<Camera>();
             var follow = camera.GetComponent<CameraFollow2D>() ?? camera.gameObject.AddComponent<CameraFollow2D>();
-            if (player != null) follow.Target = player.transform;
+            if (player != null) follow.ConfigureTopDown(player.transform);
 
             if (Object.FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Include).Length < EnemyPositions.Length)
                 CreateEnemyWave(root);
@@ -436,7 +441,7 @@ namespace Game.Varginha
         {
             var padre = new GameObject("Padre_Fabio");
             padre.transform.SetParent(root);
-            padre.transform.position = new Vector3(6.2f, 2.7f);
+            padre.transform.position = new Vector3(5.2f, 1.2f);
             padre.transform.localScale = Vector3.one * 1.12f;
             var renderer = padre.AddComponent<SpriteRenderer>();
             renderer.sprite = VarginhaPixelArtSprites.Create("Padre_Fabio", new Color(.52f, .40f, .28f));

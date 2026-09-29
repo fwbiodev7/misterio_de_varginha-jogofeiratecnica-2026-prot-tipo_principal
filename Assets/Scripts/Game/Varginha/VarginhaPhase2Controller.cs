@@ -162,9 +162,8 @@ namespace Game.Varginha
                                   FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Include).Length >= 4;
             }
             if (!_arrivalFinished || !_encounterReady || _rescueStarted) return;
-            // Bug fix: Exclude para não contar inimigos já destruídos/desativados
+            // Population was already confirmed above; zero remaining enemies means rescue.
             var enemies = FindObjectsByType<VarginhaCombatEnemy>(FindObjectsInactive.Exclude);
-            if (enemies.Length < 1) return; // Aguarda pelo menos 1 ET aparecer na cena
             bool allDefeated = true;
             foreach (var enemy in enemies)
             {
@@ -209,16 +208,15 @@ namespace Game.Varginha
         {
             _player.SetInputLocked(true);
             _player.SetCombatLocked(true);
-            _player.IsScriptedMotion = true;
-            Vector3 start = _player.transform.position;
-            Vector3 seat = _fusca.position + Vector3.left * .10f;
-            float elapsed = 0f;
-            while (elapsed < .5f)
+            var body = _player.GetComponent<Rigidbody2D>();
+            if (body != null)
             {
-                elapsed += Time.deltaTime;
-                _player.transform.position = Vector3.Lerp(start, seat, Mathf.SmoothStep(0f, 1f, elapsed / .5f));
-                yield return null;
+                body.linearVelocity = Vector2.zero;
+                body.simulated = false;
             }
+            _player.transform.position = _fusca.position + Vector3.left * .10f;
+            var flashlight = _player.GetComponent<EdelzioFlashlight>();
+            if (flashlight != null) flashlight.enabled = false;
 
             foreach (var student in _students)
             {

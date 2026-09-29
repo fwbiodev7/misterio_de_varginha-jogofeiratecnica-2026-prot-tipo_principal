@@ -103,6 +103,11 @@ namespace Game.Editor.Testing
 
         private static void Apply()
         {
+            if (Application.isBatchMode && System.Array.Exists(System.Environment.GetCommandLineArgs(), arg => arg == "-runTests"))
+            {
+                EditorSceneManager.playModeStartScene = null;
+                return;
+            }
             // Session-only opt-out for test/visual QA runs; survives assembly reloads,
             // unlike removing the callback. Normal Play still always starts at the menu.
             if (SessionState.GetBool("Varginha.SuppressMenuForTests", false)) return;

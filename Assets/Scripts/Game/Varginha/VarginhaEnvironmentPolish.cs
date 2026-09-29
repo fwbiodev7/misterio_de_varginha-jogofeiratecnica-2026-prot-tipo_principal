@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Game.Varginha
 {
-    /// <summary>Decorative layers shared by saved scenes and runtime builders; never adds obstacles.</summary>
+    /// <summary>Shared scenery presentation and church pew collision for saved and runtime scenes.</summary>
     public static class VarginhaEnvironmentPolish
     {
         private const string Marker = "Cenario_Acabamento_V3";
-        private static readonly Vector2 SchoolDeskSize = new(.95f, .78f);
-        private static readonly Vector2 SchoolChairSize = new(.5f, .57f);
+        private static readonly Vector2 SchoolDeskSize = new(1.25f, 1.02f);
+        private static readonly Vector2 SchoolChairSize = new(.7f, .8f);
 
         public static void EnsureSchool(Transform school)
         {
@@ -50,6 +50,7 @@ namespace Game.Varginha
         public static void EnsureDiocese(Transform church)
         {
             RefreshReferenceFurniture(church);
+            EnsurePewCollisions(church);
             RefreshFlames(church);
             if (!NeedsRefresh(church)) return;
             RefreshSurfaces(church, false);
@@ -109,6 +110,28 @@ namespace Game.Varginha
             ContactShadows(church, decor);
             VarginhaSoftLighting.Build(church, decor);
             RefreshFlames(church);
+        }
+
+        public static void EnsurePewCollisions(Transform church)
+        {
+            foreach (var renderer in church.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                if (!renderer.name.StartsWith("CenarioV2_Banco_Igreja_") || renderer.sprite == null) continue;
+                var box = renderer.GetComponent<BoxCollider2D>();
+                if (box == null) box = renderer.gameObject.AddComponent<BoxCollider2D>();
+                var bounds = renderer.sprite.bounds;
+                box.isTrigger = false;
+                box.size = new Vector2(bounds.size.x * .94f, bounds.size.y * .65f);
+                box.offset = (Vector2)bounds.center + Vector2.down * bounds.size.y * .12f;
+                if (renderer.name != "CenarioV2_Banco_Igreja_9") continue;
+                var sprite = renderer.sprite;
+                int order = renderer.sortingOrder;
+                var prop = renderer.GetComponent<InteractableProp>();
+                if (prop == null) prop = renderer.gameObject.AddComponent<InteractableProp>();
+                prop.Configure(PropType.ChurchSeat, "Banco - sentar", "[E] Sentar / levantar", true);
+                renderer.sprite = sprite;
+                renderer.sortingOrder = order;
+            }
         }
 
         public static void EnsureHouse(Transform house)
@@ -210,8 +233,12 @@ namespace Game.Varginha
                 if (desk == null || chair == null) continue;
                 var oldOffset = chair.position - desk.position;
                 bool paired = Mathf.Abs(oldOffset.x) < .05f && Mathf.Abs(oldOffset.y + .47f) < .05f;
-                if (paired && (i == 4 || i == 5) && Mathf.Abs(desk.position.y - 3.45f) < .05f)
-                    desk.position += Vector3.up * .8f;
+                if ((i == 4 || i == 5) && (Mathf.Abs(desk.position.y - 3.45f) < .05f ||
+                    Mathf.Abs(desk.position.y - 4.25f) < .05f))
+                {
+                    desk.position = new Vector3(desk.position.x, 4.4f, desk.position.z);
+                    chair.position = desk.position + Vector3.down * .4f;
+                }
                 if (paired) chair.position = desk.position + Vector3.down * .4f;
             }
             var board = school.Find("CenarioV2_Lousa_Direita");

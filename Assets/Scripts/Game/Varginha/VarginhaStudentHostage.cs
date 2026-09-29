@@ -112,9 +112,8 @@ namespace Game.Varginha
                     _pathDestination = destination;
                     _nextPathTime = Time.time + .65f;
                 }
-                while (_path.Count > 0 && Vector2.Distance(transform.position, _path[0]) < .08f) _path.RemoveAt(0);
                 // Take the farthest visible waypoint, keeping every movement segment clear of walls.
-                while (_path.Count > 1 && VarginhaSchoolNavigation.CanWalkSegment(transform.position, _path[1])) _path.RemoveAt(0);
+                while (_path.Count > 1 && VarginhaSchoolNavigation.CanNavigateSegment(transform.position, _path[1])) _path.RemoveAt(0);
                 if (_path.Count == 0 && Vector2.Distance(transform.position, destination) >= .06f) return;
                 if (_path.Count > 0) next = _path[0];
             }

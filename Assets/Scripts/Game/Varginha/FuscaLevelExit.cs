@@ -14,7 +14,6 @@ namespace Game.Varginha
         [SerializeField] private bool transitionToPhase2 = true;
 
         private bool _isEscaped;
-        private FuscaDoorMotion _doorMotion;
 
         public void TryEscape(EdelzioTopDownController edelzio)
         {
@@ -55,12 +54,10 @@ namespace Game.Varginha
             var exitCollider = GetComponent<Collider2D>();
             if (exitCollider != null) exitCollider.enabled = false;
 
+            BoardImmediately(edelzio);
             VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "O motor pegou. Segure firme - vamos sair daqui!");
             yield return new WaitForSeconds(0.65f);
             VarginhaGameHUD.Instance?.CloseDialogue();
-            yield return OpenDoorRoutine();
-            yield return MoveEdelzioIntoFusca(edelzio);
-            yield return CloseDoorRoutine();
 
             var animation = GetComponent<FuscaDepartureAnimation>();
             if (animation != null)
@@ -90,79 +87,20 @@ namespace Game.Varginha
                 "A Entidade Ancestral despertou. Proxima parada: A Escola e o Padre Fabio!");
         }
 
-        private IEnumerator MoveEdelzioIntoFusca(EdelzioTopDownController edelzio)
+        private void BoardImmediately(EdelzioTopDownController edelzio)
         {
-            Vector3 start = edelzio.transform.position;
-            Vector3 door = _doorMotion.EntryPosition;
-            Vector3 seat = _doorMotion.SeatPosition;
-            const float enterDuration = .42f;
-            float elapsed = 0f;
-
-            while (elapsed < enterDuration)
-            {
-                elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / enterDuration);
-                edelzio.transform.position = Vector3.Lerp(start, door, Mathf.SmoothStep(0, 1, t));
-                yield return null;
-            }
-
-            // A pose sentada acompanha a entrada para que o corpo não volte ao
-            // sprite de caminhada enquanto cruza o vão da porta.
-            var playerAnimation = edelzio.GetComponent<VarginhaPlayerSpriteAnimation>();
-            playerAnimation?.SetActionPose("Edelzio_Sit");
-            elapsed = 0f;
-            while (elapsed < enterDuration)
-            {
-                elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / enterDuration);
-                edelzio.transform.position = Vector3.Lerp(door, seat, Mathf.SmoothStep(0, 1, t));
-                yield return null;
-            }
-
-            // Ele passa a acompanhar o carro antes de ficar oculto dentro da cabine.
-            edelzio.transform.position = seat;
+            var oldDoor = transform.Find("Porta_Fusca_Dobradica_Dianteira");
+            if (oldDoor != null) oldDoor.gameObject.SetActive(false);
+            var motion = GetComponent<FuscaDoorMotion>();
+            if (motion != null) motion.enabled = false;
+            var flashlight = edelzio.GetComponent<EdelzioFlashlight>();
+            if (flashlight != null) flashlight.enabled = false;
+            edelzio.transform.position = transform.TransformPoint(new Vector3(-.02f, .055f, 0));
             edelzio.transform.SetParent(transform, true);
-            yield return new WaitForSeconds(.16f);
-            var playerRenderer = edelzio.GetComponent<SpriteRenderer>();
-            if (playerRenderer != null) playerRenderer.enabled = false;
-            edelzio.SetCarriedItemsVisible(false);
-            // O ciclo idle/run não pode religar o sprite depois que Edelzio entrou na cabine.
-            if (playerAnimation != null) playerAnimation.enabled = false;
-            var playerCollider = edelzio.GetComponent<Collider2D>();
-            if (playerCollider != null) playerCollider.enabled = false;
-        }
-
-        private IEnumerator OpenDoorRoutine()
-        {
-            _doorMotion = GetComponent<FuscaDoorMotion>() ?? gameObject.AddComponent<FuscaDoorMotion>();
-            float elapsed = 0f;
-            const float duration = .72f;
-            while (elapsed < duration)
-            {
-                elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / duration);
-                float eased = t * t * t * (t * (6f * t - 15f) + 10f);
-                _doorMotion.SetOpenAmount(eased);
-                yield return null;
-            }
-            _doorMotion.SetOpenAmount(1);
-            yield return new WaitForSeconds(.12f);
-        }
-
-        private IEnumerator CloseDoorRoutine()
-        {
-            if (_doorMotion == null) yield break;
-            float elapsed = 0f;
-            const float duration = .58f;
-            while (elapsed < duration)
-            {
-                elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / duration);
-                float eased = t * t * (3f - 2f * t);
-                _doorMotion.SetOpenAmount(1f - eased);
-                yield return null;
-            }
-            _doorMotion.SetOpenAmount(0);
+            var animation = edelzio.GetComponent<VarginhaPlayerSpriteAnimation>();
+            if (animation != null) animation.enabled = false;
+            foreach (var renderer in edelzio.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
+            foreach (var collider in edelzio.GetComponentsInChildren<Collider2D>()) collider.enabled = false;
         }
     }
 }

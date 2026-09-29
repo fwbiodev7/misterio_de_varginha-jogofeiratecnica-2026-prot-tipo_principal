@@ -181,6 +181,7 @@ namespace Game.Varginha
             _formationOffset = new Vector3(-1.45f - column * .90f, (1 - row) * .95f, 0f);
             if (_renderer != null) _renderer.enabled = true;
             if (_headRenderer != null) _headRenderer.enabled = false;
+            GetComponent<VarginhaContactShadow>()?.RefreshPresentation();
         }
 
         /// <summary>Ativa o aliado para a Fase 3, onde cada clique dispara apenas um golpe.</summary>

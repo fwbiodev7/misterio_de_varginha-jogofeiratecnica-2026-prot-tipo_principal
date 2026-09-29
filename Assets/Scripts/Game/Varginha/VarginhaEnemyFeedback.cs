@@ -67,6 +67,8 @@ namespace Game.Varginha
                 || (_renderer != null && !_renderer.enabled)) return;
             Camera camera = Camera.main;
             if (camera == null) return;
+            if (VarginhaPhase3Controller.Active != null &&
+                EdelzioTopDownController.Instance?.GetComponent<EdelzioFlashlight>()?.IlluminatesPoint(transform.position) != true) return;
 
             float height = _renderer != null ? _renderer.bounds.size.y : .8f;
             Vector3 world = transform.position + Vector3.up * (height * .55f + .24f);

@@ -27,8 +27,22 @@ namespace Game.Varginha
         private float _angle;
         private bool _hasDirection;
         public float Reach => reach;
+        public float HalfAngleRadians => beamAngle * .5f * Mathf.Deg2Rad;
+        public bool IsIlluminating => isActiveAndEnabled && _renderer != null && _renderer.enabled;
+        public readonly float[] OccludedReach = new float[Rays + 1];
         public Vector2 BeamOrigin { get; private set; }
         public Vector2 BeamDirection { get; private set; } = Vector2.down;
+
+        public bool IlluminatesPoint(Vector2 point)
+        {
+            if (!IsIlluminating) return false;
+            Vector2 delta = point - BeamOrigin;
+            float angle = Vector2.SignedAngle(BeamDirection, delta) * Mathf.Deg2Rad;
+            if (Mathf.Abs(angle) >= HalfAngleRadians * .9f) return false;
+            float sample = Mathf.Clamp01((angle / HalfAngleRadians + 1f) * .5f) * Rays;
+            int index = Mathf.Min(Rays - 1, (int)sample);
+            return delta.magnitude < Mathf.Lerp(OccludedReach[index], OccludedReach[index + 1], sample - index);
+        }
 
         private void Awake()
         {
@@ -183,6 +197,7 @@ namespace Game.Varginha
                 float angle = heading + Mathf.Lerp(-half, half, across);
                 Vector2 outward = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                 float clipped = TraceDistanceCached(origin, outward, safeReach);
+                OccludedReach[ray] = clipped;
                 float edge = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((1f - Mathf.Abs(across * 2f - 1f)) / .32f));
                 for (int ring = 0; ring <= Rings; ring++)
                 {

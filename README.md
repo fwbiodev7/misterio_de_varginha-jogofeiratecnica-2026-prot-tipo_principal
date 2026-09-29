@@ -48,11 +48,11 @@ Ao entrar no carro com os requisitos, a animação de partida termina carregando
 
 ### Fase 2 — escola e resgate
 
-A cena começa com uma transição cinematográfica: o Fusca aparece, Edelzio sai já equipado com os itens da Fase 1 e pronto para o combate. Quatro subordinados ETs guardam os alunos do terceiro sistema:
+A cena começa com uma transição cinematográfica: o Fusca estaciona do lado de fora da escola e Edelzio sai já equipado com os itens da Fase 1. A área externa tem vagas, calçada, sinalização e faixa de pedestres. A porta aberta conecta o estacionamento ao interior sem trocar de cena. Quatro subordinados ETs guardam os alunos do terceiro sistema:
 
 **Yasmin, Pedro, Matias, Fabio, Marcos, Anna Sabia, Ana Tavares, Luis Miguel Messias e Luis Martins.**
 
-O jogador derrota os subordinados usando o combo de três socos: jab, direto com o braço oposto e finalizador pesado. Clicar durante um golpe guarda o próximo soco; manter o botão pressionado continua a sequência. Os ETs alternam papéis de atirador, investidor e sentinela, com ataques sinalizados que afetam vida e sanidade. Depois da última derrota, as jaulas pixel art desaparecem, os alunos são libertados, acompanham Edelzio e formam uma fila no Fusca. Quando toda a turma chega ao carro e Edelzio se aproxima, a partida inicia a viagem para a Fase 3.
+O jogador derrota os subordinados usando o combo de três socos: jab, direto com o braço oposto e finalizador pesado. Clicar durante um golpe guarda o próximo soco; manter o botão pressionado continua a sequência. Os ETs alternam papéis de atirador, investidor e sentinela, com ataques sinalizados que afetam vida e sanidade. Depois da última derrota, as jaulas pixel art desaparecem, os alunos são libertados e acompanham Edelzio por rotas que respeitam as paredes e passam pela porta. A turma se reúne no Fusca no estacionamento externo. Quando todos chegam ao carro e Edelzio se aproxima, a partida inicia a viagem para a Fase 3.
 
 ### Fase 3 — O Guardião
 

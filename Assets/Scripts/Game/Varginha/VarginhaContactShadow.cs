@@ -30,6 +30,11 @@ namespace Game.Varginha
 
         private void LateUpdate()
         {
+            RefreshPresentation();
+        }
+
+        public void RefreshPresentation()
+        {
             if (_source == null) _source = GetComponent<SpriteRenderer>();
             CreateShadow();
             _shadow.enabled = _source != null && _source.enabled && _source.sprite != null && _source.color.a > .05f;

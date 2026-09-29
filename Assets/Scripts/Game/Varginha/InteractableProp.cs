@@ -13,7 +13,8 @@ namespace Game.Varginha
         OldDocument,    // Pista opcional
         FuseBox,        // Caixa de força / eletricidade
         PadreFabio,     // Padre Fábio e o Livro do Tombo Secreto
-        SecretTome      // Livro do Tombo da diocese
+        SecretTome,     // Livro do Tombo da diocese
+        ChurchSeat
     }
 
     /// <summary>
@@ -158,6 +159,7 @@ namespace Game.Varginha
                     GetHud()?.ShowDialogue("Edelzio", message);
                     GetHud()?.ShowRodrigoHint("Rodrigo: 'O que foi isso?! As luzes começaram a piscar! Pegue seu notebook e vá até o Fusca no quintal rápido!'");
                     EntityManifestationAI.AwakenEntity();
+                    VarginhaDarkness.Ensure(edelzio, false).TriggerPowerSurges();
                     break;
 
                 case PropType.Backpack:
@@ -218,6 +220,12 @@ namespace Game.Varginha
                     message = "☕ Você bebe o café quente. (+1 CORAÇÃO DE SAÚDE)";
                     GetHud()?.ShowDialogue("Edelzio", message);
                     break;
+
+                case PropType.ChurchSeat:
+                    _hasInteracted = false;
+                    var seatAction = edelzio.GetComponent<VarginhaPlayerActionAnimation>();
+                    if (seatAction != null) seatAction.PlayChurchSeat(transform);
+                    return;
 
                 case PropType.FuscaVehicle:
                     _hasInteracted = false; // A locked car must be retryable after collecting its prerequisites.

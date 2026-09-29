@@ -49,6 +49,17 @@ namespace Game.Level
         {
             if (target == null) return;
 
+            if (target.GetComponent<Game.Varginha.EdelzioTopDownController>() != null)
+            {
+                // Reserve a strip for the inventory so it never covers the playable world.
+                var camera = GetComponent<Camera>();
+                if (camera != null)
+                {
+                    float bottom = Mathf.Clamp01(Game.Varginha.VarginhaGameHUD.GameplayBottomInset / Mathf.Max(1, Screen.height));
+                    camera.rect = new Rect(0, bottom, 1, 1 - bottom);
+                }
+            }
+
             Vector3 targetPos = target.position + offset;
             if (limitMinY && targetPos.y < minY)
             {

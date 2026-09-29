@@ -58,6 +58,37 @@ namespace Game.Varginha
             StartCoroutine(CoffeeRoutine(coffee, onComplete));
         }
 
+        public void PlayChurchSeat(Transform seat)
+        {
+            if (_isActing || seat == null) return;
+            StartCoroutine(ChurchSeatRoutine(seat));
+        }
+
+        private IEnumerator ChurchSeatRoutine(Transform seat)
+        {
+            BeginAction();
+            _standingPosition = transform.position;
+            _seatCollider = seat.GetComponent<Collider2D>();
+            _playerCollider = GetComponent<Collider2D>();
+            if (_seatCollider != null && _playerCollider != null)
+            {
+                _seatWasIgnored = Physics2D.GetIgnoreCollision(_playerCollider, _seatCollider);
+                Physics2D.IgnoreCollision(_playerCollider, _seatCollider, true);
+            }
+            yield return MoveToPosition(seat.position + Vector3.up * .13f, .25f);
+            _spriteAnimation?.SetActionPose("Edelzio_Sit");
+            VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Vou me sentar um instante. [E] para levantar.");
+            yield return null; // Do not consume the same key press that started the interaction.
+            while (_player != null && _player.CurrentSanity > 0f)
+            {
+                if (Time.timeScale > 0 && VarginhaGameHUD.Instance?.BlocksGameplayInput != true &&
+                    VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Interact)) break;
+                yield return null;
+            }
+            VarginhaGameHUD.Instance?.CloseDialogue();
+            yield return StandUpRoutine();
+        }
+
         private IEnumerator NotebookRoutine(Transform notebook, Action onReady)
         {
             BeginAction();

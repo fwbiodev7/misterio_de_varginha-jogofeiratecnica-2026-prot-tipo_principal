@@ -1,0 +1,723 @@
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 2668)
+VBCSCompiler prewarm took 9.36 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Channel LicenseClient-Usuario doesn't exist
+Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) Professional' Language: 'pt' Physical Memory: 16249 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-29T16:17:41Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 6912)
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe
+-batchmode
+-runTests
+-projectPath
+C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30
+-testResults
+C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\scratch\gameplay-regression-initial.xml
+-testPlatform
+PlayMode
+-testFilter
+Game.Tests.PlayMode.FuscaDepartureTests
+-logFile
+scratch/gameplay-regression-initial.log
+-hubSessionId
+64af4a19-26e4-4719-b97a-e9aa7c06b171
+-accessToken
+PF-M-acLVOHXeUo1y9tKFlWxnbHSR3p6fsvy838hWtw004f
+Successfully changed project path to: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30
+C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [15568]  Target information:
+
+Player connection [15568]  * "[IP] 192.168.1.77 [Port] 55504 [Flags] 2 [Guid] 1537757298 [EditorId] 1537757298 [Version] 1048832 [Id] WindowsEditor(7,pcFabio) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15568]  * "[IP] 169.254.99.59 [Port] 55504 [Flags] 2 [Guid] 1537757298 [EditorId] 1537757298 [Version] 1048832 [Id] WindowsEditor(7,pcFabio) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15568]  * "[IP] 26.12.41.207 [Port] 55504 [Flags] 2 [Guid] 1537757298 [EditorId] 1537757298 [Version] 1048832 [Id] WindowsEditor(7,pcFabio) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15568]  * "[IP] 172.28.48.1 [Port] 55504 [Flags] 2 [Guid] 1537757298 [EditorId] 1537757298 [Version] 1048832 [Id] WindowsEditor(7,pcFabio) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15568] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [15568] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-2572" after 0.4 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+Starting IPC server.
+Waiting for clients to connect on \\.\pipe\Unity-LicenseClient-Usuario, press Ctrl-C to exit.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Usuario" at "2026-09-29T16:17:46.2463144Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 6912, path: "C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              6a24e3ccf67944ad80e223a5d0621a4d
+  Correlation Id:          43b61e75113de34ac7d7e56c03c87786
+  External correlation Id: 2219378732714329951
+  Machine Id:              UGXahkfwolpUz5l/Qdm5qPTN3yU=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Usuario" (connect: 4.37s, validation: 0.19s, handshake: 0.05s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Usuario-notifications" at "2026-09-29T16:17:46.4847384Z"
+[Licensing::Module] Connected to LicensingClient (PId: 6912, launch time: 0.04, total connection time: 4.61s)
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated the access token PF-M-acLVO...
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4674237084585-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Module] Licensing Background thread has ended after 4.69s
+[Licensing::Module] Licensing is initialized (took 4.11s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 985d6469881e8b39d230c8044d29f171
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Unity Data Store running and initialised
+Initialize engine version: 6000.6.0f1 (f7f8ed4d1e24)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to create D3D12 device (0x887a0004).
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 10.1]
+    Renderer: NVIDIA GeForce G210  (ID=0xa60)
+    Vendor:   NVIDIA
+    VRAM:     972 MB
+    Driver:   9.18.13.4174
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+C:\build\output\unity\unity\External\baselib\baselib\Source\WinApi\Baselib_DynamicLibrary_WinApi.inl.h(100):Baselib_DynamicLibrary_GetFunction: The requested function was not found (0x06000001) - Não foi possível encontrar o procedimento especificado.  (WinError:0000007f)
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56572
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003969 seconds.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  2.057 seconds
+Domain Reload Profiling: 2928ms
+	BeginReloadAssembly (220ms)
+		CreateAndSetChildDomain (39ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (25ms)
+	initialDomainReloadingComplete (101ms)
+	LoadAllAssembliesAndSetupDomain (515ms)
+		LoadAssemblies (176ms)
+		TypeCache.Refresh (368ms)
+			TypeCache.ScanAssembly (345ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (2059ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			BeforeProcessingInitializeOnLoad (141ms)
+			ProcessInitializeOnLoadAttributes (131ms)
+			ProcessInitializeOnLoadMethodAttributes (1470ms)
+			EditorAssembliesLoaded (3ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 73 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.2d.animation@16.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.animation@147f6a6d9e7f)
+    com.unity.2d.aseprite@6.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.aseprite@ab909e3e9b5f)
+    com.unity.2d.psdimporter@15.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.psdimporter@3ef8178676f6)
+    com.unity.2d.spriteshape@16.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.spriteshape@42798c9d35d3)
+    com.unity.2d.tilemap.extras@9.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.tilemap.extras@598e8b65eaae)
+    com.unity.2d.tooling@4.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.tooling@92c2769ac09c)
+    com.unity.collab-proxy@2.13.6 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.collab-proxy@4628d2ba6ea4)
+    com.unity.ide.rider@3.0.38 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.inputsystem@7a4e1a2a8194)
+    com.unity.learn.iet-framework@6.0.7 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.learn.iet-framework@96330db47073)
+    com.unity.visualscripting@1.9.12 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.pipeline@0.7.0-exp.1 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.pipeline@ab05e9cd7f74)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.settings-manager@2.1.1 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.2d.common@15.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.common@b779c433ed47)
+    com.unity.searcher@4.9.5 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+  Built-in packages:
+    com.unity.2d.sprite@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.sprite@947350d67f82)
+    com.unity.2d.tilemap@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.2d.tilemap@639ca1d99254)
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.render-pipelines.universal@8457e85b8184)
+    com.unity.test-framework@1.8.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.test-framework@7a3849e09bd0)
+    com.unity.timeline@6.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.timeline@281d5f7e7d7d)
+    com.unity.ugui@2.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.ugui@23caec89ae27)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.render-pipelines.core@2d66c71e606e)
+    com.unity.shadergraph@17.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.shadergraph@ef6135652377)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.editorcoroutines@6.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.editorcoroutines@8cd72baa102a)
+    com.unity.mathematics@1.4.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.collections@6.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.collections@10fff0607388)
+    com.unity.graph-authoring@1.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.test-framework.performance@6.6.0 (location: C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Library\PackageCache\com.unity.test-framework.performance@0a60b857a52e)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.04 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll"
+DisplayProgressbar: Compiling Scripts
+ExitCode: 4 Duration: 2s569ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aE-inputdata.json
+[1025/1342  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra requires additional run (2.47 seconds), 2 items updated, 1024 evaluated
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1900b0aE.dag.json" "Library/Bee/1900b0aE-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30
+ExitCode: 0 Duration: 3s416ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --dagfilejson="Library\Bee\1900b0aE.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30
+ExitCode: 0 Duration: 6s529ms
+Finished compiling graph: 1346 nodes, 28223 flattened edges (23703 ToBuild, 216 ToUse), maximum node priority 1467
+[ 711/1342  0s] WriteText Library/Bee/artifacts/1900b0aE.dag/Game.rsp
+[1025/1342  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1326/1342  1s] Csc Library/Bee/artifacts/1900b0aE.dag/Game.dll (+2 others)
+[1327/1342  0s] Csc Library/Bee/artifacts/1900b0aE.dag/GamePlayModeTests.dll (+2 others)
+[1328/1342  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Game.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Game.dll, with 149 defines and 313 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor
+[1329/1342  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/GamePlayModeTests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/GamePlayModeTests.dll, with 149 defines and 294 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor
+[1330/1342  0s] CopyFiles Library/ScriptAssemblies/Game.pdb
+[1331/1342  0s] CopyFiles Library/ScriptAssemblies/GamePlayModeTests.pdb
+[1332/1342  0s] CopyFiles Library/ScriptAssemblies/GamePlayModeTests.dll
+[1333/1342  0s] CopyFiles Library/ScriptAssemblies/Game.dll
+[1334/1342  2s] Csc Library/Bee/artifacts/1900b0aE.dag/GameEditModeTests.dll (+2 others)
+[1335/1342  2s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+[1336/1342  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/GameEditModeTests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/GameEditModeTests.dll, with 147 defines and 300 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor
+[1337/1342  0s] CopyFiles Library/ScriptAssemblies/GameEditModeTests.pdb
+[1338/1342  0s] CopyFiles Library/ScriptAssemblies/GameEditModeTests.dll
+[1339/1342  1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 147 defines and 408 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor
+[1340/1342  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[1341/1342  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (6.50 seconds), 18 items updated, 1342 evaluated
+AssetDatabase: script compilation time: 13.615995s
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 9.25 ms, found 5 plugins.
+Native extension for WindowsStandalone target not found
+Start HTTP server: port:7800
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.792 seconds
+Domain Reload Profiling: 3826ms
+	BeginReloadAssembly (489ms)
+		DisableScriptedObjects (54ms)
+		CreateAndSetChildDomain (187ms)
+	RebuildCommonClasses (14ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (147ms)
+	LoadAllAssembliesAndSetupDomain (1359ms)
+		LoadAssemblies (709ms)
+		TypeCache.Refresh (393ms)
+			TypeCache.ScanAssembly (369ms)
+		AnalyzeDomain (188ms)
+			BuildScriptInfoCaches (174ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1793ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (174ms)
+			ProcessInitializeOnLoadAttributes (1098ms)
+			ProcessInitializeOnLoadMethodAttributes (168ms)
+			AfterProcessingInitializeOnLoad (11ms)
+		AwakeInstancesAfterBackupRestoration (35ms)
+Starting new worker id: 0 with log in C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30/Logs/AssetImportWorkerHW0.log
+Importing 'GUID: 0d980ab354934804f87b50d5d90031c3 - Path: Assets/Resources/Varginha/WorldDarkness.shader' with importer (ShaderImporter)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 3.51 ms, found 5 plugins.
+Imported 'GUID: 0d980ab354934804f87b50d5d90031c3' -> (Import Result ID: '369d33d63605e66bce2261c23a22ff81') in 0.338 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=db41e51d62849301244fdb06fd0c2e58 DependenciesID=52437d6243712c98a9858bc60196862b StaticDependenciesID=6334a9323133fca5412a83fd6967363d 
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 2.71 ms, found 5 plugins.
+
+Asset Pipeline Refresh (id=da013e1742de33543bc2d7bd8a499532): Total: 20.311 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=7 ms, native=3443 ms
+		Asset DB Callback time: managed=786 ms, native=197 ms
+		Scripting: domain reloads=1, domain reload time=2147 ms, compile time=13619 ms, other=109 ms
+		Project Asset Count: scripts=1783, non-scripts=3409
+		Asset File Changes: new=3, changed=12, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 42.601ms
+	ApplyChangesToAssetFolders: 1.119ms
+	Scan: 531.255ms
+	Collect global state as custom dependencies: 24.546ms
+	OnSourceAssetsModified: 2.496ms
+	CategorizeScriptCompilationAssets: 142.313ms
+	ProcessAssetsWithTransientArtifactChanges: 135.899ms
+	CategorizeAssets: 74.017ms
+	CompileScripts: 13618.552ms
+	ImportOutOfDateAssets: 2165.647ms (1813.592ms without children)
+		ImportManagerImport: 340.139ms (1.716ms without children)
+		UnloadImportedAssets: 0.127ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.793ms
+		ImportSchedulerStart: 10.988ms
+	PostProcessAllAssets: 936.594ms
+		ShaderAssetModifiedCallback 147.484ms
+		XRBuildSystem.XRAssetImported 1.180ms
+		VersionControlSettings.HiddenFilePostprocess 0.200ms
+		PostProcessCallbackCreateDeferredMaterials 0.076ms
+		ComputeShaderImportPostprocess 0.074ms
+		SpriteAtlasDatabase.OnAssetPostprocessCallback 0.072ms
+		MonoPostProcessAllAssets: 785.625ms
+			SyncVS.PostprocessSyncProject 339.493ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 278.129ms
+			AssetPostprocessor.OnPostprocessAllAssets 86.878ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 28.990ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 10.658ms
+			AssetChangedListener.OnPostprocessAllAssets 2.330ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.307ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 2.287ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.985ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.904ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.202ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.948ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.880ms
+			SpriteEditorTexturePostprocessor.OnPostprocessAllAssets 0.794ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.663ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.623ms
+			SpriteSlicePostprocessor.OnPostprocessAllAssets 0.535ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.522ms
+			PostProcessor.OnPostprocessAllAssets 0.463ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.454ms
+			SpriteShapeAssetPostProcessor.OnPostprocessAllAssets 0.435ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.433ms
+			VarginhaStudentAtlasImporter.OnPostprocessAllAssets 0.411ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.400ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.390ms
+			AssetEvents.OnPostprocessAllAssets 0.388ms
+			AssetProcessor.OnPostprocessAllAssets 0.368ms
+			SpriteLibraryAssetPostprocessor.OnPostprocessAllAssets 0.264ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.248ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.233ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.216ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.207ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.203ms
+			PSDImportPostProcessor.OnPostprocessAllAssets 0.194ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.185ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.177ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.175ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.170ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.158ms
+			AssetReloadNotifier.OnPostprocessAllAssets 0.133ms
+			PSDImporterAssetPostProcessor.OnPostprocessAllAssets 0.124ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.117ms
+	PostAssetChangesProfiler: 5.002ms
+	UnloadStreamsBegin: 3.003ms
+	PersistCurrentRevisions: 0.221ms
+	GenerateScriptTypeHashes: 2.247ms
+	GenerateScriptTypeSerializationHashes: 4.410ms
+	Untracked: 2580.188ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 2.578ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Template 2D Kit
+Unloading 165 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7989 unused Assets / (8.0 MB). Loaded Objects now: 8971.
+Memory consumption went from 467.0 MB to 459.0 MB.
+Total: 17.844000 ms (FindLiveObjects: 1.670800 ms CreateObjectMapping: 1.402300 ms MarkObjects: 9.494600 ms  DeleteObjects: 4.889600 ms)
+
+GpuFence::Create(): Failed to create ID3D11Fence, error 0x80070057
+[Project] Loading completed in 29.868 seconds
+	Project init time: 				29.451 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		4.462 seconds
+		Asset Database init time: 		0.547 seconds
+		Global illumination init time: 	0.004 seconds
+		Assemblies load time: 			3.012 seconds
+		Unity extensions init time: 	0.026 seconds
+		Asset Database refresh time: 	20.311 seconds
+	Scene opening time: 			0.240 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1790698691684,"processId":2572,"projectLoad":29.8683135,"projectInit":29.4512596,"templateInit":0.0,"packageManagerInit":4.4618336,"assetDatabaseInit":0.5469532,"globalIlluminationInit":0.0040393,"assembliesLoad":3.0117027,"unityExtensionsInit":0.0259959,"assetDatabaseRefresh":20.3112522,"sceneOpening":0.2404065}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1790698691684,"processId":2572,"editorVersion":"6000.6.0f1 (f7f8ed4d1e24)","branch":"6000.6/respin/6000.6.0f1-fa21a270ab12","buildType":"Release","platform":"Windows"}
+[Licensing::Client] Successfully resolved entitlement details
+Worker ready: AssetImportWorkerHW0 0
+[Licensing::Client] Successfully resolved entitlement details
+Running tests for ExecutionSettings with details:
+targetPlatform = 
+playerHeartbeatTimeout = 600
+filters[0] = 
+   Filter with settings:
+   testMode = PlayMode
+   targetPlatform = 
+   testNames = null
+   groupNames = Game.Tests.PlayMode.FuscaDepartureTests
+   categoryNames = null
+   assemblyNames = null
+ignoreTests = {}
+featureFlags = null
+
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:InitializeAndExecuteRun (string[]) (at ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/CommandLineTest/Executer.cs:53)
+UnityEditor.TestTools.TestRunner.CommandLineTest.TestStarter:InitializeAndExecuteRun () (at ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/CommandLineTest/TestStarter.cs:64)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 53)
+
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+[Licensing::Client] Successfully resolved entitlement details
+Reloading assemblies due to reload request.
+Reloading assemblies after forced synchronous recompile.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 2.89 ms, found 5 plugins.
+Native extension for WindowsStandalone target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Start HTTP server: port:7800
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Refreshing native plugins compatible for Editor in 3.39 ms, found 5 plugins.
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  2.374 seconds
+Domain Reload Profiling: 4798ms
+	BeginReloadAssembly (1915ms)
+		DisableScriptedObjects (44ms)
+		CreateAndSetChildDomain (239ms)
+	RebuildCommonClasses (15ms)
+	RebuildNativeTypeToScriptingClass (25ms)
+	initialDomainReloadingComplete (135ms)
+	LoadAllAssembliesAndSetupDomain (332ms)
+		LoadAssemblies (250ms)
+		TypeCache.Refresh (12ms)
+		AnalyzeDomain (19ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (2375ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (8ms)
+			BeforeProcessingInitializeOnLoad (454ms)
+			ProcessInitializeOnLoadAttributes (726ms)
+			ProcessInitializeOnLoadMethodAttributes (302ms)
+			AfterProcessingInitializeOnLoad (9ms)
+		AwakeInstancesAfterBackupRestoration (259ms)
+No restricted APIs configured; Validation skipped.
+Checking 24 assemblies for restricted APIs found 0 usage(s) in 4 ms
+Refreshing native plugins compatible for Editor in 2.79 ms, found 5 plugins.
+
+Asset Pipeline Refresh (id=c362fbbd0b75d5244bb191d6d0a4ae55): Total: 6.970 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=2838 ms
+		Asset DB Callback time: managed=1101 ms, native=513 ms
+		Scripting: domain reloads=1, domain reload time=2515 ms, compile time=2 ms, other=0 ms
+		Project Asset Count: scripts=1783, non-scripts=3409
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 2.577ms
+	ApplyChangesToAssetFolders: 0.386ms
+	Collect global state as custom dependencies: 12.219ms
+	ProcessAssetsWithTransientArtifactChanges: 273.046ms
+	CategorizeAssets: 72.271ms
+	CompileScripts: 2.393ms
+	ImportOutOfDateAssets: 2390.374ms (2387.000ms without children)
+		CollectScriptTypesHashes: 1.559ms
+		ReloadNativeAssets: 1.262ms
+		UnloadImportedAssets: 0.220ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.352ms
+		ImportSchedulerStart: 0.513ms
+	PostProcessAllAssets: 1608.173ms
+		AssemblyValidation.PostprocessAllAssets 42.901ms
+		PostProcessCallbackCreateDeferredMaterials 27.040ms
+		SpriteAtlasDatabase.OnAssetPostprocessCallback 22.202ms
+		ShaderAssetModifiedCallback 16.655ms
+		ComputeShaderImportPostprocess 15.618ms
+		RaytracingShaderImportPostprocess 12.599ms
+		SpeedTreeImporter.PostprocessAllAssets 11.312ms
+		BlockShaderImporter.PostprocessAllAssets 4.699ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 4.443ms
+		XRBuildSystem.XRAssetImported 1.043ms
+		MonoPostProcessAllAssets: 1099.922ms
+			SyncVS.PostprocessSyncProject 353.862ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 262.367ms
+			PostProcessor.OnPostprocessAllAssets 64.139ms
+			AssetPostprocessor.OnPostprocessAllAssets 47.362ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 47.016ms
+			MaterialPostprocessor.OnPostprocessAllAssets 46.854ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 46.762ms
+			AssetChangedListener.OnPostprocessAllAssets 30.699ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 29.545ms
+			SpriteSlicePostprocessor.OnPostprocessAllAssets 25.721ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 24.246ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 19.110ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 7.900ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 7.073ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 2.940ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.804ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 1.680ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 1.314ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.032ms
+			VarginhaStudentAtlasImporter.OnPostprocessAllAssets 0.899ms
+			SpriteEditorTexturePostprocessor.OnPostprocessAllAssets 0.674ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.648ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.643ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.628ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.590ms
+			SpriteShapeAssetPostProcessor.OnPostprocessAllAssets 0.437ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.389ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.380ms
+			AssetEvents.OnPostprocessAllAssets 0.320ms
+			SpriteLibraryAssetPostprocessor.OnPostprocessAllAssets 0.274ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.262ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.228ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.186ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.185ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.183ms
+			PSDImportPostProcessor.OnPostprocessAllAssets 0.168ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.158ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.156ms
+			PSDImporterAssetPostProcessor.OnPostprocessAllAssets 0.132ms
+			AssetReloadNotifier.OnPostprocessAllAssets 0.124ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.095ms
+			AssetProcessor.OnPostprocessAllAssets 0.069ms
+	PostAssetChangesProfiler: 5.959ms
+	GatherAllCurrentPrimaryImportResultRevisions: 0.781ms
+	UnloadStreamsBegin: 2.222ms
+	PersistCurrentRevisions: 0.174ms
+	GenerateScriptTypeHashes: 3.910ms
+	GenerateScriptTypeSerializationHashes: 6.962ms
+	Untracked: 2555.444ms
+
+[UnityConnectServicesConfig] config is NOT valid, switching to default
+Created GICache directory at C:/Users/Usuario/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.039s, timestamps: [29.871 - 29.910]
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7090 unused Assets / (2.4 MB). Loaded Objects now: 9125.
+Memory consumption went from 462.7 MB to 460.3 MB.
+Total: 19.803000 ms (FindLiveObjects: 1.822800 ms CreateObjectMapping: 1.103500 ms MarkObjects: 14.845000 ms  DeleteObjects: 1.694000 ms)
+
+Importing 'GUID: ecfd95d982fbe634c8e96a94ea4745fa - Path: Assets/InitTestScene022d30ab-b67a-4f55-9035-030aa34eb8e5.unity' with importer (DefaultImporter)
+Imported 'GUID: ecfd95d982fbe634c8e96a94ea4745fa' -> (Import Result ID: 'ecaaf357895e0ab9c1cd71e8c255c37e') in 0.006 seconds [static dependencies only]. Details - ImportResultOutputID=30f9e49d6ae4dafb8f78074887795cfc DependenciesID=800e96ce9f88919d335f07997e363b3b StaticDependenciesID=e54f54365bbb6c2d77d23166ac76713d 
+Refreshing native plugins compatible for Editor in 2.63 ms, found 5 plugins.
+Asset Pipeline Refresh (id=492e576c4160a9d4790a62f997496dc1): Total: 0.062 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<ExecuteMethods>d__8<UnityEngine.TestTools.IPrebuildSetup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:48)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<Execute>d__7<UnityEngine.TestTools.IPrebuildSetup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:34)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs Line: 48)
+
+SpriteAtlasPacking completed in 0.005220 sec
+Entering Playmode with Reload Domain disabled.
+If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Loaded scene 'Assets/Scenes/Menu_MisterioDeVarginha.unity'
+	Deserialize:            2.510 ms
+	Integration:            3348.797 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.014 ms
+	Total Operation Time:   3351.323 ms
+TrimDiskCacheJob: Current cache size 0mb
+[Licensing::Client] Successfully resolved entitlement details
+MonoPathRemapper: Attempts to remap: 47604; Successful remaps: 26386
+Serialized file version minimum: 22, current 23
+Pipeline Server stopped
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-Usuario-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-Usuario channel disconnected successfully.
+Shut down.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000001994, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000004FC0, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000005310, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000001994, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000004FC0, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000005310, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3280
+Leak Detected : Persistent allocates 1 individual allocations. To find out more please enable 'Preferences > Jobs > Leak Detection Level > Enabled With Stack Trace' and reproduce the leak again.
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1790698823151,"processId":2572,"allocatedMemory":16200377,"memoryLabels":[{"Default":190029},{"Permanent":15516},{"NewDelete":70007},{"Thread":4197944},{"Manager":33221},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":859316},{"Material":24},{"GfxDevice":56072},{"Animation":952},{"Audio":608},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":17432},{"Input":42840},{"JobScheduler":256},{"TextLib":336},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1462064},{"BaseObject":48784},{"Resource":1208},{"Renderer":2376},{"Transform":4685},{"File":16308},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":874662},{"StaticString":3808},{"Utility":2674262},{"Curl":2498},{"PoolAlloc":2264},{"AI":80},{"TypeTree":14869},{"ScriptManager":18960},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":432},{"WebRequest":552},{"VR":49650},{"SceneManager":608},{"Video":112},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":464},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":117384},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4945815},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40513},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":213},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3208},{"Windowing":456},{"Licensing":1264},{"AssetReference":32},{"IPCStream":32}]}

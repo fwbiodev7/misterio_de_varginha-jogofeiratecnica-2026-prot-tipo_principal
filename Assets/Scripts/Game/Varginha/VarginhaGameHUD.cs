@@ -90,8 +90,10 @@ namespace Game.Varginha
         private readonly float[] _hotbarCollectedAt = new float[6];
         private static readonly string[] HotbarNames = { "MOCHILA", "CHAVE DO FUSCA", "CADERNO DE 1996", "NOTEBOOK", "DOCUMENTO DE 1898", "LANTERNA" };
         private int _selectedSlot;
-        private float HotbarSlotSize => Mathf.Clamp((Screen.width - 44f) / 6f, 28f, 72f);
+        private float HotbarSlotSize => Mathf.Clamp((Screen.width - 44f) / 6f, 28f, 48f);
         private float HotbarHeight => HotbarSlotSize + (Screen.height < 420f ? 38f : 46f);
+        public static float GameplayBottomInset => Instance != null && Instance.IsGameplayVisible
+            ? Instance.HotbarHeight + 16f : 0f;
 
         public void TogglePause()
         {
@@ -480,6 +482,8 @@ namespace Game.Varginha
         private void DrawInventoryBar()
         {
             if (_edelzio == null || _isVictoryOpen || _edelzio.CurrentSanity <= 0 || Time.timeScale == 0f) return;
+            DrawHudBlock(new Rect(0, Screen.height - GameplayBottomInset, Screen.width, GameplayBottomInset),
+                new Color(.018f, .024f, .032f, 1f));
             float slotSize = HotbarSlotSize;
             const float gap = 6f;
             float width = slotSize * 6f + gap * 5f;

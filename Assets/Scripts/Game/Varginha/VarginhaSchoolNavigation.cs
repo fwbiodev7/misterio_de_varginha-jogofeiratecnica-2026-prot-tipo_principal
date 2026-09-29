@@ -8,16 +8,22 @@ namespace Game.Varginha
     {
         private const float Step = .5f;
         private const float Radius = .30f;
+        private const float PlanningRadius = Radius + .04f;
         private const int Width = 49, Height = 41;
         private static readonly Vector2 Origin = new(-12, -14);
         private static readonly Vector2Int[] Directions = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
         private static Transform _environment;
         private static bool[] _walkable;
 
-        public static bool CanWalkSegment(Vector2 start, Vector2 end)
+        public static bool CanWalkSegment(Vector2 start, Vector2 end) => ClearSegment(start, end, Radius);
+
+        // Leave clearance at corners so float rounding cannot place a student inside a wall.
+        public static bool CanNavigateSegment(Vector2 start, Vector2 end) => ClearSegment(start, end, PlanningRadius);
+
+        private static bool ClearSegment(Vector2 start, Vector2 end, float radius)
         {
             Vector2 delta = end - start;
-            foreach (var hit in Physics2D.CircleCastAll(start, Radius, delta.normalized, delta.magnitude))
+            foreach (var hit in Physics2D.CircleCastAll(start, radius, delta.normalized, delta.magnitude))
                 if (IsWall(hit.collider)) return false;
             return true;
         }
@@ -37,11 +43,11 @@ namespace Game.Varginha
                 for (int i = 0; i < _walkable.Length; i++)
                 {
                     _walkable[i] = true;
-                    foreach (var collider in Physics2D.OverlapCircleAll(Point(i), Radius))
+                    foreach (var collider in Physics2D.OverlapCircleAll(Point(i), PlanningRadius))
                         if (IsWall(collider)) { _walkable[i] = false; break; }
                 }
             }
-            if (CanWalkSegment(start, destination)) { path.Add(destination); return; }
+            if (CanNavigateSegment(start, destination)) { path.Add(destination); return; }
             int first = Nearest(start, true);
             int last = Nearest(destination, false);
             if (first < 0 || last < 0) return;
@@ -60,6 +66,7 @@ namespace Game.Varginha
                     if (nx < 0 || nx >= Width || ny < 0 || ny >= Height) continue;
                     int next = ny * Width + nx;
                     if (!_walkable[next] || previous[next] != -1) continue;
+                    if (!CanNavigateSegment(Point(current), Point(next))) continue;
                     previous[next] = current;
                     queue.Enqueue(next);
                 }
@@ -68,7 +75,7 @@ namespace Game.Varginha
             for (int i = last; i != first; i = previous[i]) path.Add(Point(i));
             path.Add(Point(first));
             path.Reverse();
-            if (CanWalkSegment(Point(last), destination)) path.Add(destination);
+            if (CanNavigateSegment(Point(last), destination)) path.Add(destination);
         }
 
         private static int Nearest(Vector2 point, bool requireVisible)
@@ -79,7 +86,7 @@ namespace Game.Varginha
             {
                 if (!_walkable[i]) continue;
                 float d = (Point(i) - point).sqrMagnitude;
-                if (d >= distance || (requireVisible && !CanWalkSegment(point, Point(i)))) continue;
+                if (d >= distance || (requireVisible && !CanNavigateSegment(point, Point(i)))) continue;
                 distance = d;
                 best = i;
             }
