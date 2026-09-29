@@ -17,9 +17,10 @@ namespace Game.Varginha
                 if (_texture == null || !_texture.isReadable) return null;
                 _texture.filterMode = FilterMode.Point;
                 _frames = new Sprite[12];
-                int width = _texture.width / 4, height = _texture.height / 3;
+                int width = _texture.width / 4;
                 var pixels = _texture.GetPixels32();
-                Rect first = Trim(pixels, new RectInt(0, height * 2, width, height));
+                int[] rows = RowBoundaries(pixels);
+                Rect first = Trim(pixels, new RectInt(0, rows[2], width, rows[3] - rows[2]));
                 // Align feet and body height with the walking atlas, without touching physics.
                 var walk = VarginhaReferenceSprites.EdelzioWalkFrames()?[0][0];
                 float worldHeight = 1.15f, footY = -.6f;
@@ -34,7 +35,7 @@ namespace Game.Varginha
                 for (int r = 0; r < 3; r++)
                 for (int f = 0; f < 4; f++)
                 {
-                    Rect bounds = Trim(pixels, new RectInt(f * width, (2 - r) * height, width, height));
+                    Rect bounds = Trim(pixels, new RectInt(f * width, rows[2 - r], width, rows[3 - r] - rows[2 - r]));
                     Vector2 pivot = r == 2 ? new Vector2(.5f, .5f)
                         : new Vector2((f * width + width * .5f - bounds.xMin) / bounds.width, -footY * ppu / bounds.height);
                     var sprite = Sprite.Create(_texture, bounds, pivot, ppu, 0, SpriteMeshType.FullRect);
@@ -43,6 +44,34 @@ namespace Game.Varginha
                 }
             }
             return _frames[Mathf.Clamp(row, 0, 2) * 4 + (frame & 3)];
+        }
+
+        private static int[] RowBoundaries(Color32[] pixels)
+        {
+            // A arte autorada tem margens de alturas diferentes. Dividir em três
+            // partes iguais corta os pés do café e os coloca na pose de sentar.
+            int height = _texture.height, width = _texture.width;
+            int[] rows = { 0, height / 3, height * 2 / 3, height };
+            for (int boundary = 1; boundary <= 2; boundary++)
+            {
+                int start = rows[boundary] - height / 6;
+                int end = rows[boundary] + height / 6;
+                int gapStart = start, longestGap = 0;
+                for (int y = start; y <= end; y++)
+                {
+                    bool occupied = y == end;
+                    for (int x = 0; !occupied && x < width; x++)
+                        occupied = pixels[y * width + x].a >= 64;
+                    if (!occupied) continue;
+                    if (y - gapStart > longestGap)
+                    {
+                        longestGap = y - gapStart;
+                        rows[boundary] = (gapStart + y) / 2;
+                    }
+                    gapStart = y + 1;
+                }
+            }
+            return rows;
         }
 
         private static Rect Trim(Color32[] pixels, RectInt cell, int textureWidth = 0)

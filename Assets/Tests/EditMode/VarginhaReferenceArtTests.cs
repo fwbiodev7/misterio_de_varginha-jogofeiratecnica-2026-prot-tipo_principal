@@ -54,7 +54,8 @@ namespace Game.Tests.EditMode
             {
                 var church = VarginhaEnvironmentArt.EnsureDiocese(root.transform);
                 Assert.IsEmpty(church.GetComponentsInChildren<VarginhaFlameAnimation>(true));
-                Assert.That(VarginhaDarkness.ChurchOpacity, Is.InRange(.8f, .85f));
+                // A revisão da diocese usa 90% de escuridão, preservando luz ambiente.
+                Assert.That(VarginhaDarkness.ChurchOpacity, Is.EqualTo(.90f).Within(.001f));
                 var sideWindow = church.Find("CenarioV2_Vitral_Lateral_0").GetComponent<SpriteRenderer>();
                 var northWindow = church.Find("CenarioV2_Vitral_Fundo_0").GetComponent<SpriteRenderer>();
                 Assert.Greater(sideWindow.sortingOrder, 30000);

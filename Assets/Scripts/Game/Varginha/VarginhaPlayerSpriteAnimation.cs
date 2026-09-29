@@ -367,7 +367,8 @@ namespace Game.Varginha
                 _actionFrames = new Sprite[8];
                 for (int i = 0; i < 4; i++) _actionFrames[i] = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_DrinkCoffee", i);
                 string[] actions = { "Edelzio_Crouch", "Edelzio_Reach", "Edelzio_Sit", "Edelzio_UseNotebook" };
-                for (int i = 0; i < actions.Length; i++) _actionFrames[i + 4] = VarginhaReferenceSprites.EdelzioActionFrame(actions[i]);
+                for (int i = 0; i < actions.Length; i++)
+                    _actionFrames[i + 4] = VarginhaReferenceSprites.EdelzioActionFrame(actions[i], actions[i] == "Edelzio_Sit" ? 2 : 0);
                 return reference;
             }
 

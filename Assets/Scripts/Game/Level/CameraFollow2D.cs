@@ -84,7 +84,6 @@ namespace Game.Level
         {
             if (target == null) return;
 
-            FitViewport();
             if (target.GetComponent<Game.Varginha.EdelzioTopDownController>() != null)
             {
                 // Reserve a strip for the inventory so it never covers the playable world.
@@ -95,6 +94,7 @@ namespace Game.Level
                     camera.rect = new Rect(0, bottom, 1, 1 - bottom);
                 }
             }
+            FitViewport();
             Vector3 targetPos = target.position + offset;
             if (limitMinY && targetPos.y < minY)
             {
