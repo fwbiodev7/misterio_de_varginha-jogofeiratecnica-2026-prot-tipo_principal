@@ -1,0 +1,136 @@
+{
+  "success": true,
+  "command": "command eval_file",
+  "data": {
+    "command": "eval_file",
+    "parameters": {
+      "file": "scratch/verify_house_reference512.cs"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "visited": 4629,
+        "radius": 0.516000032,
+        "accessibility": [
+          {
+            "name": "ToyBox_UnderBed",
+            "nearest": 0,
+            "accessible": true
+          },
+          {
+            "name": "Backpack_Prop",
+            "nearest": 0,
+            "accessible": true
+          },
+          {
+            "name": "Notebook_TI",
+            "nearest": 0.848749638,
+            "accessible": true
+          },
+          {
+            "name": "Coffee_Cup",
+            "nearest": 0.346250057,
+            "accessible": true
+          },
+          {
+            "name": "Doc_Historical",
+            "nearest": 0,
+            "accessible": true
+          },
+          {
+            "name": "FuseBox_Prop",
+            "nearest": 0.196249962,
+            "accessible": true
+          },
+          {
+            "name": "Chair_Office",
+            "nearest": 0.609999657,
+            "accessible": true
+          },
+          {
+            "name": "Fusca_1996_Exit",
+            "nearest": 0.5203305,
+            "accessible": true
+          }
+        ],
+        "textures": [
+          {
+            "file": "Furniture",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Floor",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Wall",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "SofaNorth",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Chairs",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Props",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Architecture",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Yard",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "EdelzioInteractions",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          }
+        ],
+        "seating": [
+          {
+            "chair": "Chair_Office",
+            "reachable": true
+          },
+          {
+            "chair": "Cadeira_Cafe",
+            "reachable": true
+          }
+        ],
+        "stableObjects": 1029,
+        "saved": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Usuario\\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

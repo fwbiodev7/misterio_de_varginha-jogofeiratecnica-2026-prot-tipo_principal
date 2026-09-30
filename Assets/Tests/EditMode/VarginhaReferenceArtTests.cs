@@ -38,7 +38,7 @@ namespace Game.Tests.EditMode
                 var collider = desk.GetComponent<BoxCollider2D>();
                 collider.size = new Vector2(.8f, .6f);
                 VarginhaEnvironmentPolish.EnsureHouse(root.transform);
-                Assert.That(desk.GetComponent<SpriteRenderer>().sprite.name, Does.StartWith("Furniture_Desk"));
+                Assert.AreEqual("House512_Desk", desk.GetComponent<SpriteRenderer>().sprite.name);
                 Assert.AreEqual(new Vector3(2, 3, 0), desk.transform.position);
                 Assert.AreEqual(new Vector3(1.7f, .9f, 1), desk.transform.localScale);
                 Assert.AreEqual(new Vector2(.8f, .6f), collider.size);
@@ -54,7 +54,8 @@ namespace Game.Tests.EditMode
             {
                 var church = VarginhaEnvironmentArt.EnsureDiocese(root.transform);
                 Assert.IsEmpty(church.GetComponentsInChildren<VarginhaFlameAnimation>(true));
-                Assert.That(VarginhaDarkness.ChurchOpacity, Is.InRange(.8f, .85f));
+                // The current diocese uses a darker ambient overlay for the electric surge.
+                Assert.That(VarginhaDarkness.ChurchOpacity, Is.InRange(.85f, .92f));
                 var sideWindow = church.Find("CenarioV2_Vitral_Lateral_0").GetComponent<SpriteRenderer>();
                 var northWindow = church.Find("CenarioV2_Vitral_Fundo_0").GetComponent<SpriteRenderer>();
                 Assert.Greater(sideWindow.sortingOrder, 30000);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Varginha
@@ -25,6 +26,10 @@ namespace Game.Varginha
         private bool _seatWasIgnored;
         private Vector3 _standingPosition;
         private bool _notebookSession;
+        private Vector2 _seatingDirection = Vector2.up;
+        private readonly List<Vector2> _approachPath = new();
+        private bool _approachReached;
+        private Action _coffeeCancellation;
 
         private void Awake()
         {
@@ -52,10 +57,10 @@ namespace Game.Varginha
             StartCoroutine(NotebookRoutine(notebook, onReady));
         }
 
-        public void PlayDrinkCoffee(Transform coffee, Action onComplete)
+        public void PlayDrinkCoffee(Transform coffee, Action onComplete, Action onCancelled = null)
         {
             if (_isActing) return;
-            StartCoroutine(CoffeeRoutine(coffee, onComplete));
+            StartCoroutine(CoffeeRoutine(coffee, onComplete, onCancelled));
         }
 
         public void PlayChurchSeat(Transform seat)
@@ -75,7 +80,13 @@ namespace Game.Varginha
                 _seatWasIgnored = Physics2D.GetIgnoreCollision(_playerCollider, _seatCollider);
                 Physics2D.IgnoreCollision(_playerCollider, _seatCollider, true);
             }
-            yield return MoveToPosition(seat.position + Vector3.up * .13f, .25f);
+            yield return MoveApproach(seat.position + Vector3.up * .13f);
+            if (!_approachReached) { RestoreSeatCollision(); EndAction(); yield break; }
+            for (int frame = 0; frame < 3; frame++)
+            {
+                _spriteAnimation?.SetSeatingFrame(frame, _seatingDirection);
+                yield return new WaitForSeconds(.12f);
+            }
             _spriteAnimation?.SetActionPose("Edelzio_Sit");
             VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Vou me sentar um instante. [E] para levantar.");
             yield return null; // Do not consume the same key press that started the interaction.
@@ -104,8 +115,8 @@ namespace Game.Varginha
                     _seatWasIgnored = Physics2D.GetIgnoreCollision(_playerCollider, _seatCollider);
                     Physics2D.IgnoreCollision(_playerCollider, _seatCollider, true);
                 }
-                yield return MoveToPosition(chair.transform.position, .34f);
-                if (Vector2.Distance(transform.position, chair.transform.position) > .4f)
+                yield return MoveApproach(chair.transform.position);
+                if (!_approachReached)
                 {
                     RestoreSeatCollision();
                     _notebookSession = false;
@@ -118,7 +129,7 @@ namespace Game.Varginha
                 yield return MoveCloseTo(notebook, .38f, .72f);
             for (int frame = 0; frame < 3; frame++)
             {
-                _spriteAnimation?.SetSeatingFrame(frame);
+                _spriteAnimation?.SetSeatingFrame(frame, _seatingDirection);
                 yield return new WaitForSeconds(.16f);
             }
             _spriteAnimation?.SetActionPose("Edelzio_UseNotebook");
@@ -139,11 +150,11 @@ namespace Game.Varginha
         {
             for (int frame = 2; frame >= 0; frame--)
             {
-                _spriteAnimation?.SetSeatingFrame(frame);
+                _spriteAnimation?.SetSeatingFrame(frame, _seatingDirection);
                 yield return new WaitForSeconds(.12f);
             }
             _spriteAnimation?.ClearActionPose();
-            yield return MoveToPosition(_standingPosition, .24f);
+            yield return MoveApproach(_standingPosition);
             RestoreSeatCollision();
             EndAction();
         }
@@ -155,10 +166,42 @@ namespace Game.Varginha
             _seatCollider = null;
         }
 
-        private IEnumerator CoffeeRoutine(Transform coffee, Action onComplete)
+        private IEnumerator CoffeeRoutine(Transform coffee, Action onComplete, Action onCancelled)
         {
             BeginAction();
-            yield return MoveCloseTo(coffee, .25f, .55f);
+            _coffeeCancellation = onCancelled;
+            _standingPosition = transform.position;
+            Transform chair = null;
+            if (coffee != null)
+                foreach (var candidate in coffee.root.GetComponentsInChildren<Transform>(true))
+                    if (candidate.name == "Cadeira_Cafe" && Vector2.Distance(candidate.position, coffee.position) < 2.4f)
+                    { chair = candidate; break; }
+            bool seated = chair != null;
+            if (seated)
+            {
+                _seatingDirection = Vector2.right;
+                _seatCollider = chair.GetComponent<Collider2D>();
+                _playerCollider = GetComponent<Collider2D>();
+                if (_seatCollider != null && _playerCollider != null)
+                {
+                    _seatWasIgnored = Physics2D.GetIgnoreCollision(_playerCollider, _seatCollider);
+                    Physics2D.IgnoreCollision(_playerCollider, _seatCollider, true);
+                }
+                yield return MoveApproach(chair.position + Vector3.up * .03f);
+                if (!_approachReached)
+                {
+                    RestoreSeatCollision(); EndAction();
+                    _coffeeCancellation?.Invoke(); _coffeeCancellation = null;
+                    VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Vou me aproximar da cadeira para tomar o café.");
+                    yield break;
+                }
+                for (int frame = 0; frame < 3; frame++)
+                {
+                    _spriteAnimation?.SetSeatingFrame(frame, _seatingDirection);
+                    yield return new WaitForSeconds(.12f);
+                }
+            }
+            else yield return MoveCloseTo(coffee, .25f, .55f);
             var worldCup = coffee != null ? coffee.GetComponent<SpriteRenderer>() : null;
             _worldCup = worldCup;
             _worldCupWasVisible = worldCup != null && worldCup.enabled;
@@ -189,9 +232,10 @@ namespace Game.Varginha
             if (worldCup != null) worldCup.enabled = _worldCupWasVisible;
             _worldCup = null;
             _heldCup = null;
-            _spriteAnimation?.ClearActionPose();
-            EndAction();
+            _coffeeCancellation = null;
             onComplete?.Invoke();
+            if (seated) yield return StandUpRoutine();
+            else { _spriteAnimation?.ClearActionPose(); EndAction(); }
         }
 
         private static IEnumerator MoveCup(GameObject cup, Vector3 position, float angle, float duration)
@@ -249,18 +293,34 @@ namespace Game.Varginha
             yield return MoveToPosition(destination, duration);
         }
 
+        private IEnumerator MoveApproach(Vector3 destination)
+        {
+            _approachReached = false;
+            Physics2D.SyncTransforms();
+            if (!VarginhaInteractionApproach.FindPath(transform.position, destination, GetComponent<Collider2D>(), _seatCollider, _approachPath))
+                yield break;
+            foreach (var point in _approachPath)
+            {
+                yield return MoveToPosition(new Vector3(point.x, point.y, transform.position.z),
+                    Mathf.Max(.14f, Vector2.Distance(transform.position, point) / 3.8f));
+                if (Vector2.Distance(transform.position, point) > .16f) yield break;
+            }
+            _approachReached = Vector2.Distance(transform.position, destination) < .16f;
+        }
+
         private IEnumerator MoveToPosition(Vector3 destination, float duration)
         {
             Vector3 start = transform.position;
-            if (Vector3.Distance(start, destination) > 2.2f) yield break;
+            if (Vector3.Distance(start, destination) > 4.5f) yield break;
             _player.IsScriptedMotion = true;
             float elapsed = 0f;
             while (elapsed < duration)
             {
                 elapsed += Time.fixedDeltaTime;
-                Vector2 next = Vector3.Lerp(start, destination, Mathf.Clamp01(elapsed / duration));
+                Vector2 next = Vector3.Lerp(start, destination, Mathf.SmoothStep(0, 1, elapsed / duration));
                 if (_body == null) yield break;
                 Vector2 delta = next - _body.position;
+                _player.FaceActionDirection(delta);
                 float distance = delta.magnitude;
                 var filter = new ContactFilter2D();
                 filter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
@@ -294,6 +354,7 @@ namespace Game.Varginha
         private void BeginAction()
         {
             _isActing = true;
+            _seatingDirection = Vector2.up;
             _player?.SetInputLocked(true);
             if (_body != null)
             {
@@ -317,6 +378,8 @@ namespace Game.Varginha
             _notebookSession = false;
             if (_heldCup != null) Destroy(_heldCup);
             if (_worldCup != null) _worldCup.enabled = _worldCupWasVisible;
+            _coffeeCancellation?.Invoke();
+            _coffeeCancellation = null;
             _spriteAnimation?.ClearActionPose();
             if (_isActing) EndAction();
         }

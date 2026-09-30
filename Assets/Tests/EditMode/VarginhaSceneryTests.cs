@@ -57,7 +57,14 @@ namespace Game.Tests.EditMode
             Build(phase);
             Assert.AreEqual(objects, _root.GetComponentsInChildren<Transform>(true).Length);
             CollectionAssert.AreEquivalent(colliders, _root.GetComponentsInChildren<Collider2D>(true));
-            Assert.IsEmpty(environment.Find("Cenario_Acabamento_V3").GetComponentsInChildren<Collider2D>(true));
+            var decorColliders = environment.Find("Cenario_Acabamento_V3").GetComponentsInChildren<Collider2D>(true);
+            if (phase == "house")
+            {
+                Assert.AreEqual(1, decorColliders.Length);
+                Assert.AreEqual("Cadeira_Cafe", decorColliders[0].name);
+                Assert.IsFalse(decorColliders[0].isTrigger);
+            }
+            else Assert.IsEmpty(decorColliders);
         }
 
         [TestCase("school")]

@@ -14,7 +14,8 @@ namespace Game.Varginha
 
         private void Awake()
         {
-            GetComponent<SpriteRenderer>().sprite = VarginhaPixelArtSprites.Create("Backpack_Prop", Color.gray);
+            GetComponent<SpriteRenderer>().sprite = VarginhaHouseReferenceArt.PropSprite(this, "Backpack_Prop")
+                ?? VarginhaPixelArtSprites.Create("Backpack_Prop", Color.gray);
         }
 
         public void PlayPickup(EdelzioTopDownController player)

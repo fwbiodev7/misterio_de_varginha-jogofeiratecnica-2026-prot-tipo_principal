@@ -1,0 +1,55 @@
+{
+  "status": "completed",
+  "duration": 1.05,
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ActionsKeepNewAppearanceAndColliderSize",
+      "Status": "Passed",
+      "Duration": 0.2171022,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.BackpackStateControlsIntegratedAppearanceInEveryDirection",
+      "Status": "Passed",
+      "Duration": 0.1878104,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.CombatPosesKeepEquipmentWithoutChangingGeometry",
+      "Status": "Passed",
+      "Duration": 0.0836951,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.HotbarReflectsActualCollectedItems",
+      "Status": "Passed",
+      "Duration": 0.001552,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.LockStopsResidualMotion",
+      "Status": "Passed",
+      "Duration": 0.0451383,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ReferenceArtCoversDirectionsWeaponsAndPortrait",
+      "Status": "Passed",
+      "Duration": 0.3144249,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

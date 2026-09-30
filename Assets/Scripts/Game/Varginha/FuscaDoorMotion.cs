@@ -42,7 +42,7 @@ namespace Game.Varginha
             _mesh.vertices = _vertices; _mesh.RecalculateBounds();
             _door.sortingLayerID = _car.sortingLayerID; _door.sortingOrder = _car.sortingOrder + 2;
             _door.enabled = OpenAmount > .001f;
-            _material.color = Color.Lerp(Color.white, new Color(.77f, .84f, .91f), OpenAmount * .5f);
+            _material.color = _car.color * Color.Lerp(Color.white, new Color(.77f, .84f, .91f), OpenAmount * .5f);
         }
 
         private void EnsureGeometry()
@@ -60,7 +60,7 @@ namespace Game.Varginha
                 new Vector2(.1875f, .9375f), new Vector2(.8125f, .9375f) };
             _mesh.triangles = new[] { 0, 1, 2, 0, 2, 3 };
             go.GetComponent<MeshFilter>().sharedMesh = _mesh;
-            _material = new Material(Shader.Find("Sprites/Default")) { name = "Fusca_Porta", mainTexture = sprite.texture };
+            _material = new Material(_car.sharedMaterial) { name = "Fusca_Porta", mainTexture = sprite.texture };
             _door = go.GetComponent<MeshRenderer>(); _door.sharedMaterial = _material;
         }
 

@@ -7,7 +7,7 @@ namespace Game.Tests.EditMode
 {
     public class VarginhaCameraFramingTests
     {
-        [TestCase("FaseTopView_Varginha", -9f, -7f, 27f, 7f, 3.8f)]
+        [TestCase("FaseTopView_Varginha", -10.25f, -9.25f, 28.25f, 9.25f, 3.8f)]
         [TestCase("Fase2_Escola_Resgate", -12.3f, -14f, 12.3f, 6f, 4.2f)]
         [TestCase("Fase3_Igreja_Guardiao", -8.5f, -6.5f, 9.5f, 6.5f, 4f)]
         public void ViewportStaysInsideMapAtCornersAndAfterResizing(string scene, float left, float bottom,
@@ -28,7 +28,10 @@ namespace Game.Tests.EditMode
                     foreach (float y in new[] { bottom - 20f, (bottom + top) / 2f, top + 20f })
                     {
                         target.transform.position = new Vector3(x, y);
-                        go.SendMessage("LateUpdate");
+                        // Native lifecycle dispatch is unavailable on ordinary behaviours in Edit Mode.
+                        typeof(CameraFollow2D).GetMethod("LateUpdate",
+                            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                            .Invoke(follow, null);
                         var position = go.transform.position;
                         float h = camera.orthographicSize, w = h * aspect;
                         Assert.LessOrEqual(h, zoom);
