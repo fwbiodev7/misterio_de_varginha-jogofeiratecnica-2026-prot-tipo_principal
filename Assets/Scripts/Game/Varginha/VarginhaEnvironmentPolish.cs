@@ -5,7 +5,7 @@ namespace Game.Varginha
     /// <summary>Shared scenery presentation and church pew collision for saved and runtime scenes.</summary>
     public static class VarginhaEnvironmentPolish
     {
-        private const string Marker = "Cenario_Acabamento_V8";
+        private const string Marker = "Cenario_Acabamento_V9";
         private static readonly Vector2 SchoolDeskSize = new(1.25f, 1.02f);
         private static readonly Vector2 SchoolChairSize = new(.7f, .8f);
         private static bool _houseBuildRequested;
@@ -183,6 +183,8 @@ namespace Game.Varginha
             RemoveDecorRoot(house, "Cenario_Acabamento_V6_Replacing");
             RemoveDecorRoot(house, "Cenario_Acabamento_V7");
             RemoveDecorRoot(house, "Cenario_Acabamento_V7_Replacing");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V8");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V8_Replacing");
             if (forceRebuild)
             {
                 RemoveDecorRoot(house, Marker);
@@ -199,8 +201,6 @@ namespace Game.Varginha
             }
             var decor = Root(house);
             new GameObject("House512_ArchitectureDecorV2").transform.SetParent(decor, false);
-            BuildReferenceFurnitureColliders(decor);
-            BuildReferenceFurniture(decor);
             foreach (var renderer in house.GetComponentsInChildren<SpriteRenderer>(true))
             {
                 if (renderer.name.StartsWith("Floor_House_Tile_"))

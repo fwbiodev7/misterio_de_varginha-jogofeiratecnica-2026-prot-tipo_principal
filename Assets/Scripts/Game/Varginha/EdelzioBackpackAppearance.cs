@@ -1,148 +1,158 @@
+using System.IO;
 using UnityEngine;
 
 namespace Game.Varginha
 {
     /// <summary>
-    /// Gerencia um SpriteRenderer filho que exibe a mochila equipada nas costas do Edelzio.
-    /// Abordagem de filho de cena (igual ao notebook) em vez de composição pixel a pixel,
-    /// garantindo qualidade visual perfeita em qualquer resolução.
-    /// Direções: 0 = Sul (frente), 1 = Oeste, 2 = Leste, 3 = Norte (costas).
+    /// Gerencia a exibição da mochila nas costas do Edelzio utilizando o modelo de pixel art
+    /// fornecido pelo usuário em todas as 8 posições (Frente, Costas, Lado Esq, Lado Dir, e diagonais).
+    /// As texturas são carregadas de Resources/Varginha/Equipment/ com fallback para leitura de bytes em disco.
+    /// A escala é ajustada para proporção 1:1 anatômica com o torso do Edelzio (altura de 18 pixels no corpo).
     /// </summary>
     public sealed class EdelzioBackpackAppearance : System.IDisposable
     {
         private SpriteRenderer _sr;
-        // Sprite compartilhado entre todas as instâncias — gerado uma única vez.
-        private static Sprite _sprite;
 
-        // ── Paleta pixel art ────────────────────────────────────────────────────
-        private static readonly Color32 Body    = new(88,  95, 105, 255); // corpo cinza grafite
-        private static readonly Color32 Dark    = new(52,  57,  64, 255); // sombra / contorno
-        private static readonly Color32 Mid     = new(68,  74,  83, 255); // meio-tom
-        private static readonly Color32 Light   = new(128,136, 148, 255); // destaque topo
-        private static readonly Color32 Strap   = new(42,  45,  50, 255); // alça quase preta
-        private static readonly Color32 Buckle  = new(188,194, 202, 255); // fivela prateada
-        private static readonly Color32 Pocket  = new(72,  78,  88, 255); // bolso frontal
-        private static readonly Color32 Clear   = new(0, 0, 0, 0);
+        // Cache estático dos 8 sprites extraídos do modelo de IA do usuário
+        private static Sprite _spriteCostasNorte;    // Face externa (bolsos/zíper) vista nas costas do player
+        private static Sprite _spriteFrenteSul;      // Face interna com alças
+        private static Sprite _spriteLadoOeste;      // Perfil direito da mochila (visível atrás do player virado a oeste)
+        private static Sprite _spriteLadoLeste;      // Perfil esquerdo da mochila (visível atrás do player virado a leste)
+        private static Sprite _spriteDiagCostasEsq;  // Diagonal costas esquerda
+        private static Sprite _spriteDiagCostasDir;  // Diagonal costas direita
+        private static Sprite _spriteDiagFrenteEsq;  // Diagonal frente esquerda
+        private static Sprite _spriteDiagFrenteDir;  // Diagonal frente direita
 
-        // ── Textura 14 × 18 px (pivot na base central) ──────────────────────────
-        private const int W = 14, H = 18;
-
-        private static void Px(Color32[] p, int x, int y, Color32 c)
-        {
-            if (x < 0 || x >= W || y < 0 || y >= H) return;
-            p[y * W + x] = c;
-        }
-
-        private static Sprite BuildSprite()
-        {
-            var p = new Color32[W * H];
-            for (int i = 0; i < p.Length; i++) p[i] = Clear;
-
-            // ── Corpo principal (cols 2-11, rows 2-15) ──
-            for (int y = 2; y <= 15; y++)
-            for (int x = 2; x <= 11; x++)
-                Px(p, x, y, Body);
-
-            // Aba superior arredondada (rows 16-17)
-            for (int x = 3; x <= 10; x++) { Px(p, x, 16, Dark); Px(p, x, 17, Dark); }
-
-            // Contorno escuro — lados e fundo
-            for (int y = 2; y <= 15; y++) { Px(p, 2, y, Dark); Px(p, 11, y, Dark); }
-            for (int x = 2; x <= 11; x++)  Px(p, x, 2, Dark);
-
-            // Meio-tom direito (sombra lateral)
-            for (int y = 3; y <= 14; y++) Px(p, 10, y, Mid);
-
-            // Destaque topo-esquerdo
-            for (int y = 13; y <= 15; y++) Px(p, 3, y, Light);
-            for (int x = 3; x <=  8; x++) Px(p, x, 15, Light);
-
-            // ── Bolso frontal (rows 4-9, cols 4-9) ──
-            for (int x = 4; x <= 9; x++) { Px(p, x, 4, Dark); Px(p, x, 9, Dark); }
-            for (int y = 4; y <= 9; y++) { Px(p, 4, y, Dark); Px(p, 9, y, Dark); }
-            for (int y = 5; y <= 8; y++)
-            for (int x = 5; x <= 8; x++) Px(p, x, y, Pocket);
-            // zipper do bolso
-            Px(p, 6, 6, Buckle); Px(p, 7, 6, Buckle);
-
-            // ── Alças (cols 4 e 9, rows 0-2) ──
-            for (int y = 0; y <= 2; y++) { Px(p, 4, y, Strap); Px(p, 9, y, Strap); }
-            // fivela central
-            Px(p, 6, 1, Buckle); Px(p, 7, 1, Buckle);
-
-            // ── Costura horizontal do meio ──
-            for (int x = 3; x <= 10; x++) Px(p, x, 11, Mid);
-
-            var tex = new Texture2D(W, H, TextureFormat.RGBA32, false)
-            {
-                filterMode = FilterMode.Point,
-                wrapMode   = TextureWrapMode.Clamp,
-                hideFlags  = HideFlags.DontSave,
-                name       = "Backpack_Equipped_Tex"
-            };
-            tex.SetPixels32(p);
-            tex.Apply(false, false);
-
-            // Pivot na base central para facilitar o posicionamento
-            var s = Sprite.Create(tex, new Rect(0, 0, W, H),
-                new Vector2(.5f, 0f), 16f, 0, SpriteMeshType.FullRect);
-            s.name       = "Backpack_Equipped";
-            s.hideFlags  = HideFlags.DontSave;
-            return s;
-        }
-
-        // ── API pública ─────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// Atualiza visibilidade e pose da mochila filho com base na direção de Edelzio.
-        /// Deve ser chamado em PresentPose / RefreshEquipmentAppearance.
-        /// </summary>
         public void UpdatePose(Transform player, SpriteRenderer playerSr, int direction, bool visible)
         {
             EnsureChild(player, playerSr);
-            if (!visible) { _sr.enabled = false; return; }
-            if (_sprite == null) _sprite = BuildSprite();
-            _sr.sprite = _sprite;
-            _sr.enabled = true;
-            _sr.sortingLayerID = playerSr.sortingLayerID;
+            if (!visible)
+            {
+                _sr.enabled = false;
+                return;
+            }
 
-            // ── Ajusta posição, escala e ordem por direção ──────────────────────
-            //   direction 3 = Norte (costas para câmera) — mochila totalmente visível
-            //   direction 0 = Sul  (frente para câmera) — só alças discretas
-            //   direction 1 = Oeste / direction 2 = Leste — perfil lateral
+            EnsureSpritesLoaded();
+
+            _sr.sortingLayerID = playerSr.sortingLayerID;
+            _sr.transform.localScale = Vector3.one;
+            _sr.flipX = false;
+
+            // Mapeamento das direções com base no sprite do Edelzio:
+            // 3 = Norte (Costas do player para câmera — exibe a mochila com bolso e zíper no centro das costas)
+            // 1 = Oeste (Player olhando para a esquerda — mochila projeta perfil para a direita)
+            // 2 = Leste (Player olhando para a direita — mochila projeta perfil para a esquerda)
+            // 0 = Sul (Player de frente para câmera — mochila oculta atrás do tronco)
+            // 6 = Diagonal Norte-Oeste, 7 = Diagonal Norte-Leste, 4 = Sul-Oeste, 5 = Sul-Leste
             switch (direction)
             {
-                case 3: // Costas — mochila exposta na frente do sprite
-                    _sr.sortingOrder   = playerSr.sortingOrder + 1;
-                    _sr.transform.localPosition = new Vector3(0f, -.08f, 0f);
-                    _sr.transform.localScale    = new Vector3(.50f, .50f, 1f);
-                    _sr.flipX = false;
+                case 3: // Norte (costas)
+                    _sr.sprite = _spriteCostasNorte;
+                    _sr.enabled = _spriteCostasNorte != null;
+                    _sr.sortingOrder = playerSr.sortingOrder + 1;
+                    _sr.transform.localPosition = new Vector3(0f, .05f, 0f);
                     break;
 
-                case 1: // Facing west — pack visível atrás do ombro direito
-                    _sr.sortingOrder   = playerSr.sortingOrder - 1;
-                    _sr.transform.localPosition = new Vector3(.13f, -.10f, 0f);
-                    _sr.transform.localScale    = new Vector3(.30f, .42f, 1f);
-                    _sr.flipX = false;
+                case 1: // Oeste (olhando para a esquerda)
+                    _sr.sprite = _spriteLadoOeste;
+                    _sr.enabled = _spriteLadoOeste != null;
+                    _sr.sortingOrder = playerSr.sortingOrder - 1;
+                    _sr.transform.localPosition = new Vector3(.12f, .05f, 0f);
                     break;
 
-                case 2: // Facing east — pack visível atrás do ombro esquerdo
-                    _sr.sortingOrder   = playerSr.sortingOrder - 1;
-                    _sr.transform.localPosition = new Vector3(-.13f, -.10f, 0f);
-                    _sr.transform.localScale    = new Vector3(.30f, .42f, 1f);
-                    _sr.flipX = true;
+                case 2: // Leste (olhando para a direita)
+                    _sr.sprite = _spriteLadoLeste;
+                    _sr.enabled = _spriteLadoLeste != null;
+                    _sr.sortingOrder = playerSr.sortingOrder - 1;
+                    _sr.transform.localPosition = new Vector3(-.12f, .05f, 0f);
                     break;
 
-                default: // Sul (frente) — mochila quase oculta, só as alças
-                    _sr.sortingOrder   = playerSr.sortingOrder - 1;
-                    _sr.transform.localPosition = new Vector3(0f, -.06f, 0f);
-                    _sr.transform.localScale    = new Vector3(.44f, .44f, 1f);
-                    _sr.flipX = false;
+                case 6: // Diagonal Norte-Oeste
+                    _sr.sprite = _spriteDiagCostasEsq ?? _spriteCostasNorte;
+                    _sr.enabled = _sr.sprite != null;
+                    _sr.sortingOrder = playerSr.sortingOrder + 1;
+                    _sr.transform.localPosition = new Vector3(.06f, .05f, 0f);
+                    break;
+
+                case 7: // Diagonal Norte-Leste
+                    _sr.sprite = _spriteDiagCostasDir ?? _spriteCostasNorte;
+                    _sr.enabled = _sr.sprite != null;
+                    _sr.sortingOrder = playerSr.sortingOrder + 1;
+                    _sr.transform.localPosition = new Vector3(-.06f, .05f, 0f);
+                    break;
+
+                case 4: // Diagonal Sul-Oeste
+                    _sr.sprite = _spriteDiagFrenteEsq;
+                    _sr.enabled = _spriteDiagFrenteEsq != null;
+                    _sr.sortingOrder = playerSr.sortingOrder - 1;
+                    _sr.transform.localPosition = new Vector3(.08f, .04f, 0f);
+                    break;
+
+                case 5: // Diagonal Sul-Leste
+                    _sr.sprite = _spriteDiagFrenteDir;
+                    _sr.enabled = _spriteDiagFrenteDir != null;
+                    _sr.sortingOrder = playerSr.sortingOrder - 1;
+                    _sr.transform.localPosition = new Vector3(-.08f, .04f, 0f);
+                    break;
+
+                default: // 0 = Sul (frente para câmera — mochila oculta atrás do corpo)
+                    _sr.enabled = false;
                     break;
             }
         }
 
-        // ── Internos ────────────────────────────────────────────────────────────
+        private static void EnsureSpritesLoaded()
+        {
+            if (_spriteCostasNorte != null) return;
+
+            // O modelo fornecido pelo usuário rotula a face com zíper/bolsos de "Frente",
+            // que quando usada nas costas de um personagem é a face externa visível olhando de trás (Norte).
+            _spriteCostasNorte   = LoadEquipmentSprite("Backpack_Frente");
+            _spriteFrenteSul     = LoadEquipmentSprite("Backpack_Costas");
+            _spriteLadoOeste     = LoadEquipmentSprite("Backpack_LadoDir");
+            _spriteLadoLeste     = LoadEquipmentSprite("Backpack_LadoEsq");
+            _spriteDiagCostasEsq = LoadEquipmentSprite("Backpack_DiagCostasEsq");
+            _spriteDiagCostasDir = LoadEquipmentSprite("Backpack_DiagCostasDir");
+            _spriteDiagFrenteEsq = LoadEquipmentSprite("Backpack_DiagFrenteEsq");
+            _spriteDiagFrenteDir = LoadEquipmentSprite("Backpack_DiagFrenteDir");
+        }
+
+        private static Sprite LoadEquipmentSprite(string name)
+        {
+            var tex = Resources.Load<Texture2D>("Varginha/Equipment/" + name);
+            if (tex == null)
+            {
+                string path = Path.Combine(Application.dataPath, "Resources", "Varginha", "Equipment", name + ".png");
+                if (File.Exists(path))
+                {
+                    tex = new Texture2D(2, 2, TextureFormat.RGBA32, false)
+                    {
+                        filterMode = FilterMode.Point,
+                        wrapMode = TextureWrapMode.Clamp,
+                        name = name
+                    };
+                    ImageConversion.LoadImage(tex, File.ReadAllBytes(path));
+                    tex.filterMode = FilterMode.Point;
+                }
+            }
+
+            if (tex == null) return null;
+
+            // Normaliza a altura para 18 pixels no espaço de pixels do Edelzio:
+            float targetPixelHeight = 18f;
+            float ppu = (tex.height / targetPixelHeight) * VarginhaReferenceSprites.EdelzioPixelsPerUnit;
+
+            var s = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height),
+                new Vector2(.5f, .5f), ppu, 0, SpriteMeshType.FullRect);
+            s.name = name;
+            s.hideFlags = HideFlags.DontSave;
+            return s;
+        }
+
+        /// <summary>
+        /// Compatibilidade retroativa com código de teste.
+        /// </summary>
+        public Sprite GetFrame(Sprite body, int direction) => body;
 
         private void EnsureChild(Transform player, SpriteRenderer playerSr)
         {
@@ -163,12 +173,10 @@ namespace Game.Varginha
         {
             if (_sr != null && _sr.gameObject != null)
             {
-                if (Application.isPlaying) UnityEngine.Object.Destroy(_sr.gameObject);
-                else                       UnityEngine.Object.DestroyImmediate(_sr.gameObject);
+                if (Application.isPlaying) Object.Destroy(_sr.gameObject);
+                else Object.DestroyImmediate(_sr.gameObject);
             }
             _sr = null;
-            // O sprite estático é compartilhado; deixa o GC coletar em Play.
-            // Em modo Editor, o DontSave garante limpeza automática.
         }
     }
 }
