@@ -166,15 +166,21 @@ namespace Game.Varginha
                     break;
 
                 case PropType.Backpack:
+                    message = "🎒 Você pegou a sua MOCHILA! Seus itens e caderno agora estão guardados em segurança.";
                     var pickupAnimation = GetComponent<BackpackPickupAnimation>();
-                    if (pickupAnimation != null) pickupAnimation.PlayPickup(edelzio);
+                    if (pickupAnimation != null)
+                    {
+                        pickupAnimation.PlayPickup(edelzio, () =>
+                        {
+                            GetHud()?.ShowDialogue("Edelzio", message);
+                        });
+                    }
                     else
                     {
                         edelzio.EquipBackpack();
                         HideCollectedWorldObject();
+                        GetHud()?.ShowDialogue("Edelzio", message);
                     }
-                    message = "🎒 Você pegou a sua MOCHILA! Seus itens e caderno agora estão guardados em segurança.";
-                    GetHud()?.ShowDialogue("Edelzio", message);
                     break;
 
                 case PropType.NotebookLaptop:

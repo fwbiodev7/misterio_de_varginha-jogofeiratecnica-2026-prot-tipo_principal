@@ -26,6 +26,7 @@ namespace Game.Varginha
         public void UpdatePose(Transform player, SpriteRenderer playerSr, int direction, bool visible)
         {
             EnsureChild(player, playerSr);
+            if (_sr == null) return;
             if (!visible)
             {
                 _sr.enabled = false;
@@ -119,34 +120,63 @@ namespace Game.Varginha
 
         private static Sprite LoadEquipmentSprite(string name)
         {
-            var tex = Resources.Load<Texture2D>("Varginha/Equipment/" + name);
-            if (tex == null)
+            try
             {
+                // 1. Tenta ler direto do disco via ImageConversion: garante Texture2D legível (readable) em runtime
                 string path = Path.Combine(Application.dataPath, "Resources", "Varginha", "Equipment", name + ".png");
                 if (File.Exists(path))
                 {
-                    tex = new Texture2D(2, 2, TextureFormat.RGBA32, false)
+                    byte[] bytes = File.ReadAllBytes(path);
+                    if (bytes != null && bytes.Length > 0)
                     {
-                        filterMode = FilterMode.Point,
-                        wrapMode = TextureWrapMode.Clamp,
-                        name = name
-                    };
-                    ImageConversion.LoadImage(tex, File.ReadAllBytes(path));
-                    tex.filterMode = FilterMode.Point;
+                        var tex = new Texture2D(2, 2, TextureFormat.RGBA32, false)
+                        {
+                            filterMode = FilterMode.Point,
+                            wrapMode = TextureWrapMode.Clamp,
+                            name = name
+                        };
+                        if (ImageConversion.LoadImage(tex, bytes))
+                        {
+                            tex.filterMode = FilterMode.Point;
+                            float targetPixelHeight = 18f;
+                            float ppu = (tex.height / targetPixelHeight) * VarginhaReferenceSprites.EdelzioPixelsPerUnit;
+                            var s = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height),
+                                new Vector2(.5f, .5f), ppu, 0, SpriteMeshType.FullRect);
+                            s.name = name;
+                            s.hideFlags = HideFlags.DontSave;
+                            return s;
+                        }
+                    }
+                }
+
+                // 2. Fallback para Resources caso executando em build standalone
+                var directSprites = Resources.LoadAll<Sprite>("Varginha/Equipment/" + name);
+                if (directSprites != null && directSprites.Length > 0 && directSprites[0] != null)
+                {
+                    return directSprites[0];
+                }
+
+                var directSprite = Resources.Load<Sprite>("Varginha/Equipment/" + name);
+                if (directSprite != null) return directSprite;
+
+                var resTex = Resources.Load<Texture2D>("Varginha/Equipment/" + name);
+                if (resTex != null)
+                {
+                    float targetPixelHeight = 18f;
+                    float ppu = (resTex.height / targetPixelHeight) * VarginhaReferenceSprites.EdelzioPixelsPerUnit;
+                    var s = Sprite.Create(resTex, new Rect(0, 0, resTex.width, resTex.height),
+                        new Vector2(.5f, .5f), ppu, 0, SpriteMeshType.FullRect);
+                    s.name = name;
+                    s.hideFlags = HideFlags.DontSave;
+                    return s;
                 }
             }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[EdelzioBackpackAppearance] Não foi possível carregar o sprite {name}: {ex.Message}");
+            }
 
-            if (tex == null) return null;
-
-            // Normaliza a altura para 18 pixels no espaço de pixels do Edelzio:
-            float targetPixelHeight = 18f;
-            float ppu = (tex.height / targetPixelHeight) * VarginhaReferenceSprites.EdelzioPixelsPerUnit;
-
-            var s = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height),
-                new Vector2(.5f, .5f), ppu, 0, SpriteMeshType.FullRect);
-            s.name = name;
-            s.hideFlags = HideFlags.DontSave;
-            return s;
+            return null;
         }
 
         /// <summary>
@@ -156,25 +186,34 @@ namespace Game.Varginha
 
         private void EnsureChild(Transform player, SpriteRenderer playerSr)
         {
-            if (_sr != null && _sr.gameObject != null) return;
+            if (_sr != null) return;
+            if (player == null) return;
             var found = player.Find("Mochila_Equipada");
             if (found == null)
             {
-                found = new GameObject("Mochila_Equipada").transform;
-                found.SetParent(player, false);
-                found.gameObject.hideFlags = HideFlags.DontSave;
+                var go = new GameObject("Mochila_Equipada");
+                go.transform.SetParent(player, false);
+                go.hideFlags = HideFlags.DontSave;
+                _sr = go.AddComponent<SpriteRenderer>();
             }
-            _sr = found.GetComponent<SpriteRenderer>()
-                  ?? found.gameObject.AddComponent<SpriteRenderer>();
-            _sr.hideFlags = HideFlags.DontSave;
+            else
+            {
+                var sr = found.GetComponent<SpriteRenderer>();
+                _sr = sr != null ? sr : found.gameObject.AddComponent<SpriteRenderer>();
+            }
+            if (_sr != null) _sr.hideFlags = HideFlags.DontSave;
         }
 
         public void Dispose()
         {
-            if (_sr != null && _sr.gameObject != null)
+            if (_sr != null)
             {
-                if (Application.isPlaying) Object.Destroy(_sr.gameObject);
-                else Object.DestroyImmediate(_sr.gameObject);
+                var go = _sr.gameObject;
+                if (go != null)
+                {
+                    if (Application.isPlaying) Object.Destroy(go);
+                    else Object.DestroyImmediate(go);
+                }
             }
             _sr = null;
         }

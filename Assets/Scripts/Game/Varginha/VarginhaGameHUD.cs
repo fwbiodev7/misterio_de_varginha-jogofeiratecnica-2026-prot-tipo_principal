@@ -150,7 +150,16 @@ namespace Game.Varginha
                 }
                 _hotbarOwned[i] = owned;
             }
-            if (_isDialogueOpen || _isVictoryOpen || _edelzio.IsInputLocked || Time.timeScale == 0f) return;
+            if (_isDialogueOpen)
+            {
+                if (keyboard != null && (keyboard.spaceKey.wasPressedThisFrame || keyboard.enterKey.wasPressedThisFrame || keyboard.eKey.wasPressedThisFrame))
+                {
+                    if (_dialogueTypewriter.IsComplete) CloseDialogue();
+                    else _dialogueTypewriter.RevealImmediately();
+                }
+                return;
+            }
+            if (_isVictoryOpen || _edelzio.IsInputLocked || Time.timeScale == 0f) return;
             var mouse = Mouse.current;
             if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame))
             {
@@ -386,7 +395,9 @@ namespace Game.Varginha
                 PlayTypewriterBlip();
             }
 
-            if (_isDialogueOpen && Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Space)
+            if (_isDialogueOpen && Event.current.type == EventType.KeyDown &&
+                (Event.current.keyCode == KeyCode.Space || Event.current.keyCode == KeyCode.Return ||
+                 Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.E))
             {
                 if (_dialogueTypewriter.IsComplete) CloseDialogue();
                 else _dialogueTypewriter.RevealImmediately();
