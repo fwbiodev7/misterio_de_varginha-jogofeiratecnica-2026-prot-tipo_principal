@@ -303,6 +303,8 @@ namespace Game.Varginha
                         VarginhaDifficulty.Select((InvestigationDifficulty)i);
                         Time.timeScale = 1f;
                         Game.Managers.GameManager.Instance?.StartGame();
+                        if (_pendingScene == VarginhaGameOverFlow.PhaseOneScene)
+                            VarginhaEnvironmentPolish.RequestHouseBuildOnNextSceneLoad();
                         SceneManager.LoadScene(_pendingScene);
                     }
                 }

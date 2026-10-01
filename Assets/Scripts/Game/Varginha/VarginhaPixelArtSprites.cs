@@ -233,22 +233,85 @@ namespace Game.Varginha
             return sprite;
         }
 
+        public static Sprite CreateHouseFloorTile(int tileX, int tileY)
+        {
+            int patternX = ((tileX % 5) + 5) % 5;
+            int patternY = ((tileY % 3) + 3) % 3;
+            string key = "HouseFloorTile_" + patternX + "_" + patternY;
+            if (Cache.TryGetValue(key, out var cached) && cached != null && cached.texture != null) return cached;
+
+            var texture = new Texture2D(CanvasSize, CanvasSize, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp,
+                name = key
+            };
+            DrawAlignedWoodFloorTile(texture, patternX, patternY);
+            texture.Apply(false, false);
+            var sprite = Sprite.Create(texture, new Rect(0, 0, CanvasSize, CanvasSize),
+                new Vector2(.5f, .5f), PixelsPerUnit, 0, SpriteMeshType.FullRect);
+            sprite.name = key;
+            Cache[key] = sprite;
+            return sprite;
+        }
+
         private static void DrawWoodFloor(Texture2D t, Color mid, Color dark, Color light)
         {
-            // Muted walnut from the shared furniture set; floor contrast stays below interactable props.
-            mid = new Color32(100, 78, 58, 255);
-            dark = new Color32(62, 51, 44, 255);
-            light = new Color32(142, 114, 81, 255);
-            Fill(t, 0, 0, 32, 32, mid);
-            for (int y = 0; y < 32; y += 8)
+            DrawAlignedWoodFloorTile(t, 0, 0);
+        }
+
+        private static void DrawAlignedWoodFloorTile(Texture2D t, int tileX, int tileY)
+        {
+            const int boardHeight = 24;
+            const int boardLength = 80;
+            int globalX = tileX * 32;
+            int globalY = tileY * 32;
+            int firstBoard = FloorDivide(globalY, boardHeight);
+            int lastBoard = FloorDivide(globalY + 31, boardHeight);
+
+            for (int board = firstBoard; board <= lastBoard; board++)
             {
-                Fill(t, 0, y, 32, 1, Color.Lerp(mid, dark, .42f));
-                int seam = ((y / 8) & 1) == 0 ? 9 : 25;
-                Fill(t, seam, y + 1, 1, 7, Color.Lerp(mid, dark, .35f));
-                Fill(t, 0, y + 1, 32, 1, Color.Lerp(mid, light, .16f));
-                Fill(t, 3, y + 4, 16, 1, Color.Lerp(mid, dark, .10f));
-                Fill(t, 19, y + 5, 10, 1, Color.Lerp(mid, light, .08f));
+                int boardTop = board * boardHeight;
+                int localTop = Mathf.Max(0, boardTop - globalY);
+                int localBottom = Mathf.Min(32, boardTop + boardHeight - globalY);
+                Color plank = (board & 1) == 0
+                    ? new Color32(91, 70, 54, 255)
+                    : new Color32(94, 72, 55, 255);
+                Fill(t, 0, localTop, 32, localBottom - localTop, plank);
+
+                int seamOffset = (board & 1) == 0 ? 0 : 40;
+                int firstJoint = FloorDivide(globalX - seamOffset, boardLength) * boardLength + seamOffset;
+                for (int joint = firstJoint; joint <= globalX + 32; joint += boardLength)
+                {
+                    int localX = joint - globalX;
+                    if (localX < 1 || localX >= 31) continue;
+                    Fill(t, localX, localTop + 1, 1, Mathf.Max(1, localBottom - localTop - 2), new Color32(70, 54, 43, 255));
+                    Fill(t, localX + 1, localTop + 2, 1, Mathf.Max(1, localBottom - localTop - 4), new Color32(104, 81, 61, 255));
+                }
+
+                int grainX = (tileX * 17 + board * 11 + 7) % 24;
+                int grainY = localTop + Mathf.Min(7, (localBottom - localTop) / 2);
+                if (grainY < localBottom - 2)
+                {
+                    Fill(t, grainX, grainY, 5, 1, new Color32(84, 65, 50, 255));
+                    Fill(t, grainX + 7, grainY + 2, 3, 1, new Color32(103, 80, 60, 255));
+                }
             }
+
+            int nextSeam = (FloorDivide(globalY, boardHeight) + 1) * boardHeight;
+            for (int seam = nextSeam; seam <= globalY + 32; seam += boardHeight)
+            {
+                int localY = seam - globalY;
+                if (localY <= 0 || localY >= 32) continue;
+                Fill(t, 0, localY, 32, 1, new Color32(68, 53, 43, 255));
+                Fill(t, 0, localY + 1, 32, 1, new Color32(106, 82, 60, 255));
+            }
+        }
+
+        private static int FloorDivide(int value, int divisor)
+        {
+            int quotient = value / divisor;
+            return value < 0 && value % divisor != 0 ? quotient - 1 : quotient;
         }
 
         private static void DrawSchoolFloor(Texture2D t, Color mid, Color dark, Color light)

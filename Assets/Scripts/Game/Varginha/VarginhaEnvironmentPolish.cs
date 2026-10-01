@@ -5,9 +5,12 @@ namespace Game.Varginha
     /// <summary>Shared scenery presentation and church pew collision for saved and runtime scenes.</summary>
     public static class VarginhaEnvironmentPolish
     {
-        private const string Marker = "Cenario_Acabamento_V3";
+        private const string Marker = "Cenario_Acabamento_V8";
         private static readonly Vector2 SchoolDeskSize = new(1.25f, 1.02f);
         private static readonly Vector2 SchoolChairSize = new(.7f, .8f);
+        private static bool _houseBuildRequested;
+
+        public static void RequestHouseBuildOnNextSceneLoad() => _houseBuildRequested = true;
 
         public static void EnsureSchool(Transform school)
         {
@@ -145,16 +148,40 @@ namespace Game.Varginha
         public static void EnsureHouse(Transform house)
         {
             if (house == null) return;
+            bool forceRebuild = _houseBuildRequested;
+            _houseBuildRequested = false;
             var scope = VarginhaHouseComposition.Scope(house);
             RefreshReferenceFurniture(scope);
             VarginhaHouseComposition.Apply(house);
-            if (!NeedsRefresh(house, true)) return;
+            RemoveDecorRoot(house, "Cenario_Acabamento_V3");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V3_Replacing");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V4");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V4_Replacing");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V5");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V5_Replacing");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V6");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V6_Replacing");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V7");
+            RemoveDecorRoot(house, "Cenario_Acabamento_V7_Replacing");
+            if (forceRebuild)
+            {
+                RemoveDecorRoot(house, Marker);
+                RemoveDecorRoot(house, Marker + "_Replacing");
+            }
+            RemoveDecorRoot(house, "Fase1_Mapa_Artwork");
+            RemoveDecorRoot(house, "Fase1_Jardim_Artwork");
+            RestoreBakedHouseRenderers(scope);
+            if (!forceRebuild && !NeedsRefresh(house, true)) return;
             var decor = Root(house);
+            BuildReferenceFurnitureColliders(decor);
+            BuildReferenceFurniture(decor);
             foreach (var renderer in house.GetComponentsInChildren<SpriteRenderer>(true))
             {
-                if (renderer.name.StartsWith("Floor_House"))
+                if (renderer.name.StartsWith("Floor_House_Tile_"))
                 {
-                    renderer.sprite = VarginhaPixelArtSprites.Create("Floor_House", new Color(.39f, .29f, .23f));
+                    int tileX = Mathf.FloorToInt(renderer.transform.position.x);
+                    int tileY = Mathf.FloorToInt(renderer.transform.position.y);
+                    renderer.sprite = VarginhaPixelArtSprites.CreateHouseFloorTile(tileX, tileY);
                     renderer.color = Color.white;
                 }
                 else if (renderer.name.StartsWith("Floor_Yard"))
@@ -183,21 +210,15 @@ namespace Game.Varginha
             Part(decor, "Memorias_1996", "Noticeboard", new Vector2(-5f, -.85f), new Vector2(1.8f, .85f), 3);
             Part(decor, "Livros_Quarto", "Bookshelf", new Vector2(-1.65f, 5.45f), new Vector2(1.5f, 1.85f), 3);
             Part(decor, "Aparador_Arquivo", "Dresser", new Vector2(-2.25f, -5.4f), new Vector2(1.7f, 1.45f), 3);
-            Part(decor, "Tapete_Escritorio", "Rug", new Vector2(-5f, -3.3f), new Vector2(4.2f, 3.1f), 1);
             Part(decor, "Cadeira_Cafe", "Chair", new Vector2(3.25f, -2f), new Vector2(.75f, 1.05f), 3);
             Part(decor, "Samambaia_Sala", "Plant", new Vector2(7.45f, 1.6f), new Vector2(.6f, .95f), 3);
             Part(decor, "Planta_Varanda", "Plant", new Vector2(10.6f, -1.45f), new Vector2(.7f, 1.1f), 3);
-            Part(decor, "Tapete_Porta", "Rug", new Vector2(7.8f, 0), new Vector2(1.3f, 1.55f), 1);
+            Part(decor, "Canteiro_Florido_Norte", "FlowerPatch", new Vector2(16.6f, 6.55f), new Vector2(2.8f, .72f), 2);
+            Part(decor, "Canteiro_Florido_Sul", "FlowerPatch", new Vector2(19.2f, -6.55f), new Vector2(2.8f, .72f), 2);
+            Part(decor, "Folhagem_Cerca_Leste_Norte", "Leaves", new Vector2(25.7f, 5.1f), new Vector2(1.8f, 1.35f), 2);
+            Part(decor, "Folhagem_Cerca_Leste_Sul", "Leaves", new Vector2(25.4f, -5.2f), new Vector2(1.8f, 1.35f), 2);
             Pool(decor, "Luz_Poste", new Vector2(25.7f, 2.1f), new Vector2(4.5f, 2.85f), .95f, true, 2);
             Pool(decor, "Luz_Varanda", new Vector2(10.2f, .25f), new Vector2(3.2f, 2.75f), .85f, false, 2);
-            Part(decor, "Poca_Rua", "Puddle", new Vector2(24.5f, 1.6f), new Vector2(2.2f, .65f), 2);
-            Part(decor, "Poca_Caminho", "Puddle", new Vector2(16.8f, -1.4f), new Vector2(1.5f, .5f), 2);
-            Vector2[] foliage = { new Vector2(12.5f, 5.1f), new Vector2(15.1f, -4.8f), new Vector2(24.5f, 5.4f), new Vector2(22.9f, -5.3f) };
-            for (int i = 0; i < foliage.Length; i++)
-            {
-                Part(decor, "Folhas_Quintal_" + i, "Leaves", foliage[i], new Vector2(2.5f, 1.6f), 1);
-                Shadow(decor, foliage[i] + Vector2.down * .55f, new Vector2(3.2f, 1.25f));
-            }
             // Keep the road and the escape interaction clear of new collision geometry.
             ContactShadows(scope, decor);
             Dust(decor, new Vector2(-4.1f, 4.7f), new Vector2(2.1f, 1.2f), 6, new Color(.64f, .82f, .95f, .45f));
@@ -330,6 +351,118 @@ namespace Game.Varginha
         private static Transform Root(Transform parent)
         { var root = new GameObject(Marker).transform; root.SetParent(parent, false); return root; }
 
+        private static void BuildReferenceFurnitureColliders(Transform parent)
+        {
+            AddFurnitureCollider(parent, "Colisor_Balcao_Norte", new Vector2(1.35f, 4.52f), new Vector2(5.3f, .34f));
+            AddFurnitureCollider(parent, "Colisor_Mesa_Esquerda", new Vector2(-6.1f, -.85f), new Vector2(1.0f, .38f));
+            AddFurnitureCollider(parent, "Colisor_Mesa_Centro", new Vector2(-2.65f, -1.45f), new Vector2(.95f, .36f));
+            AddFurnitureCollider(parent, "Colisor_Mesa_Lateral_Norte", new Vector2(6.55f, 1.65f), new Vector2(1.9f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Mesa_Lateral_Sul", new Vector2(6.5f, -2.25f), new Vector2(1.9f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Banco_Balcao_1", new Vector2(-.8f, 3.87f), new Vector2(.48f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Banco_Balcao_2", new Vector2(.75f, 3.87f), new Vector2(.48f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Banco_Balcao_3", new Vector2(2.3f, 3.87f), new Vector2(.48f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Esquerda_1", new Vector2(-5.25f, -.9f), new Vector2(.48f, .42f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Esquerda_2", new Vector2(-6.95f, -.9f), new Vector2(.48f, .42f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Centro_1", new Vector2(-2.65f, -.75f), new Vector2(.44f, .38f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Centro_2", new Vector2(-2.65f, -2.15f), new Vector2(.44f, .38f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Norte_1", new Vector2(6.55f, 2.55f), new Vector2(.48f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Norte_2", new Vector2(6.55f, .75f), new Vector2(.48f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Sul_1", new Vector2(6.5f, -1.35f), new Vector2(.48f, .4f));
+            AddFurnitureCollider(parent, "Colisor_Cadeira_Sul_2", new Vector2(6.5f, -3.15f), new Vector2(.48f, .4f));
+        }
+
+        private static void BuildReferenceFurniture(Transform decor)
+        {
+            var runner = Part(decor, "Passadeira_Corredor_Centro", "Rug", new Vector2(.55f, -1.35f), new Vector2(1.15f, 3.7f), 1);
+            runner.color = new Color(.78f, .92f, .72f);
+            Part(decor, "Balcao_Sala_1996", "CoffeeTable", new Vector2(1.35f, 4.52f), new Vector2(5.8f, .86f), 3);
+            for (int index = 0; index < 3; index++)
+            {
+                float x = -.8f + index * 1.55f;
+                Part(decor, "Banco_Balcao_" + index, "Chair", new Vector2(x, 3.87f), new Vector2(.68f, .76f), 3);
+                PixelProp(decor, "Caneca_Balcao_" + index, "Coffee_Cup", new Vector2(x, 4.62f), new Vector2(.22f, .22f), Color.white, 4);
+            }
+
+            Part(decor, "Mesa_Cafe_Esquerda", "CoffeeTable", new Vector2(-6.1f, -.85f), new Vector2(1.25f, .86f), 3);
+            Part(decor, "Cadeira_Mesa_Esquerda_1", "Chair", new Vector2(-5.25f, -.9f), new Vector2(.68f, .76f), 3);
+            Part(decor, "Cadeira_Mesa_Esquerda_2", "Chair", new Vector2(-6.95f, -.9f), new Vector2(.68f, .76f), 3);
+            PixelProp(decor, "Jornal_Mesa_Esquerda", "Doc_Historical", new Vector2(-6.1f, -.82f), new Vector2(.32f, .32f), Color.white, 4);
+
+            Part(decor, "Mesa_Cafe_Centro", "CoffeeTable", new Vector2(-2.65f, -1.45f), new Vector2(1.05f, .78f), 3);
+            Part(decor, "Cadeira_Mesa_Centro_1", "Chair", new Vector2(-2.65f, -.75f), new Vector2(.62f, .7f), 3);
+            Part(decor, "Cadeira_Mesa_Centro_2", "Chair", new Vector2(-2.65f, -2.15f), new Vector2(.62f, .7f), 3);
+            PixelProp(decor, "Caneca_Mesa_Centro", "Coffee_Cup", new Vector2(-2.55f, -1.42f), new Vector2(.22f, .22f), Color.white, 4);
+
+            Part(decor, "Mesa_Sala_Norte", "CoffeeTable", new Vector2(6.55f, 1.65f), new Vector2(2.25f, 1.05f), 3);
+            Part(decor, "Cadeira_Sala_Norte_1", "Chair", new Vector2(6.55f, 2.55f), new Vector2(.68f, .76f), 3);
+            Part(decor, "Cadeira_Sala_Norte_2", "Chair", new Vector2(6.55f, .75f), new Vector2(.68f, .76f), 3);
+            PixelProp(decor, "Documento_Mesa_Norte", "Doc_Historical", new Vector2(6.3f, 1.65f), new Vector2(.32f, .32f), Color.white, 4);
+            PixelProp(decor, "Caneca_Mesa_Norte", "Coffee_Cup", new Vector2(6.9f, 1.65f), new Vector2(.22f, .22f), Color.white, 4);
+
+            Part(decor, "Mesa_Sala_Sul", "CoffeeTable", new Vector2(6.5f, -2.25f), new Vector2(2.25f, 1.05f), 3);
+            Part(decor, "Cadeira_Sala_Sul_1", "Chair", new Vector2(6.5f, -1.35f), new Vector2(.68f, .76f), 3);
+            Part(decor, "Cadeira_Sala_Sul_2", "Chair", new Vector2(6.5f, -3.15f), new Vector2(.68f, .76f), 3);
+            PixelProp(decor, "Prato_Mesa_Sul_1", "Coffee_Cup", new Vector2(6.15f, -2.25f), new Vector2(.22f, .22f), new Color(.83f, .78f, .67f), 4);
+            PixelProp(decor, "Prato_Mesa_Sul_2", "Coffee_Cup", new Vector2(6.75f, -2.25f), new Vector2(.22f, .22f), new Color(.75f, .69f, .55f), 4);
+        }
+
+        private static void AddFurnitureCollider(Transform parent, string name, Vector2 position, Vector2 size)
+        {
+            var blocker = new GameObject(name);
+            blocker.transform.SetParent(parent, false);
+            blocker.transform.localPosition = new Vector3(position.x, position.y, 0f);
+            blocker.AddComponent<BoxCollider2D>().size = size;
+        }
+
+        private static SpriteRenderer PixelProp(Transform parent, string name, string spriteId,
+            Vector2 position, Vector2 size, Color color, int sortingOrder)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = new Vector3(position.x, position.y, 0f);
+            go.transform.localScale = new Vector3(size.x, size.y, 1f);
+            var renderer = go.AddComponent<SpriteRenderer>();
+            renderer.sprite = VarginhaPixelArtSprites.Create(spriteId, color);
+            renderer.sortingOrder = sortingOrder;
+            return renderer;
+        }
+
+        private static void RestoreBakedHouseRenderers(Transform scope)
+        {
+            foreach (var renderer in scope.GetComponentsInChildren<SpriteRenderer>(true))
+                if (IsBakedHouseRenderer(renderer.name) || IsBakedYardRenderer(renderer.name)) renderer.enabled = true;
+        }
+
+        private static bool IsBakedHouseRenderer(string name)
+        {
+            return name.StartsWith("Floor_House") || name.StartsWith("Wall_") || name.StartsWith("Doorway_")
+                || name == "Door_Office_Accessible" || name == "Bed_Edelzio" || name == "Desk_Office" || name == "BedroomRug"
+                || name == "Rug_LivingRoom" || name == "KitchenRunner" || name == "CoffeeTable_Living"
+                || name == "Bookshelf_Office" || name == "Kitchen_Cabinet" || name == "Nightstand_Bedroom"
+                || name == "Dresser_Bedroom" || name == "Chair_Office" || name == "Radio_Office"
+                || name == "Stove_Kitchen" || name == "Fridge_Kitchen" || name == "CoffeeTable_Kitchen"
+                || name == "Clock_Living" || name == "Plant_Indoor" || name == "Lamp_Desk"
+                || name == "WallPicture_Office" || name == "WallPicture_Living" || name == "Sofa_LivingRoom"
+                || name == "TV_StaticNoise";
+        }
+
+        private static bool IsBakedYardRenderer(string name)
+        {
+            return name.StartsWith("Floor_Yard") || name.StartsWith("Driveway_") || name.StartsWith("Street_Road")
+                || name.StartsWith("Fence_") || name.StartsWith("Tree_") || name == "Porch_Wood"
+                || name.StartsWith("GardenBorder_") || name.StartsWith("Shrub_") || name.StartsWith("FlowerPatch_")
+                || name == "RoadMarking" || name == "Mailbox_Yard" || name == "StreetLamp_Yard";
+        }
+
+        private static void RemoveDecorRoot(Transform parent, string name)
+        {
+            var previous = parent.Find(name);
+            if (previous == null) return;
+            previous.gameObject.SetActive(false);
+            if (Application.isPlaying) Object.Destroy(previous.gameObject);
+            else Object.DestroyImmediate(previous.gameObject);
+        }
+
         private static SpriteRenderer Part(Transform parent, string name, string motif, Vector2 position, Vector2 size, int order)
         {
             var go = new GameObject(name);
@@ -396,7 +529,7 @@ namespace Game.Varginha
         {
             foreach (var renderer in environment.GetComponentsInChildren<SpriteRenderer>(true))
             {
-                if (renderer.transform.IsChildOf(decor)) continue;
+                if (!renderer.enabled || !renderer.gameObject.activeInHierarchy || renderer.transform.IsChildOf(decor)) continue;
                 string n = renderer.name;
                 if (!(n.Contains("Carteira_") || n.Contains("Armario_") || n.Contains("Banco_Igreja_") || n.Contains("Altar_Visual")
                     || n.StartsWith("Bookshelf") || n.StartsWith("Kitchen_") || n.StartsWith("Sofa_") || n.StartsWith("Dresser_")

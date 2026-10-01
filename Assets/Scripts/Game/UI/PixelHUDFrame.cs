@@ -66,6 +66,38 @@ namespace Game.UI
             GUI.color = previousColor;
         }
 
+        public static void DrawHealthHeartBar(Rect rect, float fill)
+        {
+            var previousColor = GUI.color;
+            fill = Mathf.Clamp01(fill);
+            rect = new Rect(Mathf.Round(rect.x), Mathf.Round(rect.y), Mathf.Round(rect.width), Mathf.Round(rect.height));
+            float heartSize = rect.height;
+            Rect heartRect = new Rect(rect.x, rect.y, heartSize, heartSize);
+            Rect barRect = new Rect(rect.x + heartSize * .52f, rect.y + heartSize * .28f,
+                Mathf.Max(1f, rect.width - heartSize * .58f), heartSize * .44f);
+            Fill(new Rect(barRect.x - 2, barRect.y - 2, barRect.width + 4, barRect.height + 4),
+                Texture2D.whiteTexture, new Color32(18, 13, 16, 255));
+            Fill(barRect, Texture2D.whiteTexture, new Color32(93, 96, 99, 255));
+            Rect interior = new Rect(barRect.x + 2, barRect.y + 2, Mathf.Max(0, barRect.width - 4), Mathf.Max(0, barRect.height - 4));
+            Fill(interior, Texture2D.whiteTexture, new Color32(135, 140, 142, 255));
+            float fillWidth = Mathf.Round(interior.width * fill);
+            if (fillWidth > 0)
+            {
+                Fill(new Rect(interior.x, interior.y, fillWidth, interior.height), Texture2D.whiteTexture, new Color32(211, 35, 45, 255));
+                Fill(new Rect(interior.x, interior.y, fillWidth, Mathf.Max(1, interior.height * .24f)), Texture2D.whiteTexture, new Color32(248, 72, 77, 255));
+                Fill(new Rect(interior.x, interior.yMax - 1, fillWidth, 1), Texture2D.whiteTexture, new Color32(139, 23, 34, 255));
+            }
+
+            var heart = Game.Varginha.VarginhaReferenceSprites.Heart(true);
+            if (heart != null)
+            {
+                GUI.color = Color.white;
+                GUI.DrawTexture(heartRect, heart.texture, ScaleMode.StretchToFill, true);
+            }
+            else DrawLegacyHeart(heartRect, Texture2D.whiteTexture, new Color32(218, 36, 49, 255));
+            GUI.color = previousColor;
+        }
+
         private static void DrawLegacyHeart(Rect rect, Texture2D pixel, Color color)
         {
             float u = Mathf.Max(1f, Mathf.Floor(rect.width / 9f));

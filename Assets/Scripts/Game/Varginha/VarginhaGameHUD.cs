@@ -434,9 +434,8 @@ namespace Game.Varginha
         private void DrawTopBar()
         {
             // Saúde do jogador (Canto Superior Esquerdo)
-            float sanity = _edelzio != null ? _edelzio.CurrentSanity : 100f;
-            float maxSanity = _edelzio != null ? _edelzio.MaxSanity : 100f;
-            float ratio = Mathf.Clamp01(sanity / maxSanity);
+            var health = _edelzio != null ? _edelzio.GetComponent<Game.Player.HealthSystem>() : null;
+            float ratio = health != null ? Mathf.Clamp01(health.HealthPercent) : 1f;
 
             float panelWidth = Mathf.Min(340f, Mathf.Max(220f, Screen.width - 36f));
             float panelHeight = Screen.height < 420f ? 84f : 100f;
@@ -444,26 +443,12 @@ namespace Game.Varginha
             PixelHUDFrame.Draw(stabilityPanel, _whiteTex, PanelColor, PanelBorder);
             GUI.Label(new Rect(stabilityPanel.x, stabilityPanel.y + 6, stabilityPanel.width, 20), "SAUDE", _promptStyle);
 
-            float heartSize = Mathf.Clamp((stabilityPanel.width - 44f) / 3f, 28f, panelHeight - 52f);
-            float heartGap = Mathf.Clamp(6f * heartSize / 52f, 3f, 6f);
-            float heartX = stabilityPanel.x + (stabilityPanel.width - heartSize * 3f - heartGap * 2f) * .5f;
-            for (int heart = 0; heart < 3; heart++)
-            {
-                PixelHUDFrame.DrawHealthHeart(new Rect(heartX + heart * (heartSize + heartGap), stabilityPanel.y + 28f, heartSize, heartSize), Mathf.Clamp01(ratio * 3f - heart));
-            }
+            float meterWidth = stabilityPanel.width - 44f;
+            float meterX = stabilityPanel.x + (stabilityPanel.width - meterWidth) * .5f;
+            PixelHUDFrame.DrawHealthHeartBar(new Rect(meterX, stabilityPanel.y + 34f, meterWidth, 22f), ratio);
 
             _healthStyle.normal.textColor = ratio <= 1f / 3f ? new Color(1f, .61f, .60f) : PaperColor;
             GUI.Label(new Rect(stabilityPanel.x + 8f, stabilityPanel.yMax - 28f, stabilityPanel.width - 16f, 18), $"{Mathf.CeilToInt(ratio * 100f)}%", _healthStyle);
-            Rect healthTrack = new Rect(stabilityPanel.x + 12f, stabilityPanel.yMax - 9f, stabilityPanel.width - 24f, 3f);
-            DrawHudBlock(healthTrack, new Color(.025f, .03f, .04f));
-            // Barra de saúde com cor suave que pulsa quando crítica
-            Color barColor = ratio <= 1f / 3f
-                ? Color.Lerp(new Color(.86f, .31f, .34f), new Color(1f, .55f, .58f), 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 6f))
-                : new Color(.57f, .75f, .69f);
-            DrawHudBlock(new Rect(healthTrack.x, healthTrack.y, Mathf.Round(healthTrack.width * ratio), healthTrack.height), barColor);
-            for (int segment = 1; segment < 3; segment++)
-                DrawHudBlock(new Rect(healthTrack.x + Mathf.Round(healthTrack.width * segment / 3f), healthTrack.y, 2f, healthTrack.height), PanelColor);
-
             // Guia Rodrigo (Topo) - Responsivo e sempre visível em qualquer resolução
             float leftSpace = stabilityPanel.xMax + 14f;
             float rw = Mathf.Clamp(Screen.width - leftSpace - 24f, 220f, 680f);

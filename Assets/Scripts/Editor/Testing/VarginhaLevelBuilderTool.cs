@@ -437,7 +437,9 @@ namespace Game.Editor.Testing
                 tile.transform.SetParent(parent);
                 tile.transform.position = new Vector3(origin.x + x + .5f, origin.y + y + .5f, 0f);
                 var sr = tile.AddComponent<SpriteRenderer>();
-                sr.sprite = VarginhaPixelArtSprites.Create(name, tileColor);
+                sr.sprite = name == "Floor_House"
+                    ? VarginhaPixelArtSprites.CreateHouseFloorTile(origin.x + x, origin.y + y)
+                    : VarginhaPixelArtSprites.Create(name, tileColor);
                 sr.sortingOrder = sortingOrder;
             }
         }
