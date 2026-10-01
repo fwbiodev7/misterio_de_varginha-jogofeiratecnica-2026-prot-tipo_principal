@@ -350,6 +350,11 @@ namespace Game.Varginha
             }
         }
 
+        public void FaceActionDirection(Vector2 direction)
+        {
+            if (direction.sqrMagnitude > .001f) _lastFacing = direction.normalized;
+        }
+
         /// <summary>Ativa a mochila como parte da aparência e do estado de Edelzio.</summary>
         public void EquipBackpack()
         {

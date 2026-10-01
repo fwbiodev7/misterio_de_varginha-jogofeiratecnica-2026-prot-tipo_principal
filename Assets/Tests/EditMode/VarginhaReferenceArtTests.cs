@@ -38,7 +38,7 @@ namespace Game.Tests.EditMode
                 var collider = desk.GetComponent<BoxCollider2D>();
                 collider.size = new Vector2(.8f, .6f);
                 VarginhaEnvironmentPolish.EnsureHouse(root.transform);
-                Assert.That(desk.GetComponent<SpriteRenderer>().sprite.name, Does.StartWith("Furniture_Desk"));
+                Assert.AreEqual("House512_Desk", desk.GetComponent<SpriteRenderer>().sprite.name);
                 Assert.AreEqual(new Vector3(2, 3, 0), desk.transform.position);
                 Assert.AreEqual(new Vector3(1.7f, .9f, 1), desk.transform.localScale);
                 Assert.AreEqual(new Vector2(.8f, .6f), collider.size);

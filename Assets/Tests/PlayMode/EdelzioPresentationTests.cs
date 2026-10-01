@@ -147,7 +147,8 @@ namespace Game.Tests.PlayMode
                 Assert.AreSame(atlas, body.texture);
                 _player.EquipBackpack();
                 yield return null;
-                Assert.That(renderer.sprite.name, Does.EndWith("_ComMochila_0"), pose);
+                int direction = pose == "Edelzio_DrinkCoffee" ? 2 : pose == "Edelzio_Sit" || pose == "Edelzio_UseNotebook" ? 3 : 0;
+                Assert.That(renderer.sprite.name, Does.EndWith("_ComMochila_" + direction), pose);
                 Assert.AreNotSame(atlas, renderer.sprite.texture, pose);
                 AssertSameSpriteGeometry(body, renderer.sprite);
                 Assert.AreEqual(scale, _go.transform.localScale);

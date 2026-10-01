@@ -7,7 +7,7 @@ namespace Game.Tests.EditMode
 {
     public class VarginhaCameraFramingTests
     {
-        [TestCase("FaseTopView_Varginha", -9f, -7f, 27f, 7f, 3.8f)]
+        [TestCase("FaseTopView_Varginha", -10.25f, -9.25f, 28.25f, 9.25f, 3.8f)]
         [TestCase("Fase2_Escola_Resgate", -12.3f, -14f, 12.3f, 6f, 4.2f)]
         [TestCase("Fase3_Igreja_Guardiao", -8.5f, -6.5f, 9.5f, 6.5f, 4f)]
         public void ViewportStaysInsideMapAtCornersAndAfterResizing(string scene, float left, float bottom,

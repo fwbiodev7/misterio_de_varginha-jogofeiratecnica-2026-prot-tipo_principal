@@ -1,0 +1,107 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "UnityEditor.SceneManagement.EditorSceneManager.OpenScene(\"Assets/Scenes/FaseTopView_Varginha.unity\");\nvar house = UnityEngine.GameObject.Find(\"House_And_Yard\").transform;\nGame.Varginha.VarginhaEnvironmentPolish.EnsureHouse(house);\nUnityEngine.Physics2D.SyncTransforms();\nvar player = UnityEngine.Object.FindAnyObjectByType<Game.Varginha.EdelzioTopDownController>();\nconst float step = .25f;\nvar origin = (UnityEngine.Vector2)player.transform.position;\nvar visited = new System.Collections.Generic.HashSet<UnityEngine.Vector2Int>();\nvar queue = new System.Collections.Generic.Queue<UnityEngine.Vector2Int>();\nvar start = new UnityEngine.Vector2Int(UnityEngine.Mathf.RoundToInt(origin.x / step), UnityEngine.Mathf.RoundToInt(origin.y / step));\nvisited.Add(start); queue.Enqueue(start);\nvar directions = new[] { UnityEngine.Vector2Int.up, UnityEngine.Vector2Int.down, UnityEngine.Vector2Int.left, UnityEngine.Vector2Int.right };\nwhile (queue.Count > 0)\n{\n    var cell = queue.Dequeue();\n    foreach (var direction in directions)\n    {\n        var next = cell + direction;\n        var point = (UnityEngine.Vector2)next * step;\n        if (point.x < -9.4f || point.x > 10 || point.y < -8.4f || point.y > 8.4f || visited.Contains(next)) continue;\n        bool blocked = false;\n        foreach (var collider in UnityEngine.Physics2D.OverlapCircleAll(point, .28f))\n            if (!collider.isTrigger && collider.GetComponentInParent<Game.Varginha.EdelzioTopDownController>() == null) { blocked = true; break; }\n        if (blocked) continue;\n        visited.Add(next); queue.Enqueue(next);\n    }\n}\nvar accessibility = new System.Collections.Generic.List<object>();\nforeach (var name in new[] { \"ToyBox_UnderBed\", \"Backpack_Prop\", \"Notebook_TI\", \"Coffee_Cup\", \"Doc_Historical\", \"FuseBox_Prop\", \"Chair_Office\" })\n{\n    var target = UnityEngine.GameObject.Find(name);\n    if (target == null) throw new System.Exception(\"Missing target: \" + name);\n    float nearest = float.MaxValue;\n    foreach (var point in visited) nearest = UnityEngine.Mathf.Min(nearest, UnityEngine.Vector2.Distance((UnityEngine.Vector2)point * step, target.transform.position));\n    accessibility.Add(new { name, nearest, accessible = nearest <= 1.8f });\n    if (nearest > 1.8f) throw new System.Exception(\"Blocked target: \" + name);\n}\nvar textures = new System.Collections.Generic.List<object>();\nvar yardCell = new UnityEngine.Vector2Int(39, 0);\nif (!visited.Contains(yardCell)) throw new System.Exception(\"The yard doorway is blocked.\");\nforeach (var file in new[] { \"Furniture\", \"Floor\", \"Wall\", \"SofaNorth\", \"Chairs\", \"Props\", \"Architecture\" })\n{\n    var texture = UnityEngine.Resources.Load<UnityEngine.Texture2D>(\"Varginha/HouseReference512/\" + file);\n    if (texture.width != 512 || texture.height != 512 || texture.filterMode != UnityEngine.FilterMode.Point || texture.mipmapCount != 1)\n        throw new System.Exception(\"Incorrect texture settings: \" + file);\n    textures.Add(new { file, texture.width, texture.height, filter = texture.filterMode.ToString() });\n}\nUnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(house.gameObject.scene);\nif (!UnityEditor.SceneManagement.EditorSceneManager.SaveScene(house.gameObject.scene)) throw new System.Exception(\"Scene save failed.\");\nUnityEditor.AssetDatabase.SaveAssets();\nreturn new { visited = visited.Count, accessibility, textures, saved = true };\n"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "visited": 3217,
+        "accessibility": [
+          {
+            "name": "ToyBox_UnderBed",
+            "nearest": 0.1682864,
+            "accessible": true
+          },
+          {
+            "name": "Backpack_Prop",
+            "nearest": 0.132582515,
+            "accessible": true
+          },
+          {
+            "name": "Notebook_TI",
+            "nearest": 0.8125,
+            "accessible": true
+          },
+          {
+            "name": "Coffee_Cup",
+            "nearest": 0.15625,
+            "accessible": true
+          },
+          {
+            "name": "Doc_Historical",
+            "nearest": 0.03125,
+            "accessible": true
+          },
+          {
+            "name": "FuseBox_Prop",
+            "nearest": 0.40625,
+            "accessible": true
+          },
+          {
+            "name": "Chair_Office",
+            "nearest": 0.752599657,
+            "accessible": true
+          }
+        ],
+        "textures": [
+          {
+            "file": "Furniture",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Floor",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Wall",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "SofaNorth",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Chairs",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Props",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          },
+          {
+            "file": "Architecture",
+            "width": 512,
+            "height": 512,
+            "filter": "Point"
+          }
+        ],
+        "saved": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Usuario\\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

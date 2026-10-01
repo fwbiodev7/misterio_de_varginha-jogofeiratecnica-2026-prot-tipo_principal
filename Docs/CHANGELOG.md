@@ -1,5 +1,20 @@
 # Histórico de atualizações
 
+## 30/09/2026 — casa de 512px, quintal e interações do Edelzio
+
+- Casa da fase 1 com planta ampliada, divisórias de quarto/escritório/cozinha, paredes de reboco e madeira escura e passagens reais para o quintal.
+- Móveis maiores, acessórios alinhados às mesas e câmera acompanhando o novo contorno.
+- Nove texturas de 512 × 512, incluindo quintal com cercas, varanda, banco, floreiras, lanternas e caminho até o Fusca.
+- Edelzio atual senta para o café e o notebook, bebe três goles e levanta. A aproximação respeita a mesa e o collider real do personagem; uma cadeira bloqueada permite tentar novamente.
+- Ajustes discretos baseados na foto: óculos retangulares, cabelo curto, bigode/cavanhaque, relógio preto e camiseta mostarda de manga curta nas poses de caminhada e interação.
+- Mochila equipada usa a mesma arte do objeto coletável; poses sentadas alinhadas ao assento.
+- Árvores originais restauradas, escurecendo só a folhagem; Fusca mantém o desenho original com ajuste suave de cor.
+- Socos recebem a paleta e os detalhes da caminhada atual, mantendo os 72 quadros, silhuetas e pés originais.
+- Passagem da entrada esquerda do escritório e espaço atrás da cadeira liberados com ajustes pequenos de posição e colliders.
+- Saturação e sombras da árvore e do Fusca aproximadas à paleta da fase, mantendo as artes originais.
+- Compilação sem erros/avisos, 98 testes de Edit Mode e 13 de interação em Play Mode aprovados. Circulação verificada em 4.629 células e interações conferidas na cena real.
+- Detalhes e prompts em [CasaReferencia512.md](CasaReferencia512.md), com prévias em `Docs/Previews`.
+
 ## 15/09/2026 — mochila, consumíveis, luz suave e porta do Fusca
 
 - Inventário pela mochila da hotbar/clique ou tecla G: abre nos Itens físicos, com aba Alunos separada, descrição de poderes e botão Equipar. Setas navegam, Tab alterna abas, Enter equipa e Esc/G fecha. Layout escuro de três colunas inspirado na referência fornecida.

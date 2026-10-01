@@ -1,0 +1,735 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editmode",
+      "filter": "Varginha"
+    },
+    "result": {
+      "Summary": {
+        "Total": 100,
+        "Passed": 100,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing(\"FaseTopView_Varginha\",-10.25f,-9.25f,28.25f,9.25f,3.8f)",
+          "Status": "Passed",
+          "Duration": 0.02452,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing(\"Fase2_Escola_Resgate\",-12.3f,-14.0f,12.3f,6.0f,4.2f)",
+          "Status": "Passed",
+          "Duration": 0.0015906,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing(\"Fase3_Igreja_Guardiao\",-8.5f,-6.5f,9.5f,6.5f,4.0f)",
+          "Status": "Passed",
+          "Duration": 0.0011944,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice",
+          "Status": "Passed",
+          "Duration": 0.2125536,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Desk_Office\")",
+          "Status": "Passed",
+          "Duration": 0.0071154,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Chair_Office\")",
+          "Status": "Passed",
+          "Duration": 0.0002207,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Sofa_LivingRoom\")",
+          "Status": "Passed",
+          "Duration": 0.000433,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"CoffeeTable_Living\")",
+          "Status": "Passed",
+          "Duration": 0.0003775,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Bookshelf_Office\")",
+          "Status": "Passed",
+          "Duration": 0.0003722,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Nightstand_Bedroom\")",
+          "Status": "Passed",
+          "Duration": 0.0003669,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Dresser_Bedroom\")",
+          "Status": "Passed",
+          "Duration": 0.0004524,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Kitchen_Cabinet\")",
+          "Status": "Passed",
+          "Duration": 0.0004095,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Bed_Edelzio\")",
+          "Status": "Passed",
+          "Duration": 0.0003798,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"SchoolDesk\")",
+          "Status": "Passed",
+          "Duration": 0.0003918,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"ChurchPew\")",
+          "Status": "Passed",
+          "Duration": 0.000368,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"ChurchAltar\")",
+          "Status": "Passed",
+          "Duration": 0.0003968,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"TV_StaticNoise\")",
+          "Status": "Passed",
+          "Duration": 0.0003801,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Stove_Kitchen\")",
+          "Status": "Passed",
+          "Duration": 0.0003993,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Fridge_Kitchen\")",
+          "Status": "Passed",
+          "Duration": 0.0003637,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"WallPicture_Office\")",
+          "Status": "Passed",
+          "Duration": 0.0003775,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Mailbox_Yard\")",
+          "Status": "Passed",
+          "Duration": 0.0003826,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Porch_Wood\")",
+          "Status": "Passed",
+          "Duration": 0.0003869,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"FlowerPatch_Left\")",
+          "Status": "Passed",
+          "Duration": 0.0004192,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Shrub_NorthWest\")",
+          "Status": "Passed",
+          "Duration": 0.0003866,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(\"Lamp_Desk\")",
+          "Status": "Passed",
+          "Duration": 0.0004505,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture",
+          "Status": "Passed",
+          "Duration": 0.0008273,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.OfficeChairCanBeReachedFromTheWestDoorwayWithTheActualPlayerWidth",
+          "Status": "Passed",
+          "Duration": 0.008722,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics",
+          "Status": "Passed",
+          "Duration": 0.1995921,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaFurnitureArtTests.SchoolFurnitureClearsPartitionAndChairsStayPaired",
+          "Status": "Passed",
+          "Duration": 0.4966763,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.AttackAndHostageSpritesResolveToAuthoredProps",
+          "Status": "Passed",
+          "Duration": 0.0256805,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible",
+          "Status": "Passed",
+          "Duration": 0.985088,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.EdelzioAndFabioSheetsGenerateValidDirectionalFrames",
+          "Status": "Passed",
+          "Duration": 0.0116768,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds",
+          "Status": "Passed",
+          "Duration": 0.012812,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds",
+          "Status": "Passed",
+          "Duration": 0.0453533,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.OfficialTravelCabinLoadsUpdatedComposition",
+          "Status": "Passed",
+          "Duration": 0.0040828,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaReferenceArtTests.SavedFurnitureRefreshKeepsItsTransformAndCollider",
+          "Status": "Passed",
+          "Duration": 0.1477956,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Glass\")",
+          "Status": "Passed",
+          "Duration": 0.0040741,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"GlassLight\")",
+          "Status": "Passed",
+          "Duration": 0.0020531,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"WindowLight\")",
+          "Status": "Passed",
+          "Duration": 0.0003932,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Glow\")",
+          "Status": "Passed",
+          "Duration": 0.0003996,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Shadow\")",
+          "Status": "Passed",
+          "Duration": 0.0003605,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Window\")",
+          "Status": "Passed",
+          "Duration": 0.0003916,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Books\")",
+          "Status": "Passed",
+          "Duration": 0.0009975,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Noticeboard\")",
+          "Status": "Passed",
+          "Duration": 0.0002724,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Plant\")",
+          "Status": "Passed",
+          "Duration": 0.0002686,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Column\")",
+          "Status": "Passed",
+          "Duration": 0.0004972,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Rug\")",
+          "Status": "Passed",
+          "Duration": 0.0003924,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Puddle\")",
+          "Status": "Passed",
+          "Duration": 0.0003991,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Leaves\")",
+          "Status": "Passed",
+          "Duration": 0.0002573,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Parking\")",
+          "Status": "Passed",
+          "Duration": 0.0006074,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Mosaic\")",
+          "Status": "Passed",
+          "Duration": 0.0003941,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Sconce\")",
+          "Status": "Passed",
+          "Duration": 0.0047096,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Pew\")",
+          "Status": "Passed",
+          "Duration": 0.0003283,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Altar\")",
+          "Status": "Passed",
+          "Duration": 0.0003003,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Desk\")",
+          "Status": "Passed",
+          "Duration": 0.0002772,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Blackboard\")",
+          "Status": "Passed",
+          "Duration": 0.0004741,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"StreetLamp\")",
+          "Status": "Passed",
+          "Duration": 0.0003966,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(\"Dust\")",
+          "Status": "Passed",
+          "Duration": 0.0002965,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(0.6f)",
+          "Status": "Passed",
+          "Duration": 0.0025279,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(1.2f)",
+          "Status": "Passed",
+          "Duration": 0.0016056,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(2.1f)",
+          "Status": "Passed",
+          "Duration": 0.0019484,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.CathedralHasTenTranslucentFloorReflectionsBehindFurniture",
+          "Status": "Passed",
+          "Duration": 0.8956734,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(\"Backpack_Worn\")",
+          "Status": "Passed",
+          "Duration": 0.0089504,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(\"Backpack_Side\")",
+          "Status": "Passed",
+          "Duration": 0.0050021,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(\"Notebook_Inventory\")",
+          "Status": "Passed",
+          "Duration": 0.0116219,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(\"Notebook_Held\")",
+          "Status": "Passed",
+          "Duration": 0.0334548,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer(\"school\")",
+          "Status": "Passed",
+          "Duration": 0.4545727,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer(\"diocese\")",
+          "Status": "Passed",
+          "Duration": 0.8941344,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer(\"house\")",
+          "Status": "Passed",
+          "Duration": 0.1512336,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(\"GlassLight\")",
+          "Status": "Passed",
+          "Duration": 0.0177729,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(\"WindowLight\")",
+          "Status": "Passed",
+          "Duration": 0.0021379,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(\"Glow\")",
+          "Status": "Passed",
+          "Duration": 0.0018557,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(\"Shadow\")",
+          "Status": "Passed",
+          "Duration": 0.0018522,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(\"school\")",
+          "Status": "Passed",
+          "Duration": 0.8467178,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(\"diocese\")",
+          "Status": "Passed",
+          "Duration": 1.7754032,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(\"house\")",
+          "Status": "Passed",
+          "Duration": 0.2723165,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.ParkingUsesFullNativeDimensionsWithoutExtraScaling",
+          "Status": "Passed",
+          "Duration": 0.4257246,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders(\"school\")",
+          "Status": "Passed",
+          "Duration": 0.4452551,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders(\"diocese\")",
+          "Status": "Passed",
+          "Duration": 0.9069107,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders(\"house\")",
+          "Status": "Passed",
+          "Duration": 0.1992211,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSchoolExteriorTests.AllNineStudentsHaveWallFreeRoutesThroughTheEntrance",
+          "Status": "Passed",
+          "Duration": 0.4625969,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSchoolExteriorTests.HostageColliderDoesNotBlockTheOpenDoor",
+          "Status": "Passed",
+          "Duration": 0.4285028,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaSchoolExteriorTests.ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor",
+          "Status": "Passed",
+          "Duration": 0.449889,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent(\"Anna Tavares\",\"Ana Tavares\")",
+          "Status": "Passed",
+          "Duration": 0.0010895,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent(\"Luis Messias\",\"Luis Miguel Messias\")",
+          "Status": "Passed",
+          "Duration": 0.0005715,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Yasmin\")",
+          "Status": "Passed",
+          "Duration": 0.0112585,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Pedro\")",
+          "Status": "Passed",
+          "Duration": 0.0093154,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Matias\")",
+          "Status": "Passed",
+          "Duration": 0.0260092,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Marcos\")",
+          "Status": "Passed",
+          "Duration": 0.0095216,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Anna Sabia\")",
+          "Status": "Passed",
+          "Duration": 0.0095182,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Ana Tavares\")",
+          "Status": "Passed",
+          "Duration": 0.0235103,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Luis Miguel Messias\")",
+          "Status": "Passed",
+          "Duration": 0.0088154,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Luis Martins\")",
+          "Status": "Passed",
+          "Duration": 0.0096876,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(\"Fabio\")",
+          "Status": "Passed",
+          "Duration": 0.024036,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons",
+          "Status": "Passed",
+          "Duration": 0.0008099,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaStudentSpriteTests.ShortAnnaAndTallAnaKeepDifferentHeights",
+          "Status": "Passed",
+          "Duration": 0.001655,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose",
+          "Status": "Passed",
+          "Duration": 0.0084963,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.CosmeticStrikeRetouchPreservesAllAuthoredSilhouettesAndFootPixels",
+          "Status": "Passed",
+          "Duration": 1.2974756,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry",
+          "Status": "Passed",
+          "Duration": 0.0058101,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline",
+          "Status": "Passed",
+          "Duration": 0.0001819,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 17.08,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: Varginha",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Usuario\\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

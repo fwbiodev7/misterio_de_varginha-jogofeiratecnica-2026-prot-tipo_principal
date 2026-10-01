@@ -112,6 +112,7 @@ namespace Game.Varginha
                     break;
             }
 
+            fallback = VarginhaHouseReferenceArt.PropSprite(this, gameObject.name) ?? fallback;
             if (fallback != null) renderer.sprite = fallback;
             renderer.enabled = true;
             renderer.sortingOrder = sortingOrder;
@@ -215,10 +216,11 @@ namespace Game.Varginha
                             edelzio.RestoreOneHeart();
                             var cupRenderer = GetComponent<SpriteRenderer>();
                             if (cupRenderer != null)
-                                cupRenderer.sprite = VarginhaPixelArtSprites.Create("Coffee_Empty", new Color(.8f, .4f, .2f));
+                                cupRenderer.sprite = VarginhaHouseReferenceArt.PropSprite(this, "Coffee_Empty")
+                                    ?? VarginhaPixelArtSprites.Create("Coffee_Empty", new Color(.8f, .4f, .2f));
                             GetHud()?.ShowDialogue("Edelzio", "☕ Você bebe o café e devolve a xícara vazia à mesa.\n+1 CORAÇÃO DE SAÚDE.");
                             OnInteracted?.Invoke(edelzio);
-                        });
+                        }, () => _hasInteracted = false);
                         return;
                     }
                     edelzio.RestoreOneHeart();

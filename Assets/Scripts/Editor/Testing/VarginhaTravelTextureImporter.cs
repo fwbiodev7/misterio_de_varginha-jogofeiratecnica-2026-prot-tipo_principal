@@ -9,7 +9,13 @@ namespace Game.Editor.Testing
         {
             if (!assetPath.StartsWith("Assets/Resources/Varginha/TravelPixel/")) return;
             var importer=(TextureImporter)assetImporter;
-            importer.textureType=TextureImporterType.Default;
+            bool originalTree = assetPath.EndsWith("/TreeReference.png");
+            importer.textureType=originalTree ? TextureImporterType.Sprite : TextureImporterType.Default;
+            if (originalTree)
+            {
+                importer.spriteImportMode=SpriteImportMode.Single;
+                importer.spritePixelsPerUnit=100;
+            }
             importer.filterMode=FilterMode.Point;
             importer.textureCompression=TextureImporterCompression.Uncompressed;
             importer.mipmapEnabled=false;

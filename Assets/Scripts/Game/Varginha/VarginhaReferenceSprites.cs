@@ -11,6 +11,8 @@ namespace Game.Varginha
         private static readonly Dictionary<string, Sprite> Cache = new();
         public const float EdelzioVisualScale = 1.18f;
         public const float EdelzioPixelsPerUnit = VarginhaStudentSprites.PixelsPerUnit / EdelzioVisualScale;
+        private const float EdelzioAttackVisualScale = .92f;
+        private const float EdelzioFootAnchorPixels = 6f;
         private static Sprite[][] _walk, _attack;
         private static Texture2D _fabio;
         private static readonly RectInt[] FireRects = { new(458, 155, 61, 103), new(535, 157, 63, 103), new(622, 161, 76, 99) };
@@ -394,20 +396,13 @@ namespace Game.Varginha
                     _attack[d] = new Sprite[cols];
                     for (int f = 0; f < cols; f++)
                     {
-                        var cellPixels = texture.GetPixels(f * 64, (3 - d) * 64, 64, 64);
-                        var cellTex = new Texture2D(64, 64, TextureFormat.RGBA32, false)
-                        {
-                            name = $"Edelzio_Attack_{d}_{f}",
-                            filterMode = FilterMode.Point,
-                            wrapMode = TextureWrapMode.Clamp
-                        };
-                        cellTex.SetPixels(cellPixels);
-                        cellTex.Apply(false, false);
-                        _attack[d][f] = Sprite.Create(cellTex,
-                            new Rect(0, 0, 64, 64),
-                            new Vector2(.5f, .5f - (26f / 64f) * (1f - 1f / EdelzioVisualScale)),
-                            EdelzioPixelsPerUnit);
-                        _attack[d][f].name = cellTex.name;
+                        float pivotY = (EdelzioFootAnchorPixels * (1f - EdelzioAttackVisualScale)
+                            + EdelzioAttackVisualScale * 64f * (.5f - (26f / 64f) * (1f - 1f / EdelzioVisualScale))) / 64f;
+                        _attack[d][f] = Sprite.Create(texture,
+                            new Rect(f * 64, (3 - d) * 64, 64, 64),
+                            new Vector2(.5f, pivotY),
+                            EdelzioPixelsPerUnit / EdelzioAttackVisualScale, 0, SpriteMeshType.FullRect);
+                        _attack[d][f].name = $"Edelzio_Attack_{d}_{f}";
                     }
                 }
                 return _attack;

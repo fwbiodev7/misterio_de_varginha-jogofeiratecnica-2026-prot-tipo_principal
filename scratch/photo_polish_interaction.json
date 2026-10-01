@@ -1,0 +1,195 @@
+{
+  "status": "completed",
+  "duration": 17.19,
+  "summary": {
+    "total": 13,
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.BlockedChairCancelsCoffeeAndAllowsRetry",
+      "Status": "Passed",
+      "Duration": 5.9392095,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.BlockedChairCancelsCoffeeAndAllowsRetry",
+      "Status": "Passed",
+      "Duration": 5.9392095,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.CoffeeSeatingAndWebcamHaveTheirOwnFrames",
+      "Status": "Passed",
+      "Duration": 0.0093805,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.CoffeeSeatingAndWebcamHaveTheirOwnFrames",
+      "Status": "Passed",
+      "Duration": 0.0093805,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferenceChestKeepsItsOpenArtwork",
+      "Status": "Passed",
+      "Duration": 0.4509273,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferenceChestKeepsItsOpenArtwork",
+      "Status": "Passed",
+      "Duration": 0.4509273,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferenceCoffeeReturnsMatchingEmptyCup",
+      "Status": "Passed",
+      "Duration": 3.9084222,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferenceCoffeeReturnsMatchingEmptyCup",
+      "Status": "Passed",
+      "Duration": 3.9084222,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferencePropsKeepTheirArtworkOnInitialization",
+      "Status": "Passed",
+      "Duration": 0.007708,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferencePropsKeepTheirArtworkOnInitialization",
+      "Status": "Passed",
+      "Duration": 0.007708,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.InterruptedCoffeeRestoresCupAndMovement",
+      "Status": "Passed",
+      "Duration": 0.7412606,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.InterruptedCoffeeRestoresCupAndMovement",
+      "Status": "Passed",
+      "Duration": 0.7412606,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.MissingNotebookChairIsCreatedOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0016928,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.MissingNotebookChairIsCreatedOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0016928,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Edelzio\",\"Edelzio\")",
+      "Status": "Passed",
+      "Duration": 0.003793,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Edelzio\",\"Edelzio\")",
+      "Status": "Passed",
+      "Duration": 0.003793,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Padre Fábio\",\"PadreFabio\")",
+      "Status": "Passed",
+      "Duration": 0.0013421,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Padre Fábio\",\"PadreFabio\")",
+      "Status": "Passed",
+      "Duration": 0.0013421,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Fábio\",\"Fabio\")",
+      "Status": "Passed",
+      "Duration": 0.0006379,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Fábio\",\"Fabio\")",
+      "Status": "Passed",
+      "Duration": 0.0006379,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Ana Tavares\",\"AnaTavares\")",
+      "Status": "Passed",
+      "Duration": 0.000551,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Ana Tavares\",\"AnaTavares\")",
+      "Status": "Passed",
+      "Duration": 0.000551,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Luis Miguel Messias\",\"LuisMiguelMessias\")",
+      "Status": "Passed",
+      "Duration": 0.0005634,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Luis Miguel Messias\",\"LuisMiguelMessias\")",
+      "Status": "Passed",
+      "Duration": 0.0005634,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.SeatedCoffeeRoutesAroundTableAndReturnsToStandingPosition",
+      "Status": "Passed",
+      "Duration": 5.8883782,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.SeatedCoffeeRoutesAroundTableAndReturnsToStandingPosition",
+      "Status": "Passed",
+      "Duration": 5.8883782,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

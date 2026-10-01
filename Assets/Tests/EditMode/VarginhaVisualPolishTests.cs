@@ -47,6 +47,27 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
+        public void CosmeticStrikeRetouchPreservesAllAuthoredSilhouettesAndFootPixels()
+        {
+            var atlas = Resources.Load<Texture2D>("Varginha/EdelzioPunchV2");
+            var attacks = VarginhaReferenceSprites.EdelzioAttackFrames();
+            int changed = 0;
+            for (int direction = 0; direction < 4; direction++)
+            for (int frame = 0; frame < 18; frame++)
+            {
+                var authored = atlas.GetPixels(64 * frame, (3 - direction) * 64, 64, 64);
+                var current = attacks[direction][frame].texture.GetPixels();
+                for (int i = 0; i < authored.Length; i++)
+                {
+                    Assert.AreEqual(authored[i].a, current[i].a, "The authored fist and limb silhouette must remain intact.");
+                    if (i < 20 * 64) Assert.AreEqual(authored[i], current[i], "Feet and their baseline must remain intact.");
+                    if (authored[i] != current[i]) changed++;
+                }
+            }
+            Assert.Greater(changed, 0, "The strike palette and upper face must reflect the approved appearance.");
+        }
+
+        [Test]
         public void ClearCombatPoseClearsAttackPose()
         {
             var go = new GameObject("PlayerTest");

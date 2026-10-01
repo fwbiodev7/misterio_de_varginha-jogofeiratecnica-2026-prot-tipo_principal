@@ -65,6 +65,20 @@ namespace Game.Tests.PlayMode
             Assert.IsNotNull(atlas);
             Assert.AreEqual(1152, atlas.width);
             Assert.AreEqual(256, atlas.height);
+            var frames = VarginhaReferenceSprites.EdelzioAttackFrames();
+            var idle = VarginhaReferenceSprites.EdelzioWalkFrames()[0][0];
+            Assert.AreEqual(4, frames.Length);
+            for (int direction = 0; direction < 4; direction++)
+            {
+                Assert.AreEqual(18, frames[direction].Length);
+                for (int frame = 0; frame < frames[direction].Length; frame++)
+                {
+                    Assert.AreSame(atlas, frames[direction][frame].texture);
+                    Assert.AreEqual(new Vector2(64, 64), frames[direction][frame].rect.size);
+                    Assert.That(frames[direction][frame].bounds.size.y,
+                        Is.EqualTo(idle.bounds.size.y * .92f).Within(.001f));
+                }
+            }
         }
 
         private VarginhaPlayerAttack CreateAttacker()

@@ -49,7 +49,7 @@ namespace Game.Tests.EditMode
         [TestCase("school")]
         [TestCase("diocese")]
         [TestCase("house")]
-        public void SetupIsIdempotentAndDecorationHasNoColliders(string phase)
+        public void SetupIsIdempotentAndCollidersMatchFurniture(string phase)
         {
             var environment = Build(phase);
             int objects = _root.GetComponentsInChildren<Transform>(true).Length;
@@ -57,7 +57,14 @@ namespace Game.Tests.EditMode
             Build(phase);
             Assert.AreEqual(objects, _root.GetComponentsInChildren<Transform>(true).Length);
             CollectionAssert.AreEquivalent(colliders, _root.GetComponentsInChildren<Collider2D>(true));
-            Assert.IsEmpty(environment.Find("Cenario_Acabamento_V3").GetComponentsInChildren<Collider2D>(true));
+            var decorColliders = environment.Find("Cenario_Acabamento_V8").GetComponentsInChildren<Collider2D>(true);
+            if (phase == "house")
+            {
+                Assert.AreEqual(17, decorColliders.Length);
+                Assert.IsTrue(decorColliders.Any(collider => collider.name == "Cadeira_Cafe"));
+                Assert.IsTrue(decorColliders.All(collider => !collider.isTrigger));
+            }
+            else Assert.IsEmpty(decorColliders);
         }
 
         [TestCase("school")]
@@ -67,11 +74,11 @@ namespace Game.Tests.EditMode
         {
             var environment = Build(phase);
             int objects = _root.GetComponentsInChildren<Transform>(true).Length;
-            var decor = environment.Find("Cenario_Acabamento_V3");
+            var decor = environment.Find("Cenario_Acabamento_V8");
             decor.GetComponentInChildren<SpriteRenderer>().sprite = null;
             Build(phase);
             Assert.AreEqual(objects, _root.GetComponentsInChildren<Transform>(true).Length);
-            foreach (var renderer in environment.Find("Cenario_Acabamento_V3").GetComponentsInChildren<SpriteRenderer>(true))
+            foreach (var renderer in environment.Find("Cenario_Acabamento_V8").GetComponentsInChildren<SpriteRenderer>(true))
             {
                 Assert.IsNotNull(renderer.sprite, renderer.name);
                 Assert.IsNotNull(renderer.sprite.texture, renderer.name);

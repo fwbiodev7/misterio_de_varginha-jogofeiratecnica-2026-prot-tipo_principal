@@ -170,9 +170,15 @@ namespace Game.Varginha
             }
             RemoveDecorRoot(house, "Fase1_Mapa_Artwork");
             RemoveDecorRoot(house, "Fase1_Jardim_Artwork");
-            RestoreBakedHouseRenderers(scope);
-            if (!forceRebuild && !NeedsRefresh(house, true)) return;
+            VarginhaHouseArchitecture.Apply(house);
+            if (!forceRebuild && !NeedsRefresh(house, true))
+            {
+                VarginhaHouseReferenceArt.Apply(house);
+                VarginhaYardStyle.Apply(house);
+                return;
+            }
             var decor = Root(house);
+            new GameObject("House512_ArchitectureDecorV2").transform.SetParent(decor, false);
             BuildReferenceFurnitureColliders(decor);
             BuildReferenceFurniture(decor);
             foreach (var renderer in house.GetComponentsInChildren<SpriteRenderer>(true))
@@ -194,7 +200,7 @@ namespace Game.Varginha
                 else if (renderer.name.StartsWith("Driveway_"))
                     renderer.sprite = VarginhaPixelArtSprites.Create("Driveway_Stone", new Color(.30f, .32f, .32f));
             }
-            Vector2[] windows = { new Vector2(-4.25f, 6.35f), new Vector2(3f, 6.35f), new Vector2(7.3f, -6.35f) };
+            Vector2[] windows = { new Vector2(-3.5f, 5.9f), new Vector2(3f, 7.9f), new Vector2(7.3f, -5.9f) };
             for (int i = 0; i < windows.Length; i++)
             {
                 var window = Part(decor, "Janela_Casa_" + i, "Window", windows[i], new Vector2(1.45f, .72f), 4);
@@ -202,15 +208,17 @@ namespace Game.Varginha
                 ray.transform.rotation = Quaternion.Euler(0, 0, i == 2 ? 90 : -90);
                 FitWindowBeam(window.transform, ray, i == 2 ? Vector2.up : Vector2.down, false);
             }
-            Part(decor, "Abajur_Cabeceira", "Lamp", new Vector2(-4.55f, 5.7f), new Vector2(.5f, .65f), 4);
-            Pool(decor, "Luz_Abajur", new Vector2(-4.55f, 5.15f), new Vector2(3.1f, 2.5f), .85f, true);
+            Part(decor, "Abajur_Cabeceira", "Lamp", new Vector2(-4.65f, 5.42f), new Vector2(.56f, .72f), 4);
+            Pool(decor, "Luz_Abajur", new Vector2(-4.65f, 4.9f), new Vector2(3.1f, 2.5f), .85f, true);
             Pool(decor, "Luz_Escritorio", new Vector2(-3.95f, -3.2f), new Vector2(3.6f, 2.8f), .85f, true);
             Pool(decor, "Luz_Cozinha", new Vector2(4.55f, -4.8f), new Vector2(4.6f, 2.45f), .6f);
-            Pool(decor, "Luz_TV", new Vector2(4.5f, 4.6f), new Vector2(3.5f, 2.1f), .6f, true).color = new Color(.35f, .72f, 1f, .55f);
-            Part(decor, "Memorias_1996", "Noticeboard", new Vector2(-5f, -.85f), new Vector2(1.8f, .85f), 3);
-            Part(decor, "Livros_Quarto", "Bookshelf", new Vector2(-1.65f, 5.45f), new Vector2(1.5f, 1.85f), 3);
-            Part(decor, "Aparador_Arquivo", "Dresser", new Vector2(-2.25f, -5.4f), new Vector2(1.7f, 1.45f), 3);
-            Part(decor, "Cadeira_Cafe", "Chair", new Vector2(3.25f, -2f), new Vector2(.75f, 1.05f), 3);
+            Pool(decor, "Luz_TV", new Vector2(4.5f, 5.8f), new Vector2(3.5f, 2.1f), .6f, true).color = new Color(.35f, .72f, 1f, .55f);
+            Part(decor, "Memorias_1996", "Noticeboard", new Vector2(-5.5f, -.1f), new Vector2(1.5f, .7f), 4);
+            Part(decor, "Livros_Quarto", "Bookshelf", new Vector2(-3.1f, 4.25f), new Vector2(1.68f, 2.07f), 3);
+            Part(decor, "Aparador_Arquivo", "Dresser", new Vector2(-3f, -5.4f), new Vector2(1.9f, 1.55f), 3);
+            Part(decor, "Tapete_Escritorio", "Rug", new Vector2(-5f, -3.9f), new Vector2(4.2f, 3.1f), 1);
+            var coffeeChair = Part(decor, "Cadeira_Cafe", "Chair", new Vector2(3.125f, -3f), new Vector2(.85f, 1.2f), 3);
+            coffeeChair.gameObject.AddComponent<BoxCollider2D>().size = new Vector2(.6f, .65f);
             Part(decor, "Samambaia_Sala", "Plant", new Vector2(7.45f, 1.6f), new Vector2(.6f, .95f), 3);
             Part(decor, "Planta_Varanda", "Plant", new Vector2(10.6f, -1.45f), new Vector2(.7f, 1.1f), 3);
             Part(decor, "Canteiro_Florido_Norte", "FlowerPatch", new Vector2(16.6f, 6.55f), new Vector2(2.8f, .72f), 2);
@@ -224,6 +232,8 @@ namespace Game.Varginha
             Dust(decor, new Vector2(-4.1f, 4.7f), new Vector2(2.1f, 1.2f), 6, new Color(.64f, .82f, .95f, .45f));
             Dust(decor, new Vector2(14.3f, -4.8f), new Vector2(3.5f, 2.6f), 7, new Color(.75f, .94f, .58f, .65f));
             VarginhaSoftLighting.Build(house, decor);
+            VarginhaHouseReferenceArt.Apply(house);
+            VarginhaYardStyle.Apply(house);
         }
 
         public static void RefreshReferenceFurniture(Transform parent)
@@ -316,6 +326,7 @@ namespace Game.Varginha
             var renderers = previous.GetComponentsInChildren<SpriteRenderer>(true);
             bool valid = renderers.Length > 0 && previous.Find(VarginhaSoftLighting.LayerName) != null;
             if (composedHouse && previous.Find("Abajur_Cabeceira") == null) valid = false;
+            if (composedHouse && previous.Find("House512_ArchitectureDecorV2") == null) valid = false;
             if (churchLighting && (previous.Find("Luz_Vela_Altar_0") != null
                 || previous.Find("Luz_Arandela_0") != null || previous.Find("Brilho_Vela_Altar_0") != null)) valid = false;
             foreach (var renderer in renderers)

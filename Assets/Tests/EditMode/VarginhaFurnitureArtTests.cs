@@ -44,6 +44,49 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
+        public void OfficeChairCanBeReachedFromTheWestDoorwayWithTheActualPlayerWidth()
+        {
+            var root = new GameObject("OfficeClearanceTest");
+            try
+            {
+                var desk = new GameObject("Desk_Office", typeof(BoxCollider2D));
+                desk.transform.SetParent(root.transform);
+                desk.transform.position = new Vector3(-5, -3.09375f);
+                desk.transform.localScale = new Vector3(2.85f, 1.7f, 1);
+                var chair = new GameObject("Chair_Office", typeof(BoxCollider2D));
+                chair.transform.SetParent(root.transform);
+                chair.transform.position = new Vector3(-5, -4.5f);
+                chair.transform.localScale = new Vector3(.76f, 1.05f, 1);
+                var shelf = new GameObject("Bookshelf_Office", typeof(BoxCollider2D));
+                shelf.transform.SetParent(root.transform);
+                shelf.transform.position = new Vector3(-7.5f, -5);
+                shelf.transform.localScale = new Vector3(1.5f, 1.8f, 1);
+                var wall = new GameObject("SouthWall", typeof(BoxCollider2D));
+                wall.transform.SetParent(root.transform);
+                wall.transform.position = new Vector3(-5.5f, -6);
+                wall.GetComponent<BoxCollider2D>().size = new Vector2(7, .32f);
+                var player = new GameObject("Player", typeof(CircleCollider2D));
+                player.transform.SetParent(root.transform);
+                player.transform.position = new Vector3(-6.92f, -3.61f);
+                player.transform.localScale = Vector3.one * 1.08f;
+                var body = player.GetComponent<CircleCollider2D>();
+                body.radius = .45f;
+                Physics2D.SyncTransforms();
+                var route = new System.Collections.Generic.List<Vector2>();
+                Assert.IsFalse(VarginhaInteractionApproach.FindPath(player.transform.position, chair.transform.position,
+                    body, chair.GetComponent<Collider2D>(), route), "Reproduce the blocked gap of the shipped layout.");
+                VarginhaHouseComposition.Apply(root.transform);
+                Physics2D.SyncTransforms();
+                Assert.IsTrue(VarginhaInteractionApproach.FindPath(player.transform.position, chair.transform.position,
+                    body, chair.GetComponent<Collider2D>(), route), "The west doorway must lead to the seat.");
+                Assert.IsTrue(VarginhaInteractionApproach.FindPath(player.transform.position, new Vector2(-5, -5.11f),
+                    body, null, route), "The player must also be able to walk behind the chair.");
+                Assert.Greater(Physics2D.OverlapPointAll(desk.transform.position).Length, 0, "The desk retains a solid collider.");
+            }
+            finally { Object.DestroyImmediate(root); }
+        }
+
+        [Test]
         public void SchoolFurnitureClearsPartitionAndChairsStayPaired()
         {
             var root = new GameObject("SchoolCompositionTest");
@@ -113,7 +156,7 @@ namespace Game.Tests.EditMode
                     if (collider == null) continue;
                     Assert.AreEqual(new Vector3(2, 1.3f, 1), child.localScale);
                     Assert.AreEqual(new Vector2(.8f, .5f), collider.size);
-                    Assert.That(child.GetComponent<SpriteRenderer>().sprite.name, Does.StartWith("Furniture_"));
+                    Assert.That(child.GetComponent<SpriteRenderer>().sprite.name, Does.StartWith("House512_"));
                 }
             }
             finally { Object.DestroyImmediate(root); }

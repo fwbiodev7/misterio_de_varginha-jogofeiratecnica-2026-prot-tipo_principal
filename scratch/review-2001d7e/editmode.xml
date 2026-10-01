@@ -1,0 +1,1805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="125" result="Failed(Child)" total="125" passed="121" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:06:03Z" duration="11,8582289">
+  <test-suite type="TestSuite" id="1000" name="Template 2D Kit" fullname="Template 2D Kit" runstate="Runnable" testcasecount="125" result="Failed" site="Child" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:06:03Z" duration="11.858229" total="125" passed="121" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1147" name="GameEditModeTests.dll" fullname="C:/Users/Usuario/misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30/Library/ScriptAssemblies/GameEditModeTests.dll" runstate="Runnable" testcasecount="125" result="Failed" site="Child" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:06:03Z" duration="11.847833" total="125" passed="121" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="17692" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1148" name="Game" fullname="Game" runstate="Runnable" testcasecount="125" result="Failed" site="Child" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:06:03Z" duration="11.846073" total="125" passed="121" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1149" name="Tests" fullname="Game.Tests" runstate="Runnable" testcasecount="125" result="Failed" site="Child" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:06:03Z" duration="11.844648" total="125" passed="121" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1150" name="EditMode" fullname="Game.Tests.EditMode" runstate="Runnable" testcasecount="125" result="Failed" site="Child" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:06:03Z" duration="11.843087" total="125" passed="121" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1002" name="ScoreManagerTests" fullname="Game.Tests.EditMode.ScoreManagerTests" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.061112" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="AddScore_Accumulates" fullname="Game.Tests.EditMode.ScoreManagerTests.AddScore_Accumulates" methodname="AddScore_Accumulates" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1826225781" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.017310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_Accumulates
+QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_Accumulates
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_Accumulates
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_Accumulates
+]]></output>
+              </test-case>
+              <test-case id="1005" name="AddScore_IncreasesScore" fullname="Game.Tests.EditMode.ScoreManagerTests.AddScore_IncreasesScore" methodname="AddScore_IncreasesScore" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1300571847" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_IncreasesScore
+QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_IncreasesScore
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_IncreasesScore
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_IncreasesScore
+]]></output>
+              </test-case>
+              <test-case id="1007" name="AddScore_NegativeValue_IsIgnored" fullname="Game.Tests.EditMode.ScoreManagerTests.AddScore_NegativeValue_IsIgnored" methodname="AddScore_NegativeValue_IsIgnored" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="2099006689" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_NegativeValue_IsIgnored
+QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_NegativeValue_IsIgnored
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_NegativeValue_IsIgnored
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_NegativeValue_IsIgnored
+]]></output>
+              </test-case>
+              <test-case id="1008" name="AddScore_WithMultiplier_AppliesMultiplier" fullname="Game.Tests.EditMode.ScoreManagerTests.AddScore_WithMultiplier_AppliesMultiplier" methodname="AddScore_WithMultiplier_AppliesMultiplier" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="605987328" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_WithMultiplier_AppliesMultiplier
+QA test: Game.Tests.EditMode.ScoreManagerTests.AddScore_WithMultiplier_AppliesMultiplier
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_WithMultiplier_AppliesMultiplier
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.AddScore_WithMultiplier_AppliesMultiplier
+]]></output>
+              </test-case>
+              <test-case id="1018" name="Highscore_DoesNotDecrease_OnReset" fullname="Game.Tests.EditMode.ScoreManagerTests.Highscore_DoesNotDecrease_OnReset" methodname="Highscore_DoesNotDecrease_OnReset" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1035191441" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.Highscore_DoesNotDecrease_OnReset
+QA test: Game.Tests.EditMode.ScoreManagerTests.Highscore_DoesNotDecrease_OnReset
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Highscore_DoesNotDecrease_OnReset
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Highscore_DoesNotDecrease_OnReset
+]]></output>
+              </test-case>
+              <test-case id="1017" name="Highscore_UpdatesWhenExceeded" fullname="Game.Tests.EditMode.ScoreManagerTests.Highscore_UpdatesWhenExceeded" methodname="Highscore_UpdatesWhenExceeded" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="286416811" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.003770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.Highscore_UpdatesWhenExceeded
+QA test: Game.Tests.EditMode.ScoreManagerTests.Highscore_UpdatesWhenExceeded
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Highscore_UpdatesWhenExceeded
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Highscore_UpdatesWhenExceeded
+]]></output>
+              </test-case>
+              <test-case id="1013" name="IncreaseMultiplier_IncreasesValue" fullname="Game.Tests.EditMode.ScoreManagerTests.IncreaseMultiplier_IncreasesValue" methodname="IncreaseMultiplier_IncreasesValue" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="294236406" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.001292" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.IncreaseMultiplier_IncreasesValue
+QA test: Game.Tests.EditMode.ScoreManagerTests.IncreaseMultiplier_IncreasesValue
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.IncreaseMultiplier_IncreasesValue
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.IncreaseMultiplier_IncreasesValue
+]]></output>
+              </test-case>
+              <test-case id="1004" name="Multiplier_StartsAtOne" fullname="Game.Tests.EditMode.ScoreManagerTests.Multiplier_StartsAtOne" methodname="Multiplier_StartsAtOne" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1909131815" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.Multiplier_StartsAtOne
+QA test: Game.Tests.EditMode.ScoreManagerTests.Multiplier_StartsAtOne
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Multiplier_StartsAtOne
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Multiplier_StartsAtOne
+]]></output>
+              </test-case>
+              <test-case id="1010" name="OnHighscoreBeaten_FiredWhenNewHighscore" fullname="Game.Tests.EditMode.ScoreManagerTests.OnHighscoreBeaten_FiredWhenNewHighscore" methodname="OnHighscoreBeaten_FiredWhenNewHighscore" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1815647753" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000868" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.OnHighscoreBeaten_FiredWhenNewHighscore
+QA test: Game.Tests.EditMode.ScoreManagerTests.OnHighscoreBeaten_FiredWhenNewHighscore
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.OnHighscoreBeaten_FiredWhenNewHighscore
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.OnHighscoreBeaten_FiredWhenNewHighscore
+]]></output>
+              </test-case>
+              <test-case id="1009" name="OnScoreChanged_FiredWhenScoreAdded" fullname="Game.Tests.EditMode.ScoreManagerTests.OnScoreChanged_FiredWhenScoreAdded" methodname="OnScoreChanged_FiredWhenScoreAdded" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1470770728" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.OnScoreChanged_FiredWhenScoreAdded
+QA test: Game.Tests.EditMode.ScoreManagerTests.OnScoreChanged_FiredWhenScoreAdded
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.OnScoreChanged_FiredWhenScoreAdded
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.OnScoreChanged_FiredWhenScoreAdded
+]]></output>
+              </test-case>
+              <test-case id="1014" name="ResetMultiplier_SetsToOne" fullname="Game.Tests.EditMode.ScoreManagerTests.ResetMultiplier_SetsToOne" methodname="ResetMultiplier_SetsToOne" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1175736927" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.ResetMultiplier_SetsToOne
+QA test: Game.Tests.EditMode.ScoreManagerTests.ResetMultiplier_SetsToOne
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.ResetMultiplier_SetsToOne
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.ResetMultiplier_SetsToOne
+]]></output>
+              </test-case>
+              <test-case id="1016" name="ResetScore_ResetsMultiplier" fullname="Game.Tests.EditMode.ScoreManagerTests.ResetScore_ResetsMultiplier" methodname="ResetScore_ResetsMultiplier" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="2113912229" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.ResetScore_ResetsMultiplier
+QA test: Game.Tests.EditMode.ScoreManagerTests.ResetScore_ResetsMultiplier
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.ResetScore_ResetsMultiplier
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.ResetScore_ResetsMultiplier
+]]></output>
+              </test-case>
+              <test-case id="1015" name="ResetScore_SetsScoreToZero" fullname="Game.Tests.EditMode.ScoreManagerTests.ResetScore_SetsScoreToZero" methodname="ResetScore_SetsScoreToZero" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="848760429" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.ResetScore_SetsScoreToZero
+QA test: Game.Tests.EditMode.ScoreManagerTests.ResetScore_SetsScoreToZero
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.ResetScore_SetsScoreToZero
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.ResetScore_SetsScoreToZero
+]]></output>
+              </test-case>
+              <test-case id="1003" name="Score_StartsAtZero" fullname="Game.Tests.EditMode.ScoreManagerTests.Score_StartsAtZero" methodname="Score_StartsAtZero" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="2101701033" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.Score_StartsAtZero
+QA test: Game.Tests.EditMode.ScoreManagerTests.Score_StartsAtZero
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Score_StartsAtZero
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.Score_StartsAtZero
+]]></output>
+              </test-case>
+              <test-case id="1011" name="SetMultiplier_ClampedToMax" fullname="Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMax" methodname="SetMultiplier_ClampedToMax" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="254051276" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.001075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMax
+QA test: Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMax
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMax
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMax
+]]></output>
+              </test-case>
+              <test-case id="1012" name="SetMultiplier_ClampedToMin" fullname="Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMin" methodname="SetMultiplier_ClampedToMin" classname="Game.Tests.EditMode.ScoreManagerTests" runstate="Runnable" seed="1428847459" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMin
+QA test: Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMin
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMin
+QA result: Passed Game.Tests.EditMode.ScoreManagerTests.SetMultiplier_ClampedToMin
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1019" name="TilemapValidatorTests" fullname="Game.Tests.EditMode.TilemapValidatorTests" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:52Z" duration="0.030010" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1026" name="Grid_CellToWorld_ConvertsCorrectly" fullname="Game.Tests.EditMode.TilemapValidatorTests.Grid_CellToWorld_ConvertsCorrectly" methodname="Grid_CellToWorld_ConvertsCorrectly" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="565957985" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.004515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Grid_CellToWorld_ConvertsCorrectly
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Grid_CellToWorld_ConvertsCorrectly
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Grid_CellToWorld_ConvertsCorrectly
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Grid_CellToWorld_ConvertsCorrectly
+]]></output>
+              </test-case>
+              <test-case id="1027" name="Grid_WorldToCell_RoundsCorrectly" fullname="Game.Tests.EditMode.TilemapValidatorTests.Grid_WorldToCell_RoundsCorrectly" methodname="Grid_WorldToCell_RoundsCorrectly" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="1664945037" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Grid_WorldToCell_RoundsCorrectly
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Grid_WorldToCell_RoundsCorrectly
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Grid_WorldToCell_RoundsCorrectly
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Grid_WorldToCell_RoundsCorrectly
+]]></output>
+              </test-case>
+              <test-case id="1022" name="Tilemap_AfterSetTile_HasTile" fullname="Game.Tests.EditMode.TilemapValidatorTests.Tilemap_AfterSetTile_HasTile" methodname="Tilemap_AfterSetTile_HasTile" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="305123535" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.004003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_AfterSetTile_HasTile
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_AfterSetTile_HasTile
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_AfterSetTile_HasTile
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_AfterSetTile_HasTile
+]]></output>
+              </test-case>
+              <test-case id="1025" name="Tilemap_Bounds_UpdateAfterAddingTile" fullname="Game.Tests.EditMode.TilemapValidatorTests.Tilemap_Bounds_UpdateAfterAddingTile" methodname="Tilemap_Bounds_UpdateAfterAddingTile" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="1202927233" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.001289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_Bounds_UpdateAfterAddingTile
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_Bounds_UpdateAfterAddingTile
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_Bounds_UpdateAfterAddingTile
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_Bounds_UpdateAfterAddingTile
+]]></output>
+              </test-case>
+              <test-case id="1021" name="Tilemap_HasNoTiles_ByDefault" fullname="Game.Tests.EditMode.TilemapValidatorTests.Tilemap_HasNoTiles_ByDefault" methodname="Tilemap_HasNoTiles_ByDefault" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="895572555" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_HasNoTiles_ByDefault
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_HasNoTiles_ByDefault
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_HasNoTiles_ByDefault
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_HasNoTiles_ByDefault
+]]></output>
+              </test-case>
+              <test-case id="1020" name="Tilemap_IsEmpty_Initially" fullname="Game.Tests.EditMode.TilemapValidatorTests.Tilemap_IsEmpty_Initially" methodname="Tilemap_IsEmpty_Initially" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="678037995" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000566" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_IsEmpty_Initially
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_IsEmpty_Initially
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_IsEmpty_Initially
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_IsEmpty_Initially
+]]></output>
+              </test-case>
+              <test-case id="1024" name="Tilemap_SetTile_Null_RemovesTile" fullname="Game.Tests.EditMode.TilemapValidatorTests.Tilemap_SetTile_Null_RemovesTile" methodname="Tilemap_SetTile_Null_RemovesTile" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="952236908" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.000839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_SetTile_Null_RemovesTile
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_SetTile_Null_RemovesTile
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_SetTile_Null_RemovesTile
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_SetTile_Null_RemovesTile
+]]></output>
+              </test-case>
+              <test-case id="1023" name="Tilemap_TileCount_IncreasesAfterSet" fullname="Game.Tests.EditMode.TilemapValidatorTests.Tilemap_TileCount_IncreasesAfterSet" methodname="Tilemap_TileCount_IncreasesAfterSet" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="16017074" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:51Z" duration="0.001161" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_TileCount_IncreasesAfterSet
+QA test: Game.Tests.EditMode.TilemapValidatorTests.Tilemap_TileCount_IncreasesAfterSet
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_TileCount_IncreasesAfterSet
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.Tilemap_TileCount_IncreasesAfterSet
+]]></output>
+              </test-case>
+              <test-case id="1030" name="TilemapCollider2D_CanBeAdded" fullname="Game.Tests.EditMode.TilemapValidatorTests.TilemapCollider2D_CanBeAdded" methodname="TilemapCollider2D_CanBeAdded" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="1077036905" result="Passed" start-time="2026-09-30 10:05:51Z" end-time="2026-09-30 10:05:52Z" duration="0.003584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.TilemapCollider2D_CanBeAdded
+QA test: Game.Tests.EditMode.TilemapValidatorTests.TilemapCollider2D_CanBeAdded
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.TilemapCollider2D_CanBeAdded
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.TilemapCollider2D_CanBeAdded
+]]></output>
+              </test-case>
+              <test-case id="1028" name="TilemapRenderer_ExistsOnTilemapObject" fullname="Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_ExistsOnTilemapObject" methodname="TilemapRenderer_ExistsOnTilemapObject" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="352681787" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_ExistsOnTilemapObject
+QA test: Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_ExistsOnTilemapObject
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_ExistsOnTilemapObject
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_ExistsOnTilemapObject
+]]></output>
+              </test-case>
+              <test-case id="1029" name="TilemapRenderer_IsEnabled_ByDefault" fullname="Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_IsEnabled_ByDefault" methodname="TilemapRenderer_IsEnabled_ByDefault" classname="Game.Tests.EditMode.TilemapValidatorTests" runstate="Runnable" seed="1808499266" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_IsEnabled_ByDefault
+QA test: Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_IsEnabled_ByDefault
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_IsEnabled_ByDefault
+QA result: Passed Game.Tests.EditMode.TilemapValidatorTests.TilemapRenderer_IsEnabled_ByDefault
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1031" name="VarginhaCameraFramingTests" fullname="Game.Tests.EditMode.VarginhaCameraFramingTests" classname="Game.Tests.EditMode.VarginhaCameraFramingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.091669" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-suite type="ParameterizedMethod" id="1035" name="ViewportStaysInsideMapAtCornersAndAfterResizing" fullname="Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing" classname="Game.Tests.EditMode.VarginhaCameraFramingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.090595" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1032" name="ViewportStaysInsideMapAtCornersAndAfterResizing(&quot;FaseTopView_Varginha&quot;,-9.0f,-7.0f,27.0f,7.0f,3.8f)" fullname="Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing(&quot;FaseTopView_Varginha&quot;,-9.0f,-7.0f,27.0f,7.0f,3.8f)" methodname="ViewportStaysInsideMapAtCornersAndAfterResizing" classname="Game.Tests.EditMode.VarginhaCameraFramingTests" runstate="Runnable" seed="489380590" result="Failed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.031636" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[Unhandled log message: '[Assert] Assertion failed on expression: 'ShouldRunBehaviour()''. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                    <stack-trace><![CDATA[UnityEngine.GameObject:SendMessage (string)
+Game.Tests.EditMode.VarginhaCameraFramingTests:ViewportStaysInsideMapAtCornersAndAfterResizing (string,single,single,single,single,single) (at Assets/Tests/EditMode/VarginhaCameraFramingTests.cs:31)
+System.Reflection.MethodBase:Invoke (object,object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("FaseTopView_Varginha",-9.0f,-7.0f,27.0f,7.0f,3.8f)
+QA test: Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("FaseTopView_Varginha",-9.0f,-7.0f,27.0f,7.0f,3.8f)
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+QA result: Failed Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("FaseTopView_Varginha",-9.0f,-7.0f,27.0f,7.0f,3.8f)
+QA result: Failed Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("FaseTopView_Varginha",-9.0f,-7.0f,27.0f,7.0f,3.8f)
+]]></output>
+                </test-case>
+                <test-case id="1033" name="ViewportStaysInsideMapAtCornersAndAfterResizing(&quot;Fase2_Escola_Resgate&quot;,-12.3f,-14.0f,12.3f,6.0f,4.2f)" fullname="Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing(&quot;Fase2_Escola_Resgate&quot;,-12.3f,-14.0f,12.3f,6.0f,4.2f)" methodname="ViewportStaysInsideMapAtCornersAndAfterResizing" classname="Game.Tests.EditMode.VarginhaCameraFramingTests" runstate="Runnable" seed="1169936156" result="Failed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.027977" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[Unhandled log message: '[Assert] Assertion failed on expression: 'ShouldRunBehaviour()''. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                    <stack-trace><![CDATA[UnityEngine.GameObject:SendMessage (string)
+Game.Tests.EditMode.VarginhaCameraFramingTests:ViewportStaysInsideMapAtCornersAndAfterResizing (string,single,single,single,single,single) (at Assets/Tests/EditMode/VarginhaCameraFramingTests.cs:31)
+System.Reflection.MethodBase:Invoke (object,object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase2_Escola_Resgate",-12.3f,-14.0f,12.3f,6.0f,4.2f)
+QA test: Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase2_Escola_Resgate",-12.3f,-14.0f,12.3f,6.0f,4.2f)
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+QA result: Failed Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase2_Escola_Resgate",-12.3f,-14.0f,12.3f,6.0f,4.2f)
+QA result: Failed Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase2_Escola_Resgate",-12.3f,-14.0f,12.3f,6.0f,4.2f)
+]]></output>
+                </test-case>
+                <test-case id="1034" name="ViewportStaysInsideMapAtCornersAndAfterResizing(&quot;Fase3_Igreja_Guardiao&quot;,-8.5f,-6.5f,9.5f,6.5f,4.0f)" fullname="Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing(&quot;Fase3_Igreja_Guardiao&quot;,-8.5f,-6.5f,9.5f,6.5f,4.0f)" methodname="ViewportStaysInsideMapAtCornersAndAfterResizing" classname="Game.Tests.EditMode.VarginhaCameraFramingTests" runstate="Runnable" seed="430424011" result="Failed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.022564" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[Unhandled log message: '[Assert] Assertion failed on expression: 'ShouldRunBehaviour()''. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                    <stack-trace><![CDATA[UnityEngine.GameObject:SendMessage (string)
+Game.Tests.EditMode.VarginhaCameraFramingTests:ViewportStaysInsideMapAtCornersAndAfterResizing (string,single,single,single,single,single) (at Assets/Tests/EditMode/VarginhaCameraFramingTests.cs:31)
+System.Reflection.MethodBase:Invoke (object,object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase3_Igreja_Guardiao",-8.5f,-6.5f,9.5f,6.5f,4.0f)
+QA test: Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase3_Igreja_Guardiao",-8.5f,-6.5f,9.5f,6.5f,4.0f)
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+Assertion failed on expression: 'ShouldRunBehaviour()'
+QA result: Failed Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase3_Igreja_Guardiao",-8.5f,-6.5f,9.5f,6.5f,4.0f)
+QA result: Failed Game.Tests.EditMode.VarginhaCameraFramingTests.ViewportStaysInsideMapAtCornersAndAfterResizing("Fase3_Igreja_Guardiao",-8.5f,-6.5f,9.5f,6.5f,4.0f)
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1036" name="VarginhaFurnitureArtTests" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:53Z" duration="1.210154" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1037" name="CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice" methodname="CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1255901726" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.228133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.CompositionIncludesSiblingPropsAndDoesNotMoveThemTwice
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1060" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.070634" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1039" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Desk_Office&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Desk_Office&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1869562899" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.007327" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Desk_Office")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Desk_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Desk_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Desk_Office")
+]]></output>
+                </test-case>
+                <test-case id="1040" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Chair_Office&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Chair_Office&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1965458198" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000362" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Chair_Office")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Chair_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Chair_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Chair_Office")
+]]></output>
+                </test-case>
+                <test-case id="1041" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Sofa_LivingRoom&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Sofa_LivingRoom&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="578674796" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000898" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Sofa_LivingRoom")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Sofa_LivingRoom")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Sofa_LivingRoom")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Sofa_LivingRoom")
+]]></output>
+                </test-case>
+                <test-case id="1042" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;CoffeeTable_Living&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;CoffeeTable_Living&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1762089529" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000899" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("CoffeeTable_Living")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("CoffeeTable_Living")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("CoffeeTable_Living")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("CoffeeTable_Living")
+]]></output>
+                </test-case>
+                <test-case id="1043" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Bookshelf_Office&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Bookshelf_Office&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="641768274" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000645" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bookshelf_Office")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bookshelf_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bookshelf_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bookshelf_Office")
+]]></output>
+                </test-case>
+                <test-case id="1044" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Nightstand_Bedroom&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Nightstand_Bedroom&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="607540931" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000888" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Nightstand_Bedroom")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Nightstand_Bedroom")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Nightstand_Bedroom")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Nightstand_Bedroom")
+]]></output>
+                </test-case>
+                <test-case id="1045" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Dresser_Bedroom&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Dresser_Bedroom&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="865108421" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000672" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Dresser_Bedroom")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Dresser_Bedroom")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Dresser_Bedroom")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Dresser_Bedroom")
+]]></output>
+                </test-case>
+                <test-case id="1046" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Kitchen_Cabinet&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Kitchen_Cabinet&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="241057783" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000805" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Kitchen_Cabinet")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Kitchen_Cabinet")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Kitchen_Cabinet")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Kitchen_Cabinet")
+]]></output>
+                </test-case>
+                <test-case id="1047" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Bed_Edelzio&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Bed_Edelzio&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="653504335" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000762" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bed_Edelzio")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bed_Edelzio")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bed_Edelzio")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Bed_Edelzio")
+]]></output>
+                </test-case>
+                <test-case id="1048" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;SchoolDesk&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;SchoolDesk&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1279994363" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000961" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("SchoolDesk")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("SchoolDesk")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("SchoolDesk")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("SchoolDesk")
+]]></output>
+                </test-case>
+                <test-case id="1049" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;ChurchPew&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;ChurchPew&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="2096027508" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000625" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchPew")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchPew")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchPew")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchPew")
+]]></output>
+                </test-case>
+                <test-case id="1050" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;ChurchAltar&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;ChurchAltar&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1118415201" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000847" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchAltar")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchAltar")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchAltar")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("ChurchAltar")
+]]></output>
+                </test-case>
+                <test-case id="1051" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;TV_StaticNoise&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;TV_StaticNoise&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="849641461" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000678" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("TV_StaticNoise")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("TV_StaticNoise")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("TV_StaticNoise")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("TV_StaticNoise")
+]]></output>
+                </test-case>
+                <test-case id="1052" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Stove_Kitchen&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Stove_Kitchen&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="147174823" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000676" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Stove_Kitchen")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Stove_Kitchen")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Stove_Kitchen")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Stove_Kitchen")
+]]></output>
+                </test-case>
+                <test-case id="1053" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Fridge_Kitchen&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Fridge_Kitchen&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1283721440" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.000740" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Fridge_Kitchen")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Fridge_Kitchen")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Fridge_Kitchen")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Fridge_Kitchen")
+]]></output>
+                </test-case>
+                <test-case id="1054" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;WallPicture_Office&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;WallPicture_Office&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1794377001" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.003230" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("WallPicture_Office")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("WallPicture_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("WallPicture_Office")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("WallPicture_Office")
+]]></output>
+                </test-case>
+                <test-case id="1055" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Mailbox_Yard&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Mailbox_Yard&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="902128011" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.003582" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Mailbox_Yard")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Mailbox_Yard")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Mailbox_Yard")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Mailbox_Yard")
+]]></output>
+                </test-case>
+                <test-case id="1056" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Porch_Wood&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Porch_Wood&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="2038909821" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.003890" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Porch_Wood")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Porch_Wood")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Porch_Wood")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Porch_Wood")
+]]></output>
+                </test-case>
+                <test-case id="1057" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;FlowerPatch_Left&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;FlowerPatch_Left&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="891061842" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.003454" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("FlowerPatch_Left")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("FlowerPatch_Left")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("FlowerPatch_Left")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("FlowerPatch_Left")
+]]></output>
+                </test-case>
+                <test-case id="1058" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Shrub_NorthWest&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Shrub_NorthWest&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="2082009784" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.002781" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Shrub_NorthWest")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Shrub_NorthWest")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Shrub_NorthWest")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Shrub_NorthWest")
+]]></output>
+                </test-case>
+                <test-case id="1059" name="FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Lamp_Desk&quot;)" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry(&quot;Lamp_Desk&quot;)" methodname="FurnitureUsesSharedPaletteAndRetainsUnitGeometry" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="958169525" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.001893" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Lamp_Desk")
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Lamp_Desk")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Lamp_Desk")
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.FurnitureUsesSharedPaletteAndRetainsUnitGeometry("Lamp_Desk")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1062" name="LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture" methodname="LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="410079880" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.001182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.LegacyProportionsAreCorrectedOnceAndCollidersFollowTheFurniture
+]]></output>
+              </test-case>
+              <test-case id="1061" name="RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics" methodname="RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1913189698" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:52Z" duration="0.210061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.RefreshReplacesSavedHouseFurnitureWithoutChangingPhysics
+]]></output>
+              </test-case>
+              <test-case id="1038" name="SchoolFurnitureClearsPartitionAndChairsStayPaired" fullname="Game.Tests.EditMode.VarginhaFurnitureArtTests.SchoolFurnitureClearsPartitionAndChairsStayPaired" methodname="SchoolFurnitureClearsPartitionAndChairsStayPaired" classname="Game.Tests.EditMode.VarginhaFurnitureArtTests" runstate="Runnable" seed="1338674021" result="Passed" start-time="2026-09-30 10:05:52Z" end-time="2026-09-30 10:05:53Z" duration="0.692060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.SchoolFurnitureClearsPartitionAndChairsStayPaired
+QA test: Game.Tests.EditMode.VarginhaFurnitureArtTests.SchoolFurnitureClearsPartitionAndChairsStayPaired
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.SchoolFurnitureClearsPartitionAndChairsStayPaired
+QA result: Passed Game.Tests.EditMode.VarginhaFurnitureArtTests.SchoolFurnitureClearsPartitionAndChairsStayPaired
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1063" name="VarginhaReferenceArtTests" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-30 10:05:53Z" end-time="2026-09-30 10:05:54Z" duration="1.307019" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1070" name="AttackAndHostageSpritesResolveToAuthoredProps" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.AttackAndHostageSpritesResolveToAuthoredProps" methodname="AttackAndHostageSpritesResolveToAuthoredProps" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="134898585" result="Passed" start-time="2026-09-30 10:05:53Z" end-time="2026-09-30 10:05:53Z" duration="0.033530" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.AttackAndHostageSpritesResolveToAuthoredProps
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.AttackAndHostageSpritesResolveToAuthoredProps
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.AttackAndHostageSpritesResolveToAuthoredProps
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.AttackAndHostageSpritesResolveToAuthoredProps
+]]></output>
+              </test-case>
+              <test-case id="1066" name="DioceseKeepsCandlesUnlitAndStainedGlassVisible" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible" methodname="DioceseKeepsCandlesUnlitAndStainedGlassVisible" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="192778255" result="Failed" start-time="2026-09-30 10:05:53Z" end-time="2026-09-30 10:05:54Z" duration="1.027006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (0,8,0,85)
+  But was:  0.899999976f
+]]></message>
+                  <stack-trace><![CDATA[at Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible () [0x00022] in C:\Users\Usuario\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-22-10-19-30\Assets\Tests\EditMode\VarginhaReferenceArtTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible
+QA result: Failed Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible
+QA result: Failed Game.Tests.EditMode.VarginhaReferenceArtTests.DioceseKeepsCandlesUnlitAndStainedGlassVisible
+]]></output>
+              </test-case>
+              <test-case id="1069" name="EdelzioAndFabioSheetsGenerateValidDirectionalFrames" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.EdelzioAndFabioSheetsGenerateValidDirectionalFrames" methodname="EdelzioAndFabioSheetsGenerateValidDirectionalFrames" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="486549439" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.017867" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.EdelzioAndFabioSheetsGenerateValidDirectionalFrames
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.EdelzioAndFabioSheetsGenerateValidDirectionalFrames
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.EdelzioAndFabioSheetsGenerateValidDirectionalFrames
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.EdelzioAndFabioSheetsGenerateValidDirectionalFrames
+]]></output>
+              </test-case>
+              <test-case id="1064" name="HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds" methodname="HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="393926097" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.018217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.HeartsAndFireHaveVisiblePixelsAndTransparentBackgrounds
+]]></output>
+              </test-case>
+              <test-case id="1068" name="KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds" methodname="KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="1125183325" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.046650" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.KatanaPianoAndCagePropsAreValidWithTransparentBackgrounds
+]]></output>
+              </test-case>
+              <test-case id="1067" name="OfficialTravelCabinLoadsUpdatedComposition" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.OfficialTravelCabinLoadsUpdatedComposition" methodname="OfficialTravelCabinLoadsUpdatedComposition" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="2122356031" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.023296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.OfficialTravelCabinLoadsUpdatedComposition
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.OfficialTravelCabinLoadsUpdatedComposition
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.OfficialTravelCabinLoadsUpdatedComposition
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.OfficialTravelCabinLoadsUpdatedComposition
+]]></output>
+              </test-case>
+              <test-case id="1065" name="SavedFurnitureRefreshKeepsItsTransformAndCollider" fullname="Game.Tests.EditMode.VarginhaReferenceArtTests.SavedFurnitureRefreshKeepsItsTransformAndCollider" methodname="SavedFurnitureRefreshKeepsItsTransformAndCollider" classname="Game.Tests.EditMode.VarginhaReferenceArtTests" runstate="Runnable" seed="2140720488" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.126895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.SavedFurnitureRefreshKeepsItsTransformAndCollider
+QA test: Game.Tests.EditMode.VarginhaReferenceArtTests.SavedFurnitureRefreshKeepsItsTransformAndCollider
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.SavedFurnitureRefreshKeepsItsTransformAndCollider
+QA result: Passed Game.Tests.EditMode.VarginhaReferenceArtTests.SavedFurnitureRefreshKeepsItsTransformAndCollider
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1071" name="VarginhaSceneryTests" fullname="Game.Tests.EditMode.VarginhaSceneryTests" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:06:02Z" duration="7.489484" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1113" name="ArtIsCachedPointFilteredAndVisible" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.052148" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1091" name="ArtIsCachedPointFilteredAndVisible(&quot;Glass&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Glass&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1686473443" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.002941" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glass")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glass")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glass")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glass")
+]]></output>
+                </test-case>
+                <test-case id="1092" name="ArtIsCachedPointFilteredAndVisible(&quot;GlassLight&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;GlassLight&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1871926621" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.002882" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("GlassLight")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("GlassLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("GlassLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("GlassLight")
+]]></output>
+                </test-case>
+                <test-case id="1093" name="ArtIsCachedPointFilteredAndVisible(&quot;WindowLight&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;WindowLight&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1094161897" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000809" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("WindowLight")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("WindowLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("WindowLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("WindowLight")
+]]></output>
+                </test-case>
+                <test-case id="1094" name="ArtIsCachedPointFilteredAndVisible(&quot;Glow&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Glow&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1976839658" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000969" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glow")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Glow")
+]]></output>
+                </test-case>
+                <test-case id="1095" name="ArtIsCachedPointFilteredAndVisible(&quot;Shadow&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Shadow&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1429512727" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000791" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Shadow")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Shadow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Shadow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Shadow")
+]]></output>
+                </test-case>
+                <test-case id="1096" name="ArtIsCachedPointFilteredAndVisible(&quot;Window&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Window&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1296589851" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000804" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Window")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Window")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Window")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Window")
+]]></output>
+                </test-case>
+                <test-case id="1097" name="ArtIsCachedPointFilteredAndVisible(&quot;Books&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Books&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="589165594" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.001374" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Books")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Books")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Books")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Books")
+]]></output>
+                </test-case>
+                <test-case id="1098" name="ArtIsCachedPointFilteredAndVisible(&quot;Noticeboard&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Noticeboard&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1350368114" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.001426" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Noticeboard")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Noticeboard")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Noticeboard")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Noticeboard")
+]]></output>
+                </test-case>
+                <test-case id="1099" name="ArtIsCachedPointFilteredAndVisible(&quot;Plant&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Plant&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="2075318782" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000846" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Plant")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Plant")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Plant")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Plant")
+]]></output>
+                </test-case>
+                <test-case id="1100" name="ArtIsCachedPointFilteredAndVisible(&quot;Column&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Column&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1133355566" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.001056" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Column")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Column")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Column")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Column")
+]]></output>
+                </test-case>
+                <test-case id="1101" name="ArtIsCachedPointFilteredAndVisible(&quot;Rug&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Rug&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="451641257" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000662" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Rug")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Rug")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Rug")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Rug")
+]]></output>
+                </test-case>
+                <test-case id="1102" name="ArtIsCachedPointFilteredAndVisible(&quot;Puddle&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Puddle&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1831630469" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000869" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Puddle")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Puddle")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Puddle")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Puddle")
+]]></output>
+                </test-case>
+                <test-case id="1103" name="ArtIsCachedPointFilteredAndVisible(&quot;Leaves&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Leaves&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1124667064" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000672" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Leaves")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Leaves")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Leaves")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Leaves")
+]]></output>
+                </test-case>
+                <test-case id="1104" name="ArtIsCachedPointFilteredAndVisible(&quot;Parking&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Parking&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1625776327" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000906" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Parking")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Parking")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Parking")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Parking")
+]]></output>
+                </test-case>
+                <test-case id="1105" name="ArtIsCachedPointFilteredAndVisible(&quot;Mosaic&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Mosaic&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="120248563" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000765" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Mosaic")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Mosaic")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Mosaic")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Mosaic")
+]]></output>
+                </test-case>
+                <test-case id="1106" name="ArtIsCachedPointFilteredAndVisible(&quot;Sconce&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Sconce&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="2030397154" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.007643" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Sconce")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Sconce")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Sconce")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Sconce")
+]]></output>
+                </test-case>
+                <test-case id="1107" name="ArtIsCachedPointFilteredAndVisible(&quot;Pew&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Pew&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1110246084" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000710" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Pew")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Pew")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Pew")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Pew")
+]]></output>
+                </test-case>
+                <test-case id="1108" name="ArtIsCachedPointFilteredAndVisible(&quot;Altar&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Altar&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="435337109" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000800" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Altar")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Altar")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Altar")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Altar")
+]]></output>
+                </test-case>
+                <test-case id="1109" name="ArtIsCachedPointFilteredAndVisible(&quot;Desk&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Desk&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="147434754" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000692" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Desk")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Desk")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Desk")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Desk")
+]]></output>
+                </test-case>
+                <test-case id="1110" name="ArtIsCachedPointFilteredAndVisible(&quot;Blackboard&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Blackboard&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="366900820" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.001086" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Blackboard")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Blackboard")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Blackboard")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Blackboard")
+]]></output>
+                </test-case>
+                <test-case id="1111" name="ArtIsCachedPointFilteredAndVisible(&quot;StreetLamp&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;StreetLamp&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="857070851" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.001001" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("StreetLamp")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("StreetLamp")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("StreetLamp")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("StreetLamp")
+]]></output>
+                </test-case>
+                <test-case id="1112" name="ArtIsCachedPointFilteredAndVisible(&quot;Dust&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible(&quot;Dust&quot;)" methodname="ArtIsCachedPointFilteredAndVisible" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1314797948" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.000901" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Dust")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Dust")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Dust")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ArtIsCachedPointFilteredAndVisible("Dust")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1080" name="BeamWidthAndOriginFollowActualWindowBounds" fullname="Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.012227" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1077" name="BeamWidthAndOriginFollowActualWindowBounds(0.6f)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(0.6f)" methodname="BeamWidthAndOriginFollowActualWindowBounds" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1414219367" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.002590" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(0.6f)
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(0.6f)
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(0.6f)
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(0.6f)
+]]></output>
+                </test-case>
+                <test-case id="1078" name="BeamWidthAndOriginFollowActualWindowBounds(1.2f)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(1.2f)" methodname="BeamWidthAndOriginFollowActualWindowBounds" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="298180165" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.002099" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(1.2f)
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(1.2f)
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(1.2f)
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(1.2f)
+]]></output>
+                </test-case>
+                <test-case id="1079" name="BeamWidthAndOriginFollowActualWindowBounds(2.1f)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(2.1f)" methodname="BeamWidthAndOriginFollowActualWindowBounds" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1082853656" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:54Z" duration="0.003126" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(2.1f)
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(2.1f)
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(2.1f)
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.BeamWidthAndOriginFollowActualWindowBounds(2.1f)
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1089" name="CathedralHasTenTranslucentFloorReflectionsBehindFurniture" fullname="Game.Tests.EditMode.VarginhaSceneryTests.CathedralHasTenTranslucentFloorReflectionsBehindFurniture" methodname="CathedralHasTenTranslucentFloorReflectionsBehindFurniture" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="41123957" result="Passed" start-time="2026-09-30 10:05:54Z" end-time="2026-09-30 10:05:55Z" duration="0.952540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.CathedralHasTenTranslucentFloorReflectionsBehindFurniture
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.CathedralHasTenTranslucentFloorReflectionsBehindFurniture
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.CathedralHasTenTranslucentFloorReflectionsBehindFurniture
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.CathedralHasTenTranslucentFloorReflectionsBehindFurniture
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1076" name="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:55Z" duration="0.044839" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1072" name="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Backpack_Worn&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Backpack_Worn&quot;)" methodname="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1499434968" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:55Z" duration="0.009321" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Worn")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Worn")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Worn")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Worn")
+]]></output>
+                </test-case>
+                <test-case id="1073" name="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Backpack_Side&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Backpack_Side&quot;)" methodname="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1300732544" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:55Z" duration="0.014599" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Side")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Side")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Side")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Backpack_Side")
+]]></output>
+                </test-case>
+                <test-case id="1074" name="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Notebook_Inventory&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Notebook_Inventory&quot;)" methodname="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1757056597" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:55Z" duration="0.008170" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Inventory")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Inventory")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Inventory")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Inventory")
+]]></output>
+                </test-case>
+                <test-case id="1075" name="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Notebook_Held&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint(&quot;Notebook_Held&quot;)" methodname="EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1809928602" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:55Z" duration="0.006818" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Held")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Held")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Held")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EquipmentRemainsGrayEvenWhenCallerUsesAnOldTint("Notebook_Held")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1117" name="EveryPhaseUsesOneBoundedFloorLightLayer" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:57Z" duration="1.512991" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1114" name="EveryPhaseUsesOneBoundedFloorLightLayer(&quot;school&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer(&quot;school&quot;)" methodname="EveryPhaseUsesOneBoundedFloorLightLayer" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1160711827" result="Passed" start-time="2026-09-30 10:05:55Z" end-time="2026-09-30 10:05:56Z" duration="0.465925" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("school")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("school")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("school")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("school")
+]]></output>
+                </test-case>
+                <test-case id="1115" name="EveryPhaseUsesOneBoundedFloorLightLayer(&quot;diocese&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer(&quot;diocese&quot;)" methodname="EveryPhaseUsesOneBoundedFloorLightLayer" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1146071317" result="Passed" start-time="2026-09-30 10:05:56Z" end-time="2026-09-30 10:05:57Z" duration="0.911541" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("diocese")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("diocese")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("diocese")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("diocese")
+]]></output>
+                </test-case>
+                <test-case id="1116" name="EveryPhaseUsesOneBoundedFloorLightLayer(&quot;house&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer(&quot;house&quot;)" methodname="EveryPhaseUsesOneBoundedFloorLightLayer" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="105221109" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:57Z" duration="0.131662" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("house")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("house")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("house")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.EveryPhaseUsesOneBoundedFloorLightLayer("house")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1122" name="LightingHasContinuousAlphaInsteadOfSteppedRings" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:57Z" duration="0.030371" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1118" name="LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;GlassLight&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;GlassLight&quot;)" methodname="LightingHasContinuousAlphaInsteadOfSteppedRings" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="620531172" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:57Z" duration="0.018336" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("GlassLight")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("GlassLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("GlassLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("GlassLight")
+]]></output>
+                </test-case>
+                <test-case id="1119" name="LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;WindowLight&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;WindowLight&quot;)" methodname="LightingHasContinuousAlphaInsteadOfSteppedRings" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="467656121" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:57Z" duration="0.002614" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("WindowLight")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("WindowLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("WindowLight")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("WindowLight")
+]]></output>
+                </test-case>
+                <test-case id="1120" name="LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;Glow&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;Glow&quot;)" methodname="LightingHasContinuousAlphaInsteadOfSteppedRings" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="860539786" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:57Z" duration="0.002336" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Glow")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Glow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Glow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Glow")
+]]></output>
+                </test-case>
+                <test-case id="1121" name="LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;Shadow&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings(&quot;Shadow&quot;)" methodname="LightingHasContinuousAlphaInsteadOfSteppedRings" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="548789217" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:57Z" duration="0.002337" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Shadow")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Shadow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Shadow")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LightingHasContinuousAlphaInsteadOfSteppedRings("Shadow")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1088" name="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:06:00Z" duration="2.935614" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1085" name="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(&quot;school&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(&quot;school&quot;)" methodname="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1388528569" result="Passed" start-time="2026-09-30 10:05:57Z" end-time="2026-09-30 10:05:58Z" duration="0.853101" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("school")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("school")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("school")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("school")
+]]></output>
+                </test-case>
+                <test-case id="1086" name="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(&quot;diocese&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(&quot;diocese&quot;)" methodname="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1258243465" result="Passed" start-time="2026-09-30 10:05:58Z" end-time="2026-09-30 10:05:59Z" duration="1.805565" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("diocese")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("diocese")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("diocese")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("diocese")
+]]></output>
+                </test-case>
+                <test-case id="1087" name="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(&quot;house&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration(&quot;house&quot;)" methodname="LostProceduralSpriteIsRestoredWithoutDuplicateDecoration" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="421565868" result="Passed" start-time="2026-09-30 10:05:59Z" end-time="2026-09-30 10:06:00Z" duration="0.272898" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("house")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("house")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("house")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.LostProceduralSpriteIsRestoredWithoutDuplicateDecoration("house")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1090" name="ParkingUsesFullNativeDimensionsWithoutExtraScaling" fullname="Game.Tests.EditMode.VarginhaSceneryTests.ParkingUsesFullNativeDimensionsWithoutExtraScaling" methodname="ParkingUsesFullNativeDimensionsWithoutExtraScaling" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="362757650" result="Passed" start-time="2026-09-30 10:06:00Z" end-time="2026-09-30 10:06:00Z" duration="0.436026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.ParkingUsesFullNativeDimensionsWithoutExtraScaling
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.ParkingUsesFullNativeDimensionsWithoutExtraScaling
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ParkingUsesFullNativeDimensionsWithoutExtraScaling
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.ParkingUsesFullNativeDimensionsWithoutExtraScaling
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1084" name="SetupIsIdempotentAndDecorationHasNoColliders" fullname="Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 10:06:00Z" end-time="2026-09-30 10:06:02Z" duration="1.506852" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1081" name="SetupIsIdempotentAndDecorationHasNoColliders(&quot;school&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders(&quot;school&quot;)" methodname="SetupIsIdempotentAndDecorationHasNoColliders" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="389860470" result="Passed" start-time="2026-09-30 10:06:00Z" end-time="2026-09-30 10:06:01Z" duration="0.461572" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("school")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("school")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("school")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("school")
+]]></output>
+                </test-case>
+                <test-case id="1082" name="SetupIsIdempotentAndDecorationHasNoColliders(&quot;diocese&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders(&quot;diocese&quot;)" methodname="SetupIsIdempotentAndDecorationHasNoColliders" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1713533528" result="Passed" start-time="2026-09-30 10:06:01Z" end-time="2026-09-30 10:06:01Z" duration="0.916690" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("diocese")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("diocese")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("diocese")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("diocese")
+]]></output>
+                </test-case>
+                <test-case id="1083" name="SetupIsIdempotentAndDecorationHasNoColliders(&quot;house&quot;)" fullname="Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders(&quot;house&quot;)" methodname="SetupIsIdempotentAndDecorationHasNoColliders" classname="Game.Tests.EditMode.VarginhaSceneryTests" runstate="Runnable" seed="1440680372" result="Passed" start-time="2026-09-30 10:06:01Z" end-time="2026-09-30 10:06:02Z" duration="0.124299" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("house")
+QA test: Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("house")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("house")
+QA result: Passed Game.Tests.EditMode.VarginhaSceneryTests.SetupIsIdempotentAndDecorationHasNoColliders("house")
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1123" name="VarginhaSchoolExteriorTests" fullname="Game.Tests.EditMode.VarginhaSchoolExteriorTests" classname="Game.Tests.EditMode.VarginhaSchoolExteriorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 10:06:02Z" end-time="2026-09-30 10:06:03Z" duration="1.396990" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1126" name="AllNineStudentsHaveWallFreeRoutesThroughTheEntrance" fullname="Game.Tests.EditMode.VarginhaSchoolExteriorTests.AllNineStudentsHaveWallFreeRoutesThroughTheEntrance" methodname="AllNineStudentsHaveWallFreeRoutesThroughTheEntrance" classname="Game.Tests.EditMode.VarginhaSchoolExteriorTests" runstate="Runnable" seed="536479833" result="Passed" start-time="2026-09-30 10:06:02Z" end-time="2026-09-30 10:06:02Z" duration="0.505831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSchoolExteriorTests.AllNineStudentsHaveWallFreeRoutesThroughTheEntrance
+QA test: Game.Tests.EditMode.VarginhaSchoolExteriorTests.AllNineStudentsHaveWallFreeRoutesThroughTheEntrance
+QA result: Passed Game.Tests.EditMode.VarginhaSchoolExteriorTests.AllNineStudentsHaveWallFreeRoutesThroughTheEntrance
+QA result: Passed Game.Tests.EditMode.VarginhaSchoolExteriorTests.AllNineStudentsHaveWallFreeRoutesThroughTheEntrance
+]]></output>
+              </test-case>
+              <test-case id="1125" name="HostageColliderDoesNotBlockTheOpenDoor" fullname="Game.Tests.EditMode.VarginhaSchoolExteriorTests.HostageColliderDoesNotBlockTheOpenDoor" methodname="HostageColliderDoesNotBlockTheOpenDoor" classname="Game.Tests.EditMode.VarginhaSchoolExteriorTests" runstate="Runnable" seed="763613814" result="Passed" start-time="2026-09-30 10:06:02Z" end-time="2026-09-30 10:06:03Z" duration="0.454632" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSchoolExteriorTests.HostageColliderDoesNotBlockTheOpenDoor
+QA test: Game.Tests.EditMode.VarginhaSchoolExteriorTests.HostageColliderDoesNotBlockTheOpenDoor
+QA result: Passed Game.Tests.EditMode.VarginhaSchoolExteriorTests.HostageColliderDoesNotBlockTheOpenDoor
+QA result: Passed Game.Tests.EditMode.VarginhaSchoolExteriorTests.HostageColliderDoesNotBlockTheOpenDoor
+]]></output>
+              </test-case>
+              <test-case id="1124" name="ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor" fullname="Game.Tests.EditMode.VarginhaSchoolExteriorTests.ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor" methodname="ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor" classname="Game.Tests.EditMode.VarginhaSchoolExteriorTests" runstate="Runnable" seed="1867815519" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.430878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaSchoolExteriorTests.ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor
+QA test: Game.Tests.EditMode.VarginhaSchoolExteriorTests.ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor
+QA result: Passed Game.Tests.EditMode.VarginhaSchoolExteriorTests.ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor
+QA result: Passed Game.Tests.EditMode.VarginhaSchoolExteriorTests.ParkingIsOutsideAndFullSizePlayerCanWalkThroughDoor
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1127" name="VarginhaStudentSpriteTests" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.180930" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1142" name="BriefNameVariantsResolveToTheExistingStudent" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.004527" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1140" name="BriefNameVariantsResolveToTheExistingStudent(&quot;Anna Tavares&quot;,&quot;Ana Tavares&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent(&quot;Anna Tavares&quot;,&quot;Ana Tavares&quot;)" methodname="BriefNameVariantsResolveToTheExistingStudent" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="294823892" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.001596" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Anna Tavares","Ana Tavares")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Anna Tavares","Ana Tavares")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Anna Tavares","Ana Tavares")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Anna Tavares","Ana Tavares")
+]]></output>
+                </test-case>
+                <test-case id="1141" name="BriefNameVariantsResolveToTheExistingStudent(&quot;Luis Messias&quot;,&quot;Luis Miguel Messias&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent(&quot;Luis Messias&quot;,&quot;Luis Miguel Messias&quot;)" methodname="BriefNameVariantsResolveToTheExistingStudent" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="626890895" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.000925" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Luis Messias","Luis Miguel Messias")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Luis Messias","Luis Miguel Messias")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Luis Messias","Luis Miguel Messias")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.BriefNameVariantsResolveToTheExistingStudent("Luis Messias","Luis Miguel Messias")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1137" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.170679" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1128" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Yasmin&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Yasmin&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="218714107" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.017744" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Yasmin")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Yasmin")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Yasmin")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Yasmin")
+]]></output>
+                </test-case>
+                <test-case id="1129" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Pedro&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Pedro&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="149530945" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.018728" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Pedro")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Pedro")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Pedro")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Pedro")
+]]></output>
+                </test-case>
+                <test-case id="1130" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Matias&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Matias&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="554050045" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.020417" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Matias")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Matias")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Matias")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Matias")
+]]></output>
+                </test-case>
+                <test-case id="1131" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Marcos&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Marcos&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="2122426823" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.019733" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Marcos")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Marcos")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Marcos")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Marcos")
+]]></output>
+                </test-case>
+                <test-case id="1132" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Anna Sabia&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Anna Sabia&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="1194594503" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.018303" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Anna Sabia")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Anna Sabia")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Anna Sabia")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Anna Sabia")
+]]></output>
+                </test-case>
+                <test-case id="1133" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Ana Tavares&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Ana Tavares&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="85518216" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.009326" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Ana Tavares")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Ana Tavares")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Ana Tavares")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Ana Tavares")
+]]></output>
+                </test-case>
+                <test-case id="1134" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Luis Miguel Messias&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Luis Miguel Messias&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="183574542" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.017535" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Miguel Messias")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Miguel Messias")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Miguel Messias")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Miguel Messias")
+]]></output>
+                </test-case>
+                <test-case id="1135" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Luis Martins&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Luis Martins&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="1487016087" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.017842" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Martins")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Martins")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Martins")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Luis Martins")
+]]></output>
+                </test-case>
+                <test-case id="1136" name="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Fabio&quot;)" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits(&quot;Fabio&quot;)" methodname="EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="599720642" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.017492" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Fabio")
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Fabio")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Fabio")
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.EveryStudentUsesTheCanonicalAtlasForWalkingAndPortraits("Fabio")
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1138" name="FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons" methodname="FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="2138739929" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.000700" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.FabioUsesCanonicalAtlasForWalkingPortraitsAndSummons
+]]></output>
+              </test-case>
+              <test-case id="1139" name="ShortAnnaAndTallAnaKeepDifferentHeights" fullname="Game.Tests.EditMode.VarginhaStudentSpriteTests.ShortAnnaAndTallAnaKeepDifferentHeights" methodname="ShortAnnaAndTallAnaKeepDifferentHeights" classname="Game.Tests.EditMode.VarginhaStudentSpriteTests" runstate="Runnable" seed="242880240" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.001616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.ShortAnnaAndTallAnaKeepDifferentHeights
+QA test: Game.Tests.EditMode.VarginhaStudentSpriteTests.ShortAnnaAndTallAnaKeepDifferentHeights
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.ShortAnnaAndTallAnaKeepDifferentHeights
+QA result: Passed Game.Tests.EditMode.VarginhaStudentSpriteTests.ShortAnnaAndTallAnaKeepDifferentHeights
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1143" name="VarginhaVisualPolishTests" fullname="Game.Tests.EditMode.VarginhaVisualPolishTests" classname="Game.Tests.EditMode.VarginhaVisualPolishTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.071785" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1146" name="ClearCombatPoseClearsAttackPose" fullname="Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose" methodname="ClearCombatPoseClearsAttackPose" classname="Game.Tests.EditMode.VarginhaVisualPolishTests" runstate="Runnable" seed="1054164135" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.016174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose
+QA test: Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose
+QA result: Passed Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose
+QA result: Passed Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose
+]]></output>
+              </test-case>
+              <test-case id="1145" name="EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry" fullname="Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry" methodname="EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry" classname="Game.Tests.EditMode.VarginhaVisualPolishTests" runstate="Runnable" seed="577955817" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.045368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry
+QA test: Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry
+QA result: Passed Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry
+QA result: Passed Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry
+]]></output>
+              </test-case>
+              <test-case id="1144" name="ProtagonistIsLargerWithoutMovingHisFootBaseline" fullname="Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline" methodname="ProtagonistIsLargerWithoutMovingHisFootBaseline" classname="Game.Tests.EditMode.VarginhaVisualPolishTests" runstate="Runnable" seed="485952210" result="Passed" start-time="2026-09-30 10:06:03Z" end-time="2026-09-30 10:06:03Z" duration="0.000388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[QA test: Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline
+QA test: Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline
+QA result: Passed Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline
+QA result: Passed Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline
+Saving results to: C:/Users/Usuario/AppData/LocalLow/DefaultCompany/Template 2D Kit\TestResults.xml
+Saving results to: C:/Users/Usuario/AppData/LocalLow/DefaultCompany/Template 2D Kit\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

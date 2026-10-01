@@ -13,7 +13,7 @@ namespace Game.Varginha
             switch (sceneName)
             {
                 case VarginhaGameOverFlow.PhaseOneScene:
-                    bounds = Rect.MinMaxRect(-9f, -7f, 27f, 7f);
+                    bounds = VarginhaHouseArchitecture.CameraBounds;
                     size = 3.8f;
                     break;
                 case VarginhaTravelCinematic.SchoolScene:
