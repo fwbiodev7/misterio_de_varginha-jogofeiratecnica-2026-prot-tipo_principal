@@ -1,0 +1,5319 @@
+fileFormatVersion: 2
+guid: 6f6c34213722f9c4b97aaa15741524ba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1411920384212470463
+    second: EdelzioEquippedActionsV1_0
+  - first:
+      213: 9160180812435648906
+    second: EdelzioEquippedActionsV1_1
+  - first:
+      213: 6021877586827437572
+    second: EdelzioEquippedActionsV1_2
+  - first:
+      213: 4859253750807939389
+    second: EdelzioEquippedActionsV1_3
+  - first:
+      213: -7093999792263715075
+    second: EdelzioEquippedActionsV1_4
+  - first:
+      213: -6457861957673645713
+    second: EdelzioEquippedActionsV1_5
+  - first:
+      213: 4612703919740167724
+    second: EdelzioEquippedActionsV1_6
+  - first:
+      213: -1907802127698426839
+    second: EdelzioEquippedActionsV1_7
+  - first:
+      213: -2334174878275111395
+    second: EdelzioEquippedActionsV1_8
+  - first:
+      213: 4674705934957967495
+    second: EdelzioEquippedActionsV1_9
+  - first:
+      213: -3427483932012597144
+    second: EdelzioEquippedActionsV1_10
+  - first:
+      213: -5474866325115476549
+    second: EdelzioEquippedActionsV1_11
+  - first:
+      213: -5707965101125713103
+    second: EdelzioEquippedActionsV1_12
+  - first:
+      213: -8356486885374233668
+    second: EdelzioEquippedActionsV1_13
+  - first:
+      213: 7507253232207311062
+    second: EdelzioEquippedActionsV1_14
+  - first:
+      213: -6005735217599737399
+    second: EdelzioEquippedActionsV1_15
+  - first:
+      213: 1103608389483706389
+    second: EdelzioEquippedActionsV1_16
+  - first:
+      213: -8494327502180018548
+    second: EdelzioEquippedActionsV1_17
+  - first:
+      213: 8316454326501156568
+    second: EdelzioEquippedActionsV1_18
+  - first:
+      213: 6970947146949302012
+    second: EdelzioEquippedActionsV1_19
+  - first:
+      213: -9004239963262879803
+    second: EdelzioEquippedActionsV1_20
+  - first:
+      213: 8361424499140427900
+    second: EdelzioEquippedActionsV1_21
+  - first:
+      213: -3122556312035661577
+    second: EdelzioEquippedActionsV1_22
+  - first:
+      213: 963463060417099516
+    second: EdelzioEquippedActionsV1_23
+  - first:
+      213: -4199251080063472782
+    second: EdelzioEquippedActionsV1_24
+  - first:
+      213: -5556338375262889868
+    second: EdelzioEquippedActionsV1_25
+  - first:
+      213: -5098494884920563825
+    second: EdelzioEquippedActionsV1_26
+  - first:
+      213: 4912259770388732641
+    second: EdelzioEquippedActionsV1_27
+  - first:
+      213: -5220705995311026787
+    second: EdelzioEquippedActionsV1_28
+  - first:
+      213: 6796301381691572536
+    second: EdelzioEquippedActionsV1_29
+  - first:
+      213: -7507724546294688803
+    second: EdelzioEquippedActionsV1_30
+  - first:
+      213: -8552656727147742675
+    second: EdelzioEquippedActionsV1_31
+  - first:
+      213: 3146415468146783471
+    second: EdelzioEquippedActionsV1_32
+  - first:
+      213: 6125500152773735270
+    second: EdelzioEquippedActionsV1_33
+  - first:
+      213: -1696603319196540019
+    second: EdelzioEquippedActionsV1_34
+  - first:
+      213: -1942811297629533578
+    second: EdelzioEquippedActionsV1_35
+  - first:
+      213: 3128486034871777071
+    second: EdelzioEquippedActionsV1_36
+  - first:
+      213: -6587138542987321132
+    second: EdelzioEquippedActionsV1_37
+  - first:
+      213: -3316967961015792120
+    second: EdelzioEquippedActionsV1_38
+  - first:
+      213: -7863129146517296363
+    second: EdelzioEquippedActionsV1_39
+  - first:
+      213: 4078257589368773515
+    second: EdelzioEquippedActionsV1_40
+  - first:
+      213: 7095053845068929538
+    second: EdelzioEquippedActionsV1_41
+  - first:
+      213: 8447444506745643005
+    second: EdelzioEquippedActionsV1_42
+  - first:
+      213: 1475638467863416259
+    second: EdelzioEquippedActionsV1_43
+  - first:
+      213: -5225963707119995346
+    second: EdelzioEquippedActionsV1_44
+  - first:
+      213: 6320259819468312802
+    second: EdelzioEquippedActionsV1_45
+  - first:
+      213: -8269533658859489908
+    second: EdelzioEquippedActionsV1_46
+  - first:
+      213: -6901852527851715914
+    second: EdelzioEquippedActionsV1_47
+  - first:
+      213: -7135466578332599229
+    second: EdelzioEquippedActionsV1_48
+  - first:
+      213: -3120803447664082476
+    second: EdelzioEquippedActionsV1_49
+  - first:
+      213: -8259910279495524722
+    second: EdelzioEquippedActionsV1_50
+  - first:
+      213: 4928918800664721243
+    second: EdelzioEquippedActionsV1_51
+  - first:
+      213: -1092634512110137485
+    second: EdelzioEquippedActionsV1_52
+  - first:
+      213: -1916326698810625682
+    second: EdelzioEquippedActionsV1_53
+  - first:
+      213: -6848610523360980055
+    second: EdelzioEquippedActionsV1_54
+  - first:
+      213: -8274417731949076205
+    second: EdelzioEquippedActionsV1_55
+  - first:
+      213: -3867618239993180298
+    second: EdelzioEquippedActionsV1_56
+  - first:
+      213: -4011551421703878735
+    second: EdelzioEquippedActionsV1_57
+  - first:
+      213: -18957872091902485
+    second: EdelzioEquippedActionsV1_58
+  - first:
+      213: -7387234750342744947
+    second: EdelzioEquippedActionsV1_59
+  - first:
+      213: -5475366533824538298
+    second: EdelzioEquippedActionsV1_60
+  - first:
+      213: -7121955782777116707
+    second: EdelzioEquippedActionsV1_61
+  - first:
+      213: -7295336033247808621
+    second: EdelzioEquippedActionsV1_62
+  - first:
+      213: 1447455232924214738
+    second: EdelzioEquippedActionsV1_63
+  - first:
+      213: 8713612743278439267
+    second: EdelzioEquippedActionsV1_64
+  - first:
+      213: 3618309908411842184
+    second: EdelzioEquippedActionsV1_65
+  - first:
+      213: 4313345992758019993
+    second: EdelzioEquippedActionsV1_66
+  - first:
+      213: 8858057499946927374
+    second: EdelzioEquippedActionsV1_67
+  - first:
+      213: 9059712097407196807
+    second: EdelzioEquippedActionsV1_68
+  - first:
+      213: -2362460673471011668
+    second: EdelzioEquippedActionsV1_69
+  - first:
+      213: 7215614650305523108
+    second: EdelzioEquippedActionsV1_70
+  - first:
+      213: 7589647628092289056
+    second: EdelzioEquippedActionsV1_71
+  - first:
+      213: -6977871414119414626
+    second: EdelzioEquippedActionsV1_72
+  - first:
+      213: 2572598383322460491
+    second: EdelzioEquippedActionsV1_73
+  - first:
+      213: -2269945655876438070
+    second: EdelzioEquippedActionsV1_74
+  - first:
+      213: -8937773897096775994
+    second: EdelzioEquippedActionsV1_75
+  - first:
+      213: -6431453432147746877
+    second: EdelzioEquippedActionsV1_76
+  - first:
+      213: -2894052263239342579
+    second: EdelzioEquippedActionsV1_77
+  - first:
+      213: 8066663837903813572
+    second: EdelzioEquippedActionsV1_78
+  - first:
+      213: -2170534047371562132
+    second: EdelzioEquippedActionsV1_79
+  - first:
+      213: 2740894341298185461
+    second: EdelzioEquippedActionsV1_80
+  - first:
+      213: -3349957078681761301
+    second: EdelzioEquippedActionsV1_81
+  - first:
+      213: 4685633197211532910
+    second: EdelzioEquippedActionsV1_82
+  - first:
+      213: 3924388138849193581
+    second: EdelzioEquippedActionsV1_83
+  - first:
+      213: -6642064868850703359
+    second: EdelzioEquippedActionsV1_84
+  - first:
+      213: -8899226185081394778
+    second: EdelzioEquippedActionsV1_85
+  - first:
+      213: 2631289426595603715
+    second: EdelzioEquippedActionsV1_86
+  - first:
+      213: 8768950555436326582
+    second: EdelzioEquippedActionsV1_87
+  - first:
+      213: -3240359181729814484
+    second: EdelzioEquippedActionsV1_88
+  - first:
+      213: 5525449429314813511
+    second: EdelzioEquippedActionsV1_89
+  - first:
+      213: -7378711014699155466
+    second: EdelzioEquippedActionsV1_90
+  - first:
+      213: 5576233480606495810
+    second: EdelzioEquippedActionsV1_91
+  - first:
+      213: -3535868138266977474
+    second: EdelzioEquippedActionsV1_92
+  - first:
+      213: -7102467563363213617
+    second: EdelzioEquippedActionsV1_93
+  - first:
+      213: 4554866032621230006
+    second: EdelzioEquippedActionsV1_94
+  - first:
+      213: -1768448232934311065
+    second: EdelzioEquippedActionsV1_95
+  - first:
+      213: -5200572405091236835
+    second: EdelzioEquippedActionsV1_96
+  - first:
+      213: 3086021386307120231
+    second: EdelzioEquippedActionsV1_97
+  - first:
+      213: -5639623350808514804
+    second: EdelzioEquippedActionsV1_98
+  - first:
+      213: -6024497432205824492
+    second: EdelzioEquippedActionsV1_99
+  - first:
+      213: 2471367341615784138
+    second: EdelzioEquippedActionsV1_100
+  - first:
+      213: -5268434237720075579
+    second: EdelzioEquippedActionsV1_101
+  - first:
+      213: -7611014892465603748
+    second: EdelzioEquippedActionsV1_102
+  - first:
+      213: 4510678399317531124
+    second: EdelzioEquippedActionsV1_103
+  - first:
+      213: -2391038062907032331
+    second: EdelzioEquippedActionsV1_104
+  - first:
+      213: 2418715566078300847
+    second: EdelzioEquippedActionsV1_105
+  - first:
+      213: 1568679862769545949
+    second: EdelzioEquippedActionsV1_106
+  - first:
+      213: 5507870024113655764
+    second: EdelzioEquippedActionsV1_107
+  - first:
+      213: -3663487951018058176
+    second: EdelzioEquippedActionsV1_108
+  - first:
+      213: -7172049366527108669
+    second: EdelzioEquippedActionsV1_109
+  - first:
+      213: -5351462438984025856
+    second: EdelzioEquippedActionsV1_110
+  - first:
+      213: -1542457283939393833
+    second: EdelzioEquippedActionsV1_111
+  - first:
+      213: -8985496430366490292
+    second: EdelzioEquippedActionsV1_112
+  - first:
+      213: -4883390996635817985
+    second: EdelzioEquippedActionsV1_113
+  - first:
+      213: 2965461436671520627
+    second: EdelzioEquippedActionsV1_114
+  - first:
+      213: 6556762301349921418
+    second: EdelzioEquippedActionsV1_115
+  - first:
+      213: 6335041834546079819
+    second: EdelzioEquippedActionsV1_116
+  - first:
+      213: 3758660115213451530
+    second: EdelzioEquippedActionsV1_117
+  - first:
+      213: 6239168738966331961
+    second: EdelzioEquippedActionsV1_118
+  - first:
+      213: -4580558390570612533
+    second: EdelzioEquippedActionsV1_119
+  - first:
+      213: -4816753778669526524
+    second: EdelzioEquippedActionsV1_120
+  - first:
+      213: 3348209637761696934
+    second: EdelzioEquippedActionsV1_121
+  - first:
+      213: -414737386973401546
+    second: EdelzioEquippedActionsV1_122
+  - first:
+      213: 2155338335162165886
+    second: EdelzioEquippedActionsV1_123
+  - first:
+      213: -3431719568192070090
+    second: EdelzioEquippedActionsV1_124
+  - first:
+      213: -3607075475362335766
+    second: EdelzioEquippedActionsV1_125
+  - first:
+      213: 7281724591386465012
+    second: EdelzioEquippedActionsV1_126
+  - first:
+      213: 1878433354132807509
+    second: EdelzioEquippedActionsV1_127
+  - first:
+      213: -2731146315164709660
+    second: EdelzioEquippedActionsV1_128
+  - first:
+      213: -5280734455394995810
+    second: EdelzioEquippedActionsV1_129
+  - first:
+      213: 6718657756139369586
+    second: EdelzioEquippedActionsV1_130
+  - first:
+      213: -7253639129781212496
+    second: EdelzioEquippedActionsV1_131
+  - first:
+      213: -7304109904607446999
+    second: EdelzioEquippedActionsV1_132
+  - first:
+      213: -2798239313334092034
+    second: EdelzioEquippedActionsV1_133
+  - first:
+      213: 3743294849611690136
+    second: EdelzioEquippedActionsV1_134
+  - first:
+      213: -1272578002619771274
+    second: EdelzioEquippedActionsV1_135
+  - first:
+      213: 8369093025630864793
+    second: EdelzioEquippedActionsV1_136
+  - first:
+      213: -1100233849438631861
+    second: EdelzioEquippedActionsV1_137
+  - first:
+      213: -1757245713046087801
+    second: EdelzioEquippedActionsV1_138
+  - first:
+      213: 3306538813144469065
+    second: EdelzioEquippedActionsV1_139
+  - first:
+      213: 5061849353129194816
+    second: EdelzioEquippedActionsV1_140
+  - first:
+      213: -5665163641963278980
+    second: EdelzioEquippedActionsV1_141
+  - first:
+      213: 5339588281376132942
+    second: EdelzioEquippedActionsV1_142
+  - first:
+      213: 6330362200322033831
+    second: EdelzioEquippedActionsV1_143
+  - first:
+      213: -1899254671852145130
+    second: EdelzioEquippedActionsV1_144
+  - first:
+      213: 867143063338822464
+    second: EdelzioEquippedActionsV1_145
+  - first:
+      213: 1614752225161880276
+    second: EdelzioEquippedActionsV1_146
+  - first:
+      213: 1823789581629633262
+    second: EdelzioEquippedActionsV1_147
+  - first:
+      213: 7701470730325401987
+    second: EdelzioEquippedActionsV1_148
+  - first:
+      213: 289938161398895933
+    second: EdelzioEquippedActionsV1_149
+  - first:
+      213: -4009686310792610817
+    second: EdelzioEquippedActionsV1_150
+  - first:
+      213: -4870270592871642187
+    second: EdelzioEquippedActionsV1_151
+  - first:
+      213: 2876304408741298710
+    second: EdelzioEquippedActionsV1_152
+  - first:
+      213: 1276340273272837614
+    second: EdelzioEquippedActionsV1_153
+  - first:
+      213: -3392598148017489521
+    second: EdelzioEquippedActionsV1_154
+  - first:
+      213: -2048386261757271824
+    second: EdelzioEquippedActionsV1_155
+  - first:
+      213: 2878547135670029240
+    second: EdelzioEquippedActionsV1_156
+  - first:
+      213: -5531745294809903706
+    second: EdelzioEquippedActionsV1_157
+  - first:
+      213: -5048458175936950588
+    second: EdelzioEquippedActionsV1_158
+  - first:
+      213: -9047793604350303027
+    second: EdelzioEquippedActionsV1_159
+  - first:
+      213: -7044162161961756707
+    second: EdelzioEquippedActionsV1_160
+  - first:
+      213: -1115644540228071646
+    second: EdelzioEquippedActionsV1_161
+  - first:
+      213: -289388367072495154
+    second: EdelzioEquippedActionsV1_162
+  - first:
+      213: -1979838355571471816
+    second: EdelzioEquippedActionsV1_163
+  - first:
+      213: -8998536708542177183
+    second: EdelzioEquippedActionsV1_164
+  - first:
+      213: 2178231378812721297
+    second: EdelzioEquippedActionsV1_165
+  - first:
+      213: -122480068135478885
+    second: EdelzioEquippedActionsV1_166
+  - first:
+      213: -4086042590300847947
+    second: EdelzioEquippedActionsV1_167
+  - first:
+      213: 3478606004927056635
+    second: EdelzioEquippedActionsV1_168
+  - first:
+      213: -4347664215142432315
+    second: EdelzioEquippedActionsV1_169
+  - first:
+      213: 5524260913200659301
+    second: EdelzioEquippedActionsV1_170
+  - first:
+      213: -5675927425274868019
+    second: EdelzioEquippedActionsV1_171
+  - first:
+      213: -3114943898296004224
+    second: EdelzioEquippedActionsV1_172
+  - first:
+      213: -45509821613447148
+    second: EdelzioEquippedActionsV1_173
+  - first:
+      213: 8799163366455835229
+    second: EdelzioEquippedActionsV1_174
+  - first:
+      213: -5872822312841677380
+    second: EdelzioEquippedActionsV1_175
+  - first:
+      213: 6244464686827641849
+    second: EdelzioEquippedActionsV1_176
+  - first:
+      213: -5941806100000242341
+    second: EdelzioEquippedActionsV1_177
+  - first:
+      213: 5782744167113211741
+    second: EdelzioEquippedActionsV1_178
+  - first:
+      213: -2944431974591695342
+    second: EdelzioEquippedActionsV1_179
+  - first:
+      213: -1695591681839588418
+    second: EdelzioEquippedActionsV1_180
+  - first:
+      213: -4822715903873664856
+    second: EdelzioEquippedActionsV1_181
+  - first:
+      213: -2165017151102447662
+    second: EdelzioEquippedActionsV1_182
+  - first:
+      213: -126741018304692319
+    second: EdelzioEquippedActionsV1_183
+  - first:
+      213: 4265849471172694968
+    second: EdelzioEquippedActionsV1_184
+  - first:
+      213: 1502737795839075366
+    second: EdelzioEquippedActionsV1_185
+  - first:
+      213: 2077002729748003919
+    second: EdelzioEquippedActionsV1_186
+  - first:
+      213: 7087054697732205993
+    second: EdelzioEquippedActionsV1_187
+  - first:
+      213: -8010611481470147997
+    second: EdelzioEquippedActionsV1_188
+  - first:
+      213: 1153263296447769247
+    second: EdelzioEquippedActionsV1_189
+  - first:
+      213: -9176762166895040151
+    second: EdelzioEquippedActionsV1_190
+  - first:
+      213: 6855533325508245364
+    second: EdelzioEquippedActionsV1_191
+  - first:
+      213: -633103359420263743
+    second: EdelzioEquippedActionsV1_192
+  - first:
+      213: -3667229413362889986
+    second: EdelzioEquippedActionsV1_193
+  - first:
+      213: -1372117491729288295
+    second: EdelzioEquippedActionsV1_194
+  - first:
+      213: 1941379364211268733
+    second: EdelzioEquippedActionsV1_195
+  - first:
+      213: 3735858824924855108
+    second: EdelzioEquippedActionsV1_196
+  - first:
+      213: -7313094283368167059
+    second: EdelzioEquippedActionsV1_197
+  - first:
+      213: 3174329821988152064
+    second: EdelzioEquippedActionsV1_198
+  - first:
+      213: -2026852509469736766
+    second: EdelzioEquippedActionsV1_199
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_0
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 2159
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fba0e18db16289310800000000000000
+      internalID: 1411920384212470463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_1
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 2276
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81739b8aef7f1f70800000000000000
+      internalID: 9160180812435648906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_2
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 2280
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4066cbb82c1029350800000000000000
+      internalID: 6021877586827437572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_3
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 2280
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39446a7a898f6340800000000000000
+      internalID: 4859253750807939389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_4
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 2276
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df62d6946cc0d8d90800000000000000
+      internalID: -7093999792263715075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_5
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 2258
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f698a54c3c01166a0800000000000000
+      internalID: -6457861957673645713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2159
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c262a2e96cd930040800000000000000
+      internalID: 4612703919740167724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_7
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 2159
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9240dc4a2102685e0800000000000000
+      internalID: -1907802127698426839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_8
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 2159
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1675c0b0585b9fd0800000000000000
+      internalID: -2334174878275111395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_9
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 2159
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788749ab744efd040800000000000000
+      internalID: 4674705934957967495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_10
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 2159
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860b70ff5812f60d0800000000000000
+      internalID: -3427483932012597144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_11
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 2222
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb56eba951e5504b0800000000000000
+      internalID: -5474866325115476549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_12
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 2159
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133431d8bfb39c0b0800000000000000
+      internalID: -5707965101125713103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_13
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 2159
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3fe0bc37bc70c80800000000000000
+      internalID: -8356486885374233668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_14
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 2015
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d0be902a0f1f2860800000000000000
+      internalID: 7507253232207311062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_15
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 2135
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c11aeba3a757aca0800000000000000
+      internalID: -6005735217599737399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_16
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 2136
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518315aabfdc05f00800000000000000
+      internalID: 1103608389483706389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_17
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 2136
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c869ab244261e1a80800000000000000
+      internalID: -8494327502180018548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2015
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d6acd1c52bf96370800000000000000
+      internalID: 8316454326501156568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_19
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 2015
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf69fe91f77cdb060800000000000000
+      internalID: 6970947146949302012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_20
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 2015
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c7f65db5738a0380800000000000000
+      internalID: -9004239963262879803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_21
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 2015
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c70838ff74fb90470800000000000000
+      internalID: 8361424499140427900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_22
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 2015
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f8e5f504937aa4d0800000000000000
+      internalID: -3122556312035661577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_23
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 2015
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf63f5e7c88ee5d00800000000000000
+      internalID: 963463060417099516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_24
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 2015
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27b242a246349b5c0800000000000000
+      internalID: -4199251080063472782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_25
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1871
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478959abfabe3e2b0800000000000000
+      internalID: -5556338375262889868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_26
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1988
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87e9274ae18e39b0800000000000000
+      internalID: -5098494884920563825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_27
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1992
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea56722c3adb2440800000000000000
+      internalID: 4912259770388732641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_28
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1992
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9debb8ce835c87b0800000000000000
+      internalID: -5220705995311026787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_29
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1988
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831093a2910515e50800000000000000
+      internalID: 6796301381691572536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_30
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1970
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd3df928d443fc790800000000000000
+      internalID: -7507724546294688803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1871
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2af084450cde4980800000000000000
+      internalID: -8552656727147742675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_32
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1871
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4fea6a2305aab20800000000000000
+      internalID: 3146415468146783471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_33
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1871
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663fda54fe5220550800000000000000
+      internalID: 6125500152773735270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_34
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1871
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d83aa8a25447478e0800000000000000
+      internalID: -1696603319196540019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_35
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1871
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a0d231b6fb905e0800000000000000
+      internalID: -1942811297629533578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_36
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 1934
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f277d49297d9a6b20800000000000000
+      internalID: 3128486034871777071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_37
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1871
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d0e4f23568c594a0800000000000000
+      internalID: -6587138542987321132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_38
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1871
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e4d48a633c7f1d0800000000000000
+      internalID: -3316967961015792120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_39
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1727
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51be0dea3bd80e290800000000000000
+      internalID: -7863129146517296363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_40
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1847
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8bddd48ba1e89830800000000000000
+      internalID: 4078257589368773515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_41
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1848
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a5a9181e1b67260800000000000000
+      internalID: 7095053845068929538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_42
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1848
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dff166cb50a5b3570800000000000000
+      internalID: 8447444506745643005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1727
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cd86e54e558a7410800000000000000
+      internalID: 1475638467863416259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_44
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1727
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e26770c52b5a977b0800000000000000
+      internalID: -5225963707119995346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_45
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1727
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e05593d1d216b750800000000000000
+      internalID: 6320259819468312802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_46
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1727
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c853b8d73f6bc3d80800000000000000
+      internalID: -8269533658859489908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_47
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1727
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b2444981b1b730a0800000000000000
+      internalID: -6901852527851715914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_48
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1727
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34c30dbc3fab9fc90800000000000000
+      internalID: -7135466578332599229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_49
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1727
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d10b209ccda0b4d0800000000000000
+      internalID: -3120803447664082476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_50
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1583
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e521a1d57ee5d80800000000000000
+      internalID: -8259910279495524722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_51
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1700
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b577d50e889076440800000000000000
+      internalID: 4928918800664721243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_52
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1704
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37fc75443be26d0f0800000000000000
+      internalID: -1092634512110137485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_53
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1704
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61bbc34507d765e0800000000000000
+      internalID: -1916326698810625682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_54
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1700
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a31116b309d4f0a0800000000000000
+      internalID: -6848610523360980055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_55
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1682
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3116bfb99ec5b2d80800000000000000
+      internalID: -8274417731949076205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1583
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f8266c3b5735ac0800000000000000
+      internalID: -3867618239993180298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_57
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1583
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b7802f6c3b1458c0800000000000000
+      internalID: -4011551421703878735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_58
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1583
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bedc3407ae5acbff0800000000000000
+      internalID: -18957872091902485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_59
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1583
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d84366142254b7990800000000000000
+      internalID: -7387234750342744947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_60
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1583
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6499350b5279304b0800000000000000
+      internalID: -5475366533824538298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_61
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 1646
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd7e78503fab92d90800000000000000
+      internalID: -7121955782777116707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_62
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1583
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3933825b782c1ca90800000000000000
+      internalID: -7295336033247808621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_63
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1583
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d56aba8dd4661410800000000000000
+      internalID: 1447455232924214738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_64
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1439
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36bad619f98fce870800000000000000
+      internalID: 8713612743278439267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_65
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1559
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ef92ae0b1d63230800000000000000
+      internalID: 3618309908411842184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_66
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1560
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99742bbc3551cdb30800000000000000
+      internalID: 4313345992758019993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_67
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1560
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05425c3d542eea70800000000000000
+      internalID: 8858057499946927374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_68
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1439
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78ed345f6209abd70800000000000000
+      internalID: 9059712097407196807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_69
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1439
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca42ee9c88ad63fd0800000000000000
+      internalID: -2362460673471011668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_70
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1439
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ada0936b43032460800000000000000
+      internalID: 7215614650305523108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_71
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1439
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 020b3da5e48d35960800000000000000
+      internalID: 7589647628092289056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_72
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1439
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e944f015bee992f90800000000000000
+      internalID: -6977871414119414626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_73
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1439
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b41fda37994b3b320800000000000000
+      internalID: 2572598383322460491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_74
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1439
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac73b02e3788f70e0800000000000000
+      internalID: -2269945655876438070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_75
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1295
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6b9c4bef5a6f380800000000000000
+      internalID: -8937773897096775994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_76
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1412
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfdd53cd23eeb6a0800000000000000
+      internalID: -6431453432147746877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_77
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1416
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d062438ccc246d7d0800000000000000
+      internalID: -2894052263239342579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_78
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1416
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cbfeb4850c82ff60800000000000000
+      internalID: 8066663837903813572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_79
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1412
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c63f68da8c6b0e1e0800000000000000
+      internalID: -2170534047371562132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_80
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1394
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f4e4fba1ec990620800000000000000
+      internalID: 2740894341298185461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_81
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1295
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be94e5829cf8281d0800000000000000
+      internalID: -3349957078681761301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_82
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1295
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6e329b3196b60140800000000000000
+      internalID: 4685633197211532910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_83
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1295
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6eccd0583a367630800000000000000
+      internalID: 3924388138849193581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_84
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1295
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1046d056135a2d3a0800000000000000
+      internalID: -6642064868850703359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_85
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1295
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a96e5e4fe89f7480800000000000000
+      internalID: -8899226185081394778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_86
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 1358
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 305e875dac7348420800000000000000
+      internalID: 2631289426595603715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_87
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1295
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be1fbdf11291b970800000000000000
+      internalID: 8768950555436326582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_88
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1295
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c28a15c0e7ee703d0800000000000000
+      internalID: -3240359181729814484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_89
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1151
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74eb1ba1bf65eac40800000000000000
+      internalID: 5525449429314813511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_90
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1271
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ff389c1d6d899990800000000000000
+      internalID: -7378711014699155466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_91
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1272
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 244b0347ec2c26d40800000000000000
+      internalID: 5576233480606495810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_92
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1272
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b99fd79a21eeec0800000000000000
+      internalID: -3535868138266977474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_93
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1151
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fce5001b167fe6d90800000000000000
+      internalID: -7102467563363213617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_94
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1151
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b791e12682263f30800000000000000
+      internalID: 4554866032621230006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_95
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1151
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76b7848a3b53577e0800000000000000
+      internalID: -1768448232934311065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_96
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1151
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1486dd83fad3d7b0800000000000000
+      internalID: -5200572405091236835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_97
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1151
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76c2814b910c3da20800000000000000
+      internalID: 3086021386307120231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_98
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1151
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f6f0441780cb1b0800000000000000
+      internalID: -5639623350808514804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_99
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1151
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e6e1b218fa46ca0800000000000000
+      internalID: -6024497432205824492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_100
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1007
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac0a28ad08f0c4220800000000000000
+      internalID: 2471367341615784138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_101
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1124
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2603269f2c2e6b0800000000000000
+      internalID: -5268434237720075579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_102
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1128
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5b316ab74e306690800000000000000
+      internalID: -7611014892465603748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_103
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1128
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f959570b16299e30800000000000000
+      internalID: 4510678399317531124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_104
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1124
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fcfcffcc8351ded0800000000000000
+      internalID: -2391038062907032331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_105
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1106
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa21ec01ef0019120800000000000000
+      internalID: 2418715566078300847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_106
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1007
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd2ffa2260215c510800000000000000
+      internalID: 1568679862769545949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_107
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1007
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df0150ea92ef6c40800000000000000
+      internalID: 5507870024113655764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_108
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1007
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04e15a85e1da82dc0800000000000000
+      internalID: -3663487951018058176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_109
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1007
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9169ca913c77c90800000000000000
+      internalID: -7172049366527108669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_110
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1007
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009f287d349cbb5b0800000000000000
+      internalID: -5351462438984025856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_111
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 1070
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7de1495c547189ae0800000000000000
+      internalID: -1542457283939393833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_112
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1007
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4107719a9a1d4380800000000000000
+      internalID: -8985496430366490292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_113
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1007
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff76e2a03c5ba3cb0800000000000000
+      internalID: -4883390996635817985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_114
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 863
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37fece7077f672920800000000000000
+      internalID: 2965461436671520627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_115
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 983
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8282a8e29c4efa50800000000000000
+      internalID: 6556762301349921418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_116
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 984
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b48ab59ebf69ae750800000000000000
+      internalID: 6335041834546079819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_117
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 984
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a010ab6e571792430800000000000000
+      internalID: 3758660115213451530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_118
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 863
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9326fcb59eaf59650800000000000000
+      internalID: 6239168738966331961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_119
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 863
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc88a11a9669e60c0800000000000000
+      internalID: -4580558390570612533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_120
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 863
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402e1e365f3772db0800000000000000
+      internalID: -4816753778669526524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_121
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 863
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4435c0dea377e20800000000000000
+      internalID: 3348209637761696934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_122
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 863
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e606e3b8e8e3af0800000000000000
+      internalID: -414737386973401546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_123
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 863
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a6f1edbcc49ed10800000000000000
+      internalID: 2155338335162165886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_124
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 863
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e97291c351060d0800000000000000
+      internalID: -3431719568192070090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_125
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 719
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae3310d57f711fdc0800000000000000
+      internalID: -3607075475362335766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_126
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 836
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f211d58fe1ed0560800000000000000
+      internalID: 7281724591386465012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_127
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 840
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55fd457ee29811a10800000000000000
+      internalID: 1878433354132807509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_128
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 840
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec8df685e4091ad0800000000000000
+      internalID: -2731146315164709660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_129
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 836
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91f309cdff07b6b0800000000000000
+      internalID: -5280734455394995810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_130
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 818
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2743c1ad1a77d3d50800000000000000
+      internalID: 6718657756139369586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_131
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 719
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ba648494a5e55b90800000000000000
+      internalID: -7253639129781212496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_132
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 719
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 928f5779db692aa90800000000000000
+      internalID: -7304109904607446999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_133
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 719
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe30349b28aa29d0800000000000000
+      internalID: -2798239313334092034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_134
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 719
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89077a835dad2f330800000000000000
+      internalID: 3743294849611690136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_135
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 719
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6765fdc8c05e65ee0800000000000000
+      internalID: -1272578002619771274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_136
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 782
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9954de4f3cdf42470800000000000000
+      internalID: 8369093025630864793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_137
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 719
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b48895aa42f2bb0f0800000000000000
+      internalID: -1100233849438631861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_138
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 719
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7875fc295520d97e0800000000000000
+      internalID: -1757245713046087801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_139
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 575
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94e8481288f23ed20800000000000000
+      internalID: 3306538813144469065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_140
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 695
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0457ec7fa2d4f3640800000000000000
+      internalID: 5061849353129194816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_141
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 696
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d0256deab4161b0800000000000000
+      internalID: -5665163641963278980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_142
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 696
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f434660470a1a40800000000000000
+      internalID: 5339588281376132942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_143
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 575
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a841c9a1e6f9d750800000000000000
+      internalID: 6330362200322033831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_144
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 575
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616704a40fd74a5e0800000000000000
+      internalID: -1899254671852145130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_145
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 575
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b21c39506b80c00800000000000000
+      internalID: 867143063338822464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_146
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 575
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2ab0de790c86610800000000000000
+      internalID: 1614752225161880276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_147
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 575
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2b71e26f66f4910800000000000000
+      internalID: 1823789581629633262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_148
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 575
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3812d1933de11ea60800000000000000
+      internalID: 7701470730325401987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_149
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 575
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35d20db831160400800000000000000
+      internalID: 289938161398895933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_150
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 431
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffbb5786b8bba58c0800000000000000
+      internalID: -4009686310792610817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_151
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 548
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bbcad713b2596cb0800000000000000
+      internalID: -4870270592871642187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_152
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 552
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6124ae4de9faae720800000000000000
+      internalID: 2876304408741298710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_153
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 552
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee5d3f857b876b110800000000000000
+      internalID: 1276340273272837614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_154
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 548
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f89f4c985f11be0d0800000000000000
+      internalID: -3392598148017489521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_155
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 530
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f0ea293c8ba293e0800000000000000
+      internalID: -2048386261757271824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_156
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 431
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bb84d26e57a2f720800000000000000
+      internalID: 2878547135670029240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_157
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 431
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adcaea76fa4b33b0800000000000000
+      internalID: -5531745294809903706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_158
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 431
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce8cdf690640f9b0800000000000000
+      internalID: -5048458175936950588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_159
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 431
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc426a377a7cf6280800000000000000
+      internalID: -9047793604350303027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_160
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 431
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd79504d5db1e3e90800000000000000
+      internalID: -7044162161961756707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_161
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 494
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22f0a1c933f6480f0800000000000000
+      internalID: -1115644540228071646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_162
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 431
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec9738a30d2ebfbf0800000000000000
+      internalID: -289388367072495154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_163
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 431
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83a087751833684e0800000000000000
+      internalID: -1979838355571471816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_164
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 287
+        width: 83
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160e7053a86ce1380800000000000000
+      internalID: -8998536708542177183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_165
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 407
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 198ddb4f5e1aa3e10800000000000000
+      internalID: 2178231378812721297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_166
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 408
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9918b6e60ddc4ef0800000000000000
+      internalID: -122480068135478885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_167
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 408
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b04004b9e57b47c0800000000000000
+      internalID: -4086042590300847947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_168
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 287
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfac7352bbd764030800000000000000
+      internalID: 3478606004927056635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_169
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 287
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c102c56e6ef9a3c0800000000000000
+      internalID: -4347664215142432315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_170
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 287
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56b76e1280e1aac40800000000000000
+      internalID: 5524260913200659301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_171
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 287
+        width: 82
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dce089d341e0b31b0800000000000000
+      internalID: -5675927425274868019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_172
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 287
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 081dbc6370f75c4d0800000000000000
+      internalID: -3114943898296004224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_173
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 287
+        width: 73
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41860f0fe015e5ff0800000000000000
+      internalID: -45509821613447148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_174
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 287
+        width: 81
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5afa3a3678ec1a70800000000000000
+      internalID: 8799163366455835229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_175
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 143
+        width: 62
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb57516d83b8f7ea0800000000000000
+      internalID: -5872822312841677380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_176
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 260
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb15de4c8bc8a650800000000000000
+      internalID: 6244464686827641849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_177
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 264
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b558c3545d67a8da0800000000000000
+      internalID: -5941806100000242341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_178
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 264
+        width: 43
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fbeb38e2f604050800000000000000
+      internalID: 5782744167113211741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_179
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 260
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 216f82928b64327d0800000000000000
+      internalID: -2944431974591695342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_180
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 242
+        width: 63
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb18d7595c0878e0800000000000000
+      internalID: -1695591681839588418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_181
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 143
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a8bbf0ff65421db0800000000000000
+      internalID: -4822715903873664856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_182
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 143
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2df09ef2f5054f1e0800000000000000
+      internalID: -2165017151102447662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_183
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 143
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af3a7127b9bd3ef0800000000000000
+      internalID: -126741018304692319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_184
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 143
+        width: 72
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b3598a1e77533b30800000000000000
+      internalID: 4265849471172694968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_185
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 143
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 624aa8f301ccad410800000000000000
+      internalID: 1502737795839075366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_186
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 206
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c75207afef2dc10800000000000000
+      internalID: 2077002729748003919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_187
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 143
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ad6712e2b64a5260800000000000000
+      internalID: 7087054697732205993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_188
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 143
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3626e45bc4794d090800000000000000
+      internalID: -8010611481470147997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_189
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 0
+        width: 83
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9ae34d9bd6310010800000000000000
+      internalID: 1153263296447769247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_190
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 119
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9692af50e6795a080800000000000000
+      internalID: -9176762166895040151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_191
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 120
+        width: 83
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47775c4cc3fb32f50800000000000000
+      internalID: 6855533325508245364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_192
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 120
+        width: 82
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c216a359d3c637f0800000000000000
+      internalID: -633103359420263743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_193
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 81
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efa04a247426b1dc0800000000000000
+      internalID: -3667229413362889986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_194
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 83
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993306b396245fce0800000000000000
+      internalID: -1372117491729288295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_195
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 0
+        width: 82
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c1612fe3a21fa10800000000000000
+      internalID: 1941379364211268733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_196
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 0
+        width: 82
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44b77aececf68d330800000000000000
+      internalID: 3735858824924855108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_197
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 0
+        width: 76
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6986e6ee7ba28a90800000000000000
+      internalID: -7313094283368167059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_198
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 0
+        width: 73
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 003688f972c7d0c20800000000000000
+      internalID: 3174329821988152064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedActionsV1_199
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 0
+        width: 81
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c082f0a16c2fd3e0800000000000000
+      internalID: -2026852509469736766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EdelzioEquippedActionsV1_0: 1411920384212470463
+      EdelzioEquippedActionsV1_1: 9160180812435648906
+      EdelzioEquippedActionsV1_10: -3427483932012597144
+      EdelzioEquippedActionsV1_100: 2471367341615784138
+      EdelzioEquippedActionsV1_101: -5268434237720075579
+      EdelzioEquippedActionsV1_102: -7611014892465603748
+      EdelzioEquippedActionsV1_103: 4510678399317531124
+      EdelzioEquippedActionsV1_104: -2391038062907032331
+      EdelzioEquippedActionsV1_105: 2418715566078300847
+      EdelzioEquippedActionsV1_106: 1568679862769545949
+      EdelzioEquippedActionsV1_107: 5507870024113655764
+      EdelzioEquippedActionsV1_108: -3663487951018058176
+      EdelzioEquippedActionsV1_109: -7172049366527108669
+      EdelzioEquippedActionsV1_11: -5474866325115476549
+      EdelzioEquippedActionsV1_110: -5351462438984025856
+      EdelzioEquippedActionsV1_111: -1542457283939393833
+      EdelzioEquippedActionsV1_112: -8985496430366490292
+      EdelzioEquippedActionsV1_113: -4883390996635817985
+      EdelzioEquippedActionsV1_114: 2965461436671520627
+      EdelzioEquippedActionsV1_115: 6556762301349921418
+      EdelzioEquippedActionsV1_116: 6335041834546079819
+      EdelzioEquippedActionsV1_117: 3758660115213451530
+      EdelzioEquippedActionsV1_118: 6239168738966331961
+      EdelzioEquippedActionsV1_119: -4580558390570612533
+      EdelzioEquippedActionsV1_12: -5707965101125713103
+      EdelzioEquippedActionsV1_120: -4816753778669526524
+      EdelzioEquippedActionsV1_121: 3348209637761696934
+      EdelzioEquippedActionsV1_122: -414737386973401546
+      EdelzioEquippedActionsV1_123: 2155338335162165886
+      EdelzioEquippedActionsV1_124: -3431719568192070090
+      EdelzioEquippedActionsV1_125: -3607075475362335766
+      EdelzioEquippedActionsV1_126: 7281724591386465012
+      EdelzioEquippedActionsV1_127: 1878433354132807509
+      EdelzioEquippedActionsV1_128: -2731146315164709660
+      EdelzioEquippedActionsV1_129: -5280734455394995810
+      EdelzioEquippedActionsV1_13: -8356486885374233668
+      EdelzioEquippedActionsV1_130: 6718657756139369586
+      EdelzioEquippedActionsV1_131: -7253639129781212496
+      EdelzioEquippedActionsV1_132: -7304109904607446999
+      EdelzioEquippedActionsV1_133: -2798239313334092034
+      EdelzioEquippedActionsV1_134: 3743294849611690136
+      EdelzioEquippedActionsV1_135: -1272578002619771274
+      EdelzioEquippedActionsV1_136: 8369093025630864793
+      EdelzioEquippedActionsV1_137: -1100233849438631861
+      EdelzioEquippedActionsV1_138: -1757245713046087801
+      EdelzioEquippedActionsV1_139: 3306538813144469065
+      EdelzioEquippedActionsV1_14: 7507253232207311062
+      EdelzioEquippedActionsV1_140: 5061849353129194816
+      EdelzioEquippedActionsV1_141: -5665163641963278980
+      EdelzioEquippedActionsV1_142: 5339588281376132942
+      EdelzioEquippedActionsV1_143: 6330362200322033831
+      EdelzioEquippedActionsV1_144: -1899254671852145130
+      EdelzioEquippedActionsV1_145: 867143063338822464
+      EdelzioEquippedActionsV1_146: 1614752225161880276
+      EdelzioEquippedActionsV1_147: 1823789581629633262
+      EdelzioEquippedActionsV1_148: 7701470730325401987
+      EdelzioEquippedActionsV1_149: 289938161398895933
+      EdelzioEquippedActionsV1_15: -6005735217599737399
+      EdelzioEquippedActionsV1_150: -4009686310792610817
+      EdelzioEquippedActionsV1_151: -4870270592871642187
+      EdelzioEquippedActionsV1_152: 2876304408741298710
+      EdelzioEquippedActionsV1_153: 1276340273272837614
+      EdelzioEquippedActionsV1_154: -3392598148017489521
+      EdelzioEquippedActionsV1_155: -2048386261757271824
+      EdelzioEquippedActionsV1_156: 2878547135670029240
+      EdelzioEquippedActionsV1_157: -5531745294809903706
+      EdelzioEquippedActionsV1_158: -5048458175936950588
+      EdelzioEquippedActionsV1_159: -9047793604350303027
+      EdelzioEquippedActionsV1_16: 1103608389483706389
+      EdelzioEquippedActionsV1_160: -7044162161961756707
+      EdelzioEquippedActionsV1_161: -1115644540228071646
+      EdelzioEquippedActionsV1_162: -289388367072495154
+      EdelzioEquippedActionsV1_163: -1979838355571471816
+      EdelzioEquippedActionsV1_164: -8998536708542177183
+      EdelzioEquippedActionsV1_165: 2178231378812721297
+      EdelzioEquippedActionsV1_166: -122480068135478885
+      EdelzioEquippedActionsV1_167: -4086042590300847947
+      EdelzioEquippedActionsV1_168: 3478606004927056635
+      EdelzioEquippedActionsV1_169: -4347664215142432315
+      EdelzioEquippedActionsV1_17: -8494327502180018548
+      EdelzioEquippedActionsV1_170: 5524260913200659301
+      EdelzioEquippedActionsV1_171: -5675927425274868019
+      EdelzioEquippedActionsV1_172: -3114943898296004224
+      EdelzioEquippedActionsV1_173: -45509821613447148
+      EdelzioEquippedActionsV1_174: 8799163366455835229
+      EdelzioEquippedActionsV1_175: -5872822312841677380
+      EdelzioEquippedActionsV1_176: 6244464686827641849
+      EdelzioEquippedActionsV1_177: -5941806100000242341
+      EdelzioEquippedActionsV1_178: 5782744167113211741
+      EdelzioEquippedActionsV1_179: -2944431974591695342
+      EdelzioEquippedActionsV1_18: 8316454326501156568
+      EdelzioEquippedActionsV1_180: -1695591681839588418
+      EdelzioEquippedActionsV1_181: -4822715903873664856
+      EdelzioEquippedActionsV1_182: -2165017151102447662
+      EdelzioEquippedActionsV1_183: -126741018304692319
+      EdelzioEquippedActionsV1_184: 4265849471172694968
+      EdelzioEquippedActionsV1_185: 1502737795839075366
+      EdelzioEquippedActionsV1_186: 2077002729748003919
+      EdelzioEquippedActionsV1_187: 7087054697732205993
+      EdelzioEquippedActionsV1_188: -8010611481470147997
+      EdelzioEquippedActionsV1_189: 1153263296447769247
+      EdelzioEquippedActionsV1_19: 6970947146949302012
+      EdelzioEquippedActionsV1_190: -9176762166895040151
+      EdelzioEquippedActionsV1_191: 6855533325508245364
+      EdelzioEquippedActionsV1_192: -633103359420263743
+      EdelzioEquippedActionsV1_193: -3667229413362889986
+      EdelzioEquippedActionsV1_194: -1372117491729288295
+      EdelzioEquippedActionsV1_195: 1941379364211268733
+      EdelzioEquippedActionsV1_196: 3735858824924855108
+      EdelzioEquippedActionsV1_197: -7313094283368167059
+      EdelzioEquippedActionsV1_198: 3174329821988152064
+      EdelzioEquippedActionsV1_199: -2026852509469736766
+      EdelzioEquippedActionsV1_2: 6021877586827437572
+      EdelzioEquippedActionsV1_20: -9004239963262879803
+      EdelzioEquippedActionsV1_21: 8361424499140427900
+      EdelzioEquippedActionsV1_22: -3122556312035661577
+      EdelzioEquippedActionsV1_23: 963463060417099516
+      EdelzioEquippedActionsV1_24: -4199251080063472782
+      EdelzioEquippedActionsV1_25: -5556338375262889868
+      EdelzioEquippedActionsV1_26: -5098494884920563825
+      EdelzioEquippedActionsV1_27: 4912259770388732641
+      EdelzioEquippedActionsV1_28: -5220705995311026787
+      EdelzioEquippedActionsV1_29: 6796301381691572536
+      EdelzioEquippedActionsV1_3: 4859253750807939389
+      EdelzioEquippedActionsV1_30: -7507724546294688803
+      EdelzioEquippedActionsV1_31: -8552656727147742675
+      EdelzioEquippedActionsV1_32: 3146415468146783471
+      EdelzioEquippedActionsV1_33: 6125500152773735270
+      EdelzioEquippedActionsV1_34: -1696603319196540019
+      EdelzioEquippedActionsV1_35: -1942811297629533578
+      EdelzioEquippedActionsV1_36: 3128486034871777071
+      EdelzioEquippedActionsV1_37: -6587138542987321132
+      EdelzioEquippedActionsV1_38: -3316967961015792120
+      EdelzioEquippedActionsV1_39: -7863129146517296363
+      EdelzioEquippedActionsV1_4: -7093999792263715075
+      EdelzioEquippedActionsV1_40: 4078257589368773515
+      EdelzioEquippedActionsV1_41: 7095053845068929538
+      EdelzioEquippedActionsV1_42: 8447444506745643005
+      EdelzioEquippedActionsV1_43: 1475638467863416259
+      EdelzioEquippedActionsV1_44: -5225963707119995346
+      EdelzioEquippedActionsV1_45: 6320259819468312802
+      EdelzioEquippedActionsV1_46: -8269533658859489908
+      EdelzioEquippedActionsV1_47: -6901852527851715914
+      EdelzioEquippedActionsV1_48: -7135466578332599229
+      EdelzioEquippedActionsV1_49: -3120803447664082476
+      EdelzioEquippedActionsV1_5: -6457861957673645713
+      EdelzioEquippedActionsV1_50: -8259910279495524722
+      EdelzioEquippedActionsV1_51: 4928918800664721243
+      EdelzioEquippedActionsV1_52: -1092634512110137485
+      EdelzioEquippedActionsV1_53: -1916326698810625682
+      EdelzioEquippedActionsV1_54: -6848610523360980055
+      EdelzioEquippedActionsV1_55: -8274417731949076205
+      EdelzioEquippedActionsV1_56: -3867618239993180298
+      EdelzioEquippedActionsV1_57: -4011551421703878735
+      EdelzioEquippedActionsV1_58: -18957872091902485
+      EdelzioEquippedActionsV1_59: -7387234750342744947
+      EdelzioEquippedActionsV1_6: 4612703919740167724
+      EdelzioEquippedActionsV1_60: -5475366533824538298
+      EdelzioEquippedActionsV1_61: -7121955782777116707
+      EdelzioEquippedActionsV1_62: -7295336033247808621
+      EdelzioEquippedActionsV1_63: 1447455232924214738
+      EdelzioEquippedActionsV1_64: 8713612743278439267
+      EdelzioEquippedActionsV1_65: 3618309908411842184
+      EdelzioEquippedActionsV1_66: 4313345992758019993
+      EdelzioEquippedActionsV1_67: 8858057499946927374
+      EdelzioEquippedActionsV1_68: 9059712097407196807
+      EdelzioEquippedActionsV1_69: -2362460673471011668
+      EdelzioEquippedActionsV1_7: -1907802127698426839
+      EdelzioEquippedActionsV1_70: 7215614650305523108
+      EdelzioEquippedActionsV1_71: 7589647628092289056
+      EdelzioEquippedActionsV1_72: -6977871414119414626
+      EdelzioEquippedActionsV1_73: 2572598383322460491
+      EdelzioEquippedActionsV1_74: -2269945655876438070
+      EdelzioEquippedActionsV1_75: -8937773897096775994
+      EdelzioEquippedActionsV1_76: -6431453432147746877
+      EdelzioEquippedActionsV1_77: -2894052263239342579
+      EdelzioEquippedActionsV1_78: 8066663837903813572
+      EdelzioEquippedActionsV1_79: -2170534047371562132
+      EdelzioEquippedActionsV1_8: -2334174878275111395
+      EdelzioEquippedActionsV1_80: 2740894341298185461
+      EdelzioEquippedActionsV1_81: -3349957078681761301
+      EdelzioEquippedActionsV1_82: 4685633197211532910
+      EdelzioEquippedActionsV1_83: 3924388138849193581
+      EdelzioEquippedActionsV1_84: -6642064868850703359
+      EdelzioEquippedActionsV1_85: -8899226185081394778
+      EdelzioEquippedActionsV1_86: 2631289426595603715
+      EdelzioEquippedActionsV1_87: 8768950555436326582
+      EdelzioEquippedActionsV1_88: -3240359181729814484
+      EdelzioEquippedActionsV1_89: 5525449429314813511
+      EdelzioEquippedActionsV1_9: 4674705934957967495
+      EdelzioEquippedActionsV1_90: -7378711014699155466
+      EdelzioEquippedActionsV1_91: 5576233480606495810
+      EdelzioEquippedActionsV1_92: -3535868138266977474
+      EdelzioEquippedActionsV1_93: -7102467563363213617
+      EdelzioEquippedActionsV1_94: 4554866032621230006
+      EdelzioEquippedActionsV1_95: -1768448232934311065
+      EdelzioEquippedActionsV1_96: -5200572405091236835
+      EdelzioEquippedActionsV1_97: 3086021386307120231
+      EdelzioEquippedActionsV1_98: -5639623350808514804
+      EdelzioEquippedActionsV1_99: -6024497432205824492
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

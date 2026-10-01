@@ -216,6 +216,7 @@ namespace Game.Varginha
         private void Awake()
         {
             _renderer = GetComponent<SpriteRenderer>();
+            VarginhaWorldDepth.Ensure(_renderer, true);
             _profile = ProfileFor(studentName);
             attackStyle = _profile.Style;
         }

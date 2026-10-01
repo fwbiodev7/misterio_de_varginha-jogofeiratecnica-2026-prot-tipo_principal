@@ -23,9 +23,12 @@ namespace Game.Varginha
         private void Awake()
         {
             _renderer = GetComponent<SpriteRenderer>();
-            _closed = VarginhaPixelArtSprites.Create("ToyBox_UnderBed", boxColor);
-            _opening = VarginhaPixelArtSprites.Create("ToyBox_Opening", boxColor);
-            _open = VarginhaPixelArtSprites.Create("ToyBox_Open", boxColor);
+            _closed = VarginhaHouseReferenceArt.PropSprite(this, "ToyBox_UnderBed")
+                ?? VarginhaPixelArtSprites.Create("ToyBox_UnderBed", boxColor);
+            _opening = VarginhaHouseReferenceArt.PropSprite(this, "ToyBox_Opening")
+                ?? VarginhaPixelArtSprites.Create("ToyBox_Opening", boxColor);
+            _open = VarginhaHouseReferenceArt.PropSprite(this, "ToyBox_Open")
+                ?? VarginhaPixelArtSprites.Create("ToyBox_Open", boxColor);
         }
 
         public void PlayOpen(EdelzioTopDownController player = null)

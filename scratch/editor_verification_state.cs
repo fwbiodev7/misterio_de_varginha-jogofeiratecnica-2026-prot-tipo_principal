@@ -1,0 +1,1 @@
+return new {isPlaying=UnityEditor.EditorApplication.isPlaying,isPaused=UnityEditor.EditorApplication.isPaused,isCompiling=UnityEditor.EditorApplication.isCompiling,log=UnityEngine.Application.consoleLogPath};

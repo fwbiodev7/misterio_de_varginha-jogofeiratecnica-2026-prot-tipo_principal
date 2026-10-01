@@ -15,6 +15,8 @@ namespace Game.Varginha
         private static Transform _environment;
         private static bool[] _walkable;
 
+        public static void Invalidate() { _environment = null; _walkable = null; }
+
         public static bool CanWalkSegment(Vector2 start, Vector2 end) => ClearSegment(start, end, Radius);
 
         // Leave clearance at corners so float rounding cannot place a student inside a wall.

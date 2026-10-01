@@ -1,0 +1,15 @@
+if(!UnityEditor.EditorApplication.isPlaying) throw new System.Exception("Play required");
+var player = UnityEngine.Object.FindAnyObjectByType<Game.Varginha.EdelzioTopDownController>();
+player.SetInputLocked(true);
+player.HasBackpack = false;
+foreach(var canvas in UnityEngine.Object.FindObjectsByType<UnityEngine.Canvas>()) canvas.enabled = false;
+var camera = UnityEngine.Camera.main;
+var follow = camera.GetComponent<Game.Level.CameraFollow2D>();
+if(follow != null) follow.enabled = false;
+camera.transform.position = player.transform.position + new UnityEngine.Vector3(0, .2f, -10);
+camera.orthographicSize = 1.6f;
+UnityEngine.Time.timeScale = 0;
+var attack = Game.Varginha.VarginhaReferenceSprites.EdelzioAttackFrames()[2][3];
+player.GetComponent<Game.Varginha.VarginhaPlayerSpriteAnimation>().SetCombatPose(attack, UnityEngine.Vector2.right);
+var renderer = player.GetComponent<UnityEngine.SpriteRenderer>();
+return new { sprite = renderer.sprite.name, ppu = renderer.sprite.pixelsPerUnit, scale = player.transform.localScale };

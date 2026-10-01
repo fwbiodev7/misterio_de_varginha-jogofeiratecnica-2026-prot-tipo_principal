@@ -155,7 +155,7 @@ namespace Game.Varginha
             if (_actionPose != null)
             {
                 if (_typing)
-                    _actionPose = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_UseNotebook", Mathf.FloorToInt(Time.unscaledTime * 3f));
+                    _actionPose = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_UseNotebook", Mathf.FloorToInt(Time.unscaledTime * 4f));
                 _renderer.enabled = true;
                 PresentPose(_actionPose, DirectionIndex(ActionFacingDirection));
                 SetBeard(_attackPose, DirectionIndex(ActionFacingDirection));
@@ -163,6 +163,8 @@ namespace Game.Varginha
             }
 
             bool moving = _controller != null && _controller.IsMoving;
+            if (_controller != null && _controller.IsScriptedMotion)
+                moving = GetComponent<Rigidbody2D>()?.linearVelocity.sqrMagnitude > .005f;
             SetRunning(moving);
             // O relógio não depende do frame rate e continua acompanhando uma
             // câmera em câmera lenta sem saltar quadros de pixel art.
@@ -193,6 +195,8 @@ namespace Game.Varginha
         public void SetActionPose(string poseId)
         {
             ActionFacingDirection = Vector2.down;
+            if (poseId == "Edelzio_Sit" || poseId == "Edelzio_UseNotebook") ActionFacingDirection = Vector2.up;
+            if (poseId == "Edelzio_DrinkCoffee") ActionFacingDirection = Vector2.right;
             _attackPose = false;
             EnsureFrames();
             IsSeated = poseId == "Edelzio_Sit" || poseId == "Edelzio_UseNotebook";
@@ -201,6 +205,8 @@ namespace Game.Varginha
             int index = poseId == "Edelzio_Crouch" ? 4 : poseId == "Edelzio_Reach" ? 5 :
                 poseId == "Edelzio_Sit" ? 6 : poseId == "Edelzio_UseNotebook" ? 7 : 0;
             _actionPose = _actionFrames != null ? _actionFrames[index] : _fallbackSprite;
+            if (poseId == "Edelzio_Sit")
+                _actionPose = VarginhaInteractionSprites.Seating(2, ActionFacingDirection) ?? _actionPose;
             if (_renderer != null) { _renderer.flipX = false; PresentPose(_actionPose, DirectionIndex(ActionFacingDirection)); }
             SetBeard(false, DirectionIndex(ActionFacingDirection));
         }
@@ -208,15 +214,20 @@ namespace Game.Varginha
         public void SetCoffeeFrame(int frame)
         {
             SetActionPose("Edelzio_DrinkCoffee");
+            IsSeated = true;
             if (_actionFrames != null) _actionPose = _actionFrames[Mathf.Clamp(frame, 0, 3)];
             if (_renderer != null) PresentPose(_actionPose, DirectionIndex(ActionFacingDirection));
         }
 
-        public void SetSeatingFrame(int frame)
+        public void SetSeatingFrame(int frame) => SetSeatingFrame(frame, Vector2.up);
+
+        public void SetSeatingFrame(int frame, Vector2 direction)
         {
             SetActionPose("Edelzio_Sit");
-            _actionPose = VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_Sit", frame);
-            if (_renderer != null) PresentPose(_actionPose, 0);
+            ActionFacingDirection = direction;
+            _actionPose = VarginhaInteractionSprites.Seating(frame, direction)
+                ?? VarginhaReferenceSprites.EdelzioActionFrame("Edelzio_Sit", frame);
+            if (_renderer != null) PresentPose(_actionPose, DirectionIndex(direction));
         }
 
         public void ClearActionPose()
@@ -239,14 +250,19 @@ namespace Game.Varginha
             RefreshEquipmentAppearance();
         }
 
-        /// <summary>The backpack state selects the equipped version of the current pose.</summary>
+        /// <summary>
+        /// Seleciona a animação completa com ou sem mochila, preservando o corpo base.
+        /// </summary>
         public void RefreshEquipmentAppearance()
         {
             if (_renderer == null) _renderer = GetComponent<SpriteRenderer>();
             if (_controller == null) _controller = GetComponent<EdelzioTopDownController>();
             if (_renderer == null || _bodyPose == null) return;
-            _renderer.sprite = _controller != null && _controller.IsBackpackVisible
-                ? _backpackAppearance.GetFrame(_bodyPose, _bodyDirection)
+            bool backpackOn = _controller != null && _controller.IsBackpackVisible;
+            var equipmentFacing = _actionPose != null ? ActionFacingDirection : _controller != null ? _controller.FacingDirection : Vector2.down;
+            EdelzioBackpackAppearance.HideLegacyLayers(transform);
+            _renderer.sprite = backpackOn
+                ? _backpackAppearance.GetFrame(_bodyPose, EdelzioBackpackAppearance.DirectionIndex(equipmentFacing))
                 : _bodyPose;
         }
 

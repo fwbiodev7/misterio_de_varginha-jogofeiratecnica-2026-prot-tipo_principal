@@ -10,6 +10,7 @@ namespace Game.Editor.Testing
         {
             if (assetPath != "Assets/Resources/Varginha/EdelzioAttackV1.png"
                 && assetPath != "Assets/Resources/Varginha/EdelzioPunchV2.png"
+                && assetPath != "Assets/Resources/Varginha/EdelzioPunchV3.png"
                 && assetPath != "Assets/Resources/Varginha/PadreFabioV1.png"
                 && assetPath != "Assets/Resources/Varginha/FurnitureV1.png"
                 && assetPath != "Assets/Resources/Varginha/HousePropsV1.png") return;

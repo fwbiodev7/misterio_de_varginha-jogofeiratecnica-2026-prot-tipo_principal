@@ -1,0 +1,4 @@
+Coffee seated at (3.13, -2.97); frame Edelzio_Interaction_0_2
+Coffee returned to start, restored movement and left an empty cup.
+Notebook seated at (-5.00, -4.50); frame Edelzio_Interaction_1_3
+Notebook returned to standing with movement restored.

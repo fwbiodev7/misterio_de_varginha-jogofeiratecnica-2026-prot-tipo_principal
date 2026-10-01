@@ -35,6 +35,7 @@ namespace Game.Varginha
         private void Awake()
         {
             EnsurePhysicsBody();
+            VarginhaWorldDepth.Ensure(GetComponent<SpriteRenderer>(), true);
         }
 
         private void EnsurePhysicsBody()
@@ -69,6 +70,9 @@ namespace Game.Varginha
         /// </summary>
         public void EnsurePresentation(int sortingOrder = 8)
         {
+            var animation = GetComponent<VarginhaStudentAnimation>();
+            if (animation == null) animation = gameObject.AddComponent<VarginhaStudentAnimation>();
+            animation.Configure(studentName);
             _renderer = _renderer != null ? _renderer : GetComponent<SpriteRenderer>();
             if (_renderer != null)
             {
@@ -106,6 +110,7 @@ namespace Game.Varginha
         public void ReleaseTo(Transform fusca, int index, Transform leader)
         {
             if (_released || fusca == null) return;
+            foreach (var seat in FindObjectsByType<VarginhaClassroomSeat>(FindObjectsInactive.Include)) seat.Vacate(this);
             _released = true;
             _fusca = fusca;
             _school = GameObject.Find("Escola_3_Sistema_Ambiente")?.transform;

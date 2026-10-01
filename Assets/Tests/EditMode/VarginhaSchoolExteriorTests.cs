@@ -48,7 +48,7 @@ namespace Game.Tests.EditMode
         {
             for (int i = 0; i < 9; i++)
             {
-                Vector2 start = new(-2.2f + i % 3 * 2.2f, 1.8f - i / 3 * 1.8f);
+                Vector2 start = VarginhaSchoolClassroomLayout.StudentPosition(i);
                 Vector2 finish = (Vector2)VarginhaEnvironmentArt.FuscaParkingPosition + new Vector2(-1.35f - i % 3 * .7f, (i / 3 - 1) * .82f);
                 var path = new List<Vector2>();
                 VarginhaSchoolNavigation.FindPath(_school, start, finish, path);

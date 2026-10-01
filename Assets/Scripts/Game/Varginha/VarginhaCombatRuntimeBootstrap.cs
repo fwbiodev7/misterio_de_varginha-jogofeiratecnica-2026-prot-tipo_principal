@@ -20,6 +20,8 @@ namespace Game.Varginha
             if (scene.name == VarginhaGameOverFlow.MenuScene) return;
             foreach (var root in scene.GetRootGameObjects())
             {
+                if (root.GetComponent<VarginhaWorldGeometryPass>() == null)
+                    root.AddComponent<VarginhaWorldGeometryPass>();
                 // Saved house props also live under Investigation_Props, beside House_And_Yard.
                 VarginhaEnvironmentPolish.RefreshReferenceFurniture(root.transform);
                 var house = root.transform.Find("House_And_Yard");
@@ -57,6 +59,7 @@ namespace Game.Varginha
                     || renderer.GetComponent<FuscaDepartureAnimation>() != null;
                 if (actor || prop) VarginhaContactShadow.Ensure(renderer, actor);
             }
+            VarginhaWorldGeometry.EnsureScene(scene);
         }
     }
 }

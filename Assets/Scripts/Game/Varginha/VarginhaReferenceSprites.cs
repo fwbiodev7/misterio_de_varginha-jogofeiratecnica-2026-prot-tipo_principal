@@ -352,6 +352,13 @@ namespace Game.Varginha
             // Falls back to the runtime JPEG slicer if the asset is missing.
             var texture = Resources.Load<Texture2D>("Varginha/Allies/Edelzio") ?? CharacterAtlas("Edelzio");
             if (texture == null) return null;
+            // Generated transparent gutters can contain alpha=1/255 streaks. Keep crisp
+            // pixel-art transparency consistent in idle and every derived action.
+            var pixels = texture.GetPixels();
+            for (int i = 0; i < pixels.Length; i++) if (pixels[i].a < .5f) pixels[i] = Color.clear;
+            var clean = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false)
+            { name = texture.name, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            clean.SetPixels(pixels); clean.Apply(false, false); texture = clean;
             texture.filterMode = FilterMode.Point;
             _walk = new Sprite[4][];
             for (int d = 0; d < 4; d++)
@@ -382,32 +389,42 @@ namespace Game.Varginha
         {
             if (_attack != null && _attack[0] != null && _attack[0][0] != null
                 && _attack[0][0].texture != null) return _attack;
-            var texture = Resources.Load<Texture2D>("Varginha/EdelzioPunchV2")
+            var texture = Resources.Load<Texture2D>("Varginha/EdelzioPunchV3")
+                ?? Resources.Load<Texture2D>("Varginha/EdelzioPunchV2")
                 ?? Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
             if (texture != null)
             {
-                texture.filterMode = FilterMode.Point;
                 int cols = texture.width / 64;
+                var walking = EdelzioWalkFrames();
+                var retouched = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false)
+                {
+                    name = "Edelzio_Punch_Retouched",
+                    filterMode = FilterMode.Point,
+                    wrapMode = TextureWrapMode.Clamp
+                };
+                retouched.SetPixels(texture.GetPixels());
+                for (int direction = 0; direction < 4; direction++)
+                for (int frame = 0; frame < cols; frame++)
+                {
+                    var pixels = texture.GetPixels(frame * 64, (3 - direction) * 64, 64, 64);
+                    if (frame % 6 == 0 || frame % 6 == 5)
+                        pixels = walking[direction][0].texture.GetPixels((int)walking[direction][0].rect.x, (int)walking[direction][0].rect.y, 64, 64);
+                    else if (texture.name != "EdelzioPunchV3") VarginhaEdelzioCombatMatch.Apply(pixels, walking?[direction][0], direction);
+                    for (int i = 0; i < pixels.Length; i++) if (pixels[i].a < .5f) pixels[i] = Color.clear;
+                    retouched.SetPixels(frame * 64, (3 - direction) * 64, 64, 64, pixels);
+                }
+                retouched.Apply(false, false);
                 _attack = new Sprite[4][];
                 for (int d = 0; d < 4; d++)
                 {
                     _attack[d] = new Sprite[cols];
                     for (int f = 0; f < cols; f++)
                     {
-                        var cellPixels = texture.GetPixels(f * 64, (3 - d) * 64, 64, 64);
-                        var cellTex = new Texture2D(64, 64, TextureFormat.RGBA32, false)
-                        {
-                            name = $"Edelzio_Attack_{d}_{f}",
-                            filterMode = FilterMode.Point,
-                            wrapMode = TextureWrapMode.Clamp
-                        };
-                        cellTex.SetPixels(cellPixels);
-                        cellTex.Apply(false, false);
-                        _attack[d][f] = Sprite.Create(cellTex,
-                            new Rect(0, 0, 64, 64),
-                            new Vector2(.5f, .5f - (26f / 64f) * (1f - 1f / EdelzioVisualScale)),
-                            EdelzioPixelsPerUnit);
-                        _attack[d][f].name = cellTex.name;
+                        _attack[d][f] = Sprite.Create(retouched,
+                            new Rect(f * 64, (3 - d) * 64, 64, 64),
+                            walking[d][0].pivot / 64f,
+                            walking[d][0].pixelsPerUnit, 0, SpriteMeshType.FullRect);
+                        _attack[d][f].name = $"Edelzio_Attack_{d}_{f}";
                     }
                 }
                 return _attack;

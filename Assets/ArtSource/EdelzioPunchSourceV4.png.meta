@@ -1,0 +1,1341 @@
+fileFormatVersion: 2
+guid: f784db089c71ea74dbb482b3be643a1e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3418492433502946824
+    second: EdelzioPunchSourceV4_0
+  - first:
+      213: -3155256739724092922
+    second: EdelzioPunchSourceV4_1
+  - first:
+      213: -2826548977832588976
+    second: EdelzioPunchSourceV4_2
+  - first:
+      213: 670319817836426431
+    second: EdelzioPunchSourceV4_3
+  - first:
+      213: -8598935497064761291
+    second: EdelzioPunchSourceV4_4
+  - first:
+      213: 8813174242000042221
+    second: EdelzioPunchSourceV4_5
+  - first:
+      213: 8770198503771151027
+    second: EdelzioPunchSourceV4_6
+  - first:
+      213: 1175663997329072405
+    second: EdelzioPunchSourceV4_7
+  - first:
+      213: 163425319402858528
+    second: EdelzioPunchSourceV4_8
+  - first:
+      213: 1671064987798011190
+    second: EdelzioPunchSourceV4_9
+  - first:
+      213: -6413541185347466587
+    second: EdelzioPunchSourceV4_10
+  - first:
+      213: -3850156354397215827
+    second: EdelzioPunchSourceV4_11
+  - first:
+      213: -4745531556969027106
+    second: EdelzioPunchSourceV4_12
+  - first:
+      213: -2714806994723680647
+    second: EdelzioPunchSourceV4_13
+  - first:
+      213: -6062575990650184943
+    second: EdelzioPunchSourceV4_14
+  - first:
+      213: -4815157320297135155
+    second: EdelzioPunchSourceV4_15
+  - first:
+      213: -8856725674842162656
+    second: EdelzioPunchSourceV4_16
+  - first:
+      213: 2074608392603082580
+    second: EdelzioPunchSourceV4_17
+  - first:
+      213: -5575454803263342632
+    second: EdelzioPunchSourceV4_18
+  - first:
+      213: -7591677380329781377
+    second: EdelzioPunchSourceV4_19
+  - first:
+      213: 417263757165600875
+    second: EdelzioPunchSourceV4_20
+  - first:
+      213: -4975544497843879573
+    second: EdelzioPunchSourceV4_21
+  - first:
+      213: -6113113133282885416
+    second: EdelzioPunchSourceV4_22
+  - first:
+      213: -8896195881028074813
+    second: EdelzioPunchSourceV4_23
+  - first:
+      213: 8304734646378635669
+    second: EdelzioPunchSourceV4_24
+  - first:
+      213: 962078737815835819
+    second: EdelzioPunchSourceV4_25
+  - first:
+      213: -6359157819093999476
+    second: EdelzioPunchSourceV4_26
+  - first:
+      213: 7486385386704523508
+    second: EdelzioPunchSourceV4_27
+  - first:
+      213: -8172545000867202253
+    second: EdelzioPunchSourceV4_28
+  - first:
+      213: 4252088777267225080
+    second: EdelzioPunchSourceV4_29
+  - first:
+      213: -3195170512260750202
+    second: EdelzioPunchSourceV4_30
+  - first:
+      213: -3381889786839365630
+    second: EdelzioPunchSourceV4_31
+  - first:
+      213: 7929044317627244274
+    second: EdelzioPunchSourceV4_32
+  - first:
+      213: 1423149949720401762
+    second: EdelzioPunchSourceV4_33
+  - first:
+      213: 4425706873404271356
+    second: EdelzioPunchSourceV4_34
+  - first:
+      213: -2731704068363995896
+    second: EdelzioPunchSourceV4_35
+  - first:
+      213: -2718426692456211871
+    second: EdelzioPunchSourceV4_36
+  - first:
+      213: 3243072730480334538
+    second: EdelzioPunchSourceV4_37
+  - first:
+      213: 2035246861151150662
+    second: EdelzioPunchSourceV4_38
+  - first:
+      213: -7201360295961089289
+    second: EdelzioPunchSourceV4_39
+  - first:
+      213: 6876242264520933903
+    second: EdelzioPunchSourceV4_40
+  - first:
+      213: 981262872528573427
+    second: EdelzioPunchSourceV4_41
+  - first:
+      213: 6636882409102873958
+    second: EdelzioPunchSourceV4_42
+  - first:
+      213: 4751505386125861195
+    second: EdelzioPunchSourceV4_43
+  - first:
+      213: -5113144515217240016
+    second: EdelzioPunchSourceV4_44
+  - first:
+      213: -1638202783798281562
+    second: EdelzioPunchSourceV4_45
+  - first:
+      213: 1361834504338868815
+    second: EdelzioPunchSourceV4_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_0
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 624
+        width: 153
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 806cd4e91cce07f20800000000000000
+      internalID: 3418492433502946824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_1
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 616
+        width: 176
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a969566b64634d0800000000000000
+      internalID: -3155256739724092922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_2
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 811
+        width: 30
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0598b0c2ea416c8d0800000000000000
+      internalID: -2826548977832588976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 625
+        width: 170
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb47b04a2547d4900800000000000000
+      internalID: 670319817836426431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_4
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 626
+        width: 109
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53835fa79b17aa880800000000000000
+      internalID: -8598935497064761291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_5
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 626
+        width: 135
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de8f806674fae4a70800000000000000
+      internalID: 8813174242000042221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_6
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 644
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ba11fa921106b970800000000000000
+      internalID: 8770198503771151027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_7
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 626
+        width: 200
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 511e3083d2cc05010800000000000000
+      internalID: 1175663997329072405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_8
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 421
+        width: 200
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028ef4e467a944200800000000000000
+      internalID: 163425319402858528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_9
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 590
+        width: 151
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63dfa42b0c0d03710800000000000000
+      internalID: 1671064987798011190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_10
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 624
+        width: 112
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aac607b5468ef6a0800000000000000
+      internalID: -6413541185347466587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_11
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 420
+        width: 104
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3e076d13f719ac0800000000000000
+      internalID: -3850156354397215827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_12
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 441
+        width: 41
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed9647c113c742eb0800000000000000
+      internalID: -4745531556969027106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_13
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 421
+        width: 125
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ecfb50c61135ad0800000000000000
+      internalID: -2714806994723680647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_14
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 419
+        width: 177
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11bdb75e1476ddba0800000000000000
+      internalID: -6062575990650184943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_15
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 399
+        width: 207
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc34112ddef1d2db0800000000000000
+      internalID: -4815157320297135155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_16
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 411
+        width: 148
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a73f57ce6961580800000000000000
+      internalID: -8856725674842162656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_17
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 421
+        width: 127
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f9621675d7acc10800000000000000
+      internalID: 2074608392603082580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_18
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 447
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d73e3e756100a2b0800000000000000
+      internalID: -5575454803263342632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_19
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 419
+        width: 103
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77431025a1f4a690800000000000000
+      internalID: -7591677380329781377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_20
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 421
+        width: 160
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6020872d2b6ac500800000000000000
+      internalID: 417263757165600875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_21
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 421
+        width: 104
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61cdd904a053fab0800000000000000
+      internalID: -4975544497843879573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_22
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 226
+        width: 140
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d006e27efbd92ba0800000000000000
+      internalID: -6113113133282885416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_23
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 226
+        width: 145
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c24703fafc5a8480800000000000000
+      internalID: -8896195881028074813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_24
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 224
+        width: 133
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59127471928504370800000000000000
+      internalID: 8304734646378635669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_25
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 371
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba41875c38df95d00800000000000000
+      internalID: 962078737815835819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_26
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 224
+        width: 164
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c802142e7abbfb7a0800000000000000
+      internalID: -6359157819093999476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_27
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 224
+        width: 103
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f0d23a38dbf4e760800000000000000
+      internalID: 7486385386704523508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_28
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 224
+        width: 170
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b7a682f99459e80800000000000000
+      internalID: -8172545000867202253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_29
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 369
+        width: 23
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f12072e634720b30800000000000000
+      internalID: 4252088777267225080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_30
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 216
+        width: 116
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68425eb095978a3d0800000000000000
+      internalID: -3195170512260750202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_31
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 353
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2080be9282d1111d0800000000000000
+      internalID: -3381889786839365630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_32
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 224
+        width: 138
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe50880ccf990e60800000000000000
+      internalID: 7929044317627244274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_33
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 224
+        width: 107
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 267133fc65b00c310800000000000000
+      internalID: 1423149949720401762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_34
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 297
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfa2445f3f44b6d30800000000000000
+      internalID: 4425706873404271356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_35
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 264
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 805bcad7f99071ad0800000000000000
+      internalID: -2731704068363995896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_36
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 244
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a15387355364ad0800000000000000
+      internalID: -2718426692456211871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_37
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 40
+        width: 109
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac659014775b10d20800000000000000
+      internalID: 3243072730480334538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_38
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 21
+        width: 218
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642a42dac36ae3c10800000000000000
+      internalID: 2035246861151150662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_39
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 184
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa23ab17f0af0c90800000000000000
+      internalID: -7201360295961089289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_40
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 39
+        width: 139
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f024c4e58e15d6f50800000000000000
+      internalID: 6876242264520933903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_41
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 39
+        width: 119
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f3585432652e9d00800000000000000
+      internalID: 981262872528573427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_42
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 39
+        width: 159
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6659d9a2361fa1c50800000000000000
+      internalID: 6636882409102873958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_43
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 41
+        width: 174
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b41236069fcb0f140800000000000000
+      internalID: 4751505386125861195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_44
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 42
+        width: 134
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0305d3d67267a09b0800000000000000
+      internalID: -5113144515217240016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_45
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 42
+        width: 158
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aab5a96f3fe349e0800000000000000
+      internalID: -1638202783798281562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioPunchSourceV4_46
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 42
+        width: 147
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4a0df1344536e210800000000000000
+      internalID: 1361834504338868815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EdelzioPunchSourceV4_0: 3418492433502946824
+      EdelzioPunchSourceV4_1: -3155256739724092922
+      EdelzioPunchSourceV4_10: -6413541185347466587
+      EdelzioPunchSourceV4_11: -3850156354397215827
+      EdelzioPunchSourceV4_12: -4745531556969027106
+      EdelzioPunchSourceV4_13: -2714806994723680647
+      EdelzioPunchSourceV4_14: -6062575990650184943
+      EdelzioPunchSourceV4_15: -4815157320297135155
+      EdelzioPunchSourceV4_16: -8856725674842162656
+      EdelzioPunchSourceV4_17: 2074608392603082580
+      EdelzioPunchSourceV4_18: -5575454803263342632
+      EdelzioPunchSourceV4_19: -7591677380329781377
+      EdelzioPunchSourceV4_2: -2826548977832588976
+      EdelzioPunchSourceV4_20: 417263757165600875
+      EdelzioPunchSourceV4_21: -4975544497843879573
+      EdelzioPunchSourceV4_22: -6113113133282885416
+      EdelzioPunchSourceV4_23: -8896195881028074813
+      EdelzioPunchSourceV4_24: 8304734646378635669
+      EdelzioPunchSourceV4_25: 962078737815835819
+      EdelzioPunchSourceV4_26: -6359157819093999476
+      EdelzioPunchSourceV4_27: 7486385386704523508
+      EdelzioPunchSourceV4_28: -8172545000867202253
+      EdelzioPunchSourceV4_29: 4252088777267225080
+      EdelzioPunchSourceV4_3: 670319817836426431
+      EdelzioPunchSourceV4_30: -3195170512260750202
+      EdelzioPunchSourceV4_31: -3381889786839365630
+      EdelzioPunchSourceV4_32: 7929044317627244274
+      EdelzioPunchSourceV4_33: 1423149949720401762
+      EdelzioPunchSourceV4_34: 4425706873404271356
+      EdelzioPunchSourceV4_35: -2731704068363995896
+      EdelzioPunchSourceV4_36: -2718426692456211871
+      EdelzioPunchSourceV4_37: 3243072730480334538
+      EdelzioPunchSourceV4_38: 2035246861151150662
+      EdelzioPunchSourceV4_39: -7201360295961089289
+      EdelzioPunchSourceV4_4: -8598935497064761291
+      EdelzioPunchSourceV4_40: 6876242264520933903
+      EdelzioPunchSourceV4_41: 981262872528573427
+      EdelzioPunchSourceV4_42: 6636882409102873958
+      EdelzioPunchSourceV4_43: 4751505386125861195
+      EdelzioPunchSourceV4_44: -5113144515217240016
+      EdelzioPunchSourceV4_45: -1638202783798281562
+      EdelzioPunchSourceV4_46: 1361834504338868815
+      EdelzioPunchSourceV4_5: 8813174242000042221
+      EdelzioPunchSourceV4_6: 8770198503771151027
+      EdelzioPunchSourceV4_7: 1175663997329072405
+      EdelzioPunchSourceV4_8: 163425319402858528
+      EdelzioPunchSourceV4_9: 1671064987798011190
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

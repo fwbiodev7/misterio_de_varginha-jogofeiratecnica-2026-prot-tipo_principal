@@ -79,30 +79,23 @@ namespace Game.Editor.Testing
 
             // A vaga externa fica alinhada ao marcador e à entrada da escola.
             var car = CreateFusca(root.transform, VarginhaEnvironmentArt.FuscaParkingPosition);
-            CreateSubordinate(root.transform, "ET_Subordinado_1", new Vector3(2.8f, 2.6f, 0f));
-            CreateSubordinate(root.transform, "ET_Subordinado_2", new Vector3(5.1f, -2.4f, 0f));
-            CreateSubordinate(root.transform, "ET_Subordinado_3", new Vector3(-.3f, 3.1f, 0f));
-            CreateSubordinate(root.transform, "ET_Subordinado_4", new Vector3(6.6f, 2.9f, 0f));
+            for (int i = 0; i < VarginhaSchoolClassroomLayout.EnemyPositions.Length; i++)
+                CreateSubordinate(root.transform, "ET_Subordinado_" + (i + 1), VarginhaSchoolClassroomLayout.EnemyPositions[i]);
 
             var studentsRoot = new GameObject("Refens_3_Sistema").transform;
             studentsRoot.SetParent(root.transform);
             string[] names = VarginhaPhase2Controller.StudentNames;
-            Vector3[] positions =
-            {
-                new(-2.2f, 1.8f, 0f), new(0f, 1.8f, 0f), new(2.2f, 1.8f, 0f),
-                new(-2.2f, 0f, 0f), new(0f, 0f, 0f), new(2.2f, 0f, 0f),
-                new(-2.2f, -1.8f, 0f), new(0f, -1.8f, 0f), new(2.2f, -1.8f, 0f)
-            };
             Color[] shirts =
             {
                 new(.25f, .52f, .88f), new(.88f, .36f, .30f), new(.28f, .68f, .45f),
                 new(.78f, .44f, .18f), new(.58f, .34f, .82f), new(.85f, .52f, .68f),
                 new(.22f, .66f, .70f), new(.78f, .68f, .22f), new(.45f, .52f, .58f)
             };
-            for (int i = 0; i < names.Length; i++) CreateStudent(studentsRoot, names[i], positions[i], shirts[i]);
+            for (int i = 0; i < names.Length; i++) CreateStudent(studentsRoot, names[i], VarginhaSchoolClassroomLayout.StudentPosition(i), shirts[i]);
 
             root.AddComponent<VarginhaPhase2Controller>();
             Selection.activeGameObject = player;
+            VarginhaWorldGeometry.Ensure(root.transform);
         }
 
         private static void CreateManagers(Transform parent)

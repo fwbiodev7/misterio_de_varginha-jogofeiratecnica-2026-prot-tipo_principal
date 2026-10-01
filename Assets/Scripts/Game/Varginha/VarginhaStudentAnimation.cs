@@ -14,6 +14,16 @@ namespace Game.Varginha
         private int _direction;
         public int Facing => _direction;
         public int FrameIndex { get; private set; }
+        public bool IsSeated { get; private set; }
+
+        public void SetSeated(bool seated)
+        {
+            IsSeated = seated;
+            _direction = seated ? 3 : 0;
+            _previous = transform.position;
+            _stride = 0;
+            Present(0);
+        }
 
         public void Configure(string student)
         {
@@ -32,6 +42,7 @@ namespace Game.Varginha
             var movement = (Vector2)(transform.position - _previous);
             _previous = transform.position;
             if (_renderer == null || !_renderer.enabled || string.IsNullOrEmpty(_student)) return;
+            if (IsSeated) { Present(0); return; }
             if (Time.timeScale <= 0f) return;
             float distance = movement.magnitude;
             if (distance > .0015f && distance < .75f)
@@ -53,7 +64,7 @@ namespace Game.Varginha
 
         private void Present(int frame)
         {
-            var sprite = VarginhaStudentSprites.Frame(_student, _direction, frame);
+            var sprite = IsSeated ? VarginhaStudentSprites.Seated(_student) : VarginhaStudentSprites.Frame(_student, _direction, frame);
             if (sprite == null) return;
             FrameIndex = frame;
             _renderer.sprite = sprite;

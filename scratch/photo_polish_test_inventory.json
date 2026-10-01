@@ -1,0 +1,1557 @@
+{
+  "Mode": "PlayMode",
+  "Count": 172,
+  "Tests": [
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_AddsCorrectScoreValue",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_CannotBeCollectedTwice",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_Collect_AddsScore",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_Collect_DestroysObject",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_Collect_SetsIsCollected",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_IsActive_Initially",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.CollectibleTests.Collectible_NotCollected_Initially",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ActionsKeepNewAppearanceAndColliderSize",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.BackpackStateControlsIntegratedAppearanceInEveryDirection",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.CombatPosesKeepEquipmentWithoutChangingGeometry",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.HotbarReflectsActualCollectedItems",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.LockStopsResidualMotion",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ReferenceArtCoversDirectionsWeaponsAndPortrait",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_AttackRange_LessThanDetectionRange",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_DetectionRange_IsPositive",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_DetectsPlayer_WhenInRange",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_Dies_WhenHPZero",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_GoesToChase_WhenPlayerDetected",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_HasNoPlayer_Initially",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_IsDestroyed_AfterDeath",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_ReturnsToPatrol_WhenForced",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EnemyAITests.Enemy_StartsInPatrolState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.FuscaDepartureTests.DepartureKeepsLaneAndEndsAtExactDistance",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.FuscaDepartureTests.SchoolBoardingStopsPhysicsBeforeMovingIntoTheSeat",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.InitialState_IsMenu",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.IsPlaying_FalseInitially",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.OnGameOver_EventFired",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.OnGameStart_EventFired",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.OnLevelComplete_EventFired",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.PauseGame_OnlyFromPlayingState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.PauseGame_SetsPausedState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.PauseGame_SetsTimeScaleZero",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.ResumeGame_RestoresTimeScale",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.ResumeGame_SetsPlayingState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.ReturnToMenu_RestoresTimeScale",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.ReturnToMenu_SetsMenuState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.Singleton_IsSet_AfterAwake",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.Singleton_OnlyOneInstance",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.StartGame_IsPlayingTrue",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.StartGame_SetsPlayingState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.TriggerGameOver_SetsGameOverState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.TriggerGameOver_Twice_OnlyFiresOnce",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.GameManagerTests.TriggerWin_SetsWinState",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.FullHeal_RestoresToMax",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.Heal_CannotExceedMaxHealth",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.Heal_RestoresHP",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.Heal_WhenDead_IsIgnored",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.Health_IsNotDead_Initially",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.Health_StartsAtMaxHealth",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.HealthPercent_IsHalf_WhenHalfHP",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.HealthPercent_IsOne_WhenFull",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.InstantKill_SetsHPToZero",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.OnDeath_EventFired_WhenDead",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.OnHealthChanged_FiredOnDamage",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.OnHealthChanged_FiredOnHeal",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.SetMaxHealth_KeepsPercent",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.SetMaxHealth_UpdatesMax",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.TakeDamage_CannotGoBelowZero",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.TakeDamage_CorrectAmount",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.TakeDamage_FatalDamage_SetsDead",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.TakeDamage_NegativeAmount_IsIgnored",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.TakeDamage_ReducesHP",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.HealthSystemTests.TakeDamage_WhenDead_IsIgnored",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.ActiveScene_HasValidName",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.ActiveScene_IsLoaded",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.BuildSettings_HasScenesConfigured",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.DontDestroyOnLoad_ObjectPersistsBetweenScenes",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.LevelManager_CurrentScene_MatchesActiveScene",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.LevelManager_IsNotLoading_Initially",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.LoadScene_Additive_CanBeUnloaded",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.LoadScene_Additive_IncreasesSceneCount",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.LevelLoadTests.SceneManager_HasAtLeastOneScene",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_50DynamicObjects_FrameTime",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_Destroy100Objects",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_EmptyScene_FrameTime",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_FindObjectsByType_100Times",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_Instantiate100Objects",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_Physics2D_OverlapCircle_1000Times",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_StringConcat_VsStringBuilder",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PerformanceTests.Performance_VectorOperations_ExecutionSpeed",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.AddForce_ChangesVelocity",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.FreezePosition_PreventsMovement",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.FreezeRotation_PreventsRotation",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.OverlapCircle_DetectsNearbyCollider",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.OverlapCircle_ReturnsNull_WhenEmpty",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.Raycast2D_HitsGround_FromAbove",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.Raycast2D_MissesGround_FromSide",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.Rigidbody2D_CollidesWith_StaticGround",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.Rigidbody2D_FallsWithGravity",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.SetVelocity_DirectlyMovesBody",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PhysicsTests.Trigger_IsDetectedByOverlapArea",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_Dies_WhenHPZero",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_FacesLeft_WhenMovingLeft",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_FacesRight_WhenMovingRight",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_Falls_WithGravity",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_Jumps_GainsPositiveVelocityY",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_JumpsLeft_DecreasesJumpsLeft",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_MovesLeft_WhenInputNegative",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_MovesRight_WhenInputPositive",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_StopsMoving_WhenInputZero",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.PlayerMovementTests.Player_TakesDamage_HealthDecreases",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.AllThreeComboContactsDealDamage",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.AncestralEntityRemainsInvulnerable",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.CombatCursorInstantiatesWithAttackAndDetectsTarget",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.EarlyQueuedClickChainsExactlyOnePunch",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.EdelzioCanMoveDuringAttackAndAttackAgainWithoutCooldown",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.LockCancelsQueuedPunchWithoutErasingInteractionPose",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.MinorManifestationTakesDamageOnlyThroughCombatTarget",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.MovementReversesAndStopsInAllEightDirections",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.PunchAtlasHasFourDirectionsAndThreeSixFrameCombos",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.PunchDamagesOnlyAtContactAndOnlyOnceForMultipleColliders",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaCombatTests.WallBlocksPunchAndDisableRestoresHitstop",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaDifficultyAndPresentationTests.DifficultyScalesEachEnemyOnce",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaDifficultyAndPresentationTests.EveryStudentHasVisibleAnticipationAndExactlyOneImpact",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaDifficultyAndPresentationTests.RouteDestinationsAreDistinctAndIncludedInBuild",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.BlockedChairCancelsCoffeeAndAllowsRetry",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.CoffeeSeatingAndWebcamHaveTheirOwnFrames",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferenceChestKeepsItsOpenArtwork",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferenceCoffeeReturnsMatchingEmptyCup",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.HouseReferencePropsKeepTheirArtworkOnInitialization",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.InterruptedCoffeeRestoresCupAndMovement",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.MissingNotebookChairIsCreatedOnlyOnce",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Edelzio\",\"Edelzio\")",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Padre Fábio\",\"PadreFabio\")",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Fábio\",\"Fabio\")",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Ana Tavares\",\"AnaTavares\")",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.PortraitUsesTheSpeakersCurrentAtlas(\"Luis Miguel Messias\",\"LuisMiguelMessias\")",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInteractionTests.SeatedCoffeeRoutesAroundTableAndReturnsToStandingPosition",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.BackpackOwnsPauseAndDoesNotOpenWithoutBackpackOrDuringDialogue",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.ConsumedItemsDisappearButKnowledgeAndBackpackRemain",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.DoorHingeStaysFixedAndProjectionIsContinuous(False)",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.DoorHingeStaysFixedAndProjectionIsContinuous(True)",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.EquippedStudentDoesNotRotateAndChangingDoesNotResetCooldowns",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.FailedEscapeKeepsKeyAndSuccessfulEscapeConsumesItOnce",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.NewPhaseDoesNotRepopulateUsedItems",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaInventoryTests.NoStudentAppearsOrAttacksUntilEquipped",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaMenuAndDeathTests.ContactShadowFollowsVisibilityWithoutChangingPhysics",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaMenuAndDeathTests.DeathClosesPauseAndWaitsForAnExplicitChoice",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaMenuAndDeathTests.NewInvestigationAlwaysSelectsPhaseOne",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaMenuAndDeathTests.PersistentHudCannotDrawOrPauseOverMenu",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPhase3Tests.ManualAllyInvocationsUseFiveSecondCooldown",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPhase3Tests.Phase3ControllerStartsIncomplete",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.ComboCyclesThreeStepsThenExpires",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.DialogueCancelsWindupWithoutDamage",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.DirectionAndMultipleCollidersProduceOnlyOneHit",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.DodgeHasBoundedDurationCooldownAndBlocksAttack",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.MeleeCannotDamageThroughSolidWall",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.PauseAndDialogueBlockDodgeAndAttack",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaPlayerPolishTests.PausingDuringHitstopDoesNotResumeGame",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaRequestedGameplayTests.ChurchHasDarknessAltarPriestAndClearFlashlightCone",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaRequestedGameplayTests.FuscaBoardsImmediatelyWithoutDoorAndKeepsRequirements",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaRequestedGameplayTests.HouseFurnitureResizesOnceAndSurgesIncludeRecovery",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaRequestedGameplayTests.PewStopsWalkingAndSeatRestoresCollisionWhenInterrupted",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaSchoolRescueTests.BoardingFinishesWithBlockedSlotAndLeaderLeavingTheRadius",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaSchoolRescueTests.ConfirmedEncounterRescuesStudentsWhenDefeatedEnemiesWereRemoved",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaSchoolRescueTests.NineReleasedStudentsWalkOutTheDoorAndReachExternalFusca",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaSchoolRescueTests.ReleasedStudentGoesToTheCarAndWaitsWhileLeaderIsAway",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.AlliedSummonsAreGatedUntilHardPhasesButFinalPhaseAlwaysAllowsAll",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.AlliesRouteThroughADoorInsteadOfStoppingAtThePartition",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.AnnaRicochetsAcrossTwoNewTargetsWithoutRepeatingDamage",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.AreaImpactCannotCrossAWallBetweenTwoVisibleTargets",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.DeathCancelsPendingAllyAndPlayerAttacksWhileTimeIsPaused",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.DisabledAllyCancelsPresentationWithoutLeavingLateDamage",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.EveryRescuedStudentHasAnAllyProfile",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.IndividualCooldownBlocksRepeatButLeavesOtherStudentsReady",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.InputLockFreezesPendingPowerAndItsManualCooldown",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.KatanaPiercesOnlyTargetsBehindItsAim",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.MarcosSpikesOnceAndSplashRespectsRange",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.MicrophoneRestoresSanityOnlyOnSuccessfulImpact",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.MouseAimOverridesNearThreatAndWallsBlockCommands",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.NoTargetOrLockedPlayerDoesNotSpendCooldown",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.VarginhaStudentAllyTests.SignatureStudentsKeepTheirRequestedAttacks",
+      "Mode": "PlayMode",
+      "Assembly": "GamePlayModeTests",
+      "Categories": [
+        "Uncategorized"
+      ],
+      "Explicit": false
+    }
+  ],
+  "success": true,
+  "result": null,
+  "message": "Found 172 test(s)."
+}

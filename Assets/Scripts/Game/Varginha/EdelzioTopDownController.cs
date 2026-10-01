@@ -175,6 +175,7 @@ namespace Game.Varginha
             Instance = this;
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+            VarginhaWorldDepth.Ensure(_sr, true);
 
             _rb.gravityScale = 0f;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -348,6 +349,11 @@ namespace Game.Varginha
                 _isRunning = false;
                 if (_rb != null) _rb.linearVelocity = Vector2.zero;
             }
+        }
+
+        public void FaceActionDirection(Vector2 direction)
+        {
+            if (direction.sqrMagnitude > .001f) _lastFacing = direction.normalized;
         }
 
         /// <summary>Ativa a mochila como parte da aparência e do estado de Edelzio.</summary>

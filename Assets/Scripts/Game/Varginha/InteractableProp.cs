@@ -14,7 +14,8 @@ namespace Game.Varginha
         FuseBox,        // Caixa de força / eletricidade
         PadreFabio,     // Padre Fábio e o Livro do Tombo Secreto
         SecretTome,     // Livro do Tombo da diocese
-        ChurchSeat
+        ChurchSeat,
+        ClassroomSeat
     }
 
     /// <summary>
@@ -36,7 +37,8 @@ namespace Game.Varginha
         public PropType Type => propType;
         public string PropName => propName;
         public string InspectMessage => inspectMessage;
-        public bool CanInteract => !_hasInteracted || canInteractMultipleTimes;
+        public bool CanInteract => (!_hasInteracted || canInteractMultipleTimes) &&
+            (propType != PropType.ClassroomSeat || GetComponent<VarginhaClassroomSeat>()?.IsOccupied != true);
 
         public event Action<EdelzioTopDownController> OnInteracted;
 
@@ -112,6 +114,7 @@ namespace Game.Varginha
                     break;
             }
 
+            fallback = VarginhaHouseReferenceArt.PropSprite(this, gameObject.name) ?? fallback;
             if (fallback != null) renderer.sprite = fallback;
             renderer.enabled = true;
             renderer.sortingOrder = sortingOrder;
@@ -163,15 +166,21 @@ namespace Game.Varginha
                     break;
 
                 case PropType.Backpack:
+                    message = "🎒 Você pegou a sua MOCHILA! Seus itens e caderno agora estão guardados em segurança.";
                     var pickupAnimation = GetComponent<BackpackPickupAnimation>();
-                    if (pickupAnimation != null) pickupAnimation.PlayPickup(edelzio);
+                    if (pickupAnimation != null)
+                    {
+                        pickupAnimation.PlayPickup(edelzio, () =>
+                        {
+                            GetHud()?.ShowDialogue("Edelzio", message);
+                        });
+                    }
                     else
                     {
                         edelzio.EquipBackpack();
                         HideCollectedWorldObject();
+                        GetHud()?.ShowDialogue("Edelzio", message);
                     }
-                    message = "🎒 Você pegou a sua MOCHILA! Seus itens e caderno agora estão guardados em segurança.";
-                    GetHud()?.ShowDialogue("Edelzio", message);
                     break;
 
                 case PropType.NotebookLaptop:
@@ -215,10 +224,11 @@ namespace Game.Varginha
                             edelzio.RestoreOneHeart();
                             var cupRenderer = GetComponent<SpriteRenderer>();
                             if (cupRenderer != null)
-                                cupRenderer.sprite = VarginhaPixelArtSprites.Create("Coffee_Empty", new Color(.8f, .4f, .2f));
+                                cupRenderer.sprite = VarginhaHouseReferenceArt.PropSprite(this, "Coffee_Empty")
+                                    ?? VarginhaPixelArtSprites.Create("Coffee_Empty", new Color(.8f, .4f, .2f));
                             GetHud()?.ShowDialogue("Edelzio", "☕ Você bebe o café e devolve a xícara vazia à mesa.\n+1 CORAÇÃO DE SAÚDE.");
                             OnInteracted?.Invoke(edelzio);
-                        });
+                        }, () => _hasInteracted = false);
                         return;
                     }
                     edelzio.RestoreOneHeart();
@@ -226,6 +236,7 @@ namespace Game.Varginha
                     GetHud()?.ShowDialogue("Edelzio", message);
                     break;
 
+                case PropType.ClassroomSeat:
                 case PropType.ChurchSeat:
                     _hasInteracted = false;
                     var seatAction = edelzio.GetComponent<VarginhaPlayerActionAnimation>();

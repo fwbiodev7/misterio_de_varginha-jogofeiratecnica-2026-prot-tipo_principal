@@ -34,6 +34,7 @@ namespace Game.Level
             target = followTarget;
             offset = new Vector3(0, 0, -10);
             limitMinY = false;
+            smoothTime = .16f;
             _velocity = Vector3.zero;
         }
 

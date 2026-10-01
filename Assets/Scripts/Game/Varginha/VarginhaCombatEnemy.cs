@@ -61,6 +61,7 @@ namespace Game.Varginha
             _body.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             _target = GetComponent<VarginhaCombatTarget>();
             _renderer = GetComponent<SpriteRenderer>();
+            VarginhaWorldDepth.Ensure(_renderer, true);
             if (_renderer != null) _normalColor = _renderer.color;
             _role = ResolveRole();
         }
