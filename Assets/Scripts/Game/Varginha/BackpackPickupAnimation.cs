@@ -44,9 +44,14 @@ namespace Game.Varginha
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / pickupDuration);
-                float arc = Mathf.Sin(t * Mathf.PI) * .40f;
-                transform.position = Vector3.Lerp(start, player.transform.position + Vector3.up * .15f, t) + Vector3.up * arc;
-                transform.localScale = Vector3.Lerp(originalScale, originalScale * .65f, t);
+                // Smooth ease-in/out using sine so the bag decelerates as it lands.
+                float tEased = Mathf.SmoothStep(0f, 1f, t);
+                // Arc peaks at mid-flight and lands slightly above the player centre (upper-back).
+                float arc = Mathf.Sin(t * Mathf.PI) * .25f;
+                Vector3 destination = player.transform.position + new Vector3(0f, .18f, 0f);
+                transform.position = Vector3.Lerp(start, destination, tEased) + Vector3.up * arc;
+                // Scale shrinks to zero so the item visually merges into the character.
+                transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, tEased);
                 yield return null;
             }
 

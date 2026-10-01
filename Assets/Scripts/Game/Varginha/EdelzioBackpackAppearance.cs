@@ -75,30 +75,47 @@ namespace Game.Varginha
                 int shirtWidth = right - left + 1, shirtHeight = top - bottom + 1;
                 if (direction == 0)
                 {
-                    int[] straps = { left + Mathf.RoundToInt(shirtWidth * .18f), right - Mathf.RoundToInt(shirtWidth * .18f) };
-                    foreach (int x in straps)
-                    for (int y = bottom; y <= top; y++)
-                        if (IsShirt(original[y * width + x]))
-                            pixels[y * width + x] = y == bottom + shirtHeight / 2 ? Brass : Strap;
+                    // Front view: two subtle strap lines only over the shirt, no pack body visible.
+                    int[] straps = { left + Mathf.RoundToInt(shirtWidth * .22f), right - Mathf.RoundToInt(shirtWidth * .22f) };
+                    foreach (int sx in straps)
+                    for (int sy = bottom + Mathf.RoundToInt(shirtHeight * .15f); sy <= top - Mathf.RoundToInt(shirtHeight * .1f); sy++)
+                        if (IsShirt(original[sy * width + sx]))
+                            pixels[sy * width + sx] = sy == bottom + shirtHeight / 2 ? Brass : Strap;
                 }
                 else
                 {
                     bool rear = direction == 3;
-                    int packWidth = Mathf.Max(3, Mathf.RoundToInt(shirtWidth * (rear ? .80f : .48f)));
-                    int packHeight = Mathf.Max(4, Mathf.Min(Mathf.RoundToInt(shirtWidth * .88f), shirtHeight + (rear ? 1 : 2)));
-                    int x0 = rear ? (left + right - packWidth + 1) / 2
-                        : direction == 1 ? right - packWidth / 2 : left - packWidth / 2;
-                    int y0 = top + 1 - packHeight;
-                    for (int y = 0; y < packHeight; y++)
-                    for (int x = 0; x < packWidth; x++)
+                    // Pack width: 75% of shirt width for rear, 44% for side profile.
+                    int packWidth  = Mathf.Max(3, Mathf.RoundToInt(shirtWidth * (rear ? .75f : .44f)));
+                    // Pack height: capped at 85% of shirt height so it never bleeds into the head or legs.
+                    int packHeight = Mathf.Max(4, Mathf.Min(Mathf.RoundToInt(shirtHeight * .82f), Mathf.RoundToInt(shirtWidth * (rear ? .95f : .75f))));
+                    // Anchor starts at the shirt's upper-back zone (top 15% is the neck — leave it free).
+                    int neckBuffer = Mathf.Max(1, Mathf.RoundToInt(shirtHeight * .14f));
+                    int packTop    = top - neckBuffer;
+                    int y0         = packTop + 1 - packHeight;
+                    // Horizontal centre for rear; behind-the-shoulder column for sides.
+                    int x0 = rear  ? (left + right - packWidth + 1) / 2
+                        : direction == 1 ? right - Mathf.RoundToInt(packWidth * .55f)
+                                         : left  - Mathf.RoundToInt(packWidth * .45f);
+                    // The pack must not cross the spine centerline on a side profile.
+                    int spineX = (left + right) / 2;
+                    for (int py = 0; py < packHeight; py++)
+                    for (int px = 0; px < packWidth; px++)
                     {
-                        int targetX = x0 + x, targetY = y0 + y;
+                        int targetX = x0 + px, targetY = y0 + py;
                         if (targetX < 0 || targetX >= width || targetY < 0 || targetY >= height) continue;
+                        // Side profile: skip pixels that cross the torso centre (would cover the chest).
+                        if (!rear)
+                        {
+                            if (direction == 1 && targetX < spineX) continue; // facing right → pack on left
+                            if (direction == 2 && targetX > spineX) continue; // facing left  → pack on right
+                        }
                         int i = targetY * width + targetX;
-                        if (!rear && original[i].a > 0 && (IsSkin(original[i])
-                            || (direction == 1 ? targetX < left + shirtWidth / 2 : targetX > left + shirtWidth / 2))) continue;
-                        var color = _packPixels[Mathf.Min(_packHeight - 1, y * _packHeight / packHeight) * _packWidth
-                            + Mathf.Min(_packWidth - 1, x * _packWidth / packWidth)];
+                        // Never paint over skin pixels (hands, neck) regardless of direction.
+                        if (original[i].a > 0 && IsSkin(original[i])) continue;
+                        int sampleY = Mathf.Min(_packHeight - 1, py * _packHeight / packHeight);
+                        int sampleX = Mathf.Min(_packWidth  - 1, px * _packWidth  / packWidth );
+                        var color = _packPixels[sampleY * _packWidth + sampleX];
                         if (color.a > .5f) pixels[i] = color;
                     }
                 }
