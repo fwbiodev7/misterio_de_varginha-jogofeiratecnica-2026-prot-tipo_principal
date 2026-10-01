@@ -20,7 +20,7 @@ namespace Game.Varginha
             Set(pieces, "Bed_Edelzio",         -6.35f,  4.10f, 2.25f, 2.50f);
             Set(pieces, "Nightstand_Bedroom",   -4.65f,  5.10f,  .82f,  .92f);
             Set(pieces, "Dresser_Bedroom",      -7.50f,  1.50f, 1.38f, 1.32f);
-            Set(pieces, "BedroomRug",           -5.65f,  2.00f, 3.90f, 2.15f);
+            Set(pieces, "BedroomRug",           -5.65f,  2.15f, 3.60f, 1.85f);
             Set(pieces, "ToyBox_UnderBed",      -6.35f,  2.60f, 1.32f, 1.06f);
             // Mochila no chão: prop compacto e legível sem ser enorme
             Set(pieces, "Backpack_Prop",         -3.60f,  2.40f,  .52f,  .52f);
@@ -41,7 +41,7 @@ namespace Game.Varginha
             Set(pieces, "Sofa_LivingRoom",       4.60f,  2.05f, 2.80f, 1.58f);
             Set(pieces, "TV_StaticNoise",        4.60f,  6.75f, 1.58f, 1.58f);
             Set(pieces, "CoffeeTable_Living",    4.60f,  3.80f, 2.18f, 1.28f);
-            Set(pieces, "Rug_LivingRoom",        4.60f,  2.80f, 4.50f, 4.65f);
+            Set(pieces, "Rug_LivingRoom",        4.60f,  3.10f, 4.20f, 3.80f);
             Set(pieces, "Plant_Indoor",          7.35f,  3.75f, 1.06f, 1.52f);
             Set(pieces, "Clock_Living",          7.70f,  7.65f,  .70f,  .76f);
             Set(pieces, "WallPicture_Living",    6.65f,  7.65f, 1.42f, 1.06f);
@@ -51,8 +51,8 @@ namespace Game.Varginha
             Set(pieces, "Fridge_Kitchen",        2.40f, -5.05f, 1.12f, 1.82f);
             Set(pieces, "Stove_Kitchen",         6.90f, -5.15f, 1.22f, 1.58f);
             Set(pieces, "KitchenRunner",         4.80f, -4.20f, 5.20f,  .96f);
-            // Mesa de jantar da cozinha (bancada comprida com 3 cadeiras)
-            Set(pieces, "CoffeeTable_Kitchen",   4.80f, -3.05f, 2.45f, 1.42f);
+            // Mesa de jantar: scale proporcional para o sprite oval não esticar demais
+            Set(pieces, "CoffeeTable_Kitchen",   4.80f, -3.05f, 1.65f, 1.10f);
             // Xícara de café: pequenina, ~18 cm em cima da mesa
             Set(pieces, "Coffee_Cup",            4.80f, -2.78f,  .18f,  .18f);
 
@@ -74,7 +74,7 @@ namespace Game.Varginha
             {
                 var col = coffeeTable.GetComponent<BoxCollider2D>();
                 if (col == null) col = coffeeTable.gameObject.AddComponent<BoxCollider2D>();
-                col.size   = new Vector2(.88f, .46f);
+                col.size   = new Vector2(.72f, .42f);
                 col.offset = Vector2.down * .10f;
             }
             if (pieces.TryGetValue("Cadeira_Cafe", out var coffeeChair))
