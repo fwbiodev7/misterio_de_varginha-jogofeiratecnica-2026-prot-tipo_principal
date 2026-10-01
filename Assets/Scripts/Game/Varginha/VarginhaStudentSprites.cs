@@ -15,6 +15,30 @@ namespace Game.Varginha
             public Sprite Portrait;
         }
         private static readonly Dictionary<string, Atlas> Atlases = new();
+        private static readonly Dictionary<string, Sprite> SeatedSprites = new();
+
+        public static Sprite Seated(string student)
+        {
+            if (SeatedSprites.TryGetValue(student, out var cached) && cached != null) return cached;
+            var standing = Frame(student, 3, 0);
+            if (standing == null) return null;
+            var source = standing.texture.GetPixels((int)standing.rect.x, (int)standing.rect.y, 64, 64);
+            var pixels = new Color[64 * 64];
+            // Bend the knees while preserving the exact head, back and clothing of this pupil.
+            for (int y = 6; y < 56; y++)
+            for (int x = 0; x < 64; x++)
+            {
+                int targetY = y < 20 ? 6 + (y - 6) / 2 : y - 7;
+                pixels[targetY * 64 + x] = source[y * 64 + x];
+            }
+            var texture = new Texture2D(64, 64, TextureFormat.RGBA32, false)
+            { name = "Aluno_Sentado_" + student, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            texture.SetPixels(pixels); texture.Apply(false, false);
+            var sprite = Sprite.Create(texture, new Rect(0, 0, 64, 64), Vector2.one * .5f, standing.pixelsPerUnit);
+            sprite.name = texture.name;
+            SeatedSprites[student] = sprite;
+            return sprite;
+        }
 
         public static string AssetName(string student)
         {

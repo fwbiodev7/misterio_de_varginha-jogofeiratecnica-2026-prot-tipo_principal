@@ -30,6 +30,12 @@ namespace Game.Varginha
         private readonly List<Vector2> _approachPath = new();
         private bool _approachReached;
         private Action _coffeeCancellation;
+        private VarginhaClassroomSeat _classroomSeat;
+        private bool _seatExitRequested;
+        private Collider2D _seatDeskCollider;
+        private bool _deskWasIgnored;
+
+        public void FinishSeatSession() => _seatExitRequested = true;
 
         private void Awake()
         {
@@ -71,6 +77,9 @@ namespace Game.Varginha
 
         private IEnumerator ChurchSeatRoutine(Transform seat)
         {
+            _classroomSeat = seat.GetComponent<VarginhaClassroomSeat>();
+            if (_classroomSeat != null && !_classroomSeat.Reserve(_player)) { _classroomSeat = null; yield break; }
+            _seatExitRequested = false;
             BeginAction();
             _standingPosition = transform.position;
             _seatCollider = seat.GetComponent<Collider2D>();
@@ -80,7 +89,13 @@ namespace Game.Varginha
                 _seatWasIgnored = Physics2D.GetIgnoreCollision(_playerCollider, _seatCollider);
                 Physics2D.IgnoreCollision(_playerCollider, _seatCollider, true);
             }
-            yield return MoveApproach(seat.position + Vector3.up * .13f);
+            _seatDeskCollider = _classroomSeat?.DeskCollider;
+            if (_seatDeskCollider != null && _playerCollider != null)
+            {
+                _deskWasIgnored = Physics2D.GetIgnoreCollision(_playerCollider, _seatDeskCollider);
+                Physics2D.IgnoreCollision(_playerCollider, _seatDeskCollider, true);
+            }
+            yield return MoveApproach(_classroomSeat != null ? _classroomSeat.SeatedPosition : seat.position + Vector3.up * .13f);
             if (!_approachReached) { RestoreSeatCollision(); EndAction(); yield break; }
             for (int frame = 0; frame < 3; frame++)
             {
@@ -88,10 +103,12 @@ namespace Game.Varginha
                 yield return new WaitForSeconds(.12f);
             }
             _spriteAnimation?.SetActionPose("Edelzio_Sit");
+            _classroomSeat?.ShowOccupiedBackrest(_renderer);
             VarginhaGameHUD.Instance?.ShowDialogue("Edelzio", "Vou me sentar um instante. [E] para levantar.");
             yield return null; // Do not consume the same key press that started the interaction.
             while (_player != null && _player.CurrentSanity > 0f)
             {
+                if (_seatExitRequested) break;
                 if (Time.timeScale > 0 && VarginhaGameHUD.Instance?.BlocksGameplayInput != true &&
                     VarginhaInputBindings.WasPressedThisFrame(VarginhaInputAction.Interact)) break;
                 yield return null;
@@ -162,9 +179,14 @@ namespace Game.Varginha
 
         private void RestoreSeatCollision()
         {
+            if (_playerCollider != null && _seatDeskCollider != null)
+                Physics2D.IgnoreCollision(_playerCollider, _seatDeskCollider, _deskWasIgnored);
+            _seatDeskCollider = null;
             if (_playerCollider != null && _seatCollider != null)
                 Physics2D.IgnoreCollision(_playerCollider, _seatCollider, _seatWasIgnored);
             _seatCollider = null;
+            _classroomSeat?.Vacate(_player);
+            _classroomSeat = null;
         }
 
         private IEnumerator CoffeeRoutine(Transform coffee, Action onComplete, Action onCancelled)
@@ -328,7 +350,7 @@ namespace Game.Varginha
                 filter.useTriggers = false;
                 int count = _body.Cast(delta.normalized, filter, _motionHits, distance + .02f);
                 for (int i = 0; i < count; i++)
-                    if (_motionHits[i].collider != _seatCollider && Vector2.Dot(_motionHits[i].normal, delta) < 0f)
+                    if (_motionHits[i].collider != _seatCollider && _motionHits[i].collider != _seatDeskCollider && Vector2.Dot(_motionHits[i].normal, delta) < 0f)
                         distance = Mathf.Min(distance, Mathf.Max(0f, _motionHits[i].distance - .02f));
                 _body.MovePosition(_body.position + delta.normalized * distance);
                 yield return new WaitForFixedUpdate();

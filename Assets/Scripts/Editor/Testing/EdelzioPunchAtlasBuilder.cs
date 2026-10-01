@@ -7,7 +7,7 @@ namespace Game.Editor.Testing
     /// <summary>Reproducible slicing of the ImageGen source into the game's 64px combat cells.</summary>
     public static class EdelzioPunchAtlasBuilder
     {
-        private const string Output = "Assets/Resources/Varginha/EdelzioPunchV2.png";
+        private const string Output = "Assets/Resources/Varginha/EdelzioPunchV3.png";
         // Guard, anticipation, extension, contact, follow-through, return to guard.
         private static readonly int[][] Poses =
         {
@@ -19,16 +19,13 @@ namespace Game.Editor.Testing
         [MenuItem("Varginha/Art/Rebuild Edelzio Punch Atlas")]
         public static void Build()
         {
-            BuildFurniture();
-            BuildHouseProps();
-            BuildWalk("Assets/ArtSource/EdelzioCleanSourceV2.png", "Assets/Resources/Varginha/Allies/Edelzio.png");
-            BuildWalk("Assets/ArtSource/PadreFabioSourceV1.png", "Assets/Resources/Varginha/PadreFabioV1.png");
+            // The current idle is the identity authority: rebuilding combat must never overwrite it.
             var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             var baseline = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             var atlas = new Texture2D(18 * 64, 4 * 64, TextureFormat.RGBA32, false);
             try
             {
-                source.LoadImage(File.ReadAllBytes("Assets/ArtSource/EdelzioPunchSourceV2.png"));
+                source.LoadImage(File.ReadAllBytes("Assets/ArtSource/EdelzioPunchSourceV4.png"));
                 baseline.LoadImage(File.ReadAllBytes("Assets/Resources/Varginha/Allies/Edelzio.png"));
                 var pixels = new Color32[atlas.width * atlas.height];
                 for (int direction = 0; direction < 4; direction++)
@@ -76,8 +73,22 @@ namespace Game.Editor.Testing
                 }
                 atlas.SetPixels32(pixels);
                 atlas.Apply();
+                Game.Varginha.VarginhaReferenceSprites.ClearCache();
+                var walk = Game.Varginha.VarginhaReferenceSprites.EdelzioWalkFrames();
+                for (int direction = 0; direction < 4; direction++)
+                for (int frame = 0; frame < 18; frame++)
+                {
+                    var pose = atlas.GetPixels(frame * 64, (3 - direction) * 64, 64, 64);
+                    if (frame % 6 == 0 || frame % 6 == 5)
+                        pose = walk[direction][0].texture.GetPixels((int)walk[direction][0].rect.x, (int)walk[direction][0].rect.y, 64, 64);
+                    else Game.Varginha.VarginhaEdelzioCombatMatch.Apply(pose, walk[direction][0], direction);
+                    for (int i = 0; i < pose.Length; i++) if (pose[i].a < .5f) pose[i] = Color.clear;
+                    atlas.SetPixels(frame * 64, (3 - direction) * 64, 64, 64, pose);
+                }
+                atlas.Apply();
                 WritePng(Output, atlas);
-                AssetDatabase.ImportAsset(Output, ImportAssetOptions.ForceUpdate);
+                AssetDatabase.ImportAsset(Output, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
+                Game.Varginha.VarginhaReferenceSprites.ClearCache();
                 Debug.Log("Edelzio punch atlas built: 72 aligned frames, " + Output);
             }
             finally

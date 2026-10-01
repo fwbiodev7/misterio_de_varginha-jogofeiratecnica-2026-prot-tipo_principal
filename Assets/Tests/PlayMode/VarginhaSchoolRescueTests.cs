@@ -112,7 +112,13 @@ namespace Game.Tests.PlayMode
                 go.transform.position = VarginhaSchoolClassroomLayout.StudentPosition(i);
                 go.AddComponent<SpriteRenderer>();
                 students[i] = go.AddComponent<VarginhaStudentHostage>();
+                students[i].Configure(VarginhaPhase2Controller.StudentNames[i], Color.white);
+                var school = _root.transform.Find("Escola_3_Sistema_Ambiente");
+                var seat = school.Find("CenarioV2_Cadeira_" + VarginhaSchoolClassroomLayout.StudentChairIndex(i)).GetComponent<VarginhaClassroomSeat>();
+                Assert.IsTrue(seat.SitStudent(students[i]));
                 students[i].ReleaseTo(car, i, leader);
+                Assert.IsFalse(go.GetComponent<VarginhaStudentAnimation>().IsSeated);
+                Assert.IsFalse(seat.IsOccupied);
                 positions[i] = go.transform.position;
             }
             float deadline = Time.realtimeSinceStartup + 25;

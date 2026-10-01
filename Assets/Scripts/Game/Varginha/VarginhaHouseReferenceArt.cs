@@ -81,8 +81,12 @@ namespace Game.Varginha
                 {
                     string motif = Motif(id);
                     replacement = Prop(id);
-                    if (id.StartsWith("CoffeeTable_")) replacement = Load("Props", "House512_DiningTable");
-                    if (motif == "Sofa") replacement = Load("SofaNorth", "House512_SofaNorth");
+                    if (id == "CoffeeTable_Living") replacement = Load("Furniture", "House512_CoffeeTable");
+                    else if (id.StartsWith("Balcao_Sala") || id == "CoffeeTable_Kitchen") replacement = Load("Props", "House512_DiningTable");
+                    else if (id.StartsWith("CoffeeTable_")) replacement = Load("Furniture", "House512_CoffeeTable");
+                    if (motif == "Sofa") replacement = Load("Furniture", "House512_Sofa");
+                    if (id.StartsWith("Banco_Balcao_") || id.StartsWith("Cadeira_Sala_") || id.StartsWith("Cadeira_Mesa_"))
+                        replacement = Load("Props", "House512_DiningChair");
                     if (id == "Chair_Office") replacement = Load("Chairs", "House512_ChairNorth");
                     if (id == "Cadeira_Cafe") replacement = Load("Chairs", "House512_ChairEast");
                     if (replacement == null && motif != null) replacement = Load("Furniture", "House512_" + motif);

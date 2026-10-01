@@ -63,6 +63,7 @@ namespace Game.Varginha
             {
                 var collider = hit.collider;
                 if (collider == null || collider.isTrigger || collider == player || collider == seat) continue;
+                if (player != null && Physics2D.GetIgnoreCollision(player, collider)) continue;
                 if (collider.GetComponentInParent<EdelzioTopDownController>() != null) continue;
                 if (collider.attachedRigidbody != null && collider.attachedRigidbody.bodyType != RigidbodyType2D.Static) continue;
                 return false;

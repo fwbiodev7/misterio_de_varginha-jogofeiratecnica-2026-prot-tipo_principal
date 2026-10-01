@@ -363,6 +363,13 @@ namespace Game.Varginha
                     created?.GetComponent<VarginhaStudentHostage>()?.EnsurePresentation(8 + i);
                 }
             }
+            var classroom = GameObject.Find("Escola_3_Sistema_Ambiente")?.transform;
+            if (classroom != null)
+                foreach (var student in studentsParent.GetComponentsInChildren<VarginhaStudentHostage>())
+                    for (int i = 0; i < VarginhaPhase2Controller.StudentNames.Length; i++)
+                        if (!student.IsReleased && student.StudentName == VarginhaPhase2Controller.StudentNames[i])
+                            classroom.Find("CenarioV2_Cadeira_" + VarginhaSchoolClassroomLayout.StudentChairIndex(i))
+                                ?.GetComponent<VarginhaClassroomSeat>()?.SitStudent(student);
         }
 
         private static void CreateManagers(Transform root)

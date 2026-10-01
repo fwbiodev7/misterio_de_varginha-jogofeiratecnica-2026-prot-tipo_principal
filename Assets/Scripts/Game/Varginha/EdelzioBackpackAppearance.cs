@@ -10,8 +10,8 @@ namespace Game.Varginha
         private readonly Dictionary<(Sprite, int), Sprite> _frames = new();
         private static Color[] _packPixels;
         private static int _packWidth, _packHeight;
-        private static readonly Color32 Strap = new(76, 53, 32, 255);
-        private static readonly Color32 Brass = new(166, 126, 52, 255);
+        private static readonly Color32 Strap = new(52, 54, 58, 255);
+        private static readonly Color32 Brass = new(180, 185, 192, 255);
 
         private static bool LoadPack()
         {
@@ -49,11 +49,24 @@ namespace Game.Varginha
             var original = new Color32[source.Length];
             for (int i = 0; i < source.Length; i++) original[i] = source[i];
             var pixels = (Color32[])original.Clone();
+            // A punching arm changes the shirt's bounding box, not the backpack's size.
+            // Anchor combat equipment to the same torso used by the directional idle.
+            var anchor = original;
+            if (body.name.StartsWith("Edelzio_Attack_"))
+            {
+                var idle = VarginhaReferenceSprites.EdelzioWalkFrames()?[direction][0];
+                if (idle != null && idle.rect.size == body.rect.size)
+                {
+                    var idlePixels = idle.texture.GetPixels((int)idle.rect.x, (int)idle.rect.y, width, height);
+                    anchor = new Color32[idlePixels.Length];
+                    for (int i = 0; i < anchor.Length; i++) anchor[i] = idlePixels[i];
+                }
+            }
             int left = width, right = -1, bottom = height, top = -1;
             for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
             {
-                if (!IsShirt(original[y * width + x])) continue;
+                if (!IsShirt(anchor[y * width + x])) continue;
                 left = Mathf.Min(left, x); right = Mathf.Max(right, x);
                 bottom = Mathf.Min(bottom, y); top = Mathf.Max(top, y);
             }
@@ -71,8 +84,8 @@ namespace Game.Varginha
                 else
                 {
                     bool rear = direction == 3;
-                    int packWidth = Mathf.Max(3, Mathf.RoundToInt(shirtWidth * (rear ? .82f : .52f)));
-                    int packHeight = Mathf.Max(4, Mathf.Min(Mathf.RoundToInt(shirtWidth * .94f), shirtHeight + 3));
+                    int packWidth = Mathf.Max(3, Mathf.RoundToInt(shirtWidth * (rear ? .80f : .48f)));
+                    int packHeight = Mathf.Max(4, Mathf.Min(Mathf.RoundToInt(shirtWidth * .88f), shirtHeight + (rear ? 1 : 2)));
                     int x0 = rear ? (left + right - packWidth + 1) / 2
                         : direction == 1 ? right - packWidth / 2 : left - packWidth / 2;
                     int y0 = top + 1 - packHeight;

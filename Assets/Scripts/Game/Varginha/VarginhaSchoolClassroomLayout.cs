@@ -8,6 +8,9 @@ namespace Game.Varginha
     {
         public const string Marker = "CenarioVisual_Escola_Laboratorio20261001_V2";
         private static readonly Dictionary<string, Sprite> Sprites = new();
+        private static readonly float[] Columns = { -5.85f, -3.05f, 3.75f, 6.55f };
+        public static int StudentChairIndex(int index) => index / 3 * 4 + (index % 3 == 0 ? 0 : index % 3 + 1);
+        public static Vector3 ChairPosition(int index) => new(Columns[index % 4], 3.15f - index / 4 * 2.4f - .70f);
         public static Vector3 StudentPosition(int index) => new(-4.45f + index % 3 * 4.8f, 1.55f - index / 3 * 2.65f);
         public static readonly Vector3[] EnemyPositions =
         {
@@ -37,7 +40,7 @@ namespace Game.Varginha
             Wall(school, "CenarioV2_Parede_Sul", new(.5f, -5.7f), new(16.4f, .7f));
             Wall(school, "CenarioV2_Parede_Oeste", new(-7.7f, 0), new(.7f, 11.4f));
             Wall(school, "CenarioV2_Parede_Leste", new(8.7f, 0), new(.7f, 11.4f));
-            float[] columns = { -5.85f, -3.05f, 3.75f, 6.55f };
+            float[] columns = Columns;
             for (int row = 0; row < 3; row++)
             for (int column = 0; column < columns.Length; column++)
             {
@@ -47,9 +50,10 @@ namespace Game.Varginha
                 var table = Art(school, "CenarioV2_Carteira_" + index, computer ? "ComputerDesk" : "Desk",
                     position + Vector2.up * (computer ? .16f : 0), new(1.72f, computer ? 1.35f : .95f), 3);
                 Blocker(table, new(1.55f, .4f), new(0, -.15f - (computer ? .16f : 0)));
-                var chair = Art(school, "CenarioV2_Cadeira_" + index, "Chair", position + Vector2.down * .86f,
+                var chair = Art(school, "CenarioV2_Cadeira_" + index, "Chair", ChairPosition(index),
                     new(.76f, .9f), 3);
                 Blocker(chair, new(.44f, .32f), new(0, -.1f));
+                ConfigureChair(chair);
             }
             for (int i = 0; i < 3; i++)
                 Art(school, "CenarioV2_Janela_" + i, "Window", new(-5.25f + i * 3.15f, 5.2f), new(2.7f, .92f), 4);
@@ -75,19 +79,62 @@ namespace Game.Varginha
                 if (id.StartsWith("CenarioV2_Carteira_"))
                 {
                     int index = int.Parse(id.Substring("CenarioV2_Carteira_".Length));
-                    ApplySprite(renderer, index % 4 == 1 ? "Desk" : "ComputerDesk");
+                    bool computer = index % 4 != 1;
+                    Fit(renderer, Load(computer ? "ComputerDesk" : "Desk"), new(1.72f, computer ? 1.35f : .95f));
+                    SetBlocker(renderer, new(1.55f, .4f), new(0, -.15f - (computer ? .16f : 0)));
                 }
-                else if (id.StartsWith("CenarioV2_Cadeira_")) ApplySprite(renderer, "Chair");
+                else if (id.StartsWith("CenarioV2_Cadeira_"))
+                {
+                    int index = int.Parse(id.Substring("CenarioV2_Cadeira_".Length));
+                    renderer.transform.position = ChairPosition(index);
+                    Fit(renderer, Load("Chair"), new(.76f, .9f));
+                    SetBlocker(renderer, new(.44f, .32f), new(0, -.1f));
+                    ConfigureChair(renderer);
+                }
                 else if (id.StartsWith("CenarioV2_Janela_")) ApplySprite(renderer, "Window");
                 else if (id == "CenarioV2_Lousa_Direita") ApplySprite(renderer, "Whiteboard");
                 else if (id == "CenarioV2_Projetor") ApplySprite(renderer, "Projector");
                 else if (id == "CenarioV2_Mesa_Professor") ApplySprite(renderer, "TeacherDesk");
                 else if (id == "CenarioV2_Estante_Informatica") ApplySprite(renderer, "Shelf");
             }
+            VarginhaSchoolNavigation.Invalidate();
+        }
+
+        private static void ConfigureChair(SpriteRenderer renderer)
+        {
+            var seat = renderer.GetComponent<VarginhaClassroomSeat>();
+            if (seat == null) seat = renderer.gameObject.AddComponent<VarginhaClassroomSeat>();
+            var prop = renderer.GetComponent<InteractableProp>();
+            if (prop == null) prop = renderer.gameObject.AddComponent<InteractableProp>();
+            prop.Configure(PropType.ClassroomSeat, "Cadeira do computador", "[E] Sentar / levantar", true);
+        }
+
+        private static void Fit(SpriteRenderer renderer, Sprite sprite, Vector2 size)
+        {
+            if (sprite == null) return;
+            renderer.sprite = sprite;
+            renderer.drawMode = SpriteDrawMode.Simple;
+            renderer.transform.localScale = new(size.x / sprite.bounds.size.x, size.y / sprite.bounds.size.y, 1);
+            renderer.color = Color.white;
+        }
+
+        private static void SetBlocker(SpriteRenderer renderer, Vector2 size, Vector2 offset)
+        {
+            var collider = renderer.GetComponent<BoxCollider2D>();
+            if (collider == null) collider = renderer.gameObject.AddComponent<BoxCollider2D>();
+            var scale = renderer.transform.lossyScale;
+            collider.size = new(size.x / scale.x, size.y / scale.y);
+            collider.offset = new(offset.x / scale.x, offset.y / scale.y);
+            collider.isTrigger = false;
         }
 
         private static Sprite Load(string motif)
         {
+            if (motif == "Chair")
+            {
+                var rear = Resources.Load<Sprite>("Varginha/SchoolChairRearV1");
+                if (rear != null) return rear;
+            }
             if (Sprites.TryGetValue(motif, out var cached) && cached != null) return cached;
             foreach (var sprite in Resources.LoadAll<Sprite>("Varginha/SchoolComputerLab")) Sprites[sprite.name] = sprite;
             return Sprites.TryGetValue(motif, out var found) ? found : null;

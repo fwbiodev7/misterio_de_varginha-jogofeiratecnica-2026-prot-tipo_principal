@@ -14,7 +14,8 @@ namespace Game.Varginha
         FuseBox,        // Caixa de força / eletricidade
         PadreFabio,     // Padre Fábio e o Livro do Tombo Secreto
         SecretTome,     // Livro do Tombo da diocese
-        ChurchSeat
+        ChurchSeat,
+        ClassroomSeat
     }
 
     /// <summary>
@@ -36,7 +37,8 @@ namespace Game.Varginha
         public PropType Type => propType;
         public string PropName => propName;
         public string InspectMessage => inspectMessage;
-        public bool CanInteract => !_hasInteracted || canInteractMultipleTimes;
+        public bool CanInteract => (!_hasInteracted || canInteractMultipleTimes) &&
+            (propType != PropType.ClassroomSeat || GetComponent<VarginhaClassroomSeat>()?.IsOccupied != true);
 
         public event Action<EdelzioTopDownController> OnInteracted;
 
@@ -228,6 +230,7 @@ namespace Game.Varginha
                     GetHud()?.ShowDialogue("Edelzio", message);
                     break;
 
+                case PropType.ClassroomSeat:
                 case PropType.ChurchSeat:
                     _hasInteracted = false;
                     var seatAction = edelzio.GetComponent<VarginhaPlayerActionAnimation>();

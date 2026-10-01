@@ -60,12 +60,7 @@ namespace Game.Varginha
             Wall(root, "KitchenNorthWest", 1.25f, -1.25f, 2.5f, .65f, "WallFace");
             Wall(root, "KitchenNorthEast", 7.75f, -1.25f, 2.5f, .65f, "WallFace");
             Wall(root, "KitchenSide", 0, -3.625f, .28f, 4.75f, "WallEdge");
-            Visual(root, "BedroomDoor", VarginhaHouseReferenceArt.ArchitectureSprite("DoorOpenFront"),
-                new Vector2(-3.5f, .05f), new Vector2(2, 1.35f), 4);
-            Visual(root, "BedroomSideDoor", VarginhaHouseReferenceArt.ArchitectureSprite("DoorOpenSide"),
-                new Vector2(-2, 1.2f), new Vector2(.75f, 1.5f), 4);
-            Visual(root, "OfficeSideDoor", VarginhaHouseReferenceArt.ArchitectureSprite("DoorOpenSide"),
-                new Vector2(-2, -3), new Vector2(.75f, 1.7f), 4);
+            // Passagens abertas e limpas entre os cômodos, sem portas obstruindo a visão.
             Visual(root, "KitchenThreshold", VarginhaHouseReferenceArt.ArchitectureSprite("WallCap"),
                 new Vector2(4.5f, -1.25f), new Vector2(4, .12f), 1);
             Visual(root, "YardDoor", VarginhaHouseReferenceArt.ArchitectureSprite("DoorOpenSide"),

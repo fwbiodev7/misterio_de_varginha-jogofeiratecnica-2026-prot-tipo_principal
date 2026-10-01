@@ -236,7 +236,8 @@ namespace Game.Varginha
             Part(decor, "Memorias_1996", "Noticeboard", new Vector2(-5.5f, -.1f), new Vector2(1.5f, .7f), 4);
             Part(decor, "Livros_Quarto", "Bookshelf", new Vector2(-3.1f, 4.25f), new Vector2(1.68f, 2.07f), 3);
             Part(decor, "Aparador_Arquivo", "Dresser", new Vector2(-3f, -5.4f), new Vector2(1.9f, 1.55f), 3);
-            Part(decor, "Tapete_Escritorio", "Rug", new Vector2(-5f, -3.9f), new Vector2(4.2f, 3.1f), 1);
+            // Tapete verde com borda dourada atrás da escrivaninha (conforme Imagem 4)
+            Part(decor, "Tapete_Escritorio", "Rug", new Vector2(-5f, -2.55f), new Vector2(3.6f, 2.3f), 1);
             var coffeeChair = Part(decor, "Cadeira_Cafe", "Chair", new Vector2(3.125f, -3f), new Vector2(.85f, 1.2f), 3);
             coffeeChair.gameObject.AddComponent<BoxCollider2D>().size = new Vector2(.6f, .65f);
             Part(decor, "Samambaia_Sala", "Plant", new Vector2(7.45f, 1.6f), new Vector2(.6f, .95f), 3);
@@ -261,6 +262,11 @@ namespace Game.Varginha
             if (parent == null) return;
             foreach (var renderer in parent.GetComponentsInChildren<SpriteRenderer>(true))
             {
+                // The computer lab has its own art and world-space footprints. The global
+                // legacy furniture pass must not replace its sprites or reset their scale.
+                if (renderer.transform.parent != null &&
+                    renderer.transform.parent.Find(VarginhaSchoolClassroomLayout.Marker) != null &&
+                    (renderer.name.StartsWith("CenarioV2_Carteira_") || renderer.name.StartsWith("CenarioV2_Cadeira_"))) continue;
                 string id = renderer.name;
                 if (id.StartsWith("CenarioV2_Carteira_")) id = "SchoolDesk";
                 else if (id.StartsWith("CenarioV2_Cadeira_")) id = "SchoolChair";
@@ -428,7 +434,8 @@ namespace Game.Varginha
             Part(decor, "Cadeira_Sala_Norte_1", "Chair", new Vector2(6.55f, 2.55f), new Vector2(.68f, .76f), 3);
             Part(decor, "Cadeira_Sala_Norte_2", "Chair", new Vector2(6.55f, .75f), new Vector2(.68f, .76f), 3);
             PixelProp(decor, "Documento_Mesa_Norte", "Doc_Historical", new Vector2(6.3f, 1.65f), new Vector2(.32f, .32f), Color.white, 4);
-            PixelProp(decor, "Caneca_Mesa_Norte", "Coffee_Cup", new Vector2(6.9f, 1.65f), new Vector2(.22f, .22f), Color.white, 4);
+            PixelProp(decor, "Caneca_Mesa_Norte", "Coffee_Cup", new Vector2(6.82f, 1.65f), new Vector2(.22f, .22f), Color.white, 4);
+            PixelProp(decor, "Vaso_Mesa_Norte", "Plant", new Vector2(7.32f, 1.65f), new Vector2(.35f, .48f), Color.white, 4);
 
             Part(decor, "Mesa_Sala_Sul", "CoffeeTable", new Vector2(6.5f, -2.25f), new Vector2(2.25f, 1.05f), 3);
             Part(decor, "Cadeira_Sala_Sul_1", "Chair", new Vector2(6.5f, -1.35f), new Vector2(.68f, .76f), 3);

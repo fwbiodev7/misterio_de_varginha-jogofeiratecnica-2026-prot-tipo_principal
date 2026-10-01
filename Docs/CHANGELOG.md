@@ -1,5 +1,17 @@
 # Histórico de atualizações
 
+## 01/10/2026 — mochila cinza, comportamento aprimorado, passagens abertas e layout de móveis
+
+- Mochila cinza grafite elegante: recolorização em `Props.png` (`House512_Backpack`) e no sistema de camadas (`EdelzioBackpackAppearance`), com alças frontais cinza chumbo e fivelas metálicas prateadas.
+- Relação da mochila com o jogador:
+  * Proporções anatômicas ajustadas no tronco: alinhamento abaixo da gola/ombros sem sobrepor a cabeça nem invadir as pernas.
+  * Animação de coleta (`BackpackPickupAnimation`) polida: arco suave em direção às costas, escala proporcional e desativação imediata do prop no chão após equipar.
+- Remoção de portas internas: retirados batentes e folhas de portas entre quarto, escritório e salas (`BedroomDoor`, `BedroomSideDoor`, `OfficeSideDoor`), deixando passagens abertas, limpas e fluidas como nas referências.
+- Organização dos móveis conforme referências fotográficas:
+  * Sala de estar: sofá verde voltado para o sul (`House512_Sofa`), mesa oval torneada sobre o tapete central (`House512_CoffeeTable`), bancada comprida com 3 xícaras de café e 3 cadeiras azuis encaixadas, e mesinha lateral com documento histórico, xícara e vasinho de samambaia.
+  * Escritório: escrivaninha de madeira com rádio antigo à esquerda, notebook no centro e abajur à direita, com tapete verde posicionado atrás da mesa.
+- Prévias geradas em `Docs/Previews/EdelzioMochilaCinza.png` e `Docs/Previews/ComposicaoSalaEEscritorio.png`.
+
 ## 30/09/2026 — casa de 512px, quintal e interações do Edelzio
 
 - Casa da fase 1 com planta ampliada, divisórias de quarto/escritório/cozinha, paredes de reboco e madeira escura e passagens reais para o quintal.

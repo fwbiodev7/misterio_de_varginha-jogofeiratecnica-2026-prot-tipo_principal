@@ -44,9 +44,9 @@ namespace Game.Varginha
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / pickupDuration);
-                float arc = Mathf.Sin(t * Mathf.PI) * .45f;
-                transform.position = Vector3.Lerp(start, player.transform.position, t) + Vector3.up * arc;
-                transform.localScale = Vector3.Lerp(originalScale, originalScale * .45f, t);
+                float arc = Mathf.Sin(t * Mathf.PI) * .40f;
+                transform.position = Vector3.Lerp(start, player.transform.position + Vector3.up * .15f, t) + Vector3.up * arc;
+                transform.localScale = Vector3.Lerp(originalScale, originalScale * .65f, t);
                 yield return null;
             }
 
@@ -55,6 +55,7 @@ namespace Game.Varginha
             player.EquipBackpack();
             player.SetInputLocked(false);
             _collectingPlayer = null;
+            gameObject.SetActive(false);
         }
 
         private void OnDisable()
