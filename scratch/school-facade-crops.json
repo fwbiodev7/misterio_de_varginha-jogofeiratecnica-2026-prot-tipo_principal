@@ -1,0 +1,28 @@
+{
+    "frames": [
+        {
+            "source": "",
+            "sheet": "",
+            "direction": 0,
+            "x": 8,
+            "y": 24,
+            "width": 270,
+            "height": 125,
+            "pivotX": 0.0,
+            "pivotY": 0.0,
+            "pixelsPerUnit": 0.0
+        },
+        {
+            "source": "",
+            "sheet": "",
+            "direction": 0,
+            "x": 325,
+            "y": 24,
+            "width": 210,
+            "height": 125,
+            "pivotX": 0.0,
+            "pivotY": 0.0,
+            "pixelsPerUnit": 0.0
+        }
+    ]
+}

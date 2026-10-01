@@ -1,0 +1,48 @@
+{
+  "status": "completed",
+  "duration": 1.96,
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Game.Tests.EditMode.VarginhaWorldGeometryTests.FurnitureChangesDepthWhenPlayerWalksAroundItAndAttachmentsStayTogether",
+      "Status": "Passed",
+      "Duration": 0.035756,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.EditMode.VarginhaWorldGeometryTests.IndustrialFacadeIsPackagedAndLeavesTheSchoolEntranceClear",
+      "Status": "Passed",
+      "Duration": 1.5547247,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.EditMode.VarginhaWorldGeometryTests.PostsStayBehindPlayerAndOnlyTheirBaseBlocksWalking",
+      "Status": "Passed",
+      "Duration": 0.0038259,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.EditMode.VarginhaWorldGeometryTests.SolidPropsInHouseSchoolAndChurchReceiveFootprints",
+      "Status": "Passed",
+      "Duration": 0.0031991,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.EditMode.VarginhaWorldGeometryTests.TableAccessoriesUseTheTablesDepthAndMigrationIsIdempotent",
+      "Status": "Passed",
+      "Duration": 0.0018752,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "status": "completed",
+  "duration": 1.61,
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ActionsKeepNewAppearanceAndColliderSize",
+      "Status": "Passed",
+      "Duration": 0.2140033,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ActionsKeepNewAppearanceAndColliderSize",
+      "Status": "Passed",
+      "Duration": 0.2140033,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.BackpackStateControlsIntegratedAppearanceInEveryDirection",
+      "Status": "Passed",
+      "Duration": 0.5388395,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.BackpackStateControlsIntegratedAppearanceInEveryDirection",
+      "Status": "Passed",
+      "Duration": 0.5388395,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.CombatPosesKeepEquipmentWithoutChangingGeometry",
+      "Status": "Passed",
+      "Duration": 0.048046,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.CombatPosesKeepEquipmentWithoutChangingGeometry",
+      "Status": "Passed",
+      "Duration": 0.048046,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.EquippingWithDestroyedCachedFramesKeepsEdelzioVisible",
+      "Status": "Passed",
+      "Duration": 0.065701,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.EquippingWithDestroyedCachedFramesKeepsEdelzioVisible",
+      "Status": "Passed",
+      "Duration": 0.065701,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.HotbarReflectsActualCollectedItems",
+      "Status": "Passed",
+      "Duration": 0.0012534,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.HotbarReflectsActualCollectedItems",
+      "Status": "Passed",
+      "Duration": 0.0012534,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.LockStopsResidualMotion",
+      "Status": "Passed",
+      "Duration": 0.1440607,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.LockStopsResidualMotion",
+      "Status": "Passed",
+      "Duration": 0.1440607,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ReferenceArtCoversDirectionsWeaponsAndPortrait",
+      "Status": "Passed",
+      "Duration": 0.3632415,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Game.Tests.PlayMode.EdelzioPresentationTests.ReferenceArtCoversDirectionsWeaponsAndPortrait",
+      "Status": "Passed",
+      "Duration": 0.3632415,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

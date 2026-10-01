@@ -1,0 +1,78 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "VarginhaVisualPolishTests",
+      "async_tests": "false"
+    },
+    "result": {
+      "Summary": {
+        "Total": 6,
+        "Passed": 6,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.ClearCombatPoseClearsAttackPose",
+          "Status": "Passed",
+          "Duration": 0.0277962,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.ContactFramesDoNotRetainTheIdleHandsAtTheHips",
+          "Status": "Passed",
+          "Duration": 0.0370553,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.EveryAttackHasDedicatedWindupContactAndRecoveryWithStableGeometry",
+          "Status": "Passed",
+          "Duration": 0.0839514,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.EveryStrikeKeepsExactIdleHeadFeetAndReturnPose",
+          "Status": "Passed",
+          "Duration": 1.716553,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.ProtagonistIsLargerWithoutMovingHisFootBaseline",
+          "Status": "Passed",
+          "Duration": 0.0031176,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaVisualPolishTests.RenderedCombatHeadMatchesWholeIdleHeadWithAndWithoutBackpack",
+          "Status": "Passed",
+          "Duration": 0.8749057,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 5.7,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: VarginhaVisualPolishTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Usuario\\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-30-10-00-38"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "VarginhaBackpackRemasterTests",
+      "async_tests": "false"
+    },
+    "result": {
+      "Summary": {
+        "Total": 8,
+        "Passed": 8,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.AllEightRemasteredViewsAreAvailableInPackagedResources",
+          "Status": "Passed",
+          "Duration": 0.027143,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.AuthoredSideEquipmentHasNoDetachedComponents",
+          "Status": "Passed",
+          "Duration": 0.0125242,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.DestroyedCachedEquipmentFramesAreRecreatedInsteadOfMakingThePlayerInvisible",
+          "Status": "Passed",
+          "Duration": 0.0119577,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.EveryCurrentWalkPunchAndInteractionHasAnAuthoredEquippedFrame",
+          "Status": "Passed",
+          "Duration": 2.5545036,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.ManuallyEditedPunchPreviewMatchesThePackagedGameFrames",
+          "Status": "Passed",
+          "Duration": 0.120648,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.MovementSelectsAllEightEquipmentDirections",
+          "Status": "Passed",
+          "Duration": 0.0004443,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.PunchingDoesNotEnlargeOrMoveTheBackpackAndBodyGeometryStaysIntact",
+          "Status": "Passed",
+          "Duration": 1.700493,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Game.Tests.EditMode.VarginhaBackpackRemasterTests.StrapsStayOnTheAuthoredTorsoAndKeepTheHeadAndFeetVisible",
+          "Status": "Passed",
+          "Duration": 0.0470178,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 8.85,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: VarginhaBackpackRemasterTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Usuario\\misterio_de_varginha-jogofeiratecnica-2026-prot-tipo_principal-2026-09-30-10-00-38"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
