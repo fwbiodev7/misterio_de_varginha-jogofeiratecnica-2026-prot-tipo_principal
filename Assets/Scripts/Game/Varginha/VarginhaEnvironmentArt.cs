@@ -10,7 +10,7 @@ namespace Game.Varginha
     {
         private const string SchoolName = "Escola_3_Sistema_Ambiente";
         private const string DioceseName = "Igreja_Diocese_Ato_III";
-        private const string SchoolMarker = "CenarioVisual_Escola_V2";
+        private const string SchoolMarker = VarginhaSchoolClassroomLayout.Marker;
         private const string DioceseMarker = "CenarioVisual_Diocese_V2";
 
         // Uma única referência evita que o marcador, o carro de runtime e o
@@ -32,6 +32,7 @@ namespace Game.Varginha
             EnsureFuscaParking(school);
             VarginhaSchoolExterior.Ensure(school);
             VarginhaEnvironmentPolish.EnsureSchool(school);
+            VarginhaOutdoorNight.EnsureSchool(school);
             return school;
         }
 
@@ -54,83 +55,11 @@ namespace Game.Varginha
         public static void BuildSchool(Transform parent)
         {
             if (parent == null) return;
-            if (parent.Find(SchoolMarker) != null)
-            {
-                EnsureFuscaParking(parent);
-                VarginhaSchoolExterior.Ensure(parent);
-                VarginhaEnvironmentPolish.EnsureSchool(parent);
-                return;
-            }
-            var marker = new GameObject(SchoolMarker).transform;
-            marker.SetParent(parent, false);
-
-            Color floor = new(.57f, .54f, .46f);
-            Color wall = new(.18f, .24f, .29f);
-            for (int y = -5; y < 6; y++)
-            for (int x = -7; x < 9; x++)
-                CreateSprite(parent, "CenarioV2_Piso_Escola_" + x + "_" + y,
-                    new Vector3(x + .5f, y + .5f, 0f), Vector3.one,
-                    "SchoolFloor", ((x + y) & 1) == 0 ? floor : Color.Lerp(floor, Color.white, .045f), 0);
-
-            CreateWall(parent, "CenarioV2_Parede_Norte", new Vector3(0f, 5.7f), new Vector3(16f, .7f, 1f), wall);
-            CreateWall(parent, "CenarioV2_Parede_Sul", new Vector3(0f, -5.7f), new Vector3(16f, .7f, 1f), wall);
-            CreateWall(parent, "CenarioV2_Parede_Oeste", new Vector3(-7.7f, 0f), new Vector3(.7f, 11f, 1f), wall);
-            CreateWall(parent, "CenarioV2_Parede_Leste", new Vector3(8.7f, 0f), new Vector3(.7f, 11f, 1f), wall);
-            CreateWall(parent, "CenarioV2_Divisoria_Sala", new Vector3(3.7f, 3.3f), new Vector3(7.5f, .45f, 1f), wall);
-            CreateWall(parent, "CenarioV2_Divisoria_Fundo", new Vector3(-4.1f, -3.4f), new Vector3(7.2f, .45f, 1f), wall);
-
-            // A vaga externa compartilha a referência usada pela chegada e pelo resgate.
-            CreateSprite(parent, "CenarioV2_Vaga_Fusca", FuscaParkingPosition,
-                FuscaParkingSize, "FuscaParking", new Color(.22f, .34f, .39f), 1);
-
-            CreateSprite(parent, "CenarioV2_Lousa_Esquerda", new Vector3(-5.3f, 4.72f), new Vector3(2.25f, .56f, 1f),
-                "SchoolBlackboard", new Color(.14f, .29f, .28f), 2);
-            CreateSprite(parent, "CenarioV2_Lousa_Direita", new Vector3(5.55f, 4.72f), new Vector3(2.15f, .56f, 1f),
-                "SchoolBlackboard", new Color(.12f, .27f, .25f), 2);
-            CreateSprite(parent, "CenarioV2_Lousa_Fundo", new Vector3(-1.35f, -4.63f), new Vector3(2.1f, .5f, 1f),
-                "SchoolBlackboard", new Color(.14f, .29f, .28f), 2);
-
-            Vector3[] desks =
-            {
-                new(-5.5f, 3.55f), new(-3.25f, 3.55f), new(-5.5f, 2.35f), new(-3.25f, 2.35f),
-                new(4.25f, 3.45f), new(6.45f, 3.45f), new(4.25f, 2.25f), new(6.45f, 2.25f),
-                new(-5.55f, -4.45f), new(-3.25f, -4.45f), new(-.95f, -4.45f)
-            };
-            for (int i = 0; i < desks.Length; i++)
-            {
-                CreateSprite(parent, "CenarioV2_Carteira_" + i, desks[i], new Vector3(.88f, .62f, 1f),
-                    "SchoolDesk", new Color(.47f, .27f, .14f), 2);
-                CreateSprite(parent, "CenarioV2_Cadeira_" + i, desks[i] + Vector3.down * .47f, new Vector3(.42f, .36f, 1f),
-                    "SchoolChair", new Color(.28f, .20f, .17f), 2);
-            }
-
-            Vector3[] lockers = { new(2.4f, -4.7f), new(3.35f, -4.7f), new(4.3f, -4.7f), new(5.25f, -4.7f), new(6.2f, -4.7f) };
-            for (int i = 0; i < lockers.Length; i++)
-                CreateSprite(parent, "CenarioV2_Armario_" + i, lockers[i], new Vector3(.7f, 1.05f, 1f),
-                    "SchoolLocker", new Color(.30f, .42f, .49f), 2);
-
-            Vector3[] windows = { new(-3.8f, 5.27f), new(0f, 5.27f), new(3.7f, 5.27f) };
-            for (int i = 0; i < windows.Length; i++)
-            {
-                CreateSprite(parent, "CenarioV2_Janela_" + i, windows[i], new Vector3(1.15f, .42f, 1f),
-                    "SchoolWindow", new Color(.28f, .55f, .72f), 2);
-                CreateSprite(parent, "CenarioV2_Cortina_" + i, windows[i] + Vector3.left * .72f,
-                    new Vector3(.42f, .72f, 1f), "SchoolCurtain", new Color(.62f, .18f, .22f), 3);
-                CreateSprite(parent, "CenarioV2_Cortina_Dir_" + i, windows[i] + Vector3.right * .72f,
-                    new Vector3(.42f, .72f, 1f), "SchoolCurtain", new Color(.62f, .18f, .22f), 3);
-            }
-
-            CreateSprite(parent, "CenarioV2_Relógio", new Vector3(1.65f, 5.2f), Vector3.one * .48f,
-                "SchoolClock", new Color(.82f, .78f, .62f), 3);
-            CreateSprite(parent, "CenarioV2_Quadro_Mural", new Vector3(-6.5f, .9f), new Vector3(.55f, 1.45f, 1f),
-                "SchoolPoster", new Color(.74f, .48f, .18f), 3);
-            CreateSprite(parent, "CenarioV2_Quadro_Mural_2", new Vector3(7.85f, 1.3f), new Vector3(.55f, 1.45f, 1f),
-                "SchoolPoster", new Color(.24f, .52f, .64f), 3);
-            CreateSprite(parent, "CenarioV2_Saida", new Vector3(7.88f, 4.72f), new Vector3(.85f, .3f, 1f),
-                "SchoolExitSign", new Color(.24f, .75f, .42f), 4);
+            VarginhaSchoolClassroomLayout.Build(parent);
             EnsureFuscaParking(parent);
             VarginhaSchoolExterior.Ensure(parent);
             VarginhaEnvironmentPolish.EnsureSchool(parent);
+            VarginhaOutdoorNight.EnsureSchool(parent);
         }
 
         private static void EnsureFuscaParking(Transform parent)

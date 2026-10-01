@@ -388,17 +388,33 @@ namespace Game.Varginha
                 ?? Resources.Load<Texture2D>("Varginha/EdelzioAttackV1");
             if (texture != null)
             {
-                texture.filterMode = FilterMode.Point;
                 int cols = texture.width / 64;
+                var walking = EdelzioWalkFrames();
+                var retouched = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false)
+                {
+                    name = "Edelzio_Punch_Retouched",
+                    filterMode = FilterMode.Point,
+                    wrapMode = TextureWrapMode.Clamp
+                };
+                retouched.SetPixels(texture.GetPixels());
+                for (int direction = 0; direction < 4; direction++)
+                for (int frame = 0; frame < cols; frame++)
+                {
+                    var pixels = texture.GetPixels(frame * 64, (3 - direction) * 64, 64, 64);
+                    VarginhaEdelzioCombatAppearance.Apply(pixels, walking?[direction][0], direction);
+                    retouched.SetPixels(frame * 64, (3 - direction) * 64, 64, 64, pixels);
+                }
+                retouched.Apply(false, false);
                 _attack = new Sprite[4][];
                 for (int d = 0; d < 4; d++)
                 {
                     _attack[d] = new Sprite[cols];
                     for (int f = 0; f < cols; f++)
                     {
-                        float pivotY = (EdelzioFootAnchorPixels * (1f - EdelzioAttackVisualScale)
-                            + EdelzioAttackVisualScale * 64f * (.5f - (26f / 64f) * (1f - 1f / EdelzioVisualScale))) / 64f;
-                        _attack[d][f] = Sprite.Create(texture,
+                        float walkPivot = walking[d][0].pivot.y;
+                        float pivotY = (EdelzioFootAnchorPixels
+                            - (EdelzioFootAnchorPixels - walkPivot) / EdelzioAttackVisualScale) / 64f;
+                        _attack[d][f] = Sprite.Create(retouched,
                             new Rect(f * 64, (3 - d) * 64, 64, 64),
                             new Vector2(.5f, pivotY),
                             EdelzioPixelsPerUnit / EdelzioAttackVisualScale, 0, SpriteMeshType.FullRect);

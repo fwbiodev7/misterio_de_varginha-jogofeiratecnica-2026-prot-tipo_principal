@@ -14,6 +14,25 @@ namespace Game.Varginha
 
         public static void EnsureSchool(Transform school)
         {
+            if (school != null && school.Find(VarginhaSchoolClassroomLayout.Marker) != null)
+            {
+                VarginhaSchoolClassroomLayout.RefreshSprites(school);
+                if (!NeedsRefresh(school)) return;
+                RefreshSurfaces(school, true);
+                var classroomDecor = Root(school);
+                for (int i = 0; i < 3; i++)
+                {
+                    var window = school.Find("CenarioV2_Janela_" + i);
+                    var light = Part(classroomDecor, "Luz_Janela_" + i, "WindowLight",
+                        new Vector2(-5.25f + i * 3.15f, 4.2f), new Vector2(2.2f, 2.4f), 1);
+                    light.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    FitWindowBeam(window, light, Vector2.down, false);
+                }
+                Pool(classroomDecor, "Luz_Laboratorio", new Vector2(.5f, .5f), new Vector2(12, 8), .2f);
+                ContactShadows(school, classroomDecor);
+                VarginhaSoftLighting.Build(school, classroomDecor);
+                return;
+            }
             RefreshReferenceFurniture(school);
             AlignSchoolSeating(school);
             if (!NeedsRefresh(school)) return;
@@ -148,6 +167,7 @@ namespace Game.Varginha
         public static void EnsureHouse(Transform house)
         {
             if (house == null) return;
+            VarginhaOutdoorNight.EnsureHouse(house);
             bool forceRebuild = _houseBuildRequested;
             _houseBuildRequested = false;
             var scope = VarginhaHouseComposition.Scope(house);
@@ -196,7 +216,7 @@ namespace Game.Varginha
                     renderer.color = Color.white;
                 }
                 else if (renderer.name.StartsWith("Tree_")) renderer.color = new Color(.66f, .77f, .79f);
-                else if (renderer.name == "StreetLamp_Yard") Replace(renderer.transform, "StreetLamp", new Vector2(.62f, 2.25f));
+                else if (renderer.name == "StreetLamp_Yard") VarginhaOutdoorNight.RefreshHouseLamp(renderer);
                 else if (renderer.name.StartsWith("Driveway_"))
                     renderer.sprite = VarginhaPixelArtSprites.Create("Driveway_Stone", new Color(.30f, .32f, .32f));
             }

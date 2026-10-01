@@ -109,7 +109,7 @@ namespace Game.Tests.PlayMode
             {
                 var go = new GameObject("RescueStudent_" + i);
                 go.transform.SetParent(_root.transform);
-                go.transform.position = new Vector3(-2.2f + i % 3 * 2.2f, 1.8f - i / 3 * 1.8f);
+                go.transform.position = VarginhaSchoolClassroomLayout.StudentPosition(i);
                 go.AddComponent<SpriteRenderer>();
                 students[i] = go.AddComponent<VarginhaStudentHostage>();
                 students[i].ReleaseTo(car, i, leader);

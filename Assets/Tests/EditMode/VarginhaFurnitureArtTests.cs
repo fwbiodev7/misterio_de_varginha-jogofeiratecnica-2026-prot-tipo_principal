@@ -87,25 +87,23 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
-        public void SchoolFurnitureClearsPartitionAndChairsStayPaired()
+        public void OpenClassroomChairsStayPairedAndWhiteboardClearsDesks()
         {
             var root = new GameObject("SchoolCompositionTest");
             try
             {
                 var school = VarginhaEnvironmentArt.EnsureSchool(root.transform);
-                var wall = school.Find("CenarioV2_Divisoria_Sala").GetComponent<SpriteRenderer>().bounds;
-                foreach (int index in new[] { 4, 5 })
+                Assert.IsNull(school.Find("CenarioV2_Divisoria_Sala"));
+                Assert.IsNull(school.Find("CenarioV2_Divisoria_Fundo"));
+                for (int index = 0; index < 12; index++)
                 {
                     var desk = school.Find("CenarioV2_Carteira_" + index).GetComponent<SpriteRenderer>();
                     var chair = school.Find("CenarioV2_Cadeira_" + index).GetComponent<SpriteRenderer>();
-                    Assert.Greater(desk.bounds.min.y, wall.max.y);
-                    Assert.Greater(chair.bounds.min.y, wall.max.y);
+                    Assert.Less(chair.bounds.max.y, desk.bounds.max.y);
                     Assert.AreEqual(desk.transform.position.x, chair.transform.position.x);
                 }
-                var board = school.Find("CenarioV2_Lousa_Fundo").GetComponent<SpriteRenderer>();
-                var partition = school.Find("CenarioV2_Divisoria_Fundo").GetComponent<SpriteRenderer>();
-                Assert.Greater(board.sortingOrder, partition.sortingOrder, "A lousa deve aparecer na frente da divisória.");
-                foreach (int index in new[] { 8, 9, 10 })
+                var board = school.Find("CenarioV2_Lousa_Direita").GetComponent<SpriteRenderer>();
+                foreach (int index in new[] { 0, 1, 2, 3 })
                     Assert.Greater(board.bounds.min.y,
                         school.Find("CenarioV2_Carteira_" + index).GetComponent<SpriteRenderer>().bounds.max.y);
                 var position = board.transform.position;

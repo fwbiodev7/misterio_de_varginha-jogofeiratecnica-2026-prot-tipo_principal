@@ -60,12 +60,6 @@ namespace Game.Varginha
                 Art(root, "Canteiro_" + x, "FlowerPatch", new(x, -7.6f), new(2, 1.3f), 1);
                 Art(root, "Arbusto_" + x, "Shrub", new(x, -6.5f), new(1.6f, 1.3f), 2);
             }
-            foreach (float x in new[] { -7.8f, 8.1f })
-            {
-                Art(root, "Poste_" + x, "StreetLamp", new(x, -8.25f), new(.65f, 2), 3);
-                var glow = Art(root, "Luar_Poste_" + x, "Glow", new(x, -8.8f), new(3.6f, 2.5f), 1);
-                glow.color = new Color(1f, .88f, .6f, .16f);
-            }
             Sign(root, "Placa_Escola", "ESCOLA", new(3.4f, -5.7f), new(2.1f, .48f));
             Sign(root, "Placa_Estacionamento", "ESTACIONAMENTO", new(-5.5f, -8.25f), new(4.5f, .48f));
             // Visible perimeter curbs also keep walking actors inside the expanded map.

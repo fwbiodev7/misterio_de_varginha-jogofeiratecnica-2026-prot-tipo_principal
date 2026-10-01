@@ -30,11 +30,12 @@ namespace Game.Tests.EditMode
                     var windup = attacks[d][combo * 6 + 1];
                     var contact = attacks[d][combo * 6 + 3];
                     Assert.AreNotSame(walk[d][0], contact);
-                    CollectionAssert.AreNotEqual(windup.texture.GetPixels32(), contact.texture.GetPixels32());
-                    Assert.AreEqual(walk[d][0].pivot, contact.pivot);
-                    Assert.AreEqual(walk[d][0].pixelsPerUnit, contact.pixelsPerUnit);
+                    CollectionAssert.AreNotEqual(FramePixels(windup), FramePixels(contact));
+                    Assert.AreEqual(walk[d][0].pixelsPerUnit / .92f, contact.pixelsPerUnit, .001f);
+                    Assert.AreEqual((6f - walk[d][0].pivot.y) / walk[d][0].pixelsPerUnit,
+                        (6f - contact.pivot.y) / contact.pixelsPerUnit, .001f);
                     Assert.AreEqual(FilterMode.Point, contact.texture.filterMode);
-                    var pixels = contact.texture.GetPixels32();
+                    var pixels = FramePixels(contact);
                     for (int i = 0; i < 64; i++)
                     {
                         Assert.AreEqual(0, pixels[i].a, "No clipping at bottom edge");
@@ -56,7 +57,7 @@ namespace Game.Tests.EditMode
             for (int frame = 0; frame < 18; frame++)
             {
                 var authored = atlas.GetPixels(64 * frame, (3 - direction) * 64, 64, 64);
-                var current = attacks[direction][frame].texture.GetPixels();
+                var current = FramePixels(attacks[direction][frame]);
                 for (int i = 0; i < authored.Length; i++)
                 {
                     Assert.AreEqual(authored[i].a, current[i].a, "The authored fist and limb silhouette must remain intact.");
@@ -66,6 +67,9 @@ namespace Game.Tests.EditMode
             }
             Assert.Greater(changed, 0, "The strike palette and upper face must reflect the approved appearance.");
         }
+
+        private static Color[] FramePixels(Sprite sprite) => sprite.texture.GetPixels(
+            (int)sprite.rect.x, (int)sprite.rect.y, (int)sprite.rect.width, (int)sprite.rect.height);
 
         [Test]
         public void ClearCombatPoseClearsAttackPose()

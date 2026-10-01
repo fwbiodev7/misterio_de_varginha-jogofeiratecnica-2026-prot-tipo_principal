@@ -32,7 +32,11 @@ namespace Game.Varginha
                 else if (id.StartsWith("GardenBorder_")) motif = "Planter";
                 else if (id.StartsWith("Folhas_Quintal_")) motif = "Leaves";
                 else if (id == "Mailbox_Yard") motif = "Mailbox";
-                else if (id == "StreetLamp_Yard") motif = "Lantern";
+                else if (id == "StreetLamp_Yard")
+                {
+                    VarginhaOutdoorNight.RefreshHouseLamp(renderer);
+                    continue;
+                }
                 if (motif == null) continue;
                 var sprite = VarginhaHouseReferenceArt.YardSprite(motif);
                 if (sprite == null) continue;
