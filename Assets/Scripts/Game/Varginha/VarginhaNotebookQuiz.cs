@@ -36,6 +36,7 @@ namespace Game.Varginha
         private int _questionIndex;
         private string _feedback;
         private bool _isOpen;
+        public bool IsOpen => _isOpen;
         private float _timeScaleBeforeOpening = 1f;
         private float _reactionUntil;
         private float _webcamStarted;
@@ -57,7 +58,7 @@ namespace Game.Varginha
 
         public void Open(EdelzioTopDownController player, InteractableProp notebook)
         {
-            if (_isOpen || player == null || player.HasDecodedData) return;
+            if (!isActiveAndEnabled || _isOpen || player == null || player.HasDecodedData) return;
             _player = player;
             _notebook = notebook;
             _questionIndex = 0;
@@ -196,11 +197,22 @@ namespace Game.Varginha
 
         private void Close()
         {
+            if (!_isOpen) return;
             _isOpen = false;
             Time.timeScale = _timeScaleBeforeOpening;
             var action = _player != null ? _player.GetComponent<VarginhaPlayerActionAnimation>() : null;
-            if (action != null) action.FinishNotebookSession();
+            if (action != null && action.isActiveAndEnabled) action.FinishNotebookSession();
             else _player?.SetInputLocked(false);
+        }
+
+        public void CancelForPlayer(EdelzioTopDownController player)
+        {
+            if (_isOpen && _player == player) Close();
+        }
+
+        private void OnDestroy()
+        {
+            if (_pixel != null) Destroy(_pixel);
         }
 
         private void InitStyles()

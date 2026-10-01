@@ -187,7 +187,7 @@ namespace Game.Varginha
                         // Sair do quiz sem concluir deve permitir tentar novamente.
                         _hasInteracted = false;
                         var action = edelzio.GetComponent<VarginhaPlayerActionAnimation>();
-                        if (action != null)
+                        if (action != null && action.isActiveAndEnabled)
                             action.PlayNotebookSession(transform, () => GetQuiz()?.Open(edelzio, this));
                         else
                             quiz.Open(edelzio, this);
@@ -205,16 +205,21 @@ namespace Game.Varginha
 
                 case PropType.CoffeeOrFood:
                     var coffeeAction = edelzio.GetComponent<VarginhaPlayerActionAnimation>();
-                    if (coffeeAction != null)
+                    if (coffeeAction != null && coffeeAction.isActiveAndEnabled)
                     {
+                        // Só consome o café depois de beber; interrupções permitem tentar de novo.
+                        _hasInteracted = false;
                         coffeeAction.PlayDrinkCoffee(transform, () =>
                         {
+                            if (this == null || edelzio == null) return;
+                            _hasInteracted = true;
                             edelzio.RestoreOneHeart();
                             var cupRenderer = GetComponent<SpriteRenderer>();
                             if (cupRenderer != null)
                                 cupRenderer.sprite = VarginhaHouseReferenceArt.PropSprite(this, "Coffee_Empty")
                                     ?? VarginhaPixelArtSprites.Create("Coffee_Empty", new Color(.8f, .4f, .2f));
                             GetHud()?.ShowDialogue("Edelzio", "☕ Você bebe o café e devolve a xícara vazia à mesa.\n+1 CORAÇÃO DE SAÚDE.");
+                            OnInteracted?.Invoke(edelzio);
                         }, () => _hasInteracted = false);
                         return;
                     }

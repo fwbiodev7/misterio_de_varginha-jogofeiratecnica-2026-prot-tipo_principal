@@ -130,6 +130,9 @@ namespace Game.Varginha
             }
             if (!_released || _fusca == null || _arrived) return;
             Vector3 destination = _fusca.position + _carOffset;
+            // A posição interpolada do desenho fica atrasada em relação à física.
+            // Planejar a partir dela pode cortar quinas antes de chegar ao waypoint.
+            Vector2 current = _body != null ? _body.position : (Vector2)transform.position;
 
             Vector2 next = destination;
             if (_school == null) _arrivalPoint = destination;
@@ -138,18 +141,18 @@ namespace Game.Varginha
                 if (Time.time >= _nextPathTime && (_path.Count == 0 ||
                     ((Vector2)destination - _pathDestination).sqrMagnitude > .36f))
                 {
-                    VarginhaSchoolNavigation.FindPath(_school, transform.position, destination, _path);
+                    VarginhaSchoolNavigation.FindPath(_school, current, destination, _path);
                     _pathDestination = destination;
                     _nextPathTime = Time.time + .65f;
                     // Navigation can end beside an obstructed slot. Accept that reachable
                     // point, rather than waiting forever for an exact point inside a collider.
                     _arrivalPoint = _path.Count > 0 ? _path[_path.Count - 1] : (Vector2)destination;
                 }
-                while (_path.Count > 0 && Vector2.Distance(transform.position, _path[0]) < .08f)
+                while (_path.Count > 0 && Vector2.Distance(current, _path[0]) < .001f)
                     _path.RemoveAt(0);
                 // Take the farthest visible waypoint, keeping every movement segment clear of walls.
-                while (_path.Count > 1 && VarginhaSchoolNavigation.CanWalkSegment(transform.position, _path[1])) _path.RemoveAt(0);
-                if (_path.Count == 0 && Vector2.Distance(transform.position, _arrivalPoint) >= .2f) return;
+                while (_path.Count > 1 && VarginhaSchoolNavigation.CanNavigateSegment(current, _path[1])) _path.RemoveAt(0);
+                if (_path.Count == 0 && Vector2.Distance(current, _arrivalPoint) >= .2f) return;
                 if (_path.Count == 0) next = _arrivalPoint;
                 if (_path.Count > 0) next = _path[0];
             }
@@ -158,9 +161,19 @@ namespace Game.Varginha
 
             transform.localScale = Vector3.one;
 
-            if (Vector2.Distance(transform.position, destination) < .3f)
+            if (Vector2.Distance(current, destination) < .3f ||
+                (_school != null && _path.Count == 0 && Vector2.Distance(current, _arrivalPoint) < .2f &&
+                 Vector2.Distance(current, destination) < 1.5f))
             {
                 _arrived = true;
+                _hasMovementTarget = false;
+                if (_body != null)
+                {
+                    _body.linearVelocity = Vector2.zero;
+                    // Finaliza também a interpolação visual antes de anunciar a chegada.
+                    _body.interpolation = RigidbodyInterpolation2D.None;
+                    transform.position = new Vector3(current.x, current.y, transform.position.z);
+                }
                 VarginhaPhase2Controller.NotifyStudentAtFusca(this);
             }
         }
@@ -176,6 +189,14 @@ namespace Game.Varginha
             }
 
             Vector2 next = Vector2.MoveTowards(_body.position, _movementTarget, followSpeed * Time.fixedDeltaTime);
+            if (_school != null && !VarginhaSchoolNavigation.CanWalkSegment(_body.position, next))
+            {
+                _body.linearVelocity = Vector2.zero;
+                _hasMovementTarget = false;
+                _path.Clear();
+                _nextPathTime = 0f;
+                return;
+            }
             _body.MovePosition(next);
         }
 

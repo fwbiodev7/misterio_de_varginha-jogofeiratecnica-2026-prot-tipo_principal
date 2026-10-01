@@ -53,13 +53,13 @@ namespace Game.Varginha
 
         public void PlayNotebookSession(Transform notebook, Action onReady)
         {
-            if (_isActing) return;
+            if (_isActing || !isActiveAndEnabled) return;
             StartCoroutine(NotebookRoutine(notebook, onReady));
         }
 
         public void PlayDrinkCoffee(Transform coffee, Action onComplete, Action onCancelled = null)
         {
-            if (_isActing) return;
+            if (_isActing || !isActiveAndEnabled) return;
             StartCoroutine(CoffeeRoutine(coffee, onComplete, onCancelled));
         }
 
@@ -136,7 +136,8 @@ namespace Game.Varginha
             yield return new WaitForSeconds(.38f);
             // Preserva a pose sentada durante todo o quiz; Close encerra a sessão.
             onReady?.Invoke();
-            if (VarginhaNotebookQuiz.Instance == null) FinishNotebookSession();
+            if (VarginhaNotebookQuiz.Instance == null || !VarginhaNotebookQuiz.Instance.IsOpen)
+                FinishNotebookSession();
         }
 
         public void FinishNotebookSession()
@@ -373,6 +374,7 @@ namespace Game.Varginha
         private void OnDisable()
         {
             StopAllCoroutines();
+            if (_notebookSession) VarginhaNotebookQuiz.Instance?.CancelForPlayer(_player);
             if (_seatCollider != null && _body != null) _body.position = _standingPosition;
             RestoreSeatCollision();
             _notebookSession = false;

@@ -28,10 +28,8 @@ namespace Game.Tests.EditMode
                     foreach (float y in new[] { bottom - 20f, (bottom + top) / 2f, top + 20f })
                     {
                         target.transform.position = new Vector3(x, y);
-                        // Native lifecycle dispatch is unavailable on ordinary behaviours in Edit Mode.
                         typeof(CameraFollow2D).GetMethod("LateUpdate",
-                            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                            .Invoke(follow, null);
+                            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(follow, null);
                         var position = go.transform.position;
                         float h = camera.orthographicSize, w = h * aspect;
                         Assert.LessOrEqual(h, zoom);
