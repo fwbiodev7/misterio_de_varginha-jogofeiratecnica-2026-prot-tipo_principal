@@ -10,8 +10,14 @@ namespace Game.Varginha
         public static void Apply(Transform house)
         {
             if (house == null || VarginhaHouseReferenceArt.ArchitectureSprite("WallFace") == null) return;
+            foreach (string legacy in new[] { "Doorway_Bedroom", "Door_Office_Accessible", "Doorway_Yard" })
+                VarginhaOpenPassage.Remove(house, legacy);
             var previous = house.Find("House512_Architecture");
-            if (previous != null && previous.Find("RoomsV2") != null) return;
+            if (previous != null && previous.Find("RoomsV2") != null)
+            {
+                ApplyPassages(previous);
+                return;
+            }
             if (previous != null)
             {
                 previous.name += "_Replacing";
@@ -60,14 +66,26 @@ namespace Game.Varginha
             Wall(root, "KitchenNorthWest", 1.25f, -1.25f, 2.5f, .65f, "WallFace");
             Wall(root, "KitchenNorthEast", 7.75f, -1.25f, 2.5f, .65f, "WallFace");
             Wall(root, "KitchenSide", 0, -3.625f, .28f, 4.75f, "WallEdge");
-            // Passagens abertas e limpas entre os cômodos, sem portas obstruindo a visão.
-            Visual(root, "KitchenThreshold", VarginhaHouseReferenceArt.ArchitectureSprite("WallCap"),
-                new Vector2(4.5f, -1.25f), new Vector2(4, .12f), 1);
-            Visual(root, "YardDoor", VarginhaHouseReferenceArt.ArchitectureSprite("DoorOpenSide"),
-                new Vector2(9, 0), new Vector2(.95f, 2.5f), 4);
-            Visual(root, "VestibuleDoor", VarginhaHouseReferenceArt.EntranceSprite(),
-                new Vector2(1, -7.35f), new Vector2(1.35f, 1.6f), 4);
+            ApplyPassages(root);
             UnityEngine.Physics2D.SyncTransforms();
+        }
+
+        private static void ApplyPassages(Transform root)
+        {
+            VarginhaOpenPassage.Remove(root, "House512_BedroomDoor");
+            VarginhaOpenPassage.Remove(root, "House512_OfficeSideDoor");
+            VarginhaOpenPassage.Remove(root, "House512_BedroomSideDoor");
+            VarginhaOpenPassage.Remove(root, "House512_YardDoor");
+            VarginhaOpenPassage.Remove(root, "House512_VestibuleDoor");
+            VarginhaOpenPassage.Remove(root, "House512_KitchenThreshold");
+            var side = VarginhaHouseReferenceArt.ArchitectureSprite("WallEdge");
+            var cap = VarginhaHouseReferenceArt.ArchitectureSprite("WallCap");
+            VarginhaOpenPassage.Ensure(root, "Quarto", new(-3.5f, 0), 2, .85f, true, side, cap);
+            VarginhaOpenPassage.Ensure(root, "Quarto_Sala", new(-2, 1.2f), 1.5f, .28f, false, cap, side);
+            VarginhaOpenPassage.Ensure(root, "Escritorio", new(-2, -3), 1.6f, .28f, false, cap, side);
+            VarginhaOpenPassage.Ensure(root, "Cozinha", new(4.5f, -1.25f), 4, .65f, true, side, cap);
+            VarginhaOpenPassage.Ensure(root, "Quintal", new(9, 0), 2.6f, .32f, false, cap, side);
+            VarginhaOpenPassage.Ensure(root, "Vestibulo", new(1, -6), 6, .32f, true, side, cap);
         }
 
         private static void Wall(Transform parent, string name, float x, float y, float width, float height, string motif)

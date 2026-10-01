@@ -251,18 +251,19 @@ namespace Game.Varginha
         }
 
         /// <summary>
-        /// Atualiza o sprite base do Edelzio e a mochila filho.
-        /// A mochila usa um SpriteRenderer filho (como o notebook) para qualidade máxima.
+        /// Seleciona a animação completa com ou sem mochila, preservando o corpo base.
         /// </summary>
         public void RefreshEquipmentAppearance()
         {
             if (_renderer == null) _renderer = GetComponent<SpriteRenderer>();
             if (_controller == null) _controller = GetComponent<EdelzioTopDownController>();
             if (_renderer == null || _bodyPose == null) return;
-            // Sprite do corpo sempre sem composição — a mochila é um filho separado.
-            _renderer.sprite = _bodyPose;
             bool backpackOn = _controller != null && _controller.IsBackpackVisible;
-            _backpackAppearance.UpdatePose(transform, _renderer, _bodyDirection, backpackOn);
+            var equipmentFacing = _actionPose != null ? ActionFacingDirection : _controller != null ? _controller.FacingDirection : Vector2.down;
+            EdelzioBackpackAppearance.HideLegacyLayers(transform);
+            _renderer.sprite = backpackOn
+                ? _backpackAppearance.GetFrame(_bodyPose, EdelzioBackpackAppearance.DirectionIndex(equipmentFacing))
+                : _bodyPose;
         }
 
         private void OnDestroy()

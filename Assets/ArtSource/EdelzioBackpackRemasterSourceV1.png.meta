@@ -1,0 +1,1159 @@
+fileFormatVersion: 2
+guid: 771f28a21d2e1824588f1624abe92a7e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2579060425507836526
+    second: EdelzioBackpackRemasterSourceV1_0
+  - first:
+      213: 2245209067126008555
+    second: EdelzioBackpackRemasterSourceV1_1
+  - first:
+      213: 1329720485006953654
+    second: EdelzioBackpackRemasterSourceV1_2
+  - first:
+      213: -2287387582507040579
+    second: EdelzioBackpackRemasterSourceV1_3
+  - first:
+      213: -3477728821463573132
+    second: EdelzioBackpackRemasterSourceV1_4
+  - first:
+      213: -567068828679342495
+    second: EdelzioBackpackRemasterSourceV1_5
+  - first:
+      213: 5205577285330129504
+    second: EdelzioBackpackRemasterSourceV1_6
+  - first:
+      213: -721744370463535055
+    second: EdelzioBackpackRemasterSourceV1_7
+  - first:
+      213: -7958477823822614822
+    second: EdelzioBackpackRemasterSourceV1_8
+  - first:
+      213: -2500335250682055039
+    second: EdelzioBackpackRemasterSourceV1_9
+  - first:
+      213: 5611207150601638363
+    second: EdelzioBackpackRemasterSourceV1_10
+  - first:
+      213: 8738034023167965155
+    second: EdelzioBackpackRemasterSourceV1_11
+  - first:
+      213: 3510693820467238692
+    second: EdelzioBackpackRemasterSourceV1_12
+  - first:
+      213: 7697515604591293725
+    second: EdelzioBackpackRemasterSourceV1_13
+  - first:
+      213: 3576400446347156394
+    second: EdelzioBackpackRemasterSourceV1_14
+  - first:
+      213: -397879061154856568
+    second: EdelzioBackpackRemasterSourceV1_15
+  - first:
+      213: -7201139917203994282
+    second: EdelzioBackpackRemasterSourceV1_16
+  - first:
+      213: 1518867482946108096
+    second: EdelzioBackpackRemasterSourceV1_17
+  - first:
+      213: 1738388399610898025
+    second: EdelzioBackpackRemasterSourceV1_18
+  - first:
+      213: 8436829735588268723
+    second: EdelzioBackpackRemasterSourceV1_19
+  - first:
+      213: -431860833383804626
+    second: EdelzioBackpackRemasterSourceV1_20
+  - first:
+      213: 1074912650532741030
+    second: EdelzioBackpackRemasterSourceV1_21
+  - first:
+      213: -5257317596541342673
+    second: EdelzioBackpackRemasterSourceV1_22
+  - first:
+      213: -7987198238946621139
+    second: EdelzioBackpackRemasterSourceV1_23
+  - first:
+      213: 6136476723050363290
+    second: EdelzioBackpackRemasterSourceV1_24
+  - first:
+      213: -7534848877573629259
+    second: EdelzioBackpackRemasterSourceV1_25
+  - first:
+      213: 6277949153334158566
+    second: EdelzioBackpackRemasterSourceV1_26
+  - first:
+      213: 3204872463559931376
+    second: EdelzioBackpackRemasterSourceV1_27
+  - first:
+      213: 5034305580553345252
+    second: EdelzioBackpackRemasterSourceV1_28
+  - first:
+      213: 6495469482212285185
+    second: EdelzioBackpackRemasterSourceV1_29
+  - first:
+      213: -2945024381528705586
+    second: EdelzioBackpackRemasterSourceV1_30
+  - first:
+      213: 1107230037971759698
+    second: EdelzioBackpackRemasterSourceV1_31
+  - first:
+      213: 8117490065540534613
+    second: EdelzioBackpackRemasterSourceV1_32
+  - first:
+      213: -8295019273422973852
+    second: EdelzioBackpackRemasterSourceV1_33
+  - first:
+      213: 1693419142361511527
+    second: EdelzioBackpackRemasterSourceV1_34
+  - first:
+      213: -4133354566823549783
+    second: EdelzioBackpackRemasterSourceV1_35
+  - first:
+      213: -8460398418974943902
+    second: EdelzioBackpackRemasterSourceV1_36
+  - first:
+      213: -4551371765811197012
+    second: EdelzioBackpackRemasterSourceV1_37
+  - first:
+      213: -4972679484538421739
+    second: EdelzioBackpackRemasterSourceV1_38
+  - first:
+      213: -423293772920804202
+    second: EdelzioBackpackRemasterSourceV1_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 469
+        width: 343
+        height: 566
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29d665b1536553cd0800000000000000
+      internalID: -2579060425507836526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_1
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 991
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bea288c30c5982f10800000000000000
+      internalID: 2245209067126008555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_2
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 973
+        width: 98
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bc46676cbd147210800000000000000
+      internalID: 1329720485006953654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_3
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 459
+        width: 323
+        height: 530
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db04701ec119140e0800000000000000
+      internalID: -2287387582507040579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_4
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 566
+        width: 339
+        height: 456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47d968b0010acbfc0800000000000000
+      internalID: -3477728821463573132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_5
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 963
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166fe5f97ed5128f0800000000000000
+      internalID: -567068828679342495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_6
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 394
+        width: 359
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 062d1fee5fced3840800000000000000
+      internalID: 5205577285330129504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_7
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 866
+        width: 75
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13012eba159dbf5f0800000000000000
+      internalID: -721744370463535055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_8
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 881
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adeaa36c59ecd8190800000000000000
+      internalID: -7958477823822614822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_9
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 728
+        width: 6
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18675bb36560d4dd0800000000000000
+      internalID: -2500335250682055039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_10
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 663
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd11ebc8c230fdd40800000000000000
+      internalID: 5611207150601638363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_11
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 647
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e73432e5abb34970800000000000000
+      internalID: 8738034023167965155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_12
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 570
+        width: 68
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427db14ed6d78b030800000000000000
+      internalID: 3510693820467238692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_13
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 589
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15b0b0c8a113da60800000000000000
+      internalID: 7697515604591293725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_14
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 497
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aab1213e14de1a130800000000000000
+      internalID: 3576400446347156394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_15
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 503
+        width: 55
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8818c481a137a7af0800000000000000
+      internalID: -397879061154856568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_16
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 540
+        width: 19
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6598b290669601c90800000000000000
+      internalID: -7201139917203994282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_17
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 526
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0caf4edade9141510800000000000000
+      internalID: 1518867482946108096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_18
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 485
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 966a7700a0fff1810800000000000000
+      internalID: 1738388399610898025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_19
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 485
+        width: 32
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ba013cb1f3a51570800000000000000
+      internalID: 8436829735588268723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_20
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 84
+        width: 307
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2111c13cd8b10af0800000000000000
+      internalID: -431860833383804626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_21
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 439
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6afd39b4c5bdaee00800000000000000
+      internalID: 1074912650532741030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_22
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 56
+        width: 309
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c2eba10814a07b0800000000000000
+      internalID: -5257317596541342673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_23
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 80
+        width: 373
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2906f80585c72190800000000000000
+      internalID: -7987198238946621139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_24
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 80
+        width: 300
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99bed13115292550800000000000000
+      internalID: 6136476723050363290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_25
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 135
+        width: 89
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba19fffdd6de6790800000000000000
+      internalID: -7534848877573629259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_26
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 137
+        width: 53
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e462723e71cf1750800000000000000
+      internalID: 6277949153334158566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f5bbe4868ef97c20800000000000000
+      internalID: 3204872463559931376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_28
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 112
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e816aba0427dd540800000000000000
+      internalID: 5034305580553345252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_29
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 110
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10b57a0641b842a50800000000000000
+      internalID: 6495469482212285185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_30
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 111
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5fd1cadeb2127d0800000000000000
+      internalID: -2945024381528705586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_31
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 95
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 252f2f96adbad5f00800000000000000
+      internalID: 1107230037971759698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_32
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 116
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5515e40d43e17a070800000000000000
+      internalID: 8117490065540534613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_33
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 115
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 464da927beb22ec80800000000000000
+      internalID: -8295019273422973852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_34
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 98
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 766fd44ecbb308710800000000000000
+      internalID: 1693419142361511527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_35
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 82
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a46eb1cbef53a6c0800000000000000
+      internalID: -4133354566823549783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_36
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 98
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 265d8ba8670a69a80800000000000000
+      internalID: -8460398418974943902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_37
+      rect:
+        serializedVersion: 2
+        x: 1237
+        y: 96
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cabc4124e7746d0c0800000000000000
+      internalID: -4551371765811197012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_38
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 97
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ef63eea5e7dfab0800000000000000
+      internalID: -4972679484538421739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioBackpackRemasterSourceV1_39
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 80
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69cab656e88202af0800000000000000
+      internalID: -423293772920804202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EdelzioBackpackRemasterSourceV1_0: -2579060425507836526
+      EdelzioBackpackRemasterSourceV1_1: 2245209067126008555
+      EdelzioBackpackRemasterSourceV1_10: 5611207150601638363
+      EdelzioBackpackRemasterSourceV1_11: 8738034023167965155
+      EdelzioBackpackRemasterSourceV1_12: 3510693820467238692
+      EdelzioBackpackRemasterSourceV1_13: 7697515604591293725
+      EdelzioBackpackRemasterSourceV1_14: 3576400446347156394
+      EdelzioBackpackRemasterSourceV1_15: -397879061154856568
+      EdelzioBackpackRemasterSourceV1_16: -7201139917203994282
+      EdelzioBackpackRemasterSourceV1_17: 1518867482946108096
+      EdelzioBackpackRemasterSourceV1_18: 1738388399610898025
+      EdelzioBackpackRemasterSourceV1_19: 8436829735588268723
+      EdelzioBackpackRemasterSourceV1_2: 1329720485006953654
+      EdelzioBackpackRemasterSourceV1_20: -431860833383804626
+      EdelzioBackpackRemasterSourceV1_21: 1074912650532741030
+      EdelzioBackpackRemasterSourceV1_22: -5257317596541342673
+      EdelzioBackpackRemasterSourceV1_23: -7987198238946621139
+      EdelzioBackpackRemasterSourceV1_24: 6136476723050363290
+      EdelzioBackpackRemasterSourceV1_25: -7534848877573629259
+      EdelzioBackpackRemasterSourceV1_26: 6277949153334158566
+      EdelzioBackpackRemasterSourceV1_27: 3204872463559931376
+      EdelzioBackpackRemasterSourceV1_28: 5034305580553345252
+      EdelzioBackpackRemasterSourceV1_29: 6495469482212285185
+      EdelzioBackpackRemasterSourceV1_3: -2287387582507040579
+      EdelzioBackpackRemasterSourceV1_30: -2945024381528705586
+      EdelzioBackpackRemasterSourceV1_31: 1107230037971759698
+      EdelzioBackpackRemasterSourceV1_32: 8117490065540534613
+      EdelzioBackpackRemasterSourceV1_33: -8295019273422973852
+      EdelzioBackpackRemasterSourceV1_34: 1693419142361511527
+      EdelzioBackpackRemasterSourceV1_35: -4133354566823549783
+      EdelzioBackpackRemasterSourceV1_36: -8460398418974943902
+      EdelzioBackpackRemasterSourceV1_37: -4551371765811197012
+      EdelzioBackpackRemasterSourceV1_38: -4972679484538421739
+      EdelzioBackpackRemasterSourceV1_39: -423293772920804202
+      EdelzioBackpackRemasterSourceV1_4: -3477728821463573132
+      EdelzioBackpackRemasterSourceV1_5: -567068828679342495
+      EdelzioBackpackRemasterSourceV1_6: 5205577285330129504
+      EdelzioBackpackRemasterSourceV1_7: -721744370463535055
+      EdelzioBackpackRemasterSourceV1_8: -7958477823822614822
+      EdelzioBackpackRemasterSourceV1_9: -2500335250682055039
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

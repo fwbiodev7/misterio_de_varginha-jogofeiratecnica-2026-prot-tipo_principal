@@ -28,7 +28,7 @@ namespace Game.Varginha
                 bool valid = true;
                 foreach (var sr in old.GetComponentsInChildren<SpriteRenderer>())
                     if (sr.sprite == null || sr.sprite.texture == null) { valid = false; break; }
-                if (valid) return;
+                if (valid) { ApplyPassage(old); VarginhaIndustrialSchoolFacade.Ensure(school); return; }
                 old.name += "_Replacing";
                 old.gameObject.SetActive(false);
                 if (Application.isPlaying) Object.Destroy(old.gameObject); else Object.DestroyImmediate(old.gameObject);
@@ -43,9 +43,7 @@ namespace Game.Varginha
             Tile(root, "Calcada_Fachada", "Driveway_Stone", new(.5f, -7.1f), new(18, 2), new(.42f, .43f, .39f), 0);
             Tile(root, "Caminho_Entrada", "Driveway_Stone", new(.75f, -8.5f), new(2.5f, 4.9f), new(.47f, .47f, .42f), 0);
             Tile(root, "Soleira_Porta", "Driveway_Stone", Entrance, new(2.5f, .8f), new(.57f, .52f, .40f), 1);
-            // Open leaves make the opening read as a door while leaving the center walkable.
-            Art(root, "Porta_Aberta_Esquerda", "Door", new(-.39f, -5.8f), new(.24f, 1.15f), 4);
-            Art(root, "Porta_Aberta_Direita", "Door", new(1.89f, -5.8f), new(.24f, 1.15f), 4);
+            ApplyPassage(root);
             Art(root, "Tapete_Entrada", "Rug", new(.75f, -6.65f), new(2, .8f), 1);
 
             Art(root, "Vaga_Visitantes", "Parking", new(6.1f, -10.4f), new(5.5f, 3), 1);
@@ -76,6 +74,15 @@ namespace Game.Varginha
             Wall(root, "Mureta_Sul", new(0, -14.15f), new(25, .3f));
             Wall(root, "Mureta_Noroeste", new(-10.15f, -5.85f), new(4.2f, .3f));
             Wall(root, "Mureta_Nordeste", new(10.85f, -5.85f), new(3.1f, .3f));
+            VarginhaIndustrialSchoolFacade.Ensure(school);
+        }
+
+        private static void ApplyPassage(Transform root)
+        {
+            VarginhaOpenPassage.Remove(root, "Porta_Aberta_Esquerda");
+            VarginhaOpenPassage.Remove(root, "Porta_Aberta_Direita");
+            var wall = VarginhaPixelArtSprites.Create("SchoolWall", new Color(.35f, .39f, .35f));
+            VarginhaOpenPassage.Ensure(root, "Entrada_Escola", Entrance, 2.5f, .7f, true, wall, wall);
         }
 
         private static SpriteRenderer Art(Transform root, string name, string motif, Vector2 position, Vector2 size, int order)

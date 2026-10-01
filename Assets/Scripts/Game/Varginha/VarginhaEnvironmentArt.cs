@@ -33,6 +33,7 @@ namespace Game.Varginha
             VarginhaSchoolExterior.Ensure(school);
             VarginhaEnvironmentPolish.EnsureSchool(school);
             VarginhaOutdoorNight.EnsureSchool(school);
+            VarginhaWorldGeometry.Ensure(school);
             return school;
         }
 
@@ -49,6 +50,7 @@ namespace Game.Varginha
             if (diocese.Find(DioceseMarker) == null) BuildDiocese(diocese);
             EnsureDioceseGround(diocese);
             VarginhaEnvironmentPolish.EnsureDiocese(diocese);
+            VarginhaWorldGeometry.Ensure(diocese);
             return diocese;
         }
 
@@ -60,6 +62,7 @@ namespace Game.Varginha
             VarginhaSchoolExterior.Ensure(parent);
             VarginhaEnvironmentPolish.EnsureSchool(parent);
             VarginhaOutdoorNight.EnsureSchool(parent);
+            VarginhaWorldGeometry.Ensure(parent);
         }
 
         private static void EnsureFuscaParking(Transform parent)

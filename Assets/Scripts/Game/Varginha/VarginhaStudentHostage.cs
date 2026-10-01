@@ -35,6 +35,7 @@ namespace Game.Varginha
         private void Awake()
         {
             EnsurePhysicsBody();
+            VarginhaWorldDepth.Ensure(GetComponent<SpriteRenderer>(), true);
         }
 
         private void EnsurePhysicsBody()

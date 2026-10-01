@@ -75,7 +75,7 @@ namespace Game.Tests.EditMode
             (int)sprite.rect.x, (int)sprite.rect.y, (int)sprite.rect.width, (int)sprite.rect.height);
 
         [Test]
-        public void RenderedCombatHeadMatchesWholeIdleHeadWithAndWithoutBackpack()
+        public void RenderedCombatHeadMatchesTheAuthoredPoseWithAndWithoutBackpack()
         {
             var walk = VarginhaReferenceSprites.EdelzioWalkFrames();
             var attacks = VarginhaReferenceSprites.EdelzioAttackFrames();
@@ -89,6 +89,7 @@ namespace Game.Tests.EditMode
                 for (int frame = 0; frame < attacks[direction].Length; frame++)
                 {
                     var pose = attacks[direction][frame];
+                    if (equipped) expected = FramePixels(backpack.ComposeFrame(pose, direction));
                     var actual = FramePixels(equipped ? backpack.GetFrame(pose, direction) : pose);
                     for (int y = headBottom[direction]; y < 64; y++)
                     for (int x = 21; x < 43; x++)

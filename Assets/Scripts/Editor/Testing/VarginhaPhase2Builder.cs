@@ -95,6 +95,7 @@ namespace Game.Editor.Testing
 
             root.AddComponent<VarginhaPhase2Controller>();
             Selection.activeGameObject = player;
+            VarginhaWorldGeometry.Ensure(root.transform);
         }
 
         private static void CreateManagers(Transform parent)

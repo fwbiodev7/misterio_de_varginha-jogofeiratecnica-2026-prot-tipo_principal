@@ -175,6 +175,7 @@ namespace Game.Varginha
             Instance = this;
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+            VarginhaWorldDepth.Ensure(_sr, true);
 
             _rb.gravityScale = 0f;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;

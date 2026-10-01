@@ -1,0 +1,951 @@
+fileFormatVersion: 2
+guid: 82159c97a89b8854fb7e1a7d8eed222f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4343746928980854963
+    second: EdelzioEquippedWalkV1_0
+  - first:
+      213: 5432987724274112089
+    second: EdelzioEquippedWalkV1_1
+  - first:
+      213: -4061032873634857823
+    second: EdelzioEquippedWalkV1_2
+  - first:
+      213: 7514831366171477746
+    second: EdelzioEquippedWalkV1_3
+  - first:
+      213: -2427725348173294175
+    second: EdelzioEquippedWalkV1_4
+  - first:
+      213: -8403537174179097283
+    second: EdelzioEquippedWalkV1_5
+  - first:
+      213: 1813366207863947271
+    second: EdelzioEquippedWalkV1_6
+  - first:
+      213: 6398594972085548763
+    second: EdelzioEquippedWalkV1_7
+  - first:
+      213: 1841939199672030385
+    second: EdelzioEquippedWalkV1_8
+  - first:
+      213: 5562751564842288574
+    second: EdelzioEquippedWalkV1_9
+  - first:
+      213: -7312481592638093900
+    second: EdelzioEquippedWalkV1_10
+  - first:
+      213: -1395095730767508431
+    second: EdelzioEquippedWalkV1_11
+  - first:
+      213: 6429510095525505659
+    second: EdelzioEquippedWalkV1_12
+  - first:
+      213: 8640104412941422061
+    second: EdelzioEquippedWalkV1_13
+  - first:
+      213: -7391466394275563045
+    second: EdelzioEquippedWalkV1_14
+  - first:
+      213: 7877295898251805115
+    second: EdelzioEquippedWalkV1_15
+  - first:
+      213: 1546731466046752283
+    second: EdelzioEquippedWalkV1_16
+  - first:
+      213: 3132771824846985608
+    second: EdelzioEquippedWalkV1_17
+  - first:
+      213: -8360499685832104906
+    second: EdelzioEquippedWalkV1_18
+  - first:
+      213: 6546171842572908061
+    second: EdelzioEquippedWalkV1_19
+  - first:
+      213: 9064961848919612853
+    second: EdelzioEquippedWalkV1_20
+  - first:
+      213: -7489490506591042749
+    second: EdelzioEquippedWalkV1_21
+  - first:
+      213: 2413492236004523211
+    second: EdelzioEquippedWalkV1_22
+  - first:
+      213: 9162991758792571475
+    second: EdelzioEquippedWalkV1_23
+  - first:
+      213: 5553176339459183018
+    second: EdelzioEquippedWalkV1_24
+  - first:
+      213: 7197515216342625305
+    second: EdelzioEquippedWalkV1_25
+  - first:
+      213: 5990935386286175231
+    second: EdelzioEquippedWalkV1_26
+  - first:
+      213: 3359001492310278609
+    second: EdelzioEquippedWalkV1_27
+  - first:
+      213: -4526645034562154784
+    second: EdelzioEquippedWalkV1_28
+  - first:
+      213: -8223540420629318229
+    second: EdelzioEquippedWalkV1_29
+  - first:
+      213: 6033600670685445646
+    second: EdelzioEquippedWalkV1_30
+  - first:
+      213: -3324667769701030631
+    second: EdelzioEquippedWalkV1_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 453
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8091851d6184c30800000000000000
+      internalID: 4343746928980854963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 453
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9569a6ecc89d56b40800000000000000
+      internalID: 5432987724274112089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 453
+        width: 26
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ac7fc12e1054a7c0800000000000000
+      internalID: -4061032873634857823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 453
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f64d9fef4b0a4860800000000000000
+      internalID: 7514831366171477746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_4
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 389
+        width: 22
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a55be198acfe4ed0800000000000000
+      internalID: -2427725348173294175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_5
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 390
+        width: 23
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35d344c673a06b80800000000000000
+      internalID: -8403537174179097283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_6
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 390
+        width: 23
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7008d6b55fe5a2910800000000000000
+      internalID: 1813366207863947271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_7
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 390
+        width: 23
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd672c4d9306cc850800000000000000
+      internalID: 6398594972085548763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_8
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 326
+        width: 22
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4915e61f1ef8910800000000000000
+      internalID: 1841939199672030385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_9
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 326
+        width: 23
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb54c24531dd23d40800000000000000
+      internalID: 5562751564842288574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_10
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 326
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b549341cb8d48a90800000000000000
+      internalID: -7312481592638093900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_11
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 326
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13c40fb03df93ace0800000000000000
+      internalID: -1395095730767508431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 266
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7ae59bed553a3950800000000000000
+      internalID: 6429510095525505659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_13
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 266
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded88a3bf21d7e770800000000000000
+      internalID: 8640104412941422061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_14
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 266
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9b7ffd97c3c6990800000000000000
+      internalID: -7391466394275563045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_15
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 266
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1c0fd32e6c15d60800000000000000
+      internalID: 7877295898251805115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_16
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 197
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b16c2acc218177510800000000000000
+      internalID: 1546731466046752283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_17
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 197
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8895b566067d97b20800000000000000
+      internalID: 3132771824846985608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_18
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 197
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6346631e4d989fb80800000000000000
+      internalID: -8360499685832104906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_19
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 197
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d16f8339b9ca8da50800000000000000
+      internalID: 6546171842572908061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 133
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd525bf5c63dcd70800000000000000
+      internalID: 9064961848919612853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 133
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3430bf5b01cff0890800000000000000
+      internalID: -7489490506591042749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_22
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 133
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcc7633c6627e7120800000000000000
+      internalID: 2413492236004523211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_23
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 133
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35ab9aef47c792f70800000000000000
+      internalID: 9162991758792571475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_24
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 74
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa191907578d01d40800000000000000
+      internalID: 5553176339459183018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_25
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 74
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91c229784f5b2e360800000000000000
+      internalID: 7197515216342625305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_26
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 74
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff3b7e31ef3142350800000000000000
+      internalID: 5990935386286175231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_27
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 74
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d1492d7f029d9e20800000000000000
+      internalID: 3359001492310278609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_28
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 10
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ee03a203502e21c0800000000000000
+      internalID: -4526645034562154784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_29
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 10
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba5b250ce8d10ed80800000000000000
+      internalID: -8223540420629318229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_30
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 10
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0eb3c4b7d7abb350800000000000000
+      internalID: 6033600670685445646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EdelzioEquippedWalkV1_31
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 10
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915a7ce37486cd1d0800000000000000
+      internalID: -3324667769701030631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EdelzioEquippedWalkV1_0: 4343746928980854963
+      EdelzioEquippedWalkV1_1: 5432987724274112089
+      EdelzioEquippedWalkV1_10: -7312481592638093900
+      EdelzioEquippedWalkV1_11: -1395095730767508431
+      EdelzioEquippedWalkV1_12: 6429510095525505659
+      EdelzioEquippedWalkV1_13: 8640104412941422061
+      EdelzioEquippedWalkV1_14: -7391466394275563045
+      EdelzioEquippedWalkV1_15: 7877295898251805115
+      EdelzioEquippedWalkV1_16: 1546731466046752283
+      EdelzioEquippedWalkV1_17: 3132771824846985608
+      EdelzioEquippedWalkV1_18: -8360499685832104906
+      EdelzioEquippedWalkV1_19: 6546171842572908061
+      EdelzioEquippedWalkV1_2: -4061032873634857823
+      EdelzioEquippedWalkV1_20: 9064961848919612853
+      EdelzioEquippedWalkV1_21: -7489490506591042749
+      EdelzioEquippedWalkV1_22: 2413492236004523211
+      EdelzioEquippedWalkV1_23: 9162991758792571475
+      EdelzioEquippedWalkV1_24: 5553176339459183018
+      EdelzioEquippedWalkV1_25: 7197515216342625305
+      EdelzioEquippedWalkV1_26: 5990935386286175231
+      EdelzioEquippedWalkV1_27: 3359001492310278609
+      EdelzioEquippedWalkV1_28: -4526645034562154784
+      EdelzioEquippedWalkV1_29: -8223540420629318229
+      EdelzioEquippedWalkV1_3: 7514831366171477746
+      EdelzioEquippedWalkV1_30: 6033600670685445646
+      EdelzioEquippedWalkV1_31: -3324667769701030631
+      EdelzioEquippedWalkV1_4: -2427725348173294175
+      EdelzioEquippedWalkV1_5: -8403537174179097283
+      EdelzioEquippedWalkV1_6: 1813366207863947271
+      EdelzioEquippedWalkV1_7: 6398594972085548763
+      EdelzioEquippedWalkV1_8: 1841939199672030385
+      EdelzioEquippedWalkV1_9: 5562751564842288574
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

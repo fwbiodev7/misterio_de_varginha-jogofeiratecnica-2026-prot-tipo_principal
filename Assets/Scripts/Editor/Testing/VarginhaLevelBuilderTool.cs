@@ -106,6 +106,7 @@ namespace Game.Editor.Testing
             // 7. O Fusca de Edelzio (Fim de fase / Fuga)
             BuildFusca(root.transform, new Vector3(20f, 0f, 0f));
             VarginhaEnvironmentPolish.EnsureHouse(envRoot);
+            VarginhaWorldGeometry.Ensure(root.transform);
 
             Selection.activeGameObject = player;
         }
@@ -222,10 +223,7 @@ namespace Game.Editor.Testing
             CreateWall(parent, "Wall_OfficeDivider_Top", new Vector3(0f, -1f, 0f), new Vector3(0.6f, 2f, 1f), wallColor);
             CreateWall(parent, "Wall_Corridor_V2", new Vector3(0f, 4.5f, 0f), new Vector3(0.6f, 5f, 1f), wallColor);
 
-            // Soleiras e detalhes estruturais separam os ambientes sem comprometer a leitura top-down.
-            CreateDecoration(parent, "Doorway_Bedroom", new Vector3(-4.2f, 0.05f, 0f), new Vector3(1.55f, 0.42f, 1f), new Color(0.18f, 0.11f, 0.08f), 4);
-            CreateDecoration(parent, "Door_Office_Accessible", new Vector3(-0.02f, -3.25f, 0f), new Vector3(0.62f, 1.8f, 1f), new Color(0.50f, 0.28f, 0.12f), 4);
-            CreateDecoration(parent, "Doorway_Yard", new Vector3(8.96f, 0f, 0f), new Vector3(0.35f, 2.25f, 1f), new Color(0.64f, 0.36f, 0.16f), 4);
+            // VarginhaHouseArchitecture finaliza os vãos com portais abertos, sem folhas de porta.
 
             // Muros do Quintal
             Color fenceColor = new Color(0.2f, 0.25f, 0.32f);

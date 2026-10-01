@@ -28,6 +28,32 @@ namespace Game.Tests.PlayMode
         public void TearDown() { Object.DestroyImmediate(_go); }
 
         [UnityTest]
+        public IEnumerator EquippingWithDestroyedCachedFramesKeepsEdelzioVisible()
+        {
+            _player.SetInputLocked(true);
+            var renderer = _go.GetComponent<SpriteRenderer>();
+            var animation = _go.GetComponent<VarginhaPlayerSpriteAnimation>();
+            var body = renderer.sprite;
+            var cached = EdelzioBackpackFrames.Frame(body,0);
+            Object.DestroyImmediate(cached);
+            _player.EquipBackpack();
+            Assert.IsTrue(renderer.sprite != null);
+            AssertEquippedFrame(0);
+            AssertSameSpriteGeometry(body,renderer.sprite);
+            Object.DestroyImmediate(renderer.sprite);
+            animation.RefreshEquipmentAppearance();
+            yield return null;
+            Assert.IsTrue(renderer.enabled);
+            Assert.IsTrue(renderer.sprite != null);
+            AssertEquippedFrame(0);
+            var frame=renderer.sprite;
+            var pixels=frame.texture.GetPixels((int)frame.rect.x,(int)frame.rect.y,(int)frame.rect.width,(int)frame.rect.height);
+            Assert.Greater(System.Array.FindAll(pixels,c=>c.a>.5f).Length,100);
+            _player.HasBackpack=false;
+            Assert.AreSame(body,renderer.sprite);
+        }
+
+        [UnityTest]
         public IEnumerator LockStopsResidualMotion()
         {
             var body = _go.GetComponent<Rigidbody2D>();
@@ -48,7 +74,8 @@ namespace Game.Tests.PlayMode
             var atlas = VarginhaReferenceSprites.HasEdelzio
                 ? VarginhaReferenceSprites.EdelzioWalkFrames()[0][0].texture
                 : Resources.Load<Texture2D>("Varginha/EdelzioTopDownV3");
-            var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up };
+            var directions = new[] { Vector2.down, Vector2.left, Vector2.right, Vector2.up,
+                new Vector2(-1,-1), new Vector2(1,-1), new Vector2(-1,1), new Vector2(1,1) };
             var facing = typeof(EdelzioTopDownController).GetField("_lastFacing", BindingFlags.Instance | BindingFlags.NonPublic);
             _player.SetInputLocked(true);
             for (int direction = 0; direction < directions.Length; direction++)
@@ -60,8 +87,7 @@ namespace Game.Tests.PlayMode
                 _player.HasBackpack = true;
                 var equipped = renderer.sprite;
                 Assert.IsTrue(_player.IsBackpackVisible);
-                Assert.That(equipped.name, Does.EndWith("_ComMochila_" + direction));
-                Assert.AreNotSame(body.texture, equipped.texture);
+                AssertEquippedFrame(direction);
                 AssertSameSpriteGeometry(body, equipped);
                 animation.RefreshEquipmentAppearance();
                 _player.EquipBackpack();
@@ -73,12 +99,13 @@ namespace Game.Tests.PlayMode
                 Assert.AreSame(body, renderer.sprite, "Entering the Fusca hides equipment without changing the character pose.");
                 _player.SetCarriedItemsVisible(true);
                 Assert.AreSame(equipped, renderer.sprite);
+                AssertEquippedFrame(direction);
                 _player.HasBackpack = false;
                 Assert.IsFalse(_player.IsBackpackVisible);
                 Assert.AreSame(body, renderer.sprite);
             }
             Assert.IsNull(_go.transform.Find("Mochila_Equipada"));
-            Assert.IsNull(_go.transform.Find("Mochila_Alcas"));
+            Assert.IsNull(_go.transform.Find("Mochila_Alca"));
             Assert.AreEqual(1, _go.GetComponentsInChildren<Collider2D>().Length);
             Assert.AreEqual(1, _go.GetComponentsInChildren<Rigidbody2D>().Length);
         }
@@ -146,11 +173,11 @@ namespace Game.Tests.PlayMode
                     ? VarginhaReferenceSprites.EdelzioWalkFrames()[0][0].texture : interactionAtlas;
                 Assert.AreSame(atlas, body.texture);
                 _player.EquipBackpack();
+                AssertSameSpriteGeometry(body, renderer.sprite);
                 yield return null;
                 int direction = pose == "Edelzio_DrinkCoffee" ? 2 : pose == "Edelzio_Sit" || pose == "Edelzio_UseNotebook" ? 3 : 0;
-                Assert.That(renderer.sprite.name, Does.EndWith("_ComMochila_" + direction), pose);
-                Assert.AreNotSame(atlas, renderer.sprite.texture, pose);
-                AssertSameSpriteGeometry(body, renderer.sprite);
+                // Typing advances its body frame in the dedicated equipped animation atlas.
+                AssertEquippedFrame(direction);
                 Assert.AreEqual(scale, _go.transform.localScale);
                 Assert.AreEqual(radius, _go.GetComponent<CircleCollider2D>().radius);
             }
@@ -178,8 +205,7 @@ namespace Game.Tests.PlayMode
                     _player.EquipBackpack();
                     animation.SetCombatPose(body, directions[direction]);
                     var equipped = renderer.sprite;
-                    Assert.That(equipped.name, Does.EndWith("_ComMochila_" + direction), body.name);
-                    Assert.AreNotSame(body.texture, equipped.texture);
+                    AssertEquippedFrame(direction);
                     AssertSameSpriteGeometry(body, equipped);
                     animation.RefreshEquipmentAppearance();
                     Assert.AreSame(equipped, renderer.sprite);
@@ -200,6 +226,15 @@ namespace Game.Tests.PlayMode
             Assert.AreEqual(expected.rect.size, actual.rect.size);
             Assert.AreEqual(expected.pivot, actual.pivot);
             Assert.AreEqual(expected.pixelsPerUnit, actual.pixelsPerUnit);
+        }
+
+        private void AssertEquippedFrame(int direction)
+        {
+            var equipped = _go.GetComponent<SpriteRenderer>().sprite;
+            Assert.That(equipped.name, Does.EndWith("_ComMochila_" + direction));
+            Assert.That(equipped.texture.name, Does.StartWith("EdelzioEquipped"), "Use a persistent complete animation frame.");
+            Assert.IsNull(_go.transform.Find("Mochila_Equipada"));
+            Assert.IsNull(_go.transform.Find("Mochila_Alca"));
         }
     }
 }

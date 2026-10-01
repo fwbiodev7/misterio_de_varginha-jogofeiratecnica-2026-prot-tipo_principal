@@ -1660,7 +1660,7 @@ Sprite:
       height: 265
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 218, z: 32, w: 132.5}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -2248,7 +2248,7 @@ Sprite:
       height: 26
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 32, z: 32, w: 13}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -2468,7 +2468,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -3498,7 +3498,7 @@ Sprite:
       height: 440
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
+    settingsRaw: 3136
     uvTransform: {x: 20, y: 460, z: 20, w: 220}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -4163,7 +4163,7 @@ Sprite:
       height: 11
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 31, z: 32, w: 5.5}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -4383,7 +4383,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -5139,7 +5139,7 @@ Sprite:
       height: 170
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 109, z: 32, w: 85}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -5702,6 +5702,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &293975907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 293975908}
+  - component: {fileID: 293975909}
+  m_Layer: 0
+  m_Name: Fachada_Escola_Industrial_V1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &293975908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293975907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 904349892}
+  - {fileID: 806020825}
+  m_Father: {fileID: 1337661781}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &293975909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293975907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5658418447cbc40ab8351157407970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Varginha.VarginhaIndustrialSchoolFacade
+  faces:
+  - {fileID: 904349895}
+  - {fileID: 806020828}
+  wallEdges:
+  - {fileID: 2145502747}
+  - {fileID: 895944033}
 --- !u!1 &308164287
 GameObject:
   m_ObjectHideFlags: 0
@@ -7062,7 +7114,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -8997,7 +9049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &501052987
 Transform:
   m_ObjectHideFlags: 0
@@ -10280,7 +10332,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -11602,7 +11654,7 @@ Sprite:
       height: 341
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 328.8, y: 769.5, z: 328.8, w: 265.5}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -12142,7 +12194,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -13145,7 +13197,7 @@ Sprite:
       height: 37
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 4, z: 32, w: 18.5}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -13503,7 +13555,7 @@ Sprite:
       height: 15
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 33.5, z: 32, w: 7.5}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -15442,6 +15494,130 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &806020824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806020825}
+  - component: {fileID: 806020828}
+  - component: {fileID: 806020827}
+  - component: {fileID: 806020826}
+  m_Layer: 0
+  m_Name: Fachada_Industrial_Direita
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &806020825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806020824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.55, y: -6.05, z: 0}
+  m_LocalScale: {x: 1.0819048, y: 0.8704, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 293975908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &806020826
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806020824}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 12570
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &806020827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806020824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39487206ee0c0da4a85fdbb0af8ddfd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Varginha.VarginhaWorldDepth
+  actor: 0
+  behindActors: 0
+  support: {fileID: 0}
+  footprint: {fileID: 895944032}
+  relativeOrder: 0
+--- !u!212 &806020828
+SpriteRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806020824}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 1383749564, guid: 4d5a40e2866f69a46be8cc44e37c03c7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.5625, y: 3.90625}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!213 &811259721
 Sprite:
   serializedVersion: 2
@@ -15559,7 +15735,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -17448,7 +17624,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -17997,7 +18173,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895944030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -18320,6 +18496,130 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
+--- !u!1 &904349891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904349892}
+  - component: {fileID: 904349895}
+  - component: {fileID: 904349894}
+  - component: {fileID: 904349893}
+  m_Layer: 0
+  m_Name: Fachada_Industrial_Esquerda
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &904349892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904349891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.25, y: -6.05, z: 0}
+  m_LocalScale: {x: 0.8888889, y: 0.8704, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 293975908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &904349893
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904349891}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 12570
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &904349894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904349891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39487206ee0c0da4a85fdbb0af8ddfd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Varginha.VarginhaWorldDepth
+  actor: 0
+  behindActors: 0
+  support: {fileID: 0}
+  footprint: {fileID: 2145502746}
+  relativeOrder: 0
+--- !u!212 &904349895
+SpriteRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904349891}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: -1324217504, guid: 4d5a40e2866f69a46be8cc44e37c03c7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 8.4375, y: 3.90625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -24226,7 +24526,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -26709,6 +27009,7 @@ Transform:
   - {fileID: 1931580064}
   - {fileID: 1505528565}
   - {fileID: 697328889}
+  - {fileID: 293975908}
   m_Father: {fileID: 78685185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342616291
@@ -27012,7 +27313,7 @@ Sprite:
       height: 24
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 35, z: 32, w: 12}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -28662,7 +28963,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -29758,7 +30059,7 @@ Sprite:
       height: 32
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 16, z: 32, w: 16}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -30162,7 +30463,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -30781,7 +31082,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -32692,7 +32993,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -33377,7 +33678,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 64, y: 32, z: 64, w: 32}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -35329,7 +35630,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -37315,7 +37616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1754643591
 Transform:
   m_ObjectHideFlags: 0
@@ -38195,7 +38496,7 @@ Sprite:
       height: 42
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 25.5, z: 32, w: 21}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -39428,7 +39729,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -39740,7 +40041,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -43376,7 +43677,7 @@ Sprite:
       height: 64
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 47.407406, y: 32, z: 47.407406, w: 224}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -44588,7 +44889,7 @@ Sprite:
       height: 15
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 31, z: 32, w: 7.5}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -44900,7 +45201,7 @@ Sprite:
       height: 42
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 0
+    settingsRaw: 3072
     uvTransform: {x: 32, y: 32, z: 32, w: 21}
     downscaleMultiplier: 1
   m_AtlasRD:
@@ -46801,7 +47102,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145502744}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
